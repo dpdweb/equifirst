@@ -3,39 +3,50 @@
 @import "tailwindcss";
 
 @theme {
-  --color--ef-blue : #167A99;
-  --color--ef-hover-blue : #0a4456;
-  --color--ef-gray : #00000080;
+  --color-ef-blue : #167A99;
+  --color-ef-hover-blue : #0a4456;
+  --color-ef-dark-blue : #167A99;
+  --color-ef-dark-blue-1 : #C0D9DF;
+  --color-ef-extra-light-blue : #167A9926;
+  --color-ef-light-blue : #70c7e1;
+  --color-ef-gray : #00000080;
+  --color-ef-dark-gray : #232323;
+  --color-ef-light-gray : #E2DBD1;
+  --color-ef-yellow : #D4B888;
+
+
+
+  --max-width-8xl: 1352px;
+  --max-width-9xl: 1600px;
+
+  --font-size-ef-heading1: 2rem; /* 12px */
+  --font-weight-ef-heading1: 400; /* 12px */
+  --line-height-ef-heading1: 1.2; /* 12px */
+
 }
- @layer base {
+
+
+
+@layer base {
   body {
     font-family: 'Poppins', sans-serif;
-    font-size: 16px; /* you can adjust this */
+    font-size: 16px;
     @apply antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold;
   }
-
-  /* a {
-    @apply text-blue-600 hover:text-blue-800;
-  } */
 }
 
 @layer components {
-  .btn {
-  @apply px-4 py-2 text-white rounded-lg transition-colors duration-500 cursor-pointer;
-  background-color: var(--color--ef-blue);
-}
 
-.btn:hover {
-  background-color: var(--color--ef-hover-blue);
-}
+  .btn {
+    @apply px-4 py-2 text-white rounded-lg transition-colors duration-500 cursor-pointer bg-ef-blue hover:bg-ef-hover-blue;
+  }
 
   .nav-link {
-    @apply relative inline-block text-gray-600 transition-colors duration-300;
-    color: inherit;
+    @apply relative inline-block text-ef-gray transition-colors duration-300;
   }
 
   .nav-link::after {
@@ -45,15 +56,37 @@
     bottom: -5px;
     width: 0%;
     height: 2px;
-    background-color: var(--color--ef-blue);
+    background-color: theme('colors.ef-blue');
     transition: width 0.3s ease;
   }
 
   .nav-link:hover {
-    color: var(--color--ef-blue) !important;
+    color: theme('colors.ef-blue') !important;
   }
 
   .nav-link:hover::after {
+    width: 100%;
+  }
+
+    .footer-nav-link {
+    @apply relative inline-block text-white transition-colors duration-300;
+  }
+    .footer-nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background-color: var(--color-ef-blue);
+    transition: width 0.3s ease;
+  }
+
+  .footer-nav-link:hover {
+    color: var(--color-ef-light-blue) !important;
+  }
+
+  .footer-nav-link:hover::after {
     width: 100%;
   }
 
@@ -61,20 +94,49 @@
     @apply bg-white shadow-md rounded-lg p-6;
   }
 }
-/*
+
 @layer utilities {
-  .text-center {
-    @apply text-center;
+
+  .text-ef-heading1-size {
+      font-size: var(--font-size-ef-heading1);
+      font-weight: var(--font-weight-ef-heading1);
+      line-height: var(--line-height-ef-heading1);
   }
 
-  .mt-4 {
-    @apply mt-4;
+  .pre-heading {
+    display: inline-block;
+    border: 1px solid var(--color-ef-blue);
+    border-radius: 2rem;
+    padding: 0.75rem 1.25rem;
+    color: var(--color-ef-blue);
+    margin-bottom: 20px;
   }
 
-  .mb-4 {
-    @apply mb-4;
+  .btn-outlined { 
+    background: white;
+    color:var(--color-ef-blue);
+    border: 1px solid var(--color-ef-blue)
+   }
+  .btn-outlined:hover { 
+    background: var(--color-ef-blue);
+    color:white;  
   }
+
+  .btn-outlined-white { 
+    background: none;
+    color:white;
+    border: 1px solid white;
+    border-radius:30px
+   }
+  .btn-outlined-white:hover { 
+    background: white;
+    color:var(--color-ef-blue);  
+  }
+
+
+
 }
+/*
 @layer screens {
   @media (min-width: 640px) {
     .sm\:text-lg {
