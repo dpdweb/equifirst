@@ -1,11 +1,12 @@
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
 import {
   Facebook,
   Twitter,
   Instagram,
   Linkedin,
 } from 'lucide-react';
+
 
 export default function Footer() {
   return (
@@ -33,7 +34,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-3">COMPANY</h4>
             <ul className="space-y-2 text-sm">
-              <li>
+              {/* <li>
                 <Link href="/about" className="footer-nav-link">
                   About Us
                 </Link>
@@ -67,14 +68,14 @@ export default function Footer() {
                 <Link href="/calculator" className="footer-nav-link">
                   Privacy Policy
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-3">EXPLORE</h4>
             <ul className="space-y-2 text-sm">
-              <li>
+              {/* <li>
                 <Link href="/faqs" className="footer-nav-link">
                   FAQs
                 </Link>
@@ -88,7 +89,7 @@ export default function Footer() {
                 <Link href="/privacy-policy" className="footer-nav-link">
                   Privacy Policy
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 

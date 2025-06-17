@@ -9,10 +9,10 @@ export default function AnimatedTabs() {
   const [activeTab, setActiveTab] = useState('tab1');
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-4 py-8">
+    <div className="ef-section-style">
       {/* Tabs */}
-      <div class="grid grid-cols-2">
-        <div className="text-3xl">Got questions? We're here to help!</div>
+      <div className="grid grid-cols-2">
+        <div className="text-3xl">Got questions? We&apos;re here to help!</div>
         <div className="flex justify-end space-x-4 mb-4">
           <button
             onClick={() => setActiveTab('tab1')}
@@ -38,7 +38,7 @@ export default function AnimatedTabs() {
       </div>
 
       {/* Content Area */}
-      <div className="relative bg-white p-6 rounded overflow-hidden">
+      <div className="relative overflow-hidden">
         <AnimatePresence mode="wait">
           {activeTab === 'tab1' && (
             <motion.div
@@ -47,7 +47,7 @@ export default function AnimatedTabs() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className=" inset-0 p-4"
+              className=" inset-0"
             >
               <GotQuestionSection />
             </motion.div>
@@ -59,7 +59,7 @@ export default function AnimatedTabs() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className=" inset-0 p-4"
+              className=" inset-0"
             >
               <h2 className="text-xl font-bold mb-2">Content for Tab 2</h2>
               <p>This is the animated content for Tab 2.</p>

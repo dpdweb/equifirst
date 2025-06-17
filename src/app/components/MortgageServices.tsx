@@ -1,12 +1,12 @@
 // components/FinanceOptions.tsx
-import Image from 'next/image';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
+// import Image from 'next/image';
+// import { ArrowRightIcon } from '@heroicons/react/24/outline';
+// import Link from 'next/link';
 
 
 export default function FinaMortgageServices() {
   return (
-    <div className="max-w-7xl mx-auto my-10 px-4 md:px-6">
+    <div className="ef-section-style-2">
       <div className="grid md:grid-cols-[490px_1fr] gap-6">
         
         <div className="mb-6 md:md-0 text-center md:text-left">

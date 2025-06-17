@@ -7,6 +7,7 @@
   --color-ef-hover-blue : #0a4456;
   --color-ef-dark-blue : #167A99;
   --color-ef-dark-blue-1 : #C0D9DF;
+  --color-ef-dark-blue-2 : #E7EFEF;
   --color-ef-extra-light-blue : #167A9926;
   --color-ef-light-blue : #70c7e1;
   --color-ef-gray : #00000080;
@@ -30,6 +31,8 @@
 @layer base {
   body {
     font-family: 'Poppins', sans-serif;
+    /* font-family: 'Montserrat', sans-serif; */
+
     font-size: 16px;
     @apply antialiased;
   }
@@ -131,6 +134,57 @@
   .btn-outlined-white:hover { 
     background: white;
     color:var(--color-ef-blue);  
+  }
+
+  .btn-slider {
+    background-color: white;
+    padding: 20px;
+    color:black;
+    font-weight: bold;
+  }
+
+  .ef-section-style {
+    @apply max-w-7xl mx-auto py-20 px-4 sm:px-0 lg:px-0;
+  }
+  .ef-section-style-2 {
+    @apply max-w-7xl mx-auto py-0 px-4 sm:px-0 lg:px-0;
+  }
+
+
+  .ef-sub-page-top-style {
+    @apply max-w-7xl mx-auto pb-20 px-4 sm:px-0 lg:px-0;
+  }
+  
+  .ef-arrow-btn-1 {
+    @apply w-10 h-10 rounded-full border border-[#006b8f] flex items-center justify-center text-[#006b8f] hover:bg-[#006b8f] hover:text-white transition cursor-pointer;
+  }
+
+  .ef-arrow-btn-2 {
+    @apply w-10 h-10 rounded-full border border-[#006b8f] flex items-center justify-center text-[#006b8f] hover:bg-[#006b8f] hover:text-white  transition-all duration-300 ease-in-out;
+  }
+
+  .ef-arrow-btn-abs-1 {
+    @apply absolute bottom-6 right-6; 
+  }
+
+
+  .ArrowRightIcon { 
+    @apply w-5 h-5 transition duration-300 ease-in-out hover:text-white hover:rotate-45;
+   }
+  
+  .box-bg-count { 
+    @apply absolute -bottom-45 right-15 text-[15rem] z-[-1] text-[#598d9e] font-bold;
+  }
+
+  .box-bg-count-2 { 
+    @apply absolute -bottom-45 right-15 text-[15rem] z-0 text-[#598d9e] font-bold;
+  }
+
+  .blue-box {
+    @apply relative bg-ef-extra-light-blue p-10 rounded-xl flex flex-col overflow-hidden;
+  }
+  .blue-box-2 {
+    @apply relative bg-ef-dark-blue-1 p-10 rounded-xl flex flex-col overflow-hidden;
   }
 
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function WhyEquifirst() {
   return (
-    <div className="max-w-7xl mx-auto my-10 px-4 md:px-6">
+    <div className="ef-section-style">
       <div className="grid md:grid-cols-[490px_1fr] gap-6">
         
         <div className="mb-6 md:md-0 text-center md:text-left">
@@ -40,7 +40,7 @@ export default function WhyEquifirst() {
           <p className="mb-5">
             We handle all the necessary paperwork, secure your mortgage pre-approval, and negotiate with banks on your behalf.
           </p>
-          <Link href="" className="btn inline mr-2">Start My Application</Link><Link href="" className="btn btn-outlined inline">Start My Application</Link>
+          <Link href="" className="btn inline mr-2">Start My Application</Link><Link href="" className="btn btn-outlined inline">Chat with EQUI</Link>
         </div>
 
       </div>

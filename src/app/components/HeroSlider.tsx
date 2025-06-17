@@ -1,90 +1,131 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectFade } from 'swiper/modules';
-// import 'swiper/css';
-import 'swiper/css/effect-fade'; // if using fade effect
-import 'swiper/css/navigation';  // if using navigation
+import { Autoplay } from 'swiper/modules';
+import Link from 'next/link';
+import { fetchHeroSlides } from '../lib/api';
+
+import 'swiper/css';
+
+interface Slide {
+  id: number;
+  image: string;
+  title?: string;
+  created_at?: string;
+}
 
 
-import { slides } from '../data/slides';
-import Image from 'next/image';
+export default function TestSlider() {
+  const lineRef = useRef<HTMLDivElement>(null);
+  const [slides, setSlides] = useState<Slide[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-export default function HeroSlider() {
+  // ✅ Fetch slide data
+async function getSlides() {
+  try {
+    const response = await fetchHeroSlides();
+    console.log("Fetched slides response:", response); // 👈 Check what comes back
+
+    if (Array.isArray(response.data)) {
+      setSlides(response.data);
+    } else if (Array.isArray(response.data)) {
+      setSlides(response.data); // 👈 Adjust based on actual response
+    } else {
+      setError('Invalid slide data format');
+    }
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      setError(err.message);
+    } else {
+      setError('Unknown error occurred');
+    }
+  } finally {
+    setLoading(false);
+  }
+}
+
+
+  useEffect(() => {
+    const line = lineRef.current;
+    if (line) {
+      line.style.height = '0px';
+      setTimeout(() => {
+        line.style.height = 'calc(100% - 4.5rem)';
+      }, 100);
+    }
+
+    getSlides();
+  }, []);
+
+  if (loading) return <div className="text-center p-10">Loading slides...</div>;
+  if (error) return <div className="text-center text-red-500 p-10">{error}</div>;
+
   return (
-    <section className="relative w-full h-[600px] md:h-[700px] rounded-[30px] overflow-hidden">
-
-      {/* Swiper for background images */}
+    <div className="relative mx-auto max-w-8xl h-[400px] md:h-[550px] rounded-tl-none rounded-tr-none sm:rounded-[30px] overflow-hidden">
       <Swiper
-        modules={[Autoplay, EffectFade]}
-        effect="fade"
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
-        loop
-        className="absolute inset-0 z-0"
+        spaceBetween={0}
+        slidesPerView={1}
+        loop={true}
+        effect="slide"
+        autoplay={{
+          delay: 2000,
+          disableOnInteraction: false,
+        }}
+        modules={[Autoplay]}
+        className="h-full"
       >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <Image
-              src={slide.image}
-              alt={`Slide ${index}`}
-              fill
-              className="object-cover"
-              priority={index === 0}
-            />
-            <div className="absolute inset-0 bg-black/30" />
+        {slides.map((slide) => (
+          <SwiperSlide key={slide.id}>
+            <div
+              className="w-full h-full bg-cover bg-center"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${slide.image}')`,
+              }}
+            ></div>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {/* Static Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center px-6 sm:px-10 md:px-16 text-white max-w-4xl">
-
-        
-        {/* Step 1 */}
-        <div className="flex items-center gap-3 mb-2">
-          <div className="w-7 h-7 bg-white text-black font-bold rounded-full flex items-center justify-center">1</div>
-          <p className="uppercase text-sm tracking-wide">
-            Your Trusted Partner In Home Financing
-          </p>
-        </div>
-
-        {/* Title */}
-        <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-6">
-          Unlocking Doors<br />
-          <span className="text-blue-200">To Your Dream Home</span>
-        </h1>
-
-        {/* Line Animation */}
-        <div className="relative mb-6 h-8">
-          <svg width="150" height="40" className="absolute top-0 left-0">
-            <line
-              x1="10"
-              y1="10"
-              x2="130"
-              y2="10"
-              stroke="#fff"
-              strokeWidth="2"
-              strokeDasharray="120"
-              strokeDashoffset="0"
-              style={{ transition: 'stroke-dashoffset 1s ease-in-out' }}
+      <div className="absolute inset-0 text-white z-10">
+        <div className="grid grid-cols-[70px_1fr] gap-2 p-6 md:p-[90px]">
+          {/* Timeline Bullets & Line */}
+          <div className="relative w-[40px] h-64 flex flex-col items-center justify-between">
+            <div className="w-[40px] h-[40px] rounded-full bg-white z-10 flex items-center justify-center text-black">
+              1
+            </div>
+            <div
+              ref={lineRef}
+              className="absolute top-8 w-1 bg-white transition-all duration-1000 ease-in-out"
+              style={{ height: '0px' }}
             />
-          </svg>
-          <div className="absolute left-[120px] top-[-5px] w-7 h-7 bg-white text-black font-bold rounded-full flex items-center justify-center">2</div>
+            <div className="w-[40px] h-[40px] rounded-full border border-white z-10 flex items-center justify-center text-white">
+              2
+            </div>
+          </div>
+
+          {/* Slide Content */}
+          <div>
+            <div className="w-full">
+              <span className="text-white">Empowering Your Property Journey</span>
+              <br />
+              <h1 className="text-white text-2xl md:text-6xl font-semibold">
+                Unlocking Doors <br />
+                To Your Dream Home
+              </h1>
+            </div>
+            <div className="w-full mt-32 md:mt-20 flex flex-col sm:flex-row gap-4">
+              <Link href="/" className="btn btn-slider md:w-[200px]">
+                Apply Online in Two Minutes
+              </Link>
+              <Link href="/" className="btn btn-slider md:w-[200px]">
+                Speak to a Mortgage Expert
+              </Link>
+            </div>
+          </div>
         </div>
-
-        {/* Buttons */}
-        <div className="flex gap-4 flex-wrap">
-          <button className="bg-white text-black px-5 py-3 rounded-md shadow hover:bg-gray-100 transition">
-            Apply Online in Two Minutes
-          </button>
-          <button className="bg-white text-black px-5 py-3 rounded-md shadow hover:bg-gray-100 transition">
-            Speak to a Mortgage Expert
-          </button>
-        </div>
-
-
       </div>
-
-    </section>
+    </div>
   );
 }

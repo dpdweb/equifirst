@@ -1,13 +1,12 @@
 import HeroSlider from "./components/HeroSlider";
-import TestSlider from "./components/TestSlider";
-import FinanceOptions from './components/FinanceOptions';
-import ScrollHighlight from './components/ScrollHighlight';
-import UnlockDoor from "./components/UnlockDoor";
-import MortgageServices from "./components/MortgageServices";
-import MortgageMadeSimple from "./components/MortgageMadeSimple";
+// import FinanceOptions from './components/FinanceOptions';
+// import ScrollHighlight from './components/ScrollHighlight';
+// import UnlockDoor from "./components/UnlockDoor";
+// import MortgageServices from "./components/MortgageServices";
+// import MortgageMadeSimple from "./components/MortgageMadeSimple";
 import WhyEquifirst from "./components/WhyEquifirst";
-import Testimonials from "./components/Testimonials";
-import GotQuestion from "./components/GotQuestion";
+// import Testimonials from "./components/Testimonials";
+// import GotQuestion from "./components/GotQuestion";
 
 
 
@@ -17,17 +16,16 @@ export default function Home() {
   // style={{ backgroundImage: "url('/assets/images/home-bg.png')" }} >
     <div>
 
-      <TestSlider />
-      {/* <HeroSlider /> */}
-      
+      <HeroSlider />
       {/* <ScrollHighlight /> */}
-      <UnlockDoor />
+       <WhyEquifirst />
+      {/*<UnlockDoor />
       <MortgageServices />
       <FinanceOptions />
       <MortgageMadeSimple />
-      <WhyEquifirst />
+      
       <Testimonials />
-      <GotQuestion />
+      <GotQuestion /> */}
       
       </div>
   );

@@ -1,7 +1,7 @@
 // components/FinanceOptions.tsx
-import Image from 'next/image';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
+// import Image from 'next/image';
+// import { ArrowRightIcon } from '@heroicons/react/24/outline';
+// import Link from 'next/link';
 
 
 export default function MortgageMadeSimple() {
