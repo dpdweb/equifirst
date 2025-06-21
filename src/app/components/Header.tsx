@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import Image from "next/image";
-import { useSettings } from '../context/SettingsContext';
+// import { useSettings } from '../context/SettingsContext';
 
 
 
@@ -11,7 +11,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
-  const { settings, loading } = useSettings();
+  // const { settings, loading } = useSettings();
 
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (loading) return null;
+  // if (loading) return null;
   if (!hasMounted) return null; // Prevent hydration mismatch
 
   return (
@@ -35,8 +35,16 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Image
+          {/* <Image
             src={settings?.site_logo_desktop || "/default-logo.png"}
+            alt="Logo"
+            width={200}
+            height={100}
+            className="h-auto w-auto"
+            priority
+          /> */}
+          <Image
+            src='/assets/images/logo.png'
             alt="Logo"
             width={200}
             height={100}
@@ -47,10 +55,10 @@ export default function Header() {
 
         <nav className="hidden md:flex gap-6 text-ef-gray font-medium">
           <Link href="/" className="nav-link">Home</Link>
-          {/* <Link href="/mortgage-calculator" className="nav-link">Mortgage Calculator</Link>
+          <Link href="/mortgage-calculator" className="nav-link">Mortgage Calculator</Link>
           <Link href="/services" className="nav-link">Services</Link>
           <Link href="/blogs" className="nav-link">Blogs</Link>
-          <Link href="/about-us" className="nav-link">About us</Link> */}
+          <Link href="/about-us" className="nav-link">About us</Link>
         </nav>
 
         <div className="md:hidden pt-2">
@@ -59,9 +67,9 @@ export default function Header() {
           </button>
         </div>
 
-        {/* <div className="hidden md:block">
+        <div className="hidden md:block">
           <button className="btn">Contact Us</button>
-        </div> */}
+        </div>
       </div>
 
       {isOpen && (

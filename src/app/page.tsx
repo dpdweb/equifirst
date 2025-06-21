@@ -1,8 +1,8 @@
 import HeroSlider from "./components/HeroSlider";
 // import FinanceOptions from './components/FinanceOptions';
-// import ScrollHighlight from './components/ScrollHighlight';
-// import UnlockDoor from "./components/UnlockDoor";
-// import MortgageServices from "./components/MortgageServices";
+import ScrollHighlight from './components/ScrollHighlight';
+import UnlockDoor from "./components/UnlockDoor";
+import MortgageServices from "./components/MortgageServices";
 // import MortgageMadeSimple from "./components/MortgageMadeSimple";
 import WhyEquifirst from "./components/WhyEquifirst";
 // import Testimonials from "./components/Testimonials";
@@ -17,11 +17,11 @@ export default function Home() {
     <div>
 
       <HeroSlider />
-      {/* <ScrollHighlight /> */}
+      <ScrollHighlight />
        <WhyEquifirst />
-      {/*<UnlockDoor />
+      <UnlockDoor />
       <MortgageServices />
-      <FinanceOptions />
+      {/*<FinanceOptions />
       <MortgageMadeSimple />
       
       <Testimonials />
