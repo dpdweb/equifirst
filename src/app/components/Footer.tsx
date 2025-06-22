@@ -35,61 +35,61 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-3">COMPANY</h4>
             <ul className="space-y-2 text-sm">
                <li>
-                <Link href="/about" className="footer-nav-link">
+                <Link href="/" className="footer-nav-link">
                   About Us
                 </Link>
               </li>
-             {/* <li>
-                <Link href="/contact" className="footer-nav-link">
+             <li>
+                <Link href="/" className="footer-nav-link">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="/calculator" className="footer-nav-link">
+                <Link href="/" className="footer-nav-link">
                   Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/calculator" className="footer-nav-link">
+                <Link href="/" className="footer-nav-link">
                   Services
                 </Link>
               </li>
               <li>
-                <Link href="/calculator" className="footer-nav-link">
+                <Link href="/" className="footer-nav-link">
                   Blogs
                 </Link>
               </li>
               <li>
-                <Link href="/calculator" className="footer-nav-link">
+                <Link href="/" className="footer-nav-link">
                   Careers
                 </Link>
               </li>
               <li>
-                <Link href="/calculator" className="footer-nav-link">
+                <Link href="/" className="footer-nav-link">
                   Privacy Policy
                 </Link>
-              </li> */}
+              </li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-3">EXPLORE</h4>
             <ul className="space-y-2 text-sm">
-              {/* <li>
-                <Link href="/faqs" className="footer-nav-link">
+              <li>
+                <Link href="/" className="footer-nav-link">
                   FAQs
                 </Link>
               </li>
               <li>
-                <Link href="/terms-and-conditions" className="footer-nav-link">
+                <Link href="/" className="footer-nav-link">
                   Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link href="/privacy-policy" className="footer-nav-link">
+                <Link href="/" className="footer-nav-link">
                   Privacy Policy
                 </Link>
-              </li> */}
+              </li>
             </ul>
           </div>
 

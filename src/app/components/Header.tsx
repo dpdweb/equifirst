@@ -55,10 +55,14 @@ export default function Header() {
 
         <nav className="hidden md:flex gap-6 text-ef-gray font-medium">
           <Link href="/" className="nav-link">Home</Link>
-          <Link href="/mortgage-calculator" className="nav-link">Mortgage Calculator</Link>
+          <Link href="/" className="nav-link">Mortgage Calculator</Link>
+          <Link href="/" className="nav-link">Services</Link>
+          <Link href="/" className="nav-link">Blogs</Link>
+          <Link href="/" className="nav-link">About us</Link>
+          {/* <Link href="/mortgage-calculator" className="nav-link">Mortgage Calculator</Link>
           <Link href="/services" className="nav-link">Services</Link>
           <Link href="/blogs" className="nav-link">Blogs</Link>
-          <Link href="/about-us" className="nav-link">About us</Link>
+          <Link href="/about-us" className="nav-link">About us</Link> */}
         </nav>
 
         <div className="md:hidden pt-2">
