@@ -1,5 +1,5 @@
 import HeroSlider from "./components/HeroSlider";
-// import FinanceOptions from './components/FinanceOptions';
+import FinanceOptions from './components/FinanceOptions';
 import ScrollHighlight from './components/ScrollHighlight';
 import UnlockDoor from "./components/UnlockDoor";
 import MortgageServices from "./components/MortgageServices";
@@ -21,8 +21,8 @@ export default function Home() {
        <WhyEquifirst />
       <UnlockDoor />
       <MortgageServices />
-      {/*<FinanceOptions />
-      <MortgageMadeSimple />
+      <FinanceOptions />
+      {/*<MortgageMadeSimple />
       
       <Testimonials />
       <GotQuestion /> */}

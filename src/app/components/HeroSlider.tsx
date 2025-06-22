@@ -86,14 +86,7 @@ async function getSlides() {
             ></div>
           </SwiperSlide>
         ))}
-        <SwiperSlide>
-            <div
-              className="w-full h-full bg-cover bg-center"
-              style={{
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/images/unlocking-doors.png')`,
-              }}
-            ></div>
-          </SwiperSlide>
+   
       </Swiper>
 
       <div className="absolute inset-0 text-white z-10">
