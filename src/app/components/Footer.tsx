@@ -1,5 +1,5 @@
 import Image from 'next/image';
-// import Link from 'next/link';
+import Link from 'next/link';
 import {
   Facebook,
   Twitter,
@@ -34,12 +34,12 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-3">COMPANY</h4>
             <ul className="space-y-2 text-sm">
-              {/* <li>
+               <li>
                 <Link href="/about" className="footer-nav-link">
                   About Us
                 </Link>
               </li>
-              <li>
+             {/* <li>
                 <Link href="/contact" className="footer-nav-link">
                   Contact Us
                 </Link>
