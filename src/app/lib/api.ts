@@ -5,7 +5,7 @@ if (typeof window !== 'undefined') {
   const origin = window.location.origin;
 
   if (origin === 'http://82.25.105.217:3000') {
-    API_BASE_URL = 'http://82.25.105.217:3000/api'; // Live API
+    API_BASE_URL = 'http://82.25.105.217/api'; // Live API
   } else {
     API_BASE_URL = 'http://localhost:8000/api'; // Local API
   }
