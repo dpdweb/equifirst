@@ -5,8 +5,8 @@ import UnlockDoor from "./components/UnlockDoor";
 import MortgageServices from "./components/MortgageServices";
 // import MortgageMadeSimple from "./components/MortgageMadeSimple";
 import WhyEquifirst from "./components/WhyEquifirst";
-// import Testimonials from "./components/Testimonials";
-// import GotQuestion from "./components/GotQuestion";
+import Testimonials from "./components/Testimonials";
+import GotQuestion from "./components/GotQuestion";
 
 
 
@@ -22,10 +22,10 @@ export default function Home() {
       <UnlockDoor />
       <MortgageServices />
       <FinanceOptions />
-      {/*<MortgageMadeSimple />
+      {/*<MortgageMadeSimple />*/}
       
       <Testimonials />
-      <GotQuestion /> */}
+      <GotQuestion /> 
       
       </div>
   );

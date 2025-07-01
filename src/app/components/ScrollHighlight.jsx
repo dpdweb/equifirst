@@ -1,8 +1,11 @@
 'use client';
-
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay  } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 const points = [
   {
@@ -33,11 +36,11 @@ const points = [
     title: '5/5 Google Review Score',
     image: '/assets/images/scroll-img2.png',
   },
-
 ];
 
 export default function ScrollHighlight() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [lineHeight, setLineHeight] = useState(0);
   const sectionRefs = useRef([]);
 
   useEffect(() => {
@@ -55,62 +58,126 @@ export default function ScrollHighlight() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+
+    const ref = sectionRefs.current[activeIndex];
+    if (ref) {
+      const containerTop = sectionRefs.current[0]?.getBoundingClientRect()?.top ?? 0;
+      const currentTop = ref.getBoundingClientRect().top;
+      const heightSoFar = (currentTop - containerTop + ref.offsetHeight / 2) - 70;
+      console.log('containerTop', containerTop);
+      console.log('currentTop', currentTop);
+      setLineHeight(heightSoFar);
+    }
+  }, [activeIndex]);
+
   return (
     <div className="ef-section-style">
 
+      <div className="hidden md:block">
         <h2 className="text-ef-blue font-extrabold text-5xl mb-10">Why choose Equifirst?</h2>
-      
+
         <div className="flex flex-col md:flex-row items-start gap-10">
+   
+          <div className="relative flex flex-col space-y-16 w-full md:w-[80%]">
+        
+            <div
+              className="absolute left-[30px] top-0 w-1 bg-ef-blue z-0 transition-all duration-500 ease-in-out"
+              style={{ height: `${lineHeight}px` }}
+            ></div>
 
-    {/* Points list - Left Column */}
-<div className="relative flex flex-col space-y-16 w-full md:w-[80%]">
-<div className="absolute left-7.5 top-0 w-1 h-full bg-ef-blue z-0"></div>
-  {points.map((point, index) => (
-    <div
-      key={index}
-      ref={(el) => (sectionRefs.current[index] = el)}
-      className={clsx(
-        'transition-all duration-500 ease-in-out flex items-start gap-4',
-        index === activeIndex
-          ? ' text-ef-blue font-bold'
-          : 'border-gray-300 text-black'
-      )}
-    >
-      {/* Circle Number */}
-      <div
-        className={clsx(
-          'w-15 h-15 flex items-center justify-center rounded-full text-xl font-bold transition-all duration-500 border-1',
-          index === activeIndex
-            ? 'bg-ef-blue text-white scale-110'
-            : 'bg-white border-ef-blue text-ef-blue scale-100'
-        )}
+            {points.map((point, index) => (
+              <div
+                key={index}
+                ref={(el) => (sectionRefs.current[index] = el)}
+                className={clsx(
+                  'transition-all duration-500 ease-in-out h-[150px] flex items-start gap-4 relative z-10',
+                  index === activeIndex
+                    ? 'text-ef-blue font-bold'
+                    : 'border-gray-300 text-black'
+                )}
+              >
+                {/* Circle Number */}
+                <div
+                  className={clsx(
+                    'w-[60px] h-[60px] flex-none flex items-center justify-center rounded-full text-xl font-bold transition-all duration-500 border',
+                    index === activeIndex
+                      ? 'bg-ef-blue text-white scale-110'
+                      : 'bg-white border-ef-blue text-ef-blue scale-100'
+                  )}
+                >
+                  {index + 1}
+                </div>
+
+                {/* Title Text */}
+                <div className="text-5xl pt-3 transition-opacity duration-500">
+                  {point.title}
+                </div>
+              </div>
+            ))}
+          </div>
+
+     
+          <div className="sticky top-20 ml-auto">
+            <Image
+              src={points[activeIndex].image}
+              alt={`Slide ${activeIndex + 1}`}
+              width={600}
+              height={300}
+              className="rounded-xl shadow-xl"
+            />
+          </div>
+        </div>
+      </div>
+
+
+          <div className="block md:hidden relative w-full max-w-4xl mx-auto">
+            <Swiper
+        modules={[Navigation, Autoplay]}
+        navigation
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        slidesPerView={1}
+        spaceBetween={30}
+        allowTouchMove={typeof window !== 'undefined' && window.innerWidth < 768}
+        className="equi-swiper"
       >
-        {index + 1}
+
+
+{points.map((point, index) => (
+  <SwiperSlide key={index}>
+    <div className="p-6 rounded-lg max-w-5xl mx-auto">
+      <div className="flex items-center gap-4 mb-4">
+        <div className="w-[40px] h-[40px] flex-none rounded-full bg-ef-dark-blue text-white flex items-center justify-center text-[18px] font-bold leading-none">
+          {index + 1}
+        </div>
+        <h2 className="text-2xl font-bold text-ef-dark-blue leading-snug">{point.title}</h2>
       </div>
 
-      {/* Title Text */}
-      <div className="text-3xl pt-3 transition-opacity duration-500">
-        {point.title}
+      <div className="overflow-hidden rounded-2xl">
+        <Image
+          src={point.image}
+          alt={point.title}
+          width={1200}
+          height={600}
+          className="w-full h-auto object-cover"
+        />
       </div>
     </div>
-  ))}
-</div>
+  </SwiperSlide>
+))}
 
-
-    {/* Image - Right Column */}
-    <div className="sticky top-20  ml-auto">
-      <Image
-            src={points[activeIndex].image}
-            alt={`Slide ${activeIndex + 1}`}
-            width={600}
-            height={300}
-            className="rounded-xl shadow-xl"
-          />
       
-    </div>
-  </div>
+
+         
+            </Swiper>
+      
+          
+          </div>
+
 
     </div>
   );
 }
-

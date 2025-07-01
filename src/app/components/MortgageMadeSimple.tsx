@@ -10,7 +10,7 @@ export default function MortgageMadeSimple() {
       <div className="grid md:grid-cols-[490px_1fr] gap-6">
         
         <div className="mb-6 md:md-0 text-center md:text-left">
-          <div className="pre-heading">Mortgage Calculator</div>
+          <div className="pre-mobile-heading md:pre-heading">Mortgage Calculator</div>
           <h1 className="text-ef-heading1-size text-ef-dark-blue">
             Your Mortgage Made Simple
           </h1>

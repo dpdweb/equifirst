@@ -41,7 +41,7 @@ export default function WhoWeAre() {
       <div className="grid md:grid-cols-[490px_1fr] gap-6">
         
         <div className="mb-6 md:md-0 text-center md:text-left">
-          <div className="pre-heading">What We Do</div>
+          <div className="pre-mobile-heading md:pre-heading">What We Do</div>
           <h1 className="text-ef-heading1-size text-ef-dark-blue">
             Your FIRST Choice For Smart Mortgage Solutions
           </h1>

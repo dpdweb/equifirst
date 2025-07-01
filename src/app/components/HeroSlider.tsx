@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
@@ -21,17 +20,19 @@ export default function TestSlider() {
   const [slides, setSlides] = useState<Slide[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [animateLine, setAnimateLine] = useState(false);
 
-  // ✅ Fetch slide data
+
+
 async function getSlides() {
   try {
     const response = await fetchHeroSlides();
-    console.log("Fetched slides response:", response); // 👈 Check what comes back
+    console.log("Fetched slides response:", response);
 
     if (Array.isArray(response.data)) {
       setSlides(response.data);
     } else if (Array.isArray(response.data)) {
-      setSlides(response.data); // 👈 Adjust based on actual response
+      setSlides(response.data);
     } else {
       setError('Invalid slide data format');
     }
@@ -46,24 +47,24 @@ async function getSlides() {
   }
 }
 
-
   useEffect(() => {
-    const line = lineRef.current;
-    if (line) {
-      line.style.height = '0px';
-      setTimeout(() => {
-        line.style.height = 'calc(100% - 4.5rem)';
-      }, 100);
-    }
+    const loadSlidesAndAnimate = async () => {
+      await getSlides();
+      // Ensure DOM is painted first, then animate
+      requestAnimationFrame(() => {
+        setAnimateLine(true);
+      });
+    };
 
-    getSlides();
+    loadSlidesAndAnimate();
   }, []);
+
 
   if (loading) return <div className="text-center p-10">Loading slides...</div>;
   if (error) return <div className="text-center text-red-500 p-10">{error}</div>;
 
   return (
-    <div className="relative mx-auto max-w-8xl h-[400px] md:h-[550px] rounded-tl-none rounded-tr-none sm:rounded-[30px] overflow-hidden">
+    <div className="relative -mt-22 md:mt-0 mx-auto max-w-8xl h-[600px] md:h-[550px] rounded-tl-none rounded-tr-none sm:rounded-[30px] overflow-hidden">
       <Swiper
         spaceBetween={0}
         slidesPerView={1}
@@ -89,18 +90,20 @@ async function getSlides() {
    
       </Swiper>
 
-      <div className="absolute inset-0 text-white z-10">
+      <div className="absolute hidden md:block inset-0 text-white z-10">
         <div className="grid grid-cols-[70px_1fr] gap-2 p-6 md:p-[90px]">
           {/* Timeline Bullets & Line */}
           <div className="relative w-[40px] h-64 flex flex-col items-center justify-between">
             <div className="w-[40px] h-[40px] rounded-full bg-white z-10 flex items-center justify-center text-black">
               1
             </div>
-            <div
-              ref={lineRef}
-              className="absolute top-8 w-1 bg-white transition-all duration-1000 ease-in-out"
-              style={{ height: '0px' }}
-            />
+            <div ref={lineRef}
+    className="absolute w-1 bg-white transition-all duration-1000 ease-in-out"
+    style={{
+      top: '20px', // center of top circle
+      height: animateLine ? 'calc(100% - 60px)' : '0px', // full center-to-center height
+    }}
+  ></div>
             <div className="w-[40px] h-[40px] rounded-full border border-white z-10 flex items-center justify-center text-white">
               2
             </div>
@@ -127,6 +130,22 @@ async function getSlides() {
           </div>
         </div>
       </div>
+
+
+      <div className="absolute inset-0 z-10 flex items-center justify-center text-white text-center px-4 md:hidden h-full">
+        <div className="mt-20">
+          <p className="text-sm tracking-wide uppercase">
+            Your Trusted Partner in Home Financing
+          </p>
+          <h1 className="text-3xl font-semibold leading-tight mt-2">
+            Unlocking Doors<br />
+            To Your Dream Home
+          </h1>
+        </div>
+      </div>
+
+
     </div>
+    
   );
 }
