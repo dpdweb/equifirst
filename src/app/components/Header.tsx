@@ -20,11 +20,11 @@ export default function Header() {
 
   const navItems = [
     { href: '/', label: 'Home' },
-    { href: '/mortgage-calculator', label: 'Mortgage Calculator' },
-    { href: '/services', label: 'Services' },
-    { href: '/blogs', label: 'Blogs' },
-    { href: '/about-us', label: 'About Us' },
-    { href: '/contact-us', label: 'Contact Us' },
+    { href: '/', label: 'Mortgage Calculator' },
+    { href: '/', label: 'Services' },
+    { href: '/', label: 'Blogs' },
+    { href: '/', label: 'About Us' },
+    { href: '/', label: 'Contact Us' },
   ];
 
 
