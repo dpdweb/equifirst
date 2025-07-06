@@ -19,13 +19,13 @@ export default function Header() {
   const pathname = usePathname();
 
   const navItems = [
-    { href: '/', label: 'Home' },
-    { href: '/', label: 'Mortgage Calculator' },
-    { href: '/', label: 'Services' },
-    { href: '/', label: 'Blogs' },
-    { href: '/', label: 'About Us' },
-    { href: '/', label: 'Contact Us' },
-  ];
+  { href: '/', label: 'Home' },
+  { href: '/mortgage-calculator', label: 'Mortgage Calculator' },
+  { href: '/services', label: 'Services' },
+  { href: '/blogs', label: 'Blogs' },
+  { href: '/about-us', label: 'About Us' },
+  { href: '/contact-us', label: 'Contact Us' },
+];
 
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Header() {
   return (
     <div>
     <header
-      className={`fixed md:sticky top-0 w-full transition-all duration-300 z-50 ${
+      className={`fixed  top-0 w-full transition-all duration-300 z-50 ${
         scrolled ? "bg-[rgba(255,255,255,0.8)] backdrop-blur-sm" : "bg-transparent"
       }`}
     >
@@ -74,7 +74,9 @@ export default function Header() {
         </nav>
 
         <div className="md:hidden pt-2">
-          <button onClick={() => setIsOpen(!isOpen)} className="text-white">
+          <button onClick={() => setIsOpen(!isOpen)} className={`${
+      scrolled ? 'text-black' : 'text-white'
+    } transition-colors duration-200`}>
             <Menu size={24} />
           </button>
         </div>
@@ -133,6 +135,7 @@ export default function Header() {
       </div>
 
       )}
+      <div className="h-0 md:h-25"></div>
     </div>
   );
 }

@@ -75,7 +75,7 @@ export default function ScrollHighlight() {
     <div className="ef-section-style">
 
       <div className="hidden md:block">
-        <h2 className="text-ef-blue font-extrabold text-5xl mb-10">Why choose Equifirst?</h2>
+        {/* <h2 className="text-ef-blue font-extrabold text-5xl mb-10">Why choose Equifirst?</h2> */}
 
         <div className="flex flex-col md:flex-row items-start gap-10">
    
@@ -103,16 +103,24 @@ export default function ScrollHighlight() {
                     'w-[60px] h-[60px] flex-none flex items-center justify-center rounded-full text-xl font-bold transition-all duration-500 border',
                     index === activeIndex
                       ? 'bg-ef-blue text-white scale-110'
-                      : 'bg-white border-ef-blue text-ef-blue scale-100'
+                      : 'bg-white border-ef-blue text-ef-blue scale-100  opacity-2-'
                   )}
                 >
                   {index + 1}
                 </div>
 
                 {/* Title Text */}
-                <div className="text-5xl pt-3 transition-opacity duration-500">
+                <div className={clsx(
+                  'text-5xl pt-3 transition-opacity duration-500 font-bold',
+                  index === activeIndex
+                    ? 'text-ef-blue'
+                    : 'border-gray-300 text-black opacity-10'
+                )}>
                   {point.title}
                 </div>
+                {/* <div className="text-5xl pt-3 transition-opacity duration-500">
+                  {point.title}
+                </div> */}
               </div>
             ))}
           </div>

@@ -1,9 +1,12 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
 import Link from 'next/link';
 import { fetchHeroSlides } from '../lib/api';
+import { Navigation, Autoplay  } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import Image from "next/image";
 
 import 'swiper/css';
 
@@ -64,18 +67,16 @@ async function getSlides() {
   if (error) return <div className="text-center text-red-500 p-10">{error}</div>;
 
   return (
-    <div className="relative -mt-22 md:mt-0 mx-auto max-w-8xl h-[600px] md:h-[550px] rounded-tl-none rounded-tr-none sm:rounded-[30px] overflow-hidden">
-      <Swiper
+    <div className="relative  mx-auto max-w-8xl h-[600px] md:h-[550px] rounded-tl-none rounded-tr-none sm:rounded-[30px] overflow-hidden">
+      {/* <Swiper
         spaceBetween={0}
-        slidesPerView={1}
-        loop={true}
-        effect="slide"
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: false,
-        }}
-        modules={[Autoplay]}
-        className="h-full"
+  slidesPerView={1}
+  loop={true}
+  effect="slide"
+  modules={[Navigation]}
+  navigation={true}
+  autoplay={false}
+  className="h-full HeroSwiper"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
@@ -88,8 +89,23 @@ async function getSlides() {
           </SwiperSlide>
         ))}
    
-      </Swiper>
+      </Swiper> */}
 
+<div dir="ltr" className="relative max-h-[calc(min(85vh,760px))] min-h-[720px] max-w-[1440px] overflow-hidden max-lg:h-[756px] md:max-h-[calc(min(95dvh,960px))] scale-x-[1]">
+  <video
+    autoPlay
+    loop
+    muted
+    playsInline
+    preload="auto"
+    src="/assets/test-vid-2.mp4"
+    className="h-full w-full object-cover rtl:scale-x-[-1]"
+  />
+
+</div>
+
+      
+      
       <div className="absolute hidden md:block inset-0 text-white z-10">
         <div className="grid grid-cols-[70px_1fr] gap-2 p-6 md:p-[90px]">
           {/* Timeline Bullets & Line */}
