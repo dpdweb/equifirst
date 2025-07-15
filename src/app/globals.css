@@ -49,7 +49,7 @@
 @layer components {
 
   .btn {
-    @apply px-4 py-2 text-white rounded-lg transition-colors duration-500 cursor-pointer bg-ef-blue hover:bg-ef-hover-blue;
+    @apply px-4 py-2 text-white rounded-lg transition-colors duration-500 cursor-pointer bg-ef-blue border-1 border-ef-blue hover:bg-ef-hover-blue;
   }
 
   .nav-link {
@@ -199,6 +199,17 @@
     color:var(--color-ef-blue);  
   }
 
+  .btn-outlined-blue { 
+    background:var(--color-ef-dark-blue-2);
+    color:var(--color-ef-blue);
+    border: 1px solid var(--color-ef-blue)
+   }
+  .btn-outlined-blue:hover { 
+    background: var(--color-ef-blue);
+    color:white;  
+  }
+
+
   .btn-slider {
     background-color: white;
     padding: 20px;
@@ -212,10 +223,16 @@
   .ef-section-style-2 {
     @apply max-w-7xl mx-auto py-5 md:py-0 px-4 sm:px-0 lg:px-0;
   }
+  .ef-section-style-3 {
+    @apply max-w-7xl mx-auto p-10;
+  }
 
+  /* .ef-sub-page-top-style {
+    @apply max-w-7xl mx-auto pb-20 px-4 sm:px-0 lg:px-0;
+  } */
 
   .ef-sub-page-top-style {
-    @apply max-w-7xl mx-auto pb-20 px-4 sm:px-0 lg:px-0;
+    @apply w-full  md:max-w-8xl mx-auto;
   }
   
   .ef-arrow-btn-1 {
@@ -279,12 +296,50 @@
     font-size: 20px !important;
     color:var(--color-ef-blue);
 
+ }
+
   .HeroSwiper .swiper-button-prev, .swiper-button-next {
   color: white;
   z-index: 50;
 }
 
+
+
+/* Custom range thumb and track styling */
+input[type='range'].slider-thumb::-webkit-slider-thumb {
+  appearance: none;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  border: 6px solid #0e7490;
+  cursor: pointer;
+  margin-top: -16px;
 }
+
+input[type='range'].slider-thumb::-moz-range-thumb {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  border: 6px solid #0e7490;
+  cursor: pointer;
+}
+
+input[type='range'].slider-thumb::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: transparent;
+}
+
+input[type='range'].slider-thumb::-moz-range-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: transparent;
+}
+
+
+
 
 
 

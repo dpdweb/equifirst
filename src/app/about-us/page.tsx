@@ -7,6 +7,7 @@ import RedefinedYourHome from "../components/RedefinedYourHome";
 
 export default function AboutUs() {
   return (
+    <div>
     <div className="ef-sub-page-top-style">
       {/* <MortgageCalculator /> */}
       <SubPageHeroBanner
@@ -14,9 +15,11 @@ export default function AboutUs() {
         subtitle="Welcome to Equifirst Capital Financing"
         image="/assets/images/about-us-hero.png"
       />
-      <WhoWeAre />
+      </div>
+       <WhoWeAre />
       <OurTeam />
       <RedefinedYourHome />
+    
     </div>
   );
 }

@@ -195,7 +195,7 @@ const formatCurrency = (value: number): string => {
             {/* Interest Rate */}
             <div className="mb-8">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-semibold text-gray-800">Interest rate</h2>
+                <h2 className="text-lg font-semibold text-gray-800">Interest rate 1werwerwer</h2>
                 <div className="text-xl font-bold text-blue-600">
                   {interestRate} %
                 </div>

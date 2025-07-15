@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import SocialMediaLinks from './SocialMediaLinks';
 import { useSettings } from '../context/SettingsContext';
+import Landbot from './Landbot'; 
 
 
 export default function Footer() {
@@ -10,6 +11,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-ef-dark-gray text-gray-300 pt-10 mt-12">
+      <Landbot />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center sm:text-left">
           <div>
@@ -63,11 +65,6 @@ export default function Footer() {
                   Careers
                 </Link>
               </li>
-              <li>
-                <Link href="/" className="footer-nav-link">
-                  Privacy Policy
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -80,13 +77,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/" className="footer-nav-link">
+                <Link href="/terms-conditions" className="footer-nav-link">
                   Terms & Conditions
-                </Link>
-              </li>
-              <li>
-                <Link href="/" className="footer-nav-link">
-                  Privacy Policy
                 </Link>
               </li>
             </ul>

@@ -41,7 +41,8 @@ export default function RedefinedYourHome() {
 
   return (
     <div className="ef-section-style">
-  <div className="bg-ef-dark-blue-2 rounded-4xl px-25 py-15">
+
+  <div className="hidden md:block bg-ef-dark-blue-2 rounded-4xl px-25 py-15">
     {points.map((point, index) => (
       <div
         key={index}
@@ -73,6 +74,22 @@ export default function RedefinedYourHome() {
       </div>
     ))}
   </div>
+
+    <div className="block md:hidden px-4 py-6 space-y-8">
+      {points.map((point, index) => (
+        <div key={index}>
+          <h3 className="text-xl font-semibold text-ef-blue mb-2">
+            {point.title}
+          </h3>
+          {point.description.split("\n\n").map((para, i) => (
+            <p key={i} className="text-sm text-gray-700 mb-3 leading-relaxed">
+              {para}
+            </p>
+          ))}
+        </div>
+      ))}
+    </div>
+
 </div>
 
   );
