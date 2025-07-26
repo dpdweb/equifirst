@@ -49,3 +49,22 @@ export async function fetchTeams() {
 }
 
 
+
+export async function fetchFaqCategories() {
+  const res = await fetch(`${API_BASE_URL}/categories`);
+  if (!res.ok) throw new Error('Failed to fetch FAQ categories');
+  return await res.json();
+}
+
+export async function fetchFaqsByCategory(categoryId, page = 1) {
+  const res = await fetch(`${API_BASE_URL}/faqs?category=${categoryId}&page=${page}`);
+  if (!res.ok) throw new Error('Failed to fetch FAQs');
+  return await res.json();
+}
+
+
+export async function fetchBlogs() {
+  const res = await fetch(`${API_BASE_URL}/blogs`);
+  if (!res.ok) throw new Error('Failed to fetch');
+  return res.json();
+}

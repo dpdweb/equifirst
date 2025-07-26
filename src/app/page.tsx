@@ -7,6 +7,9 @@ import MortgageServices from "./components/MortgageServices";
 import WhyEquifirst from "./components/WhyEquifirst";
 import Testimonials from "./components/Testimonials";
 import GotQuestion from "./components/GotQuestion";
+import ScrollHighlightUpdate from "./components/ScrollHighlightUpdate";
+
+
 
 
 
@@ -17,6 +20,7 @@ export default function Home() {
     <div>
 
       <HeroSlider />
+      <ScrollHighlightUpdate />
       <ScrollHighlight />
        <WhyEquifirst />
       <UnlockDoor />

@@ -129,7 +129,7 @@ export default function MortgageCalculator() {
         <div className="block font-semibold mb-3 flex items-center justify-between"><div>Down payment<span className="ml-1 text-red-500">*</span></div> AED {formatNumber(state.DownPayment)}</div>
         <input
           type="range"
-          min={0}
+          min={10}
           max={state.Price}
           step={10000}
           value={state.DownPayment}
