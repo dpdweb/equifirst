@@ -1,7 +1,5 @@
 "use client";
-import Link from "next/link";
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+
 
 
 export default function MortgageSolutions() {

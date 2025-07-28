@@ -1,6 +1,16 @@
 'use client';
 import { useEffect } from 'react';
 
+// Extend the Window type
+declare global {
+  interface Window {
+    myLandbot?: unknown;
+    Landbot?: {
+      Livechat: new (options: { configUrl: string }) => void;
+    };
+  }
+}
+
 export default function Landbot() {
   useEffect(() => {
     const initLandbot = () => {
@@ -12,14 +22,15 @@ export default function Landbot() {
       script.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs';
 
       script.addEventListener('load', () => {
-        window.myLandbot = new window.Landbot.Livechat({
-          configUrl:
-            'https://storage.googleapis.com/landbot.online/v3/H-2953778-680S6MTYPIAKOBMB/index.json',
-        });
+        if (window.Landbot) {
+          window.myLandbot = new window.Landbot.Livechat({
+            configUrl:
+              'https://storage.googleapis.com/landbot.online/v3/H-2953778-680S6MTYPIAKOBMB/index.json',
+          });
+        }
       });
 
-      const firstScript = document.getElementsByTagName('script')[0];
-      firstScript.parentNode.insertBefore(script, firstScript);
+      document.head.appendChild(script);
     };
 
     window.addEventListener('mouseover', initLandbot, { once: true });
@@ -31,5 +42,5 @@ export default function Landbot() {
     };
   }, []);
 
-  return null; // It's an invisible widget
+  return null; // invisible component
 }

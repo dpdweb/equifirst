@@ -1,18 +1,12 @@
 "use client";
 import React from 'react';
 import MortgageSolutions from '@/app/components/MortgageSolutions';
-import { useState } from 'react';
 import Image from "next/image";
 import { PlayCircle } from "lucide-react";
 
 
 export default function HandoverFinance() {
 
-  const [openItem, setOpenItem] = useState<number | null>(null);
-
-  const toggle = (id: number) => {
-    setOpenItem(openItem === id ? null : id);
-  };
 
   return (
     <div>

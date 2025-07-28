@@ -34,43 +34,46 @@ export default function MortgageCalculator() {
     }));
   };
 
-  useEffect(() => {
-    const Months = state.LoanDuration * 12;
-    const Rate = (state.InterestRate / 100) / 12;
-    let Principal = state.Price - state.DownPayment;
+ useEffect(() => {
+  const Months = state.LoanDuration * 12;
+  const Rate = (state.InterestRate / 100) / 12;
+  let Principal = state.Price - state.DownPayment;
 
-    if (state.ToggleFinancing) {
-      Principal += Principal * 0.06;
-    }
+  if (state.ToggleFinancing) {
+    Principal += Principal * 0.06;
+  }
 
-    const Factor = Math.pow(1 + Rate, Months);
-    const Monthly = Rate * Principal * Factor / (Factor - 1);
+  const Factor = Math.pow(1 + Rate, Months);
+  const Monthly = Rate * Principal * Factor / (Factor - 1);
 
-    const LifeIns = (Principal * (state.LifeInsurance / 100)) / 12;
-    const PropIns = (state.Price * (state.PropertyInsurance / 100)) / 12;
+  const LifeIns = (Principal * (state.LifeInsurance / 100)) / 12;
+  const PropIns = (state.Price * (state.PropertyInsurance / 100)) / 12;
 
-    let Upfront =
-      0.04 * state.Price +
-      0.0025 * Principal +
-      (0.02 * state.Price + 0.05 * 0.02 * state.Price) +
-      11615;
+  let Upfront =
+    0.04 * state.Price +
+    0.0025 * Principal +
+    (0.02 * state.Price + 0.05 * 0.02 * state.Price) +
+    11615;
 
-    if (state.ToggleFinancing) {
-      Upfront -=
-        (0.04 * state.Price) * 0.8 +
-        (0.02 * state.Price) * 0.8;
-    }
+  if (state.ToggleFinancing) {
+    Upfront -=
+      (0.04 * state.Price) * 0.8 +
+      (0.02 * state.Price) * 0.8;
+  }
 
-    setLoanAmount(Math.round(Principal));
-    setMonthlyCost(Math.round(Monthly + LifeIns + PropIns));
-    setUpfrontCosts(Math.round(Upfront));
-  }, [
-    state.Price,
-    state.DownPayment,
-    state.InterestRate,
-    state.LoanDuration,
-    state.ToggleFinancing,
-  ]);
+  setLoanAmount(Math.round(Principal));
+  setMonthlyCost(Math.round(Monthly + LifeIns + PropIns));
+  setUpfrontCosts(Math.round(Upfront));
+}, [
+  state.Price,
+  state.DownPayment,
+  state.InterestRate,
+  state.LoanDuration,
+  state.ToggleFinancing,
+  state.LifeInsurance,
+  state.PropertyInsurance,
+]);
+
 
   return (
     <div className="ef-section-style-3 grid grid-cols-2 mx-auto p-6 bg-ef-dark-blue-2 rounded-lg">
@@ -100,15 +103,16 @@ export default function MortgageCalculator() {
         <div className="mb-8">
         <div className="mb-2 font-semibold">Property value <span className="text-red-500">*</span></div>
         <div className="flex items-center border border-gray-300 rounded-xl overflow-hidden bg-gray-50 w-full mb-5">
-          <input
+<input
   type="text"
   value={Number(state.Price).toLocaleString()}
   onChange={(e) => {
     const raw = e.target.value.replace(/,/g, '');
-    if (!isNaN(raw)) {
+    const parsed = Number(raw);
+    if (!isNaN(parsed)) {
       setState(prev => ({
         ...prev,
-        Price: +raw,
+        Price: parsed,
       }));
     }
   }}
@@ -247,7 +251,7 @@ export default function MortgageCalculator() {
             Start My Application
           </button>
           <button
-            variant="outline"
+            // variant="outline"
             className="w-full btn btn-outlined-blue"
           >
             Speak to a Mortgage Expert

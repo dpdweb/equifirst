@@ -1,58 +1,58 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Swiper, SwiperSlide } from 'swiper/react';
 import Link from 'next/link';
-import { fetchHeroSlides } from '../lib/api';
-import { Navigation, Autoplay  } from 'swiper/modules';
+// import { fetchHeroSlides } from '../lib/api';
+// import { Navigation, Autoplay  } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import Image from "next/image";
+// import Image from "next/image";
 
 import 'swiper/css';
 
-interface Slide {
-  id: number;
-  image: string;
-  title?: string;
-  created_at?: string;
-}
+// interface Slide {
+//   id: number;
+//   image: string;
+//   title?: string;
+//   created_at?: string;
+// }
 
 
 export default function TestSlider() {
   const lineRef = useRef<HTMLDivElement>(null);
-  const [slides, setSlides] = useState<Slide[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  // const [slides, setSlides] = useState<Slide[]>([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState<string | null>(null);
   const [animateLine, setAnimateLine] = useState(false);
 
 
 
-async function getSlides() {
-  try {
-    const response = await fetchHeroSlides();
-    console.log("Fetched slides response:", response);
+// async function getSlides() {
+//   try {
+//     const response = await fetchHeroSlides();
+//     console.log("Fetched slides response:", response);
 
-    if (Array.isArray(response.data)) {
-      setSlides(response.data);
-    } else if (Array.isArray(response.data)) {
-      setSlides(response.data);
-    } else {
-      setError('Invalid slide data format');
-    }
-  } catch (err: unknown) {
-    if (err instanceof Error) {
-      setError(err.message);
-    } else {
-      setError('Unknown error occurred');
-    }
-  } finally {
-    setLoading(false);
-  }
-}
+//     if (Array.isArray(response.data)) {
+//       setSlides(response.data);
+//     } else if (Array.isArray(response.data)) {
+//       setSlides(response.data);
+//     } else {
+//       setError('Invalid slide data format');
+//     }
+//   } catch (err: unknown) {
+//     if (err instanceof Error) {
+//       setError(err.message);
+//     } else {
+//       setError('Unknown error occurred');
+//     }
+//   } finally {
+//     setLoading(false);
+//   }
+// }
 
   useEffect(() => {
     const loadSlidesAndAnimate = async () => {
-      await getSlides();
+      // await getSlides();
       // Ensure DOM is painted first, then animate
       requestAnimationFrame(() => {
         setAnimateLine(true);
@@ -63,8 +63,8 @@ async function getSlides() {
   }, []);
 
 
-  if (loading) return <div className="text-center p-10">Loading slides...</div>;
-  if (error) return <div className="text-center text-red-500 p-10">{error}</div>;
+  // if (loading) return <div className="text-center p-10">Loading slides...</div>;
+  // if (error) return <div className="text-center text-red-500 p-10">{error}</div>;
 
   return (
     <div className="relative  mx-auto max-w-8xl h-[600px] md:h-[550px] rounded-tl-none rounded-tr-none sm:rounded-[30px] overflow-hidden">

@@ -7,6 +7,10 @@ export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 interface Settings {
   site_logo_desktop: string;
   site_name: string;
+  site_title: string;
+  site_address: string;
+  site_email: string;
+  footer_logo: string;
   // add more fields as needed
 }
 

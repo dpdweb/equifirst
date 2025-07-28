@@ -1,11 +1,29 @@
-"use client";
-import React, { useState } from "react";
-import { ChevronDown } from "lucide-react"; // ✅ Adjust based on your icon source
+'use client';
+import React, { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 
-const FaqList = ({ faqs, currentPage, totalPages, onPageChange }) => {
-  const [openItem, setOpenItem] = useState(null);
+type Faq = {
+  id: number | string;
+  question: string;
+  answer: string;
+};
 
-  const toggle = (id) => {
+interface FaqListProps {
+  faqs: Faq[];
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
+
+const FaqList: React.FC<FaqListProps> = ({
+  faqs,
+  currentPage,
+  totalPages,
+  onPageChange,
+}) => {
+  const [openItem, setOpenItem] = useState<number | string | null>(null);
+
+  const toggle = (id: number | string) => {
     setOpenItem((prev) => (prev === id ? null : id));
   };
 
@@ -23,13 +41,13 @@ const FaqList = ({ faqs, currentPage, totalPages, onPageChange }) => {
               </span>
               <ChevronDown
                 className={`w-5 h-5 transform transition-transform duration-300 text-ef-blue ${
-                  openItem === faq.id ? "rotate-180" : ""
+                  openItem === faq.id ? 'rotate-180' : ''
                 }`}
               />
             </button>
             <div
               className={`overflow-hidden transition-all duration-300 ${
-                openItem === faq.id ? "max-h-96" : "max-h-0"
+                openItem === faq.id ? 'max-h-96' : 'max-h-0'
               }`}
             >
               <div className="text-gray-600 pb-4">{faq.answer}</div>
@@ -46,8 +64,8 @@ const FaqList = ({ faqs, currentPage, totalPages, onPageChange }) => {
             onClick={() => onPageChange(i + 1)}
             className={`px-3 py-1 rounded ${
               currentPage === i + 1
-                ? "bg-ef-blue text-white"
-                : "bg-gray-200 text-white"
+                ? 'bg-ef-blue text-white'
+                : 'bg-gray-200 text-gray-800'
             }`}
           >
             {i + 1}

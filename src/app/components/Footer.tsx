@@ -1,27 +1,27 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import SocialMediaLinks from './SocialMediaLinks';
-import { useSettings } from '../context/SettingsContext';
-import Landbot from './Landbot'; 
-
+// import SocialMediaLinks from './SocialMediaLinks';
+// import { useSettings } from '../context/SettingsContext';
+import Landbot from './Landbot';
 
 export default function Footer() {
-  const { settings } = useSettings();
+  // const { settings } = useSettings();
 
   return (
     <footer className="bg-ef-dark-gray text-gray-300 pt-10 mt-12">
       <Landbot />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center sm:text-left">
+          {/* Logo and Address */}
           <div>
-           <Image
-  src="/assets/images/footer-logo.png"
-  alt="Equifirst"
-  width={216}
-  height={44}
-  className="mb-4 mx-auto sm:mx-0"
-/>
+            <Image
+              src="/assets/images/footer-logo.png"
+              alt="Equifirst"
+              width={216}
+              height={44}
+              className="mb-4 mx-auto sm:mx-0"
+            />
             <p className="text-sm leading-relaxed mt-5 sm:mt-12">
               2803, Control Tower, Motor City
               <br />
@@ -32,71 +32,43 @@ export default function Footer() {
             </p>
           </div>
 
+          {/* Company Links */}
           <div className="hidden md:block">
             <h4 className="text-white font-semibold mb-3">COMPANY</h4>
             <ul className="space-y-2 text-sm">
-               <li>
-                <Link href="/" className="footer-nav-link">
-                  About Us
-                </Link>
-              </li>
-             <li>
-                <Link href="/" className="footer-nav-link">
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/" className="footer-nav-link">
-                  Calculator
-                </Link>
-              </li>
-              <li>
-                <Link href="/" className="footer-nav-link">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/" className="footer-nav-link">
-                  Blogs
-                </Link>
-              </li>
-              <li>
-                <Link href="/" className="footer-nav-link">
-                  Careers
-                </Link>
-              </li>
+              <li><Link href="/mortgage-calculator" className="footer-nav-link">Mortgage Calculator</Link></li>
+              <li><Link href="/about-us" className="footer-nav-link">About Us</Link></li>
+              <li><Link href="/contact-us" className="footer-nav-link">Contact Us</Link></li>
+              <li><Link href="/" className="footer-nav-link">Services</Link></li>
+              <li><Link href="/" className="footer-nav-link">Blogs</Link></li>
+              <li><Link href="/" className="footer-nav-link">FAQs</Link></li>
+              <li><Link href="/terms-conditions" className="footer-nav-link">Terms & Conditions</Link></li>
             </ul>
           </div>
 
-          <div  className="hidden md:block">
-            <h4 className="text-white font-semibold mb-3">EXPLORE</h4>
+          {/* Services Links */}
+          <div className="hidden md:block">
+            <h4 className="text-white font-semibold mb-3">SERVICES</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/" className="footer-nav-link">
-                  FAQs
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms-conditions" className="footer-nav-link">
-                  Terms & Conditions
-                </Link>
-              </li>
+              <li><Link href="/services/off-plan-finance" className="footer-nav-link">Off-Plan Finance</Link></li>
+              <li><Link href="/services/secondary-market-finance" className="footer-nav-link">Secondary Market Finance</Link></li>
+              <li><Link href="/services/equity-release" className="footer-nav-link">Equity Release</Link></li>
+              <li><Link href="/services/handover-finance" className="footer-nav-link">Handover Finance</Link></li>
+              <li><Link href="/services/buyout-refinance" className="footer-nav-link">Buyout Refinance</Link></li>
+              <li><Link href="/services/non-resident-mortgage" className="footer-nav-link">Non-Resident Mortgage</Link></li>
             </ul>
           </div>
 
-                  {/* Social media icons */}
-        <div>
-          <h4 className="text-white font-semibold mb-3 hidden md:block">SOCIALS</h4>
-        <div className="mt-8 flex justify-center sm:justify-start space-x-6">
-      
-        <SocialMediaLinks settings={settings} />
-
-        </div>
-        </div>
-
+          {/* Social Icons */}
+          <div>
+            <h4 className="text-white font-semibold mb-3 hidden md:block">SOCIALS</h4>
+            <div className="mt-8 flex justify-center sm:justify-start space-x-6">
+              {/* <SocialMediaLinks settings={settings} /> */}
+            </div>
+          </div>
         </div>
 
-
+        {/* Footer Bottom */}
         <p className="text-center text-xs text-ef-light-gray mt-6 border-t border-gray-600 py-6">
           © Copyright {new Date().getFullYear()} Equifirst. All Rights Reserved.
         </p>

@@ -1,15 +1,22 @@
-'use client'; // For app router projects (Next.js 13+); remove for pages router
+'use client';
 
 import React, { useEffect, useState } from 'react';
-import BlogCard from '../components/BlogCard'; // Create this component
+import BlogCard from '../components/BlogCard';
 import { fetchBlogs } from '../lib/api';
 
+type Blog = {
+  id: number;
+  title: string;
+  excerpt: string;
+  // Add other fields your BlogCard component needs
+};
+
 export default function Blog() {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState<Blog[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadBlogs() {
@@ -17,11 +24,15 @@ export default function Blog() {
       setError(null);
 
       try {
-        const data = await fetchBlogs(page);
+        const data = await fetchBlogs(); // Assuming you pass `page` to fetchBlogs
         setBlogs(data.data);
         setTotalPages(data.last_page);
       } catch (err) {
-        setError(err.message || 'Failed to load blogs.');
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('Failed to load blogs.');
+        }
       } finally {
         setLoading(false);
       }
@@ -32,14 +43,12 @@ export default function Blog() {
 
   return (
     <div className="ef-sub-page-top-style">
-   
-
       {loading && <p>Loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      {!loading && !error && blogs.map((blog) => (
-        <BlogCard key={blog.id} blog={blog} />
-      ))}
+        {!loading && !error && blogs.map((blog) => (
+          <BlogCard key={blog.id} blog={blog} />
+        ))}
       </div>
 
       <div className="flex justify-between mt-8">
@@ -51,7 +60,6 @@ export default function Blog() {
             Previous
           </button>
         )}
-
         {page < totalPages && (
           <button
             onClick={() => setPage(page + 1)}

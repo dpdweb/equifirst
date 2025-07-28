@@ -56,11 +56,13 @@ export async function fetchFaqCategories() {
   return await res.json();
 }
 
-export async function fetchFaqsByCategory(categoryId, page = 1) {
+
+export async function fetchFaqsByCategory(categoryId: string | number, page: number = 1) {
   const res = await fetch(`${API_BASE_URL}/faqs?category=${categoryId}&page=${page}`);
   if (!res.ok) throw new Error('Failed to fetch FAQs');
   return await res.json();
 }
+
 
 
 export async function fetchBlogs() {

@@ -79,7 +79,7 @@ useEffect(() => {
             {/* Name & Title */}
             <div className="py-4 pl-4">
               <h3 className="text-lg font-semibold text-ef-blue">{member.name}</h3>
-              <p className="text-sm text-gray-600">{member.role}</p>
+              {/* <p className="text-sm text-gray-600">{member.role}</p> */}
             </div>
           </div>
         ))}
@@ -98,7 +98,7 @@ useEffect(() => {
           allowTouchMove={typeof window !== 'undefined' && window.innerWidth < 768}
           className="equi-swiper"
         >
-          {teamMembers.map((member, index) => (
+          {teamMembers.map((member) => (
             <SwiperSlide key={member.id}>
               <div className="p-6 rounded-lg max-w-5xl mx-auto">
 
