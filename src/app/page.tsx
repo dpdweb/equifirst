@@ -20,7 +20,6 @@ export default function Home() {
     <div>
 
       <HeroSlider />
-      <ScrollHighlightUpdate />
       <ScrollHighlight />
        <WhyEquifirst />
       <UnlockDoor />

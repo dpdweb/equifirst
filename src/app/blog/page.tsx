@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import BlogCard from '../components/BlogCard';
 import { fetchBlogs } from '../lib/api';
+import SubPageHeroBanner from "../components/SubPageHeroBanner";
 
 type Blog = {
   id: number;
@@ -42,6 +43,16 @@ export default function Blog() {
   }, [page]);
 
   return (
+    <div>
+      <div className="ef-sub-page-top-style">
+            {/* <MortgageCalculator /> */}
+            <SubPageHeroBanner
+              title="Blogs"
+              subtitle="Welcome to Equifirst Blogs"
+              image="/assets/images/blog-hero.jpg"
+            />
+            </div>
+    
     <div className="ef-sub-page-top-style">
       {loading && <p>Loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
@@ -69,6 +80,7 @@ export default function Blog() {
           </button>
         )}
       </div>
+    </div>
     </div>
   );
 }

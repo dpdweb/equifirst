@@ -1,12 +1,12 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-// import SocialMediaLinks from './SocialMediaLinks';
-// import { useSettings } from '../context/SettingsContext';
+import SocialMediaLinks from './SocialMediaLinks';
+import { useSettings } from '../context/SettingsContext';
 import Landbot from './Landbot';
 
 export default function Footer() {
-  // const { settings } = useSettings();
+  const { settings } = useSettings();
 
   return (
     <footer className="bg-ef-dark-gray text-gray-300 pt-10 mt-12">
@@ -63,7 +63,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-3 hidden md:block">SOCIALS</h4>
             <div className="mt-8 flex justify-center sm:justify-start space-x-6">
-              {/* <SocialMediaLinks settings={settings} /> */}
+              <SocialMediaLinks settings={settings} />
             </div>
           </div>
         </div>

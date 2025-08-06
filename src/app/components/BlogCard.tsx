@@ -12,28 +12,39 @@ type Blog = {
 
 export default function BlogCard({ blog }: { blog: Blog }) {
   return (
-    <div className="max-w-sm mx-auto bg-white rounded-xl shadow-lg overflow-hidden border">
-      <div className="relative h-60 w-full">
-        <Image
-  src={blog.image || '/fallback.jpg'}
-  alt={blog.title}
-  layout="fill"
-  objectFit="cover"
-/>
-      </div>
+    <div>
 
+
+
+    <div className="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+      <Image
+        src={blog.image || '/fallback.jpg'}
+        alt={blog.title}
+        width={500}
+        height={300}
+        className="w-full h-48 object-cover"
+      />
       <div className="p-4">
-        <div className="flex items-center text-gray-500 text-sm space-x-4 mb-2">
-          <span>June 01, 2025</span>
-          <span className="flex items-center">
-            <Eye className="w-4 h-4 mr-1" /> {blog.views ?? 357}
+        <div className="flex items-center text-gray-500 text-sm mb-2 space-x-3">
+          <span>{blog.date}</span>
+          <span className="flex items-center space-x-1">
+            <svg
+              className="w-4 h-4 text-gray-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M10 3C5.5 3 2 10 2 10s3.5 7 8 7 8-7 8-7-3.5-7-8-7zm0 11a4 4 0 110-8 4 4 0 010 8z" />
+            </svg>
+            <span>{blog.views ?? 357}</span>
           </span>
         </div>
-
-        <h2 className="text-xl font-semibold text-sky-800 leading-snug">
-          {blog.title.length > 35 ? blog.title.substring(0, 35) + '...' : blog.title}
-        </h2>
+        <h3 className="text-xl font-semibold text-sky-700 leading-snug">
+          {blog.title}
+        </h3>
       </div>
+    </div>
+    
+
     </div>
   );
 }

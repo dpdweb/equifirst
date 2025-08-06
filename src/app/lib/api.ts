@@ -63,10 +63,29 @@ export async function fetchFaqsByCategory(categoryId: string | number, page: num
   return await res.json();
 }
 
-
-
 export async function fetchBlogs() {
   const res = await fetch(`${API_BASE_URL}/blogs`);
   if (!res.ok) throw new Error('Failed to fetch');
   return res.json();
 }
+
+// export async function fetchTestimonials() {
+//   const res = await fetch(`${API_BASE_URL}/testimonials`);
+//   if (!res.ok) {
+//     throw new Error('Failed to fetch testimonials');
+//   }
+//   return res.json();
+// }
+
+
+export async function fetchTestimonials() {
+  const res = await fetch(`${API_BASE_URL}/testimonials`);
+  if (!res.ok) {
+    throw new Error('Failed to fetch testimonials');
+  }
+
+  const result = await res.json();
+  return result.data; // ✅ return only the array
+}
+
+

@@ -13,7 +13,7 @@ export default function EquityRelease() {
     <div>
         <MortgageSolutions />
 
-        <div className="ef-section-style">
+        <div className="ef-section-style-4">
             
 <div className="group relative">
   {/* Main Container */}
@@ -35,24 +35,27 @@ export default function EquityRelease() {
       </ul>
 
         {/* Expanding Content (triggered on hover of group wrapper) */}
-  <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-40 group-hover:opacity-100 transition-all duration-500 ease-in-out">
+  <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-60 group-hover:opacity-100 transition-all duration-500 ease-in-out">
         <ul className="text-gray-700 list-disc list-inside space-y-1 mb-4">
         <li>Funds can be used to purchase a new property or renovate existing home</li>
         <li>Available for residents, non-residents, UAE nationals</li>
         <li>Salaried & self-employed accepted</li>
         <li>Tenure up to 25 years</li>
       </ul>
-            <p className="text-[#007190] font-semibold mb-4">
+            {/* <p className="text-[#007190] font-semibold mb-4">
         Ideal for: Property owners who want to access cash 
 while retaining ownership.
-      </p>
+      </p> */}
+      <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
+        <b>Ideal for:</b> Property owners who want to access cash while retaining ownership.
+      </button>
   </div>
 
 
 
-      <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
+      {/* <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
         Check Your Equity Eligibility
-      </button>
+      </button> */}
     </div>
 
     {/* Right Section (Image with Play Button) */}

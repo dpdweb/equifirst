@@ -12,7 +12,7 @@ export default function BuyoutRefinance() {
     <div>
         <MortgageSolutions />
 
-        <div className="ef-section-style">
+        <div className="ef-section-style-4">
             
 <div className="group relative">
   {/* Main Container */}
@@ -34,7 +34,7 @@ export default function BuyoutRefinance() {
       </ul>
 
         {/* Expanding Content (triggered on hover of group wrapper) */}
-  <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-40 group-hover:opacity-100 transition-all duration-500 ease-in-out">
+  <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-50 group-hover:opacity-100 transition-all duration-500 ease-in-out">
         <ul className="text-gray-700 list-disc list-inside space-y-1 mb-4">
 
         <li>60% financing for second properties</li>
@@ -42,16 +42,19 @@ export default function BuyoutRefinance() {
         <li>Salaried & self-employed accepted</li>
         <li>Tenure up to 25 years</li>
       </ul>
-            <p className="text-[#007190] font-semibold mb-4">
+      <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
         Ideal for: Borrowers seeking better interest rates or flexible terms.
-      </p>
+      </button>
+            {/* <p className="text-[#007190] font-semibold mb-4">
+        Ideal for: Borrowers seeking better interest rates or flexible terms.
+      </p> */}
   </div>
 
 
 
-      <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
+      {/* <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
         Compare Buyout Options
-      </button>
+      </button> */}
     </div>
 
     {/* Right Section (Image with Play Button) */}

@@ -36,7 +36,7 @@ export default function Header() {
     { href: '/blog', label: 'Blog' },
     { href: '/about-us', label: 'About Us' },
     { href: '/faqs', label: 'FAQs' },
-    { href: '/contact-us', label: 'Contact Us' },
+    // { href: '/contact-us', label: 'Contact Us' },
   ];
 
   useEffect(() => {
@@ -112,7 +112,7 @@ export default function Header() {
           </div>
 
           <div className="hidden md:block">
-            <button className="btn">Contact Us</button>
+            <a href="/contact-us" className="btn">Contact Us</a>
           </div>
         </div>
       </header>

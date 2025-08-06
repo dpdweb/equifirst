@@ -215,6 +215,7 @@
     padding: 20px;
     color:black;
     font-weight: bold;
+    border:none;
   }
 
   .ef-section-style {
@@ -225,6 +226,9 @@
   }
   .ef-section-style-3 {
     @apply max-w-7xl mx-auto p-10;
+  }
+   .ef-section-style-4 {
+    @apply max-w-7xl mx-auto pb-5;
   }
 
   /* .ef-sub-page-top-style {

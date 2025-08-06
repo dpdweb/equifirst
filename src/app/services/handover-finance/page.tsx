@@ -12,7 +12,7 @@ export default function HandoverFinance() {
     <div>
         <MortgageSolutions />
 
-        <div className="ef-section-style">
+        <div className="ef-section-style-4">
             
 <div className="group relative">
   {/* Main Container */}
@@ -43,16 +43,19 @@ export default function HandoverFinance() {
         <li>Salaried & self-employed accepted</li>
         <li>Tenure up to 25 years</li>
       </ul>
-            <p className="text-[#007190] font-semibold mb-4">
+            {/* <p className="text-[#007190] font-semibold mb-4">
         Ideal for: Buyers finalizing their off-plan property purchase.
-      </p>
+      </p> */}
+          <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
+        <b>Ideal for:</b> Buyers finalizing their off-plan property purchase.
+      </button>
   </div>
 
 
 
-      <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
+      {/* <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
         Get Pre-Approved Today
-      </button>
+      </button> */}
     </div>
 
     {/* Right Section (Image with Play Button) */}

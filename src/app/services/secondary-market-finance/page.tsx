@@ -14,7 +14,7 @@ export default function SecondaryMarketFinance() {
     <div>
         <MortgageSolutions />
 
-        <div className="ef-section-style">
+        <div className="ef-section-style-4">
             
 <div className="group relative">
   {/* Main Container */}
@@ -37,7 +37,7 @@ export default function SecondaryMarketFinance() {
       </ul>
 
         {/* Expanding Content (triggered on hover of group wrapper) */}
-  <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-40 group-hover:opacity-100 transition-all duration-500 ease-in-out">
+  <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-50 group-hover:opacity-100 transition-all duration-500 ease-in-out">
         <ul className="text-gray-700 list-disc list-inside space-y-1 mb-4">
 
         <li>60% financing for second properties</li>
@@ -45,16 +45,20 @@ export default function SecondaryMarketFinance() {
         <li>Salaried & self-employed accepted</li>
         <li>Tenure up to 25 years</li>
       </ul>
-            <p className="text-[#007190] font-semibold mb-4">
+            {/* <p className="text-[#007190] font-semibold mb-4">
         Ideal for: <span className="font-normal text-black">Buyers purchasing existing properties.</span>
-      </p>
+      </p> */}
+      
+      <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
+        <b>Ideal for:</b> Buyers purchasing existing properties.
+      </button>
   </div>
 
 
-
+{/* 
       <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
         Get Pre-Approved Today
-      </button>
+      </button> */}
     </div>
 
     {/* Right Section (Image with Play Button) */}

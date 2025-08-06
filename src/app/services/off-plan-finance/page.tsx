@@ -10,7 +10,7 @@ export default function OffPlanFinance() {
     <div>
         <MortgageSolutions />
 
-        <div className="ef-section-style">
+        <div className="ef-section-style-4">
             
 <div className="group relative">
   {/* Main Container */}
@@ -33,7 +33,7 @@ export default function OffPlanFinance() {
       </ul>
 
         {/* Expanding Content (triggered on hover of group wrapper) */}
-  <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-70 group-hover:opacity-100 transition-all duration-500 ease-in-out">
+  <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-80 group-hover:opacity-100 transition-all duration-500 ease-in-out">
         <ul className="text-gray-700 list-disc list-inside space-y-1 mb-4">
 
         <li>50% payment already made to developer</li>
@@ -49,16 +49,19 @@ export default function OffPlanFinance() {
         </li>
         <li>Not available for non-residents</li>
       </ul>
-      <p className="text-[#007190] font-semibold mb-4">
+      {/* <p className="text-[#007190] font-semibold mb-4">
         Ideal for: UAE residents investing in top projects.
-      </p>
+      </p> */}
+      <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
+        Ideal for: UAE residents investing in top projects.
+      </button>
   </div>
 
 
 
-      <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
+      {/* <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
         Apply for Off-Plan Finance
-      </button>
+      </button> */}
     </div>
 
     {/* Right Section (Image with Play Button) */}
