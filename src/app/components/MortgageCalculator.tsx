@@ -2,260 +2,272 @@
 import { useState, useEffect } from 'react';
 
 export default function MortgageCalculator() {
-  // State for all calculator values
-  const [residencyStatus, setResidencyStatus] = useState('UAE Resident');
-  const [propertyValue, setPropertyValue] = useState(1200000);
-  const [downPayment, setDownPayment] = useState(240000);
-  const [financeFees, setFinanceFees] = useState(false);
-  const [loanDuration, setLoanDuration] = useState(18);
-  const [interestRate, setInterestRate] = useState(2.5);
-  
-  // Calculated values
-  const [upfrontCosts, setUpfrontCosts] = useState(87215);
-  const [loanAmount, setLoanAmount] = useState(0);
+  const [state, setState] = useState({
+    Price: 1200000,
+    DownPayment: 240000,
+    LoanDuration: 25,
+    InterestRate: 2.5,
+    LifeInsurance: 0.2298,
+    PropertyInsurance: 0.041,
+    ActiveProduct: 'Resident',
+    ToggleFinancing: false,
+  });
+
+  const [loanAmount, setLoanAmount] = useState(960000);
   const [monthlyCost, setMonthlyCost] = useState(0);
+  const [upfrontCosts, setUpfrontCosts] = useState(0);
 
-  // Calculate values whenever inputs change
-  useEffect(() => {
-    // Calculate loan amount (property value minus down payment)
-    const newLoanAmount = propertyValue - downPayment;
-    setLoanAmount(newLoanAmount);
-    
-    // Calculate monthly payment using mortgage formula
-    const monthlyInterestRate = interestRate / 100 / 12;
-    const numberOfPayments = loanDuration * 12;
-    
-    if (monthlyInterestRate > 0) {
-      const numerator = newLoanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments);
-      const denominator = Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1;
-      const payment = numerator / denominator;
-      setMonthlyCost(Math.round(payment));
-    } else {
-      // Handle zero interest rate
-      setMonthlyCost(Math.round(newLoanAmount / numberOfPayments));
-    }
-    
-    // Calculate upfront costs (simplified calculation)
-    const calculatedUpfrontCosts = Math.round(
-      0.04 * propertyValue + // 4% of property value for fees
-      5000 + // Fixed fees
-      (financeFees ? 0.01 * propertyValue : 0) // Additional fees if financing fees
-    );
-    setUpfrontCosts(calculatedUpfrontCosts);
-    
-  }, [propertyValue, downPayment, loanDuration, interestRate, financeFees]);
+  const formatNumber = (val: number) =>
+    val.toLocaleString(undefined, { maximumFractionDigits: 0 });
 
-  // Format currency for display
-const formatCurrency = (value: number): string => {
-  return new Intl.NumberFormat('en-AE', {
-    style: 'currency',
-    currency: 'AED',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(value);
-};
+  const handleResidencyClick = (product: string) => {
+    let updatedRate = state.InterestRate;
+
+    if (product === 'National') updatedRate = 2.5;
+    else if (product === 'Resident') updatedRate = 2.5;
+    else if (product === 'NonResident') updatedRate = 4.9;
+
+    setState(prev => ({
+      ...prev,
+      ActiveProduct: product,
+      InterestRate: updatedRate,
+    }));
+  };
+
+ useEffect(() => {
+  const Months = state.LoanDuration * 12;
+  const Rate = (state.InterestRate / 100) / 12;
+  let Principal = state.Price - state.DownPayment;
+
+  if (state.ToggleFinancing) {
+    Principal += Principal * 0.06;
+  }
+
+  const Factor = Math.pow(1 + Rate, Months);
+  const Monthly = Rate * Principal * Factor / (Factor - 1);
+
+  const LifeIns = (Principal * (state.LifeInsurance / 100)) / 12;
+  const PropIns = (state.Price * (state.PropertyInsurance / 100)) / 12;
+
+  let Upfront =
+    0.04 * state.Price +
+    0.0025 * Principal +
+    (0.02 * state.Price + 0.05 * 0.02 * state.Price) +
+    11615;
+
+  if (state.ToggleFinancing) {
+    Upfront -=
+      (0.04 * state.Price) * 0.8 +
+      (0.02 * state.Price) * 0.8;
+  }
+
+  setLoanAmount(Math.round(Principal));
+  setMonthlyCost(Math.round(Monthly + LifeIns + PropIns));
+  setUpfrontCosts(Math.round(Upfront));
+}, [
+  state.Price,
+  state.DownPayment,
+  state.InterestRate,
+  state.LoanDuration,
+  state.ToggleFinancing,
+  state.LifeInsurance,
+  state.PropertyInsurance,
+]);
+
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Mortgage Calculator</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Calculate your mortgage payments and understand the costs associated with your property purchase.
-          </p>
-        </div>
-        
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div className="p-6 md:p-8">
-            {/* Residency Status */}
-            <div className="mb-8">
-              <h2 className="text-lg font-semibold text-gray-800 mb-4">Residency status *</h2>
-              <div className="flex flex-wrap gap-4">
-                {['UAE Resident', 'UAE National', 'Non-Resident'].map((status) => (
-                  <button
-                    key={status}
-                    className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                      residencyStatus === status
-                        ? 'bg-blue-600 text-white shadow-md'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                    onClick={() => setResidencyStatus(status)}
-                  >
-                    {status}
-                  </button>
-                ))}
-              </div>
-            </div>
-            
-            {/* Property Value */}
-            <div className="mb-8">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-semibold text-gray-800">Property value *</h2>
-                <div className="text-xl font-bold text-blue-600">
-                  {formatCurrency(propertyValue)}
-                </div>
-              </div>
-              
-              <div className="relative mb-2">
-                <input
-                  type="range"
-                  min="500000"
-                  max="5000000"
-                  step="50000"
-                  value={propertyValue}
-                  onChange={(e) => setPropertyValue(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
-                />
-                <div className="absolute text-xs text-gray-500 left-0 top-3">500,000 AED</div>
-                <div className="absolute text-xs text-gray-500 right-0 top-3">5,000,000 AED</div>
-              </div>
-            </div>
-            
-            {/* Down Payment */}
-            <div className="mb-8">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-semibold text-gray-800">Down payment *</h2>
-                <div className="text-xl font-bold text-blue-600">
-                  {formatCurrency(downPayment)}
-                  <span className="ml-2 text-sm font-normal text-gray-500">
-                    ({(downPayment / propertyValue * 100).toFixed(0)}%)
-                  </span>
-                </div>
-              </div>
-              
-              <div className="relative mb-2">
-                <input
-                  type="range"
-                  min={0.1 * propertyValue}
-                  max={0.9 * propertyValue}
-                  step="10000"
-                  value={downPayment}
-                  onChange={(e) => setDownPayment(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
-                />
-                <div className="absolute text-xs text-gray-500 left-0 top-3">
-                  {formatCurrency(0.1 * propertyValue)}
-                </div>
-                <div className="absolute text-xs text-gray-500 right-0 top-3">
-                  {formatCurrency(0.9 * propertyValue)}
-                </div>
-              </div>
-            </div>
-            
-            {/* Upfront Costs */}
-            <div className="bg-gray-50 rounded-xl p-5 mb-8 border border-gray-200">
-              <div className="flex justify-between items-center">
-                <h3 className="font-semibold text-gray-700">Upfront costs</h3>
-                <div className="text-xl font-bold text-gray-800">
-                  {formatCurrency(upfrontCosts)}
-                </div>
-              </div>
-            </div>
-            
-            {/* Finance Fees */}
-            <div className="mb-8">
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  id="financeFees"
-                  checked={financeFees}
-                  onChange={(e) => setFinanceFees(e.target.checked)}
-                  className="w-5 h-5 accent-blue-600 rounded focus:ring-blue-500"
-                />
-                <label htmlFor="financeFees" className="ml-3 text-gray-700 font-medium">
-                  Would you like to finance your fees?
-                </label>
-              </div>
-            </div>
-            
-            {/* Loan Duration */}
-            <div className="mb-8">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-semibold text-gray-800">Loan duration *</h2>
-                <div className="text-xl font-bold text-blue-600">
-                  {loanDuration} Years
-                </div>
-              </div>
-              
-              <div className="relative mb-2">
-                <input
-                  type="range"
-                  min="5"
-                  max="30"
-                  step="1"
-                  value={loanDuration}
-                  onChange={(e) => setLoanDuration(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
-                />
-                <div className="absolute text-xs text-gray-500 left-0 top-3">5 Years</div>
-                <div className="absolute text-xs text-gray-500 right-0 top-3">30 Years</div>
-              </div>
-            </div>
-            
-            {/* Interest Rate */}
-            <div className="mb-8">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-semibold text-gray-800">Interest rate 1werwerwer</h2>
-                <div className="text-xl font-bold text-blue-600">
-                  {interestRate} %
-                </div>
-              </div>
-              
-              <div className="relative mb-2">
-                <input
-                  type="range"
-                  min="1"
-                  max="10"
-                  step="0.1"
-                  value={interestRate}
-                  onChange={(e) => setInterestRate(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
-                />
-                <div className="absolute text-xs text-gray-500 left-0 top-3">1%</div>
-                <div className="absolute text-xs text-gray-500 right-0 top-3">10%</div>
-              </div>
-            </div>
-            
-            {/* Loan Amount & Monthly Cost */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div className="bg-blue-50 rounded-xl p-6 border border-blue-100">
-                <div className="text-gray-600 mb-2">Loan amount</div>
-                <div className="text-2xl font-bold text-blue-700">
-                  {formatCurrency(loanAmount)}
-                </div>
-              </div>
-              
-              <div className="bg-green-50 rounded-xl p-6 border border-green-100">
-                <div className="text-gray-600 mb-2">Monthly cost</div>
-                <div className="text-2xl font-bold text-green-700">
-                  {formatCurrency(monthlyCost)}
-                </div>
-              </div>
-            </div>
-            
-            {/* Explanation */}
-            <div className="text-sm text-gray-600 bg-gray-50 rounded-lg p-4 mb-8">
-              Estimated monthly payment based on a {formatCurrency(loanAmount)} loan amount 
-              with a {interestRate}% fixed interest rate for the entire duration of the loan
-            </div>
-            
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg transition-all shadow-md hover:shadow-lg">
-                Start My Application
-              </button>
-              <button className="flex-1 bg-white hover:bg-gray-50 text-blue-600 font-bold py-4 px-6 rounded-lg border-2 border-blue-600 transition-all">
-                Speak to a Mortgage Expert
-              </button>
-            </div>
+    <div className="ef-section-style-3 grid grid-cols-2 mx-auto p-6 bg-ef-dark-blue-2 rounded-lg">
+      {/* Residency Status */}
+      <div className="pr-12">
+
+<div className="mb-8">
+  <div className="mb-2 font-semibold">
+    Residency status <span className="text-red-500">*</span>
+  </div>
+  <div className="flex gap-2 items-center justify-between">
+    {['Resident', 'National', 'NonResident'].map(status => (
+      <button
+        key={status}
+        onClick={() => handleResidencyClick(status)}
+        className={`flex-1 px-4 py-2 rounded text-center ${
+          state.ActiveProduct === status ? 'btn' : 'btn btn-outlined-blue'
+        }`}
+      >
+        {status}
+      </button>
+    ))}
+  </div>
+</div>
+
+
+        <div className="mb-8">
+        <div className="mb-2 font-semibold">Property value <span className="text-red-500">*</span></div>
+        <div className="flex items-center border border-gray-300 rounded-xl overflow-hidden bg-gray-50 w-full mb-5">
+<input
+  type="text"
+  value={Number(state.Price).toLocaleString()}
+  onChange={(e) => {
+    const raw = e.target.value.replace(/,/g, '');
+    const parsed = Number(raw);
+    if (!isNaN(parsed)) {
+      setState(prev => ({
+        ...prev,
+        Price: parsed,
+      }));
+    }
+  }}
+  className="flex-1 px-4 py-3 bg-gray-50 text-black text-lg outline-none"
+/>
+          <div className="px-4 py-3 text-ef-blue font-medium text-lg border-l border-gray-300">
+            AED
           </div>
         </div>
+      </div>
+
+      <div className="mb-8 flex items-center justify-between">
+        <div className="text-lg font-semibold text-gray-700">Upfront costs </div>
+        <span className="text-black font-bold">AED {formatNumber(upfrontCosts)}</span>
+      </div>
+
+      <div className="mb-8">
+        <div className="block font-semibold mb-3 flex items-center justify-between"><div>Down payment<span className="ml-1 text-red-500">*</span></div> AED {formatNumber(state.DownPayment)}</div>
+        <input
+          type="range"
+          min={10}
+          max={state.Price}
+          step={10000}
+          value={state.DownPayment}
+          onChange={(e) =>
+            setState(prev => ({
+              ...prev,
+              DownPayment: +e.target.value,
+            }))
+          }
+          className="w-full appearance-none h-3 rounded-full slider-thumb"
+          style={{
+            background: `linear-gradient(to right, #0e7490 0%, #0e7490 ${(state.DownPayment / state.Price) * 100}%, #d1d5db ${(state.DownPayment / state.Price) * 100}%, #d1d5db 100%)`,
+          }}
+        />
+      </div>
+
+      <div className="mb-8 flex items-center justify-between">
+        <label className="font-semibold">Would you like to finance your fees?</label>
+        <button
+          onClick={() =>
+            setState(prev => ({
+              ...prev,
+              ToggleFinancing: !prev.ToggleFinancing,
+            }))
+          }
+          className={`w-12 h-6 flex items-center rounded-full p-1 ${
+            state.ToggleFinancing ? 'bg-blue-600' : 'bg-gray-300'
+          }`}
+        >
+          <div
+            className={`bg-white w-4 h-4 rounded-full shadow-md transform duration-300 ease-in-out ${
+              state.ToggleFinancing ? 'translate-x-6' : 'translate-x-0'
+            }`}
+          />
+        </button>
+      </div>
+
+      <div className="mb-8">
+        <label className="block font-semibold  mb-3 flex items-center justify-between"><div>Loan duration<span className="ml-1 text-red-500">*</span></div>  <div>{state.LoanDuration} Years</div></label>
+        <input
+          type="range"
+          min={0}
+          max={state.Price}
+          step={10000}
+          value={state.LoanDuration}
+          onChange={(e) =>
+            setState(prev => ({
+              ...prev,
+              LoanDuration: +e.target.value,
+            }))
+          }
+          className="w-full appearance-none h-3 rounded-full slider-thumb"
+          style={{
+            background: `linear-gradient(to right, #0e7490 0%, #0e7490 ${(state.LoanDuration / state.Price) * 100}%, #d1d5db ${(state.LoanDuration / state.Price) * 100}%, #d1d5db 100%)`,
+          }}
+        />
+      </div>
         
-        <div className="mt-8 text-center text-gray-500 text-sm">
-          <p>* Required fields</p>
-          <p className="mt-2">Note: This calculator provides estimates only. Actual terms may vary.</p>
+      <div className="mb-8">
+        <label className="mb-2 font-semibold">Interest rate</label>
+        <div className="flex items-center border border-gray-300 rounded-xl overflow-hidden bg-gray-50 w-full mb-5">
+          <input
+            type="number"
+            value={state.InterestRate}
+          onChange={(e) =>
+            setState(prev => ({
+              ...prev,
+              InterestRate: +e.target.value,
+            }))
+          }
+            className="flex-1 px-4 py-3 bg-gray-50 text-black text-lg outline-none"
+          />
+          <div className="px-4 py-3 text-ef-blue font-medium text-lg border-l border-gray-300">
+            %
+          </div>
         </div>
       </div>
+
+      </div>
+
+      <div className="pl-12">
+
+        
+
+      {/* Loan Summary */}
+      {/* <div className="mb-6">
+        <div className="text-lg font-semibold text-gray-700">Loan amount <span className="text-blue-600">{formatNumber(loanAmount)} AED</span></div>
+        <div className="text-lg font-semibold text-gray-700">Monthly cost <span className="text-blue-600">{formatNumber(monthlyCost)} AED</span></div>
+        <div className="text-sm text-gray-600 mt-1">* Estimated with insurance + fees</div>
+      </div> */}
+
+
+      {/* Action Buttons */}
+      {/* <div className="flex gap-4">
+        <button className="bg-blue-600 text-white px-6 py-2 rounded">Start My Application</button>
+        <button className="border border-blue-600 text-blue-600 px-6 py-2 rounded">Speak to a Mortgage Expert</button>
+      </div> */}
+
+      <div className="space-y-8">
+        <div className="text-right">
+          <h2 className="text-lg text-gray-600">Loan amount</h2>
+          <p className="text-3xl font-bold text-ef-blue">{formatNumber(loanAmount)} AED</p>
+        </div>
+        <div className="text-right">
+          <h2 className="text-lg text-gray-600">Monthly cost</h2>
+          <p className="text-3xl font-bold text-ef-blue">{formatNumber(monthlyCost)} AED</p>
+        </div>
+        <hr className="border-gray-300" />
+        <p className="text-sm text-gray-600">
+          Estimated monthly payment based on a {formatNumber(loanAmount)} AED loan amount with a
+          2.5% fixed interest rate for the entire duration of the loan
+        </p>
+        <div className="space-y-4">
+          <button className="w-full btn">
+            Start My Application
+          </button>
+          <button
+            // variant="outline"
+            className="w-full btn btn-outlined-blue"
+          >
+            Speak to a Mortgage Expert
+          </button>
+        </div>
+      </div>
+
     </div>
+
+          
+        
+      </div>
+
+
+
+      
+
   );
 }

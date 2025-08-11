@@ -98,7 +98,7 @@ export default function TestSlider() {
     muted
     playsInline
     preload="auto"
-    src="/assets/test-vid-2.mp4"
+    src="/assets/slider-video.mp4"
     className="h-full w-full object-cover rtl:scale-x-[-1]"
   />
 

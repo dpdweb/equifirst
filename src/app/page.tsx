@@ -3,11 +3,12 @@ import FinanceOptions from './components/FinanceOptions';
 import ScrollHighlight from './components/ScrollHighlight';
 import UnlockDoor from "./components/UnlockDoor";
 import MortgageServices from "./components/MortgageServices";
-// import MortgageMadeSimple from "./components/MortgageMadeSimple";
 import WhyEquifirst from "./components/WhyEquifirst";
 import Testimonials from "./components/Testimonials";
 import GotQuestion from "./components/GotQuestion";
-import ScrollHighlightUpdate from "./components/ScrollHighlightUpdate";
+// import MortgageCalculator from './components/MortgageCalculator';
+// import ScrollHighlightUpdate from "./components/ScrollHighlightUpdate";
+import MortgageMadeSimple from "./components/MortgageMadeSimple";
 
 
 
@@ -25,11 +26,10 @@ export default function Home() {
       <UnlockDoor />
       <MortgageServices />
       <FinanceOptions />
-      {/*<MortgageMadeSimple />*/}
-      
+      <MortgageMadeSimple />
+      {/* <MortgageCalculator /> */}
       <Testimonials />
       <GotQuestion /> 
-      
       </div>
   );
 }

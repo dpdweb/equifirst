@@ -9,7 +9,6 @@ export default function AboutUs() {
   return (
     <div>
     <div className="ef-sub-page-top-style">
-      {/* <MortgageCalculator /> */}
       <SubPageHeroBanner
         title="About Us"
         subtitle="Welcome to Equifirst Capital Financing"

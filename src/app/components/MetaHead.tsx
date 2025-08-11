@@ -4,8 +4,8 @@ import { useSettings } from '../context/SettingsContext';
 import Head from 'next/head';
 
 export default function MetaHead() {
-  const { settings, loading } = useSettings();
-  if (loading) return null;
+  const settings = useSettings();
+
 
   return (
     <Head>

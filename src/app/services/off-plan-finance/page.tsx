@@ -3,18 +3,20 @@ import React from 'react';
 import MortgageSolutions from '@/app/components/MortgageSolutions';
 import Image from "next/image";
 import { PlayCircle } from "lucide-react";
+import SubPageHeaderSpacer from '../../components/SubPageHeaderSpacer';
 
 export default function OffPlanFinance() {
 
   return (
     <div>
+      <SubPageHeaderSpacer />
         <MortgageSolutions />
 
         <div className="ef-section-style-4">
             
 <div className="group relative">
   {/* Main Container */}
-  <div className="bg-[#eaf4f7] rounded-2xl p-8 md:flex items-start gap-8">
+  <div className="bg-[#eaf4f7] md:rounded-2xl p-8 md:flex items-start gap-8">
 
     {/* Left Section */}
     <div className="flex-1">

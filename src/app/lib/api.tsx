@@ -25,8 +25,8 @@ export async function fetchHeroSlides() {
 
 
 export async function fetchSettings() {
-  const res = await fetch(`${API_BASE_URL}/settings`, {
-    cache: 'no-store' // optional, ensures fresh data
+  const res = await fetch(`http://localhost/equifirst_backend/public/api/settings`, {
+    cache: 'force-cache' // optional, ensures fresh data
   });
 
   if (!res.ok) {
@@ -63,11 +63,50 @@ export async function fetchFaqsByCategory(categoryId: string | number, page: num
   return await res.json();
 }
 
+// export async function fetchBlogs() {
+//   const res = await fetch(`${API_BASE_URL}/blogs`);
+//   if (!res.ok) throw new Error('Failed to fetch');
+//   return res.json();
+  
+// }
 export async function fetchBlogs() {
-  const res = await fetch(`${API_BASE_URL}/blogs`);
-  if (!res.ok) throw new Error('Failed to fetch');
+  const res = await fetch(`http://localhost/equifirst_backend/public/api/blogs`);
+  if (!res.ok) throw new Error("Failed to fetch blogs");
+  
+  const json = await res.json();
+  
+  // If Laravel wraps blogs inside `data`, return only that
+  return json.data || [];
+}
+
+
+// lib/api.ts
+
+export async function fetchBlogBySlug(slug: string) {
+  const res = await fetch(`http://localhost/equifirst_backend/public/api/blogs/${slug}`);
+  if (!res.ok) throw new Error('Failed to fetch blog data');
   return res.json();
 }
+
+// lib/api/blog.ts
+
+export async function incrementBlogView(slug: string) {
+  try {
+    const res = await fetch(`http://localhost/equifirst_backend/public/api/blogs/${slug}/increment-view`, {
+      method: 'POST',
+    });
+
+    if (!res.ok) {
+      console.error('Failed to increment blog view');
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error('Error incrementing blog view:', error);
+  }
+}
+
+
 
 // export async function fetchTestimonials() {
 //   const res = await fetch(`${API_BASE_URL}/testimonials`);

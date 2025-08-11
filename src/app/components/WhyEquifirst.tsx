@@ -54,7 +54,7 @@ export default function WhyEquifirst() {
           </p>
 
 
-          <ul className="hidden md:block space-y-4 text-gray-600">
+          <ul className="hidden md:block space-y-4 text-gray-600 mt-8">
             {features.map((item) => (
               <li
                 key={item.id}
@@ -63,7 +63,7 @@ export default function WhyEquifirst() {
                 }`}
                 onClick={() => setSelected(item)}
               >
-                <ChevronRightIcon className="w-5 h-5 text-blue-500" />
+                <ChevronRightIcon className="w-5 h-5 text-ef-dark-blue" />
                 {item.title}
               </li>
             ))}

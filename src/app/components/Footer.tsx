@@ -2,14 +2,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import SocialMediaLinks from './SocialMediaLinks';
-import { useSettings } from '../context/SettingsContext';
 import Landbot from './Landbot';
 
 export default function Footer() {
-  const { settings } = useSettings();
+  
 
   return (
-    <footer className="bg-ef-dark-gray text-gray-300 pt-10 mt-12">
+    <footer className="bg-ef-dark-gray text-gray-300 pt-10">
       <Landbot />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center sm:text-left">
@@ -63,7 +62,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-3 hidden md:block">SOCIALS</h4>
             <div className="mt-8 flex justify-center sm:justify-start space-x-6">
-              <SocialMediaLinks settings={settings} />
+              <SocialMediaLinks />
             </div>
           </div>
         </div>

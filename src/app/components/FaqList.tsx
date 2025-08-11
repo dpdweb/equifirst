@@ -28,7 +28,7 @@ const FaqList: React.FC<FaqListProps> = ({
   };
 
   return (
-    <div className="w-10/12 p-6 mx-auto">
+    <div className="w-full p-6 mx-auto">
       <div className="space-y-4">
         {faqs.map((faq) => (
           <div key={faq.id} className="border-b border-gray-200">

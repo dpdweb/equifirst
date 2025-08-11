@@ -28,7 +28,7 @@ const CategorySidebar: React.FC<CategorySidebarProps> = ({
             <li
               key={cat.id}
               onClick={() => onSelect(cat.id)}
-              className={`cursor-pointer p-2 rounded-lg transition duration-300 ease-in-out 
+              className={`cursor-pointer p-3 pl-5 mb-1 rounded-lg transition duration-300 ease-in-out 
                 hover:bg-ef-hover-blue hover:text-white hover:rounded-lg
                 ${activeId === cat.id ? 'bg-ef-blue text-white rounded-lg' : 'text-gray-700'}`}
             >

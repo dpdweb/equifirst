@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import CategorySidebar from '../components/CategorySidebar';
 import FaqList from '../components/FaqList';
 import { fetchFaqCategories, fetchFaqsByCategory } from '../lib/api';
+import SubPageHeaderSpacer from '../components/SubPageHeaderSpacer';
 
 // Types
 interface FaqCategory {
@@ -70,8 +71,11 @@ export default function FaqPage() {
   }, [selectedCategory, page]);
 
   return (
+    <div>
+      <SubPageHeaderSpacer />
+    
     <div className="ef-sub-page-top-style">
-      <div className="flex">
+      <div className="md:flex mb-20 mt-10 md:mt-0">
         <CategorySidebar
           categories={categories}
           activeId={selectedCategory}
@@ -81,7 +85,7 @@ export default function FaqPage() {
           }}
         />
 
-        <div className="flex-1 pl-6">
+        <div className="flex-1 md:pl-6">
           {loading ? (
             <div className="flex items-center justify-center h-full">Loading FAQs...</div>
           ) : error ? (
@@ -96,6 +100,7 @@ export default function FaqPage() {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 }

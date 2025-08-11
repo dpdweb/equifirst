@@ -1,56 +1,40 @@
-// app/context/SettingsContext.tsx
+// context/SettingsContext.tsx
 'use client';
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { createContext, useContext } from 'react';
 
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-interface Settings {
+export interface Settings {
   site_logo_desktop: string;
+  site_logo_mobile: string;
+  site_logo_icon: string;
+  site_favicon: string;
   site_name: string;
   site_title: string;
+  admin_email: string;
+  record_per_page: string;
   site_address: string;
   site_email: string;
+  site_logo_white: string;
+  site_white_logo: string;
+  white_logo: string;
   footer_logo: string;
-  // add more fields as needed
+  _token: string;
+  _method: string;
+  social_media_setting: string;
+  facebook_url?: string | null;
+  x_url?: string | null;
+  linkedin_url?: string | null;
+  youtube_url?: string | null;
+  instagram_url?: string | null;
 }
 
-interface SettingsContextType {
-  settings: Settings | null;
-  loading: boolean;
+const SettingsContext = createContext<Settings | null>(null);
+
+export function SettingsProvider({ settings, children }: { settings: Settings; children: React.ReactNode }) {
+  return <SettingsContext.Provider value={settings}>{children}</SettingsContext.Provider>;
 }
 
-const SettingsContext = createContext<SettingsContextType>({
-  settings: null,
-  loading: true,
-});
-
-
-
-export const SettingsProvider = ({ children }: { children: ReactNode }) => {
-  const [settings, setSettings] = useState<Settings | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchSettings = async () => {
-      try {
-        const res = await fetch(`${API_BASE_URL}/settings`, { cache: 'no-store' });
-        const data = await res.json();
-        setSettings(data);
-      } catch (err) {
-        console.error('Failed to fetch settings:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSettings();
-  }, []);
-
-  return (
-    <SettingsContext.Provider value={{ settings, loading }}>
-      {children}
-    </SettingsContext.Provider>
-  );
-};
-
-export const useSettings = () => useContext(SettingsContext);
+export function useSettings() {
+  const ctx = useContext(SettingsContext);
+  if (!ctx) throw new Error("useSettings must be used inside SettingsProvider");
+  return ctx; // returns the settings object directly
+}

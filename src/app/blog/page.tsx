@@ -1,86 +1,64 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
-import BlogCard from '../components/BlogCard';
-import { fetchBlogs } from '../lib/api';
+'use client'
+// import Link from "next/link";
+import { useEffect, useState } from "react";
+import { fetchBlogs } from "../lib/api";
 import SubPageHeroBanner from "../components/SubPageHeroBanner";
+import BlogCard from "../components/BlogCard";
 
-type Blog = {
+interface Blog {
   id: number;
   title: string;
-  excerpt: string;
-  // Add other fields your BlogCard component needs
-};
+  slug: string;
+  excerpt?: string;
+  date?: string;
+  image?: string;
+  views?: number;
+}
 
-export default function Blog() {
+export default function BlogList() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function loadBlogs() {
-      setLoading(true);
-      setError(null);
+    fetchBlogs()
+      .then((data) => setBlogs(data))
+      .catch((err) => console.error("Error fetching blogs:", err))
+      .finally(() => setLoading(false));
+  }, []);
 
-      try {
-        const data = await fetchBlogs(); // Assuming you pass `page` to fetchBlogs
-        setBlogs(data.data);
-        setTotalPages(data.last_page);
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError('Failed to load blogs.');
-        }
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadBlogs();
-  }, [page]);
+  if (loading) return <p>Loading blogs...</p>;
 
   return (
     <div>
       <div className="ef-sub-page-top-style">
-            {/* <MortgageCalculator /> */}
-            <SubPageHeroBanner
-              title="Blogs"
-              subtitle="Welcome to Equifirst Blogs"
-              image="/assets/images/blog-hero.jpg"
-            />
-            </div>
-    
-    <div className="ef-sub-page-top-style">
-      {loading && <p>Loading...</p>}
-      {error && <p className="text-red-500">{error}</p>}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {!loading && !error && blogs.map((blog) => (
-          <BlogCard key={blog.id} blog={blog} />
-        ))}
+        <SubPageHeroBanner
+          title="Blogs"
+          subtitle="Welcome to Equifirst Blogs"
+          image="/assets/images/about-us-hero.png"
+        />
       </div>
 
-      <div className="flex justify-between mt-8">
-        {page > 1 && (
-          <button
-            onClick={() => setPage(page - 1)}
-            className="bg-gray-200 px-4 py-2 rounded"
-          >
-            Previous
-          </button>
-        )}
-        {page < totalPages && (
-          <button
-            onClick={() => setPage(page + 1)}
-            className="bg-gray-200 px-4 py-2 rounded"
-          >
-            Next
-          </button>
+      <div className="ef-sub-page-top-style grid gap-6 sm:grid-cols-2 lg:grid-cols-3 my-20">
+        {blogs.length === 0 ? (
+          <p>No blogs found.</p>
+        ) : (
+          blogs.map((blog) => (
+            <BlogCard
+              key={blog.id}
+              blog={{
+                id: blog.id,
+                title: blog.title,
+                slug: blog.slug,
+                image: blog.image,
+                date: blog.date
+                  ? blog.date
+                  : undefined,
+                views: blog.views
+              }}
+            />
+          ))
         )}
       </div>
-    </div>
     </div>
   );
 }

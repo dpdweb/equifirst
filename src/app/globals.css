@@ -212,10 +212,10 @@
 
   .btn-slider {
     background-color: white;
-    padding: 20px;
-    color:black;
+    padding: 20px; 
     font-weight: bold;
     border:none;
+    color: var(--color-ef-blue);
   }
 
   .ef-section-style {
@@ -225,10 +225,13 @@
     @apply max-w-7xl mx-auto py-5 md:py-0 px-4 sm:px-0 lg:px-0;
   }
   .ef-section-style-3 {
-    @apply max-w-7xl mx-auto p-10;
+    @apply max-w-7xl mx-auto p-10 mb-20;
   }
    .ef-section-style-4 {
-    @apply max-w-7xl mx-auto pb-5;
+    @apply max-w-7xl mx-auto md:pb-20;
+  }
+  .ef-section-style-testimonials {
+    @apply max-w-7xl mx-auto mb-10;
   }
 
   /* .ef-sub-page-top-style {

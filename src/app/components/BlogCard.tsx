@@ -1,10 +1,11 @@
 'use client';
 import Image from 'next/image';
-import { Eye } from 'lucide-react';
+import Link from 'next/link';
 
 type Blog = {
   id: number;
   title: string;
+  slug: string;
   image?: string;
   date?: string;
   views?: number;
@@ -12,17 +13,15 @@ type Blog = {
 
 export default function BlogCard({ blog }: { blog: Blog }) {
   return (
-    <div>
+    <Link href={`/blog/${blog.slug}`} className="block">
 
-
-
-    <div className="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+    <div className=" bg-white rounded-lg overflow-hidden">
       <Image
-        src={blog.image || '/fallback.jpg'}
+        src={blog.image || '/assets/images/fallback.jpg'}
         alt={blog.title}
         width={500}
         height={300}
-        className="w-full h-48 object-cover"
+        className="w-full h-52 object-cover rounded-2xl"
       />
       <div className="p-4">
         <div className="flex items-center text-gray-500 text-sm mb-2 space-x-3">
@@ -43,8 +42,6 @@ export default function BlogCard({ blog }: { blog: Blog }) {
         </h3>
       </div>
     </div>
-    
-
-    </div>
+    </Link>
   );
 }

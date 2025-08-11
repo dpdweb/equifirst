@@ -124,10 +124,10 @@ export default function ScrollHighlight() {
   </div>
 
   {/* Right sticky video with 35% width */}
-  <div className="sticky top-20 ml-auto w-full md:w-[35%]">
+  <div className="sticky top-20 ml-auto w-full md:w-[25%]">
     <div
       dir="ltr"
-      className="relative max-h-[calc(min(85vh,760px))] min-h-[720px] max-w-[1440px] overflow-hidden max-lg:h-[756px] md:max-h-[calc(min(95dvh,960px))] scale-x-[1]"
+      className="relative max-h-[calc(min(85vh,760px))] min-h-[720px] max-w-[1440px] overflow-hidden max-lg:h-[756px] md:max-h-[calc(min(95dvh,960px))]"
     >
       <video
         autoPlay
@@ -135,7 +135,7 @@ export default function ScrollHighlight() {
         muted
         playsInline
         preload="auto"
-        src="/assets/test-vid-2.mp4"
+        src="/assets/side-video.mp4"
         className="h-full w-full object-cover rtl:scale-x-[-1]"
       />
     </div>

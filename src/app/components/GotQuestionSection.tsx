@@ -16,22 +16,27 @@ const accordionData: AccordionItem[] = [
   {
     id: 1,
     title: 'What is a mortgage?',
-    content: 'A mortgage is a loan from a bank that helps you purchase a home. You then pay the mortgage plus interest back in monthly Instalment over a set number of years.',
+    content: 'A mortgage is a long-term loan used to buy property, where the property itself serves as security for the loan.',
   },
   {
     id: 2,
-    title: 'Who can get a mortgage in Dubai?',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi erat velit, ullamcorper non feugiat sed, lacinia eu urna. Curabitur sollicitudin accumsan pharetra. Donec vehicula ipsum massa, vel mattis nisl venenatis vel. Praesent aliquet laoreet ligula, et rutrum mauris bibendum imperdiet. Aliquam imperdiet venenatis est sed volutpat.',
+    title: 'How does a mortgage work in the UAE?',
+    content: 'You borrow money from a bank and repay it monthly with interest over an agreed term, up to 25 years.',
   },
   {
     id: 3,
-    title: 'How much can I borrow from banks in Dubai?',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi erat velit, ullamcorper non feugiat sed, lacinia eu urna. Curabitur sollicitudin accumsan.',
+    title: 'Is it better to rent or buy in the UAE?',
+    content: 'It depends on your financial goals. Buying helps you build equity, while renting offers flexibility.',
   },
     {
     id: 4,
-    title: 'Want to know more?',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi erat velit, ullamcorper non feugiat sed, lacinia eu urna. Curabitur sollicitudin accumsan pharetra. Donec vehicula ipsum massa, vel mattis nisl venenatis vel. Praesent aliquet laoreet ligula, et rutrum mauris bibendum imperdiet. Aliquam imperdiet venenatis est sed volutpat.',
+    title: 'Am I eligible for a mortgage in the UAE?',
+    content: 'If you&apos;re over 21, have a stable income, and meet bank criteria, you&rsquo;re likely eligible.',
+  },
+  {
+    id: 5,
+    title: 'What is the minimum income required to apply?',
+    content: 'Salaried: Typically AED 15,000 per month, but some banks are willing to provide mortgages to clients with a salary of AED 10,000 per month. Self-employed: AED 40,000 per month, varies by bank.',
   },
 ];
 
@@ -53,7 +58,7 @@ export default function GotQuestionSection() {
               What is a mortgage?
             </h3>
             <p className="mt-2">
-              A mortgage is a loan from a bank that helps you purchase a home. You then pay the mortgage plus interest back in monthly Instalment over a set number of years.
+              A mortgage is a long-term loan used to buy property, where the property itself serves as security for the loan.
             </p>
             
             <div className="absolute bottom-[25px] right-[25px]"> 
@@ -67,10 +72,10 @@ export default function GotQuestionSection() {
           <div className="blue-box-2 md:h-[400px] relative">
             <div>
               <h3 className="text-ef-heading1-size text-ef-dark-blue">
-                Who can get a mortgage in Dubai?
+                How does a mortgage work in the UAE?
               </h3>
               <p className="mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi erat velit, ullamcorper non feugiat sed, lacinia eu urna. Curabitur sollicitudin accumsan pharetra. Donec vehicula ipsum massa, vel mattis nisl venenatis vel. Praesent aliquet laoreet ligula, et rutrum mauris bibendum imperdiet. Aliquam imperdiet venenatis est sed volutpat.
+                You borrow money from a bank and repay it monthly with interest over an agreed term, up to 25 years.
               </p>
               <Image
               src="/assets/images/mortgage-img.png"
@@ -94,12 +99,12 @@ export default function GotQuestionSection() {
 
       <div className="hidden md:grid grid-cols-[450px_1fr] gap-4">
 
-        <div className="blue-box mt-6 md:h-[400px]">
+        <div className="blue-box mt-6 md:h-[250px]">
             <h3 className="text-ef-heading1-size text-ef-dark-blue">
-              How much can I borrow from banks in Dubai?
+              Is it better to rent or buy in the UAE?
             </h3>
             <p className="mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi erat velit, ullamcorper non feugiat sed, lacinia eu urna. Curabitur sollicitudin accumsan. 
+              It depends on your financial goals. Buying helps you build equity, while renting offers flexibility. 
             </p>
 
             <div className="absolute bottom-[25px] right-[25px]"> 
@@ -111,13 +116,13 @@ export default function GotQuestionSection() {
         </div>
 
 
-        <div className="blue-box mt-6 md:h-[400px]">
+        <div className="blue-box mt-6 md:h-[250px]">
           <div>
             <h3 className="text-ef-heading1-size text-ef-dark-blue">
-              Want to know more?
+              Am I eligible for a mortgage in the UAE?
             </h3>
             <p className="mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi erat velit, ullamcorper non feugiat sed, lacinia eu urna. Curabitur sollicitudin accumsan pharetra. Donec vehicula ipsum massa, vel mattis nisl venenatis vel. Praesent aliquet laoreet ligula, et rutrum mauris bibendum imperdiet. Aliquam imperdiet venenatis est sed volutpat.
+              If you&apos;re over 21, have a stable income, and meet bank criteria, you&rsquo;re likely eligible.
             </p>
             
           </div>

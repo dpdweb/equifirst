@@ -3,15 +3,15 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
-import { useSettings } from '../context/SettingsContext';
+import { useSettings } from "../context/SettingsContext";
 import { usePathname } from 'next/navigation';
-// import SocialMediaLinks from './SocialMediaLinks';
+import SocialMediaLinks from './SocialMediaLinks';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
-  const { settings } = useSettings();
+  const settings = useSettings();
   const pathname = usePathname();
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(null);
 
@@ -125,20 +125,53 @@ export default function Header() {
             </button>
           </div>
 
-          <div className="flex flex-col gap-6 text-lg items-end mt-8 px-4">
-            {navItems.map((item) =>
-              item.href ? (
-                <Link
-                  key={item.href}
-                  onClick={() => setIsOpen(false)}
-                  href={item.href}
-                  className={`mobile-nav-link ${pathname === item.href ? 'active' : ''}`}
-                >
-                  {item.label}
-                </Link>
-              ) : null
+<div className="flex flex-col gap-6 text-lg items-end mt-8 px-4">
+  {navItems.map((item, index) => {
+    const isActive = pathname === item.href;
+    const hasChildren = item.children && item.children.length > 0;
+    const isDropdownOpen = openDropdownIndex === index;
+
+    return (
+      <div key={index} className="w-full text-right">
+        {item.href && !hasChildren ? (
+          <Link
+            href={item.href}
+            onClick={() => setIsOpen(false)}
+            className={`mobile-nav-link ${isActive ? 'active' : ''}`}
+          >
+            {item.label}
+          </Link>
+        ) : hasChildren ? (
+          <>
+            <button
+              onClick={() =>
+                setOpenDropdownIndex(isDropdownOpen ? null : index)
+              }
+              className="mobile-nav-link w-full text-right font-medium"
+            >
+              {item.label}
+            </button>
+            {isDropdownOpen && (
+              <div className="mt-2 pl-4 flex flex-col gap-2 text-base">
+                {item.children.map((child) => (
+                  <Link
+                    key={child.href}
+                    href={child.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`mobile-nav-link ${pathname === child.href ? 'active' : ''}`}
+                  >
+                    {child.label}
+                  </Link>
+                ))}
+              </div>
             )}
-          </div>
+          </>
+        ) : null}
+      </div>
+    );
+  })}
+</div>
+
 
           <div className="mt-auto space-y-4 text-sm text-center">
             <Image
@@ -155,7 +188,7 @@ export default function Header() {
             </div>
 
             <div className="flex justify-center gap-4 mt-4 text-white">
-              {/* <SocialMediaLinks settings={settings} /> */}
+              <SocialMediaLinks />
             </div>
 
             <p className="text-xs mt-4">

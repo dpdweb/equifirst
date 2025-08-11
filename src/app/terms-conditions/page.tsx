@@ -1,11 +1,11 @@
 'use client';
-import SubPageTopSpacer from "../components/SubPageTopSpacer";
+import SubPageHeaderSpacer from "../components/SubPageHeaderSpacer";
 
 
 export default function TermsConditions() {
   return (
     <div>
-      <SubPageTopSpacer />
+      <SubPageHeaderSpacer />
     <div className="ef-sub-page-top-style mt-3">
       <h1 className="text-4xl text-ef-blue mb-3">Our Terms & Conditions</h1>
       <p>
