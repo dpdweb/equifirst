@@ -1,10 +1,9 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import CategorySidebar from '../components/CategorySidebar';
 import FaqList from '../components/FaqList';
 import { fetchFaqCategories, fetchFaqsByCategory } from '../lib/api';
-import SubPageHeaderSpacer from '../components/SubPageHeaderSpacer';
+import SubPageHeroBanner from "../components/SubPageHeroBanner";
 
 // Types
 interface FaqCategory {
@@ -72,10 +71,15 @@ export default function FaqPage() {
 
   return (
     <div>
-      <SubPageHeaderSpacer />
+     
     
     <div className="ef-sub-page-top-style">
-      <div className="md:flex mb-20 mt-10 md:mt-0">
+      <SubPageHeroBanner
+        title="FAQs"
+        subtitle="Your questions answered"
+        image="/assets/images/about-us-hero.png"
+      />
+      <div className="md:flex mb-20 pt-10 md:mt-0">
         <CategorySidebar
           categories={categories}
           activeId={selectedCategory}

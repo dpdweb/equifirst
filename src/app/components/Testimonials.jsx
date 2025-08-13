@@ -56,43 +56,49 @@ const Testimonials = () => {
 >
 {testimonials.map((t, index) => (
   <SwiperSlide key={index}>
-    <div className="bg-white text-gray-800 rounded-lg p-6 w-full shadow-md relative overflow-hidden">
-      <div className="flex items-center gap-4 mb-4">
-        <Image
-          src={t.image}
-          alt={t.name}
-          width={48}
-          height={48}
-          className="rounded-full object-cover"
-        />
-        <div className="text-left">
-          <h4 className="font-semibold text-lg">{t.name}</h4>
-          <p className="text-sm text-gray-500">{t.designation}</p>
-        </div>
-      </div>
-      <p className="text-sm text-left leading-relaxed mb-4">{t.description}</p>
-      <div className="flex items-center gap-1 mb-1">
-        {Array.from({ length: t.rating }, (_, i) => (
-          <span key={i} className="text-yellow-500 text-xl">★</span>
-        ))}
-      </div>
-      <div className="absolute -bottom-2 right-0 opacity-100 text-6xl font-bold select-none pointer-events-none">
-        <Image
-          src="/assets/images/testi-logo.png"
-          alt="Watermark"
-          width={250}
-          height={48}
-          className="rounded-full object-cover"
-        />
-      </div>
+<div className="bg-white text-gray-800 rounded-lg p-6 w-full shadow-md relative overflow-hidden h-[280px]">
+  <div className="flex items-center gap-4 mb-4">
+    <Image
+      src={t.image}
+      alt={t.name}
+      width={48}
+      height={48}
+      className="rounded-full object-cover"
+    />
+    <div className="text-left">
+      <h4 className="font-semibold text-lg">{t.name}</h4>
+      <p className="text-sm text-gray-500">{t.designation}</p>
     </div>
+  </div>
+
+  <p className="text-sm text-left leading-relaxed mb-4">{t.description}</p>
+
+  {/* Stars fixed at bottom */}
+  <div className="absolute bottom-4 left-6 flex items-center gap-1">
+    {Array.from({ length: t.rating }, (_, i) => (
+      <span key={i} className="text-yellow-500 text-xl">★</span>
+    ))}
+  </div>
+
+  <div className="absolute -bottom-2 right-0 opacity-100 text-6xl font-bold select-none pointer-events-none">
+    <Image
+      src="/assets/images/testi-logo.png"
+      alt="Watermark"
+      width={250}
+      height={48}
+      className="rounded-full object-cover"
+    />
+  </div>
+</div>
+
+
   </SwiperSlide>
 ))}
 
         </Swiper>
 
         {/* Arrows */}
-        <div className="equi-swiper">
+        <div className="equi-swiper-testimonial">
           <div className="swiper-button-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer text-black"></div>
           <div className="swiper-button-next absolute right-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer text-black"></div>
         </div>

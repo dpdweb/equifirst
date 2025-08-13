@@ -91,7 +91,7 @@ export default function TestSlider() {
    
       </Swiper> */}
 
-<div dir="ltr" className="relative max-h-[calc(min(85vh,760px))] min-h-[720px] max-w-[1440px] overflow-hidden max-lg:h-[756px] md:max-h-[calc(min(95dvh,960px))] scale-x-[1]">
+<div className="relative max-h-[calc(min(85vh,760px))] min-h-[720px] max-w-[1440px] overflow-hidden max-lg:h-[756px] md:max-h-[calc(min(95dvh,960px))] scale-x-[1]">
   <video
     autoPlay
     loop
@@ -102,7 +102,13 @@ export default function TestSlider() {
     className="h-full w-full object-cover rtl:scale-x-[-1]"
   />
 
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-black/50"></div>
+
+  {/* Overlay content */}
+  
 </div>
+
 
       
       

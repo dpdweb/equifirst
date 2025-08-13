@@ -38,9 +38,8 @@ export default function Footer() {
               <li><Link href="/mortgage-calculator" className="footer-nav-link">Mortgage Calculator</Link></li>
               <li><Link href="/about-us" className="footer-nav-link">About Us</Link></li>
               <li><Link href="/contact-us" className="footer-nav-link">Contact Us</Link></li>
-              <li><Link href="/" className="footer-nav-link">Services</Link></li>
-              <li><Link href="/" className="footer-nav-link">Blogs</Link></li>
-              <li><Link href="/" className="footer-nav-link">FAQs</Link></li>
+              <li><Link href="/blog" className="footer-nav-link">Blog</Link></li>
+              <li><Link href="/faqs" className="footer-nav-link">FAQs</Link></li>
               <li><Link href="/terms-conditions" className="footer-nav-link">Terms & Conditions</Link></li>
             </ul>
           </div>

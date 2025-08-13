@@ -57,7 +57,7 @@ export default function Header() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
-          <div>
+          <Link href="/">
             <Image
               src={settings?.site_logo_desktop || '/assets/images/equifirst_logo.png'}
               alt={settings?.site_title || 'Equifirst'}
@@ -66,7 +66,7 @@ export default function Header() {
               className="w-[150px] md:w-[215px] h-auto object-contain"
               priority
             />
-          </div>
+          </Link>
 
           <nav className="hidden md:flex gap-6 text-ef-gray font-medium relative">
             {navItems.map((item, index) => (

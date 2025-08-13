@@ -11,7 +11,7 @@ export async function fetchHeroSlides() {
 
 export async function fetchSettings() {
   const res = await fetch(`${API_BASE_URL}/settings`, {
-    cache: 'force-cache'
+    cache: 'no-store'
   });
   if (!res.ok) throw new Error('Failed to fetch settings');
   return res.json();

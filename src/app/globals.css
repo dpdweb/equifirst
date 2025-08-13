@@ -305,6 +305,22 @@
 
  }
 
+  .equi-swiper-testimonial { margin-top: 65px;}
+ .equi-swiper-testimonial .swiper-button-next::after {
+    margin-right: -30px !important;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    color:var(--color-ef-blue);
+}
+
+ .equi-swiper-testimonial .swiper-button-prev::after {
+    margin-left: -30px !important;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    color:var(--color-ef-blue);
+
+ }
+
   .HeroSwiper .swiper-button-prev, .swiper-button-next {
   color: white;
   z-index: 50;
