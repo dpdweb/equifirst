@@ -76,7 +76,7 @@ export default function MortgageCalculator() {
 
 
   return (
-    <div className="ef-section-style-3 grid grid-cols-2 mx-auto p-6 bg-ef-dark-blue-2 rounded-lg">
+    <div className="ef-section-style-3 grid grid-cols-1 md:grid-cols-2 mx-auto p-6 bg-ef-dark-blue-2 rounded-lg gap-8">
       {/* Residency Status */}
       <div className="pr-12">
 

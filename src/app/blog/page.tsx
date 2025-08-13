@@ -37,8 +37,8 @@ export default function BlogList() {
           image="/assets/images/about-us-hero.png"
         />
       </div>
-
-      <div className="ef-sub-page-top-style grid gap-6 sm:grid-cols-2 lg:grid-cols-3 my-20">
+    <div className="ef-sub-page-top-style">
+      <div className="grid p-2  md:gap-6 lg:grid-cols-3 my-20">
         {blogs.length === 0 ? (
           <p>No blogs found.</p>
         ) : (
@@ -58,6 +58,7 @@ export default function BlogList() {
             />
           ))
         )}
+      </div>
       </div>
     </div>
   );

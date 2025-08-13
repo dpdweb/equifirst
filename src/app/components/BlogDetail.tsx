@@ -1,7 +1,8 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
+// import { useEffect, useState } from 'react';
+// import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import SubPageHeroBanner from "../components/SubPageHeroBanner";
 
 interface Author {
   image: string;
@@ -20,34 +21,25 @@ interface Blog {
 }
 
 export default function BlogDetail({ blog }: { blog: Blog }) {
-  const pathname = usePathname();
-  const [currentUrl, setCurrentUrl] = useState('');
+  // const pathname = usePathname();
+  // const [currentUrl, setCurrentUrl] = useState('');
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setCurrentUrl(window.location.origin + pathname);
-    }
-  }, [pathname]);
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     setCurrentUrl(window.location.origin + pathname);
+  //   }
+  // }, [pathname]);
 
   return (
     <div>
-      <section className="relative md:rounded-4xl overflow-hidden max-w-8xl mx-auto">
-        <div className="absolute inset-0">
-          <Image
-            src={blog.image}
-            alt={blog.title}
-            fill
-            className="w-full h-full object-cover object-top"
-            priority
-          />
-          <div className="absolute inset-0 bg-[rgba(0,0,0,0.1)]" />
-        </div>
-        <div className="relative z-10 px-6 pt-70 pb-70 md:pt-30 md:pb-40 md:px-16 text-white">
-          {blog.title && (
-            <p className="text-[30px] text-center uppercase mb-2 tracking-wider">{blog.title}</p>
-          )}
-        </div>
-      </section>
+      <div className="ef-sub-page-top-style">
+            <SubPageHeroBanner
+              title="Blog"
+              subtitle={blog.title}
+              image={blog.image}
+            />
+            </div>
+
 
       {/* Blog Content */}
       <div className="min-h-screen bg-white text-gray-800">
@@ -90,7 +82,7 @@ export default function BlogDetail({ blog }: { blog: Blog }) {
               </p>
             </div>
 
-            <div>
+            {/* <div>
               <h4 className="text-lg font-semibold mb-4">Share</h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-center gap-2">
@@ -124,7 +116,8 @@ export default function BlogDetail({ blog }: { blog: Blog }) {
                   </a>
                 </li>
               </ul>
-            </div>
+            </div> */}
+
           </aside>
         </div>
       </div>

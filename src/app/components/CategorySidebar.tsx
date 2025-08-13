@@ -20,7 +20,7 @@ const CategorySidebar: React.FC<CategorySidebarProps> = ({
   onSelect,
 }) => {
   return (
-    <div className="w-full md:w-2/12">
+    <div className="w-full md:w-4/12">
       {/* Sidebar for medium and larger screens */}
       <div className="hidden md:block border-r border-ef-blue border-r-2 p-4 overflow-y-auto h-full">
         <ul className="space-y-2">
