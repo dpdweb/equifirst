@@ -1,9 +1,25 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+// const nextConfig: NextConfig = {
+//   images: {
+//     domains: ["localhost"], // Add your backend image host domain here
+//   },
+// };
+
+// export default nextConfig;
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
-    domains: ["localhost"], // Add your backend image host domain here
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: '82.25.105.217',
+        port: '', // leave empty unless needed
+        pathname: '/**',
+      },
+    ],
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
