@@ -13,7 +13,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
+        protocol: 'http',
         hostname: 'equifirst.ae',
         port: '', // leave empty unless needed
         pathname: '/**',
