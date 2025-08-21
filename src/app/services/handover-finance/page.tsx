@@ -3,7 +3,7 @@ import React from 'react';
 import MortgageSolutions from '@/app/components/MortgageSolutions';
 import Image from "next/image";
 import { PlayCircle } from "lucide-react";
-import SubPageHeaderSpacer from '../../components/SubPageHeaderSpacer';
+import SubPageHeroBanner from '@/app/components/SubPageHeroBanner';
 
 
 export default function HandoverFinance() {
@@ -11,8 +11,12 @@ export default function HandoverFinance() {
 
   return (
     <div>
-      <SubPageHeaderSpacer />
-        <MortgageSolutions />
+      <SubPageHeroBanner
+        title="Handover Finance"
+        subtitle="Bridge your final payment during property handover."
+        image="/assets/images/handover-finance-hero.jpg"
+      />
+      <MortgageSolutions />
 
         <div className="ef-section-style-4">
             

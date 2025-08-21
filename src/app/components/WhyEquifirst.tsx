@@ -10,31 +10,31 @@ const features = [
     id: 1,
     title: 'Documentation',
     description: 'We handle all the necessary paperwork, secure your mortgage pre-approval, and negotiate with banks on your behalf.',
-    image: '/assets/images/why-equifirst.png',
+    image: '/assets/images/documentation.jpg',
   },
   {
     id: 2,
     title: 'Tailored Mortgage Solutions',
     description: 'Access tailored mortgage solutions that meet your unique needs, and avail the most competitive mortgage rates & terms available.',
-    image: '/assets/images/why-equifirst.png',
+    image: '/assets/images/tailored-mortgage-solutions.jpg',
   },
   {
     id: 3,
     title: 'Team of Experts',
     description: 'Connect with our team of financial experts with years of experience in multinational banks, dedicated to providing you with the highest level of expertise and personalized service.',
-    image: '/assets/images/why-equifirst.png',
+    image: '/assets/images/team-experts.jpg',
   },
   {
     id: 4,
     title: 'Secure & Reliable',
     description: "As UAE's trusted mortgage partner, we're committed to confidentiality and secure transactions for all our customers.",
-    image: '/assets/images/why-equifirst.png',
+    image: '/assets/images/secure-reliable.jpg',
   },
   {
     id: 5,
     title: 'Efficiency',
     description: 'We are directly impaneled with every major bank in the UAE so you can secure the right financial service without delay.',
-    image: '/assets/images/why-equifirst.png',
+    image: '/assets/images/efficiency.jpg',
   },
 ];
 
@@ -72,13 +72,13 @@ export default function WhyEquifirst() {
 
         <div>
           <Image
-            src={selected.image}
-            alt={selected.title}
-            className="w-full h-auto my-4 mx-auto sm:mx-0"
-            width={0}
-            height={0}
-            sizes="100vw"
-          />
+  src={selected.image}
+  alt={selected.title}
+  className="w-full h-[350px] object-cover rounded-2xl my-4 mx-auto sm:mx-0"
+  width={0}
+  height={0}
+  sizes="100vw"
+/>
           <div className="hidden md:block font-bold text-[20px] text-ef-blue">{selected.title}</div>
           <p className="mb-5">{selected.description}</p>
 

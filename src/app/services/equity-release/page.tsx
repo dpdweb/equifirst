@@ -3,7 +3,7 @@ import React from 'react';
 import MortgageSolutions from '@/app/components/MortgageSolutions';
 import Image from "next/image";
 import { PlayCircle } from "lucide-react";
-import SubPageHeaderSpacer from '../../components/SubPageHeaderSpacer';
+import SubPageHeroBanner from '@/app/components/SubPageHeroBanner';
 
 
 export default function EquityRelease() {
@@ -12,7 +12,11 @@ export default function EquityRelease() {
 
   return (
     <div>
-      <SubPageHeaderSpacer />
+      <SubPageHeroBanner
+                title="Equity Release"
+                subtitle="Easily calculate your mortgage payments"
+                image="/assets/images/equity-release-hero.jpg"
+              />
         <MortgageSolutions />
 
         <div className="ef-section-style-4">

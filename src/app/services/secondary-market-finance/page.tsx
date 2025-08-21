@@ -3,7 +3,7 @@ import React from 'react';
 import MortgageSolutions from '@/app/components/MortgageSolutions';
 import Image from "next/image";
 import { PlayCircle } from "lucide-react";
-import SubPageHeaderSpacer from '../../components/SubPageHeaderSpacer';
+import SubPageHeroBanner from '@/app/components/SubPageHeroBanner';
 
 
 export default function SecondaryMarketFinance() {
@@ -13,8 +13,12 @@ export default function SecondaryMarketFinance() {
 
   return (
     <div>
-      <SubPageHeaderSpacer />
-        <MortgageSolutions />
+      <SubPageHeroBanner
+        title="Secondary Market Finance"
+        subtitle="Finance completed and ready-to-move-in properties across Dubai."
+        image="/assets/images/secondary-market-finance-hero.jpg"
+      />
+     
 
         <div className="ef-section-style-4">
             

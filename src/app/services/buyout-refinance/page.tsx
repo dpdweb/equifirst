@@ -3,7 +3,7 @@ import React from 'react';
 import MortgageSolutions from '@/app/components/MortgageSolutions';
 import Image from "next/image";
 import { PlayCircle } from "lucide-react";
-import SubPageHeaderSpacer from '../../components/SubPageHeaderSpacer';
+import SubPageHeroBanner from '@/app/components/SubPageHeroBanner';
 
 
 export default function BuyoutRefinance() {
@@ -11,7 +11,11 @@ export default function BuyoutRefinance() {
 
   return (
     <div>
-        <SubPageHeaderSpacer />
+        <SubPageHeroBanner
+          title="buyout Refinance"
+          subtitle="Easily calculate your mortgage payments"
+          image="/assets/images/buyout-refinance-hero.jpg"
+        />
         <MortgageSolutions />
 
         <div className="ef-section-style-4">

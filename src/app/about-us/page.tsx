@@ -12,7 +12,7 @@ export default function AboutUs() {
       <SubPageHeroBanner
         title="About Us"
         subtitle="Welcome to Equifirst Capital Financing"
-        image="/assets/images/about-us-hero.png"
+        image="/assets/images/about-us-hero.jpg"
       />
       </div>
        <WhoWeAre />

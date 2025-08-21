@@ -3,12 +3,16 @@ import React from 'react';
 import MortgageSolutions from '@/app/components/MortgageSolutions';
 import Image from "next/image";
 import { PlayCircle } from "lucide-react";
-import SubPageHeaderSpacer from '../../components/SubPageHeaderSpacer';
+import SubPageHeroBanner from '@/app/components/SubPageHeroBanner';
 
 export default function WhoWeAre() {
   return (
     <div>
-      <SubPageHeaderSpacer />
+      <SubPageHeroBanner
+        title="Non-Resident Mortgage"
+        subtitle="Helping non-residents invest confidently in Dubai."
+        image="/assets/images/non-resident-mortgage-hero.jpg"
+      />
         <MortgageSolutions />
 
         <div className="ef-section-style-4">
