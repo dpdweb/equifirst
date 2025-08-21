@@ -22,4 +22,20 @@ export default nextConfig;
 //   },
 // };
 
-// module.exports = nextConfig;
+// export default nextConfig;
+
+
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '', // leave empty unless needed
+        pathname: '/**',
+      },
+    ],
+  },
+};
+
+module.exports = nextConfig;
