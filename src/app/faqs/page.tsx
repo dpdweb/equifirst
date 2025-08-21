@@ -77,7 +77,7 @@ export default function FaqPage() {
       <SubPageHeroBanner
         title="FAQs"
         subtitle="Your questions answered"
-        image="/assets/images/about-us-hero.png"
+        image="/assets/images/faq-hero.jpg"
       />
       <div className="md:flex mb-20 pt-10 md:mt-0">
         <CategorySidebar
