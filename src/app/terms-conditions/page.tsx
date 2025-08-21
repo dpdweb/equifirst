@@ -9,7 +9,7 @@ export default function TermsConditions() {
             <SubPageHeroBanner
   title="Terms & Conditions"
   subtitle="Read the Terms and Conditions of Equifirst Capital Financing"
-  image="/assets/images/about-us-hero.png"
+  image="/assets/images/terms-conditions-hero.jpg"
 />
 
             
