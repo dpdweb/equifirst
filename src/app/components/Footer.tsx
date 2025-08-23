@@ -1,28 +1,11 @@
 'use client';
-import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import SocialMediaLinks from './SocialMediaLinks';
 import Landbot from './Landbot';
 
 export default function Footer() {
-  // Dynamically load TrustLogo script
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = window.location.protocol === 'https:' 
-      ? 'https://secure.trust-provider.com/trustlogo/javascript/trustlogo.js' 
-      : 'http://www.trustlogo.com/trustlogo/javascript/trustlogo.js';
-    script.type = 'text/javascript';
-    document.head.appendChild(script);
-
-    script.onload = () => {
-      window.TrustLogo("https://equifirst.ae/assets/images/positivessl_trust.png", "CL1", "none");
-    };
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
+  
 
   return (
     <footer className="bg-ef-dark-gray text-gray-300 pt-10">
@@ -87,14 +70,6 @@ export default function Footer() {
         <p className="text-center text-xs text-ef-light-gray mt-6 border-t border-gray-600 py-6">
           © Copyright {new Date().getFullYear()} Equifirst. All Rights Reserved.
         </p>
-
-        {/* Display TrustLogo in Footer */}
-        <div className="trust-logo mt-4 text-center">
-          <a href="https://www.instantssl.com/" id="comodoTL">
-            <img alt="SSL" src="https://equifirst.ae/assets/images/positivessl_trust.png" />
-            Essential SSL
-          </a>
-        </div>
       </div>
     </footer>
   );
