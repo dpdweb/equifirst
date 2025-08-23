@@ -1,41 +1,22 @@
-import type { NextConfig } from "next";
+import { NextConfig } from 'next';
 
-// const nextConfig: NextConfig = {
-//   images: {
-//     domains: ["localhost"], // Add your backend image host domain here
-//   },
-// };
-
-// export default nextConfig;
-
-
-const nextConfig = {
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'equifirst.ae',
-        port: '', // leave empty unless needed
+        port: '',
         pathname: '/**',
       },
     ],
   },
+
+  // Allow development cross-origin requests from specific origins
+  allowedDevOrigins: [
+    "https://equifirst.ae",  // Add your production domain
+    "http://localhost:3000", // If you're developing locally
+  ],
 };
 
 export default nextConfig;
-
-
-// const nextConfig = {
-//   images: {
-//     remotePatterns: [
-//       {
-//         protocol: 'http',
-//         hostname: 'localhost',
-//         port: '', // leave empty unless needed
-//         pathname: '/**',
-//       },
-//     ],
-//   },
-// };
-
-// module.exports = nextConfig;
