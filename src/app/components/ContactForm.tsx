@@ -1,5 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
+import LeftPanel from './LeftPanel';
+import MortgageForm from './MortgageForm';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -22,6 +24,11 @@ const ContactForm = () => {
   };
 
   return (
+    <div>
+      <div className="min-h-screen flex flex-col md:flex-row items-stretch p-6 md:p-12 space-y-6 md:space-y-0 md:space-x-6">
+      <LeftPanel />
+      <MortgageForm />
+    </div>
     <div className="contact-form-container">
       <h2>Let's connect - this won’t take long!</h2>
       <form onSubmit={handleSubmit}>
@@ -62,6 +69,7 @@ const ContactForm = () => {
 
         <button type="submit">Next</button>
       </form>
+    </div>
     </div>
   );
 };

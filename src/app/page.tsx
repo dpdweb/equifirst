@@ -28,7 +28,7 @@ export default function Home() {
       <FinanceOptions />
       <MortgageMadeSimple />
       {/* <MortgageCalculator /> */}
-      <ContactForm />
+      {/* <ContactForm /> */}
       <Testimonials />
       <GotQuestion /> 
       

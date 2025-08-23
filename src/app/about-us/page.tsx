@@ -11,7 +11,7 @@ export default function AboutUs() {
     <div className="ef-sub-page-top-style">
       <SubPageHeroBanner
         title="About Us"
-        subtitle="Welcome to Equifirst Capital Financing"
+        subtitle="Your Trusted Mortgage Partner"
         image="/assets/images/about-us-hero.jpg"
       />
       </div>

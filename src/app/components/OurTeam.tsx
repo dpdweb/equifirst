@@ -73,6 +73,7 @@ useEffect(() => {
 
             {/* Hover Overlay */}
             <div className="absolute inset-0 bg-ef-blue bg-opacity-90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 text-white">
+              <b className="mb-5">{member.role}</b>
               <p className="text-sm">{member.description}</p>
             </div>
 

@@ -76,7 +76,7 @@ export default function FaqPage() {
     <div className="ef-sub-page-top-style">
       <SubPageHeroBanner
         title="FAQs"
-        subtitle="Your questions answered"
+        subtitle="Answers At Your Fingertips"
         image="/assets/images/faq-hero.jpg"
       />
       <div className="md:flex mb-20 pt-10 md:mt-0">

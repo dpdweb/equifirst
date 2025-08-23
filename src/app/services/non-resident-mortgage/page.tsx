@@ -10,7 +10,7 @@ export default function WhoWeAre() {
     <div>
       <SubPageHeroBanner
         title="Non-Resident Mortgage"
-        subtitle="Helping non-residents invest confidently in Dubai."
+        subtitle="Mortgages Beyond Borders"
         image="/assets/images/non-resident-mortgage-hero.jpg"
       />
         <MortgageSolutions />
@@ -63,17 +63,17 @@ export default function WhoWeAre() {
     {/* Right Section (Image with Play Button) */}
     <div className="flex-1 mt-8 md:mt-0 relative rounded-2xl overflow-hidden">
       <Image
-        src="/assets/images/video-img.png"
+        src="/assets/images/service-4.jpg"
         alt="Dubai Skyline"
         width={600}
         height={400}
         className="w-full h-auto object-cover"
       />
-      <div className="absolute inset-0 flex items-center justify-center">
+      {/* <div className="absolute inset-0 flex items-center justify-center">
         <div className="bg-white rounded-full p-3 shadow-lg">
           <PlayCircle className="w-12 h-12 text-[#007190]" />
         </div>
-      </div>
+      </div> */}
     </div>
   </div>
 

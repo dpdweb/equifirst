@@ -32,8 +32,8 @@ export default function BlogList() {
     <div>
       <div className="ef-sub-page-top-style">
         <SubPageHeroBanner
-          title="Blogs"
-          subtitle="Welcome to Equifirst Blogs"
+          title="Blog"
+          subtitle="Insights To Guide You"
           image="/assets/images/blog-hero.jpg"
         />
       </div>

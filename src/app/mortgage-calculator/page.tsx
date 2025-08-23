@@ -7,7 +7,7 @@ export default function Page() {
     <div>
 <SubPageHeroBanner
   title="Mortgage Calculator"
-  subtitle="Easily calculate your mortgage payments"
+  subtitle="Plan Your Mortgage Instantly"
   image="/assets/images/mortgage-calculator-hero.jpg"
 />
 
