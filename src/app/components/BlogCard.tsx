@@ -18,7 +18,7 @@ export default function BlogCard({ blog }: { blog: Blog }) {
     <div className=" bg-white rounded-lg overflow-hidden">
       <Image
         src={blog.image || '/assets/images/fallback.jpg'}
-        alt={blog.image}
+        alt={blog.image ?? blog.title}
         width={500}
         height={300}
         className="w-full h-52 object-cover rounded-2xl"
