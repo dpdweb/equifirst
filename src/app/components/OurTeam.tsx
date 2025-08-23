@@ -13,6 +13,7 @@ interface TeamMember {
   title: string;
   image: string;
   description: string;
+  role: string;
 }
 
 export default function OurTeam() {

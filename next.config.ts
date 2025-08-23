@@ -1,24 +1,8 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  images: {
-    domains: ["localhost"], // Add your backend image host domain here
-  },
-};
-
-export default nextConfig;
-
-
-// const nextConfig = {
+// const nextConfig: NextConfig = {
 //   images: {
-//     remotePatterns: [
-//       {
-//         protocol: 'http',
-//         hostname: 'equifirst.ae',
-//         port: '', // leave empty unless needed
-//         pathname: '/**',
-//       },
-//     ],
+//     domains: ["localhost"], // Add your backend image host domain here
 //   },
 // };
 
@@ -30,7 +14,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: 'localhost',
+        hostname: 'equifirst.ae',
         port: '', // leave empty unless needed
         pathname: '/**',
       },
@@ -38,4 +22,20 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
+
+
+// const nextConfig = {
+//   images: {
+//     remotePatterns: [
+//       {
+//         protocol: 'http',
+//         hostname: 'localhost',
+//         port: '', // leave empty unless needed
+//         pathname: '/**',
+//       },
+//     ],
+//   },
+// };
+
+// module.exports = nextConfig;

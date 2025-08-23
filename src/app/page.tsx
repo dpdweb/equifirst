@@ -9,7 +9,8 @@ import GotQuestion from "./components/GotQuestion";
 // import MortgageCalculator from './components/MortgageCalculator';
 // import ScrollHighlightUpdate from "./components/ScrollHighlightUpdate";
 import MortgageMadeSimple from "./components/MortgageMadeSimple";
-import ContactForm from './components/ContactForm'; // Import the contact form
+// import ContactForm from './components/ContactForm'; 
+// Import the contact form
 
 
 

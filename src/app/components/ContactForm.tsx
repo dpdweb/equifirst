@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import LeftPanel from './LeftPanel';
 import MortgageForm from './MortgageForm';
 
@@ -30,7 +30,7 @@ const ContactForm = () => {
       <MortgageForm />
     </div>
     <div className="contact-form-container">
-      <h2>Let's connect - this won’t take long!</h2>
+      <h2>Let&apos;s connect - this won&apos;t take long!</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>What are you looking for?</label>
@@ -39,8 +39,8 @@ const ContactForm = () => {
             value={formData.question1}
             onChange={handleChange}
           >
-            <option value="buying">I'm buying a property</option>
-            <option value="refinancing">I'm refinancing my home</option>
+            <option value="buying">I&apos;m buying a property</option>
+            <option value="refinancing">I&apos;m refinancing my home</option>
           </select>
         </div>
 

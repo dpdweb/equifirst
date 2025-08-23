@@ -1,5 +1,5 @@
 'use client';
-import ContactForm from "../components/ContactForm";  // Assuming you have the form component
+// import ContactForm from "../components/ContactForm";
 
 export default function ContactUs() {
   return (
@@ -8,7 +8,7 @@ export default function ContactUs() {
     
 
       {/* Contact Form */}
-      <ContactForm />
+      {/* <ContactForm /> */}
 
     </div>
   );
