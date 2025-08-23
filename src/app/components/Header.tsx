@@ -36,7 +36,6 @@ export default function Header() {
     { href: '/blog', label: 'Blog' },
     { href: '/about-us', label: 'About Us' },
     { href: '/faqs', label: 'FAQs' },
-    // { href: '/contact-us', label: 'Contact Us' },
   ];
 
   useEffect(() => {
@@ -47,14 +46,14 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+
+
   if (!hasMounted) return null;
 
   return (
     <div>
       <header
-        className={`fixed top-0 w-full transition-all duration-300 z-50 ${
-          scrolled ? 'bg-[rgba(255,255,255,0.8)] backdrop-blur-sm' : 'bg-transparent'
-        }`}
+        className={`fixed top-0 w-full transition-all duration-300 z-50 ${scrolled ? 'bg-[rgba(255,255,255,0.8)] backdrop-blur-sm' : 'bg-transparent'}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
           <Link href="/">
@@ -111,12 +110,15 @@ export default function Header() {
             </button>
           </div>
 
+        
+
           <div className="hidden md:block">
             <a href="/contact-us" className="btn">Contact Us</a>
           </div>
         </div>
       </header>
 
+      {/* Mobile Menu */}
       {isOpen && (
         <div className="fixed md:hidden inset-0 z-50 pr-[25%] bg-black text-white flex flex-col justify-between p-6 transition-transform duration-300 animate-menu-slide-in-left">
           <div className="flex justify-end">
@@ -125,54 +127,53 @@ export default function Header() {
             </button>
           </div>
 
-<div className="flex flex-col gap-6 text-lg items-end mt-8 px-4">
-  {navItems.map((item, index) => {
-    const isActive = pathname === item.href;
-    const hasChildren = item.children && item.children.length > 0;
-    const isDropdownOpen = openDropdownIndex === index;
+          {/* Mobile Menu Links */}
+          <div className="flex flex-col gap-6 text-lg items-end mt-8 px-4">
+            {navItems.map((item, index) => {
+              const isActive = pathname === item.href;
+              const hasChildren = item.children && item.children.length > 0;
+              const isDropdownOpen = openDropdownIndex === index;
 
-    return (
-      <div key={index} className="w-full text-right">
-        {item.href && !hasChildren ? (
-          <Link
-            href={item.href}
-            onClick={() => setIsOpen(false)}
-            className={`mobile-nav-link ${isActive ? 'active' : ''}`}
-          >
-            {item.label}
-          </Link>
-        ) : hasChildren ? (
-          <>
-            <button
-              onClick={() =>
-                setOpenDropdownIndex(isDropdownOpen ? null : index)
-              }
-              className="mobile-nav-link w-full text-right font-medium"
-            >
-              {item.label}
-            </button>
-            {isDropdownOpen && (
-              <div className="mt-2 pl-4 flex flex-col gap-2 text-base">
-                {item.children.map((child) => (
-                  <Link
-                    key={child.href}
-                    href={child.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`mobile-nav-link ${pathname === child.href ? 'active' : ''}`}
-                  >
-                    {child.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </>
-        ) : null}
-      </div>
-    );
-  })}
-</div>
+              return (
+                <div key={index} className="w-full text-right">
+                  {item.href && !hasChildren ? (
+                    <Link
+                      href={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`mobile-nav-link ${isActive ? 'active' : ''}`}
+                    >
+                      {item.label}
+                    </Link>
+                  ) : hasChildren ? (
+                    <>
+                      <button
+                        onClick={() => setOpenDropdownIndex(isDropdownOpen ? null : index)}
+                        className="mobile-nav-link w-full text-right font-medium"
+                      >
+                        {item.label}
+                      </button>
+                      {isDropdownOpen && (
+                        <div className="mt-2 pl-4 flex flex-col gap-2 text-base">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              onClick={() => setIsOpen(false)}
+                              className={`mobile-nav-link ${pathname === child.href ? 'active' : ''}`}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : null}
+                </div>
+              );
+            })}
+          </div>
 
-
+          {/* Footer Logo and Contact Info */}
           <div className="mt-auto space-y-4 text-sm text-center">
             <Image
               src={settings?.footer_logo || '/assets/images/equifirst_logo.png'}
@@ -181,12 +182,12 @@ export default function Header() {
               height={60}
               className="mx-auto h-auto object-contain"
             />
-
             <div className="text-white">
               <p dangerouslySetInnerHTML={{ __html: settings?.site_address || '' }} />
               <p className="mt-1">{settings?.site_email}</p>
             </div>
 
+            {/* Social Links */}
             <div className="flex justify-center gap-4 mt-4 text-white">
               <SocialMediaLinks />
             </div>
@@ -199,6 +200,7 @@ export default function Header() {
           </div>
         </div>
       )}
+
       <div className="h-0 md:h-25"></div>
     </div>
   );

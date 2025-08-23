@@ -1,4 +1,5 @@
 'use client';
+import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import SocialMediaLinks from './SocialMediaLinks';
@@ -70,6 +71,8 @@ export default function Footer() {
         <p className="text-center text-xs text-ef-light-gray mt-6 border-t border-gray-600 py-6">
           © Copyright {new Date().getFullYear()} Equifirst. All Rights Reserved.
         </p>
+
+      
       </div>
     </footer>
   );
