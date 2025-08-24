@@ -1,8 +1,11 @@
 
+"use client";
 import MortgageCalculator from '../components/MortgageCalculator';
 import SubPageHeroBanner from "../components/SubPageHeroBanner";
 
 export default function Page() {
+
+
   return (
     <div>
 <SubPageHeroBanner
@@ -14,6 +17,8 @@ export default function Page() {
     <div className="p-6 mt-4">
       <MortgageCalculator />
     </div>
+
+
     </div>
   );
 }

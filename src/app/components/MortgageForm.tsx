@@ -40,7 +40,7 @@ export default function MortgageForm() {
   };
 
   return (
-    <div className="bg-teal-50 w-full md:w-2/3 p-8 rounded-lg">
+    <div className="bg-teal-50 w-full md:w-2/3 p-8 rounded-lg hidden md:hidden">
       
       <div className=" bg-blue-50 p-6 rounded-xl shadow-md">
       <div className="flex justify-between mb-6">

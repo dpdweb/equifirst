@@ -16,9 +16,11 @@
     "lucide-react": "^0.511.0",
     "next": "15.3.3",
     "postcss": "^8.5.4",
+    "rc-slider": "^11.1.8",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-player": "^3.0.0",
+    "react-range-slider-input": "^3.2.1",
     "swiper": "^11.2.8"
   },
   "devDependencies": {

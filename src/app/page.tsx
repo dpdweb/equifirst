@@ -8,7 +8,7 @@ import MortgageServices from "./components/MortgageServices";
 import WhyEquifirst from "./components/WhyEquifirst";
 import Testimonials from "./components/Testimonials";
 import GotQuestion from "./components/GotQuestion";
-// import MortgageCalculator from './components/MortgageCalculator';
+import MortgageCalculator from './components/MortgageCalculator';
 // import ScrollHighlightUpdate from "./components/ScrollHighlightUpdate";
 import MortgageMadeSimple from "./components/MortgageMadeSimple";
 // import ContactForm from './components/ContactForm'; 
@@ -18,7 +18,7 @@ import MortgageMadeSimple from "./components/MortgageMadeSimple";
 
 
 export default function Home() {
-  const mortgageRef = useRef(null);
+  const mortgageRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToMortgage = () => {
     mortgageRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -38,7 +38,7 @@ export default function Home() {
       </div>
       <FinanceOptions />
       <MortgageMadeSimple />
-      {/* <MortgageCalculator /> */}
+      <MortgageCalculator />
       {/* <ContactForm /> */}
       <Testimonials />
       <GotQuestion /> 

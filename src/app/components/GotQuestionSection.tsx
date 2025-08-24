@@ -62,7 +62,7 @@ export default function GotQuestionSection() {
             </p>
             
             <div className="absolute bottom-[25px] right-[25px]"> 
-              <Link href="" className="ef-arrow-btn-1">
+              <Link href="/faqs" className="ef-arrow-btn-1">
                 <ArrowRightIcon className="ArrowRightIcon" />
               </Link>
             </div>
@@ -87,7 +87,7 @@ export default function GotQuestionSection() {
             </div>
 
             <div className="absolute bottom-[25px] right-[25px]"> 
-              <Link href="" className="ef-arrow-btn-1">
+              <Link href="/faqs" className="ef-arrow-btn-1">
                 <ArrowRightIcon className="ArrowRightIcon" />
               </Link>
             </div>
@@ -108,7 +108,7 @@ export default function GotQuestionSection() {
             </p>
 
             <div className="absolute bottom-[25px] right-[25px]"> 
-              <Link href="" className="ef-arrow-btn-1">
+              <Link href="/faqs" className="ef-arrow-btn-1">
                 <ArrowRightIcon className="ArrowRightIcon" />
               </Link>
             </div>
@@ -128,7 +128,7 @@ export default function GotQuestionSection() {
           </div>
 
           <div className="absolute bottom-[25px] right-[25px]"> 
-            <Link href="" className="ef-arrow-btn-1">
+            <Link href="/faqs" className="ef-arrow-btn-1">
               <ArrowRightIcon className="ArrowRightIcon" />
             </Link>
           </div>

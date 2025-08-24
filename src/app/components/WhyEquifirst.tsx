@@ -38,7 +38,12 @@ const features = [
   },
 ];
 
-export default function WhyEquifirst({ onScrollClick }) {
+type HeroSliderProps = {
+  onScrollClick: () => void; // 👈 declare type
+};
+
+
+export default function WhyEquifirst({ onScrollClick }: HeroSliderProps) {
   const [selected, setSelected] = useState(features[0]);
 
   return (

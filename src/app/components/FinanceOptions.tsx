@@ -12,37 +12,37 @@ const FinanceOptionCards = [
     title: 'Off-Plan Finance',
     description: 'Finance properties under construction and secure your investment early.',
     image: '/assets/images/off-plan-finance-hero.jpg',
-    link: '/',
+    link: 'services/off-plan-finance',
   },
   {
     title: 'Secondary Market Finance',
     description: 'Finance completed and ready-to-move-in properties across Dubai.',
     image: '/assets/images/secondary-market-finance-hero.jpg',
-    link: '/',
+    link: 'services/secondary-market-finance',
   },
   {
     title: 'Equity Release',
     description: 'Unlock your home’s equity without selling.',
     image: '/assets/images/equity-release-hero.jpg',
-    link: '/',
+    link: 'services/equity-release',
   },
   {
     title: 'Handover Finance',
     description: 'Bridge your final payment during property handover.',
     image: '/assets/images/handover-finance-hero.jpg',
-    link: '/',
+    link: 'services/handover-finance',
   },
   {
     title: 'Buyout/Refinance',
     description: 'Transfer your mortgage to better terms.',
     image: '/assets/images/buyout-refinance-hero.jpg',
-    link: '/',
+    link: 'services/buyout-refinance',
   },
   {
     title: 'Non-Resident Mortgage',
     description: 'Helping non-residents invest confidently in Dubai.',
     image: '/assets/images/non-resident-mortgage-hero.jpg',
-    link: '/',
+    link: 'services/non-resident-mortgage',
   },
 
 ];

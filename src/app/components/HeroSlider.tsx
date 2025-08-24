@@ -16,9 +16,12 @@ import 'swiper/css';
 //   title?: string;
 //   created_at?: string;
 // }
+type HeroSliderProps = {
+  onScrollClick: () => void; // 👈 declare type
+};
 
 
-export default function TestSlider({ onScrollClick }) {
+export default function HeroSlider({ onScrollClick }: HeroSliderProps) {
   
   const lineRef = useRef<HTMLDivElement>(null);
   // const [slides, setSlides] = useState<Slide[]>([]);

@@ -8,14 +8,14 @@ export default function TermsConditions() {
 
             <SubPageHeroBanner
   title="Terms & Conditions"
-  subtitle="Read the Terms and Conditions of Equifirst Capital Financing"
+  subtitle="Please read carefully before using our website"
   image="/assets/images/terms-conditions-hero.jpg"
 />
 
             
     <div className="ef-sub-page-top-style my-10">
       <h1 className="text-4xl text-ef-blue mb-3">Our Terms & Conditions</h1>
-      <p>
+      <p >
         The use of this website is subject to the following terms of use: *We or our brokers do not make any representations or warranties regarding the accuracy or completeness of the information provided. The Client acknowledges that any information received is for informational purposes only and should not be considered legal, financial, or investment advice. The Client agrees to conduct their own due diligence and seek independent professional advice before making any decisions or entering into any agreements. The Client releases the company and its agents from any liability arising from their reliance on the provided information.
       </p>
       <ul className="text-gray-700 list-disc list-outside pl-5 space-y-1 mb-1">
