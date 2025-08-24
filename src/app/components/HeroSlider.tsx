@@ -153,7 +153,7 @@ export default function HeroSlider({ onScrollClick }: HeroSliderProps) {
         onClick={onScrollClick}
         className="btn btn-slider md:w-[200px] text-left"
       >
-        Scroll to Mortgage Services
+        How We Help You
       </button>
               {/* <Link href="/" className="btn btn-slider md:w-[200px]">
                 Speak to a Mortgage Expert

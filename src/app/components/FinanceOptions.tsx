@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay  } from 'swiper/modules';
+import { Navigation  } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -87,16 +87,13 @@ export default function FinanceOptions() {
 
     <div className="block md:hidden relative w-full max-w-4xl mx-auto">
       <Swiper
-  modules={[Navigation, Autoplay]}
-  navigation
-  autoplay={{
-    delay: 3000,
-    disableOnInteraction: false,
-  }}
-  slidesPerView={1}
-  spaceBetween={30}
-  allowTouchMove={typeof window !== 'undefined' && window.innerWidth < 768}
-  className="equi-swiper"
+  modules={[Navigation]} // 👈 removed Autoplay module
+    navigation
+    autoplay={false} // 👈 autoplay disabled
+    slidesPerView={1}
+    spaceBetween={30}
+    allowTouchMove={true} // 👈 always allow touch on mobile
+    className="equi-swiper"
 >
 {FinanceOptionCards.map((slide, index) => (
   <SwiperSlide key={index}>

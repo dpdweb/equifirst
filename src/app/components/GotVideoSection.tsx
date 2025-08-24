@@ -6,7 +6,7 @@ import { Dialog } from '@headlessui/react'
 import { X } from 'lucide-react'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay  } from 'swiper/modules';
+import { Navigation  } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -92,48 +92,52 @@ export default function GotVideoSection() {
         ))}
       </div>
 
-      <div className="md:hidden">
-        <Swiper
-  modules={[Navigation, Autoplay]}
-          navigation
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
-          slidesPerView={1}
-          spaceBetween={30}
-          allowTouchMove={typeof window !== 'undefined' && window.innerWidth < 768}
-          className="equi-swiper"
->
-  {videos.map((video) => (
-    <SwiperSlide key={video.id}>
-      <div
-        className="cursor-pointer transition hover:scale-105 p-6"
-        onClick={() => setSelectedVideo(video)}
-      >
-        <div className="relative">
-          <Image
-            src={video.thumbnail}
-            alt={video.title}
-            width={640}
-            height={360}
-            className="rounded-lg"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-white rounded-full p-4 shadow-lg">
-              <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M6 4l10 6-10 6V4z" />
-              </svg>
+<div className="md:hidden">
+  <Swiper
+    modules={[Navigation]} // 👈 removed Autoplay module
+    navigation
+    autoplay={false} // 👈 autoplay disabled
+    slidesPerView={1}
+    spaceBetween={30}
+    allowTouchMove={true} // 👈 always allow touch on mobile
+    className="equi-swiper"
+  >
+    {videos.map((video) => (
+      <SwiperSlide key={video.id}>
+        <div
+          className="cursor-pointer transition hover:scale-105 p-6"
+          onClick={() => setSelectedVideo(video)}
+        >
+          <div className="relative">
+            <Image
+              src={video.thumbnail}
+              alt={video.title}
+              width={640}
+              height={360}
+              className="rounded-lg"
+            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="bg-white rounded-full p-4 shadow-lg">
+                <svg
+                  className="w-8 h-8 text-black"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M6 4l10 6-10 6V4z" />
+                </svg>
+              </div>
             </div>
           </div>
+          <h3 className="mt-4 text-xl font-bold text-cyan-800">
+            {video.title}
+          </h3>
+          <p className="text-gray-500">{video.description}</p>
         </div>
-        <h3 className="mt-4 text-xl font-bold text-cyan-800">{video.title}</h3>
-        <p className="text-gray-500">{video.description}</p>
-      </div>
-    </SwiperSlide>
-  ))}
-</Swiper>
-      </div>
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</div>
+
 
       <Dialog open={!!selectedVideo} onClose={handleClose} className="relative z-50">
         <div className="fixed inset-0 bg-black/60" aria-hidden="true" />

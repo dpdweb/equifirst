@@ -36,7 +36,27 @@ export default function Header() {
     { href: '/blog', label: 'Blog' },
     { href: '/about-us', label: 'About Us' },
     { href: '/faqs', label: 'FAQs' },
-    // { href: '/contact-us', label: 'Contact Us' },
+    { href: '/contact-us', label: 'Contact Us' },
+  ];
+
+  const navItemsRespo = [
+    { href: '/', label: 'Home' },
+    { href: '/mortgage-calculator', label: 'Mortgage Calculator' },
+    {
+      label: 'Services',
+      children: [
+        { href: '/services/off-plan-finance', label: 'Off-Plan Finance' },
+        { href: '/services/secondary-market-finance', label: 'Secondary Market Finance' },
+        { href: '/services/equity-release', label: 'Equity Release' },
+        { href: '/services/handover-finance', label: 'Handover Finance' },
+        { href: '/services/buyout-refinance', label: 'Buyout / Refinance' },
+        { href: '/services/non-resident-mortgage', label: 'Non-Resident Mortgage' },
+      ],
+    },
+    { href: '/blog', label: 'Blog' },
+    { href: '/about-us', label: 'About Us' },
+    { href: '/faqs', label: 'FAQs' },
+    { href: '/contact-us', label: 'Contact Us' },
   ];
 
   useEffect(() => {
@@ -93,7 +113,7 @@ export default function Header() {
                         onClick={handleDropdownClick}
                         className="px-4 py-2 text-sm hover:bg-ef-blue text-ef-gray hover:text-white whitespace-nowrap"
                       >
-                        {child.label}
+                        {child.label} 
                       </Link>
                     ))}
                   </div>
@@ -126,7 +146,7 @@ export default function Header() {
           </div>
 
 <div className="flex flex-col gap-6 text-lg items-end mt-8 px-4">
-  {navItems.map((item, index) => {
+  {navItemsRespo.map((item, index) => {
     const isActive = pathname === item.href;
     const hasChildren = item.children && item.children.length > 0;
     const isDropdownOpen = openDropdownIndex === index;
@@ -139,7 +159,7 @@ export default function Header() {
             onClick={() => setIsOpen(false)}
             className={`mobile-nav-link ${isActive ? 'active' : ''}`}
           >
-            {item.label}
+            {item.label} 
           </Link>
         ) : hasChildren ? (
           <>
@@ -160,13 +180,14 @@ export default function Header() {
                     onClick={() => setIsOpen(false)}
                     className={`mobile-nav-link ${pathname === child.href ? 'active' : ''}`}
                   >
-                    {child.label}
+                    {child.label} 
                   </Link>
                 ))}
               </div>
             )}
           </>
         ) : null}
+        
       </div>
     );
   })}

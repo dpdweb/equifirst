@@ -63,14 +63,15 @@ export default function WhoWeAre() {
       <div className="grid md:grid-cols-[490px_1fr] gap-6">
         
         <div className="mb-6 md:md-0 text-center md:text-left">
-          <div className="pre-mobile-heading md:pre-heading">What We Do</div>
+          <div className="pre-mobile-heading md:pre-heading">What We Do wewe</div>
           <h1 className="text-ef-heading1-size text-ef-dark-blue">
             Your FIRST Choice For Smart Mortgage Solutions
           </h1>
           <p className="my-6">
             At Equifirst, we&apos;re committed to making your homeownership dreams a reality.
           </p>
-          <Link href="" className="btn block w-full text-center mb-2">Start My Application</Link><Link href="" className="btn btn-outlined  text-center block w-full">Chat with EQUI</Link>
+          <Link href="/contact-us" className="btn block w-full text-center mb-2">Start My Application</Link>
+          <Link href="/faqs" className="btn btn-outlined  text-center block w-full">Find Out More</Link>
         </div>
       
         <div className="">

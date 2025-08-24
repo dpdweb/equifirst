@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay  } from 'swiper/modules';
+import { Navigation  } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -148,16 +148,13 @@ export default function ScrollHighlight() {
 
           <div className="block md:hidden relative w-full max-w-4xl mx-auto">
             <Swiper
-        modules={[Navigation, Autoplay]}
-        navigation
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
-        slidesPerView={1}
-        spaceBetween={30}
-        allowTouchMove={typeof window !== 'undefined' && window.innerWidth < 768}
-        className="equi-swiper"
+        modules={[Navigation]} // 👈 removed Autoplay module
+    navigation
+    autoplay={false} // 👈 autoplay disabled
+    slidesPerView={1}
+    spaceBetween={30}
+    allowTouchMove={true} // 👈 always allow touch on mobile
+    className="equi-swiper"
       >
 
 
@@ -171,7 +168,7 @@ export default function ScrollHighlight() {
         <h2 className="text-2xl font-bold text-ef-dark-blue leading-snug">{point.title}</h2>
       </div>
 
-      <div className="overflow-hidden rounded-2xl">
+      {/* <div className="overflow-hidden rounded-2xl">
         <Image
           src={point.image}
           alt={point.title}
@@ -179,7 +176,7 @@ export default function ScrollHighlight() {
           height={600}
           className="w-full h-auto object-cover"
         />
-      </div>
+      </div> */}
     </div>
   </SwiperSlide>
 ))}
@@ -189,6 +186,20 @@ export default function ScrollHighlight() {
          
             </Swiper>
       
+      <div
+      dir="ltr"
+      className="md:hidden relative max-h-[calc(min(85vh,760px))] min-h-[720px] max-w-[1440px] overflow-hidden max-lg:h-[756px] md:max-h-[calc(min(95dvh,960px))]"
+    >
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        src="/assets/side-video.mp4"
+        className="h-full w-full object-cover rtl:scale-x-[-1] rounded-2xl"
+      />
+    </div>
           
           </div>
 
