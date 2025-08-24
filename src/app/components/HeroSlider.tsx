@@ -18,7 +18,8 @@ import 'swiper/css';
 // }
 
 
-export default function TestSlider() {
+export default function TestSlider({ onScrollClick }) {
+  
   const lineRef = useRef<HTMLDivElement>(null);
   // const [slides, setSlides] = useState<Slide[]>([]);
   // const [loading, setLoading] = useState(true);
@@ -145,9 +146,15 @@ export default function TestSlider() {
               <Link href="/" className="btn btn-slider md:w-[200px]">
                 Apply Online in Two Minutes
               </Link>
-              <Link href="/" className="btn btn-slider md:w-[200px]">
+              <button
+        onClick={onScrollClick}
+        className="btn btn-slider md:w-[200px] text-left"
+      >
+        Scroll to Mortgage Services
+      </button>
+              {/* <Link href="/" className="btn btn-slider md:w-[200px]">
                 Speak to a Mortgage Expert
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

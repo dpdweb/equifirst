@@ -38,7 +38,7 @@ const features = [
   },
 ];
 
-export default function WhyEquifirst() {
+export default function WhyEquifirst({ onScrollClick }) {
   const [selected, setSelected] = useState(features[0]);
 
   return (
@@ -83,8 +83,14 @@ export default function WhyEquifirst() {
           <p className="mb-5">{selected.description}</p>
 
           <div className="flex flex-col md:flex-row gap-2">
-            <Link href="#" className="btn text-center">Start My Application</Link>
-            <Link href="#" className="btn btn-outlined text-center">Chat with EQUI</Link>
+            <Link href="/contact-us" className="btn text-center">Start My Application</Link>
+     
+            <button
+        onClick={onScrollClick}
+        className="btn btn-outlined text-center"
+      >
+        Scroll to Mortgage Services
+      </button>
           </div>
         </div>
       </div>

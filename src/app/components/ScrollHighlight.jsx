@@ -136,7 +136,7 @@ export default function ScrollHighlight() {
         playsInline
         preload="auto"
         src="/assets/side-video.mp4"
-        className="h-full w-full object-cover rtl:scale-x-[-1]"
+        className="h-full w-full object-cover rtl:scale-x-[-1] rounded-2xl"
       />
     </div>
   </div>

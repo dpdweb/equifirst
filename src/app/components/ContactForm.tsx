@@ -25,11 +25,11 @@ const ContactForm = () => {
 
   return (
     <div>
-      <div className="min-h-screen flex flex-col md:flex-row items-stretch p-6 md:p-12 space-y-6 md:space-y-0 md:space-x-6">
+      <div className="ef-sub-page-top-style">
       <LeftPanel />
       <MortgageForm />
     </div>
-    <div className="contact-form-container">
+    {/* <div className="contact-form-container">
       <h2>Let&apos;s connect - this won&apos;t take long!</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -69,7 +69,7 @@ const ContactForm = () => {
 
         <button type="submit">Next</button>
       </form>
-    </div>
+    </div> */}
     </div>
   );
 };

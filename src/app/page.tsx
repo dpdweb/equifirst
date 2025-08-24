@@ -1,3 +1,5 @@
+'use client';
+import { useRef } from "react";
 import HeroSlider from "./components/HeroSlider";
 import FinanceOptions from './components/FinanceOptions';
 import ScrollHighlight from './components/ScrollHighlight';
@@ -16,16 +18,24 @@ import MortgageMadeSimple from "./components/MortgageMadeSimple";
 
 
 export default function Home() {
+  const mortgageRef = useRef(null);
+
+  const scrollToMortgage = () => {
+    mortgageRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
   //   <div className="relative z-0 bg-no-repeat bg-bottom bg-[length:auto] min-h-screen"
   // style={{ backgroundImage: "url('/assets/images/home-bg.png')" }} >
     <div>
 
-      <HeroSlider />
+      <HeroSlider onScrollClick={scrollToMortgage} />
       <ScrollHighlight />
-       <WhyEquifirst />
+       <WhyEquifirst onScrollClick={scrollToMortgage} />
       <UnlockDoor />
-      <MortgageServices />
+      <div ref={mortgageRef}>
+        <MortgageServices />
+      </div>
       <FinanceOptions />
       <MortgageMadeSimple />
       {/* <MortgageCalculator /> */}

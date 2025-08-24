@@ -13,26 +13,31 @@ import 'swiper/css/navigation';
 const videos = [
   {
     id: 1,
-    thumbnail: '/assets/images/video-thumbnail.png',
-    title: 'How lorem ipsum?',
-    description: 'Lorem ipsum dolor sit amet...',
-    url: 'https://www.youtube.com/watch?v=VHdi_cSNMko',
+    thumbnail: "/assets/images/video-buy-rent.jpg",
+    title: "Should You Buy or Rent? Expert Mortgage Insights with Equifirst",
+    description:
+      "Join us as we explore the crucial question: Should you buy or rent in Dubai?",
+    url: "https://www.youtube.com/watch?v=1zUqHBji2xg",
   },
   {
     id: 2,
-    thumbnail: '/assets/images/video-thumbnail.png',
-    title: 'What lorem ipsum?',
-    description: 'Lorem ipsum dolor sit amet...',
-    url: 'https://www.youtube.com/watch?v=VHdi_cSNMko',
+    thumbnail: "/assets/images/video-mortgage-expert.jpg",
+    title:
+      "Exclusive Podcast : Mortgage Expertise Meets Dubai Real Estate with Our Expert Partner",
+    description:
+      "Welcome to our exclusive podcast episode where industry-leading mortgage expert Manan Law sits down with our trusted real estate partner in Dubai, Firas Al Msaddi, to discuss the latest trends, opportunities, and insights in the ever-evolving Dubai property market.",
+    url: "https://www.youtube.com/watch?v=zj3OPsOac04&t=4s",
   },
   {
     id: 3,
-    thumbnail: '/assets/images/video-thumbnail.png',
-    title: 'Where lorem ipsum?',
-    description: 'Lorem ipsum dolor sit amet...',
-    url: 'https://www.youtube.com/watch?v=VHdi_cSNMko',
+    thumbnail: "/assets/images/video-dubai.jpg",
+    title:
+      "Renting vs. Owning in Dubai: 2024 Market Trends with Mortgage Expert",
+    description:
+      "We break down the latest rental price trends in Dubai, explore why rates are rising, and weigh the benefits and drawbacks of renting versus owning a property. From understanding market dynamics to evaluating your financial goals, we've got all the insights you need to make an informed decision.",
+    url: "https://www.youtube.com/watch?v=ez8JsIpMbc4",
   },
-]
+];
 
 function getEmbedUrl(url: string, autoplay = false) {
   const videoId = url.split('v=')[1]?.split('&')[0] || ''
