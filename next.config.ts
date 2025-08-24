@@ -9,28 +9,12 @@ import type { NextConfig } from "next";
 // export default nextConfig;
 
 
-const nextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'equifirst.ae',
-        port: '', // leave empty unless needed
-        pathname: '/**',
-      },
-    ],
-  },
-};
-
-export default nextConfig;
-
-
 // const nextConfig = {
 //   images: {
 //     remotePatterns: [
 //       {
-//         protocol: 'http',
-//         hostname: 'localhost',
+//         protocol: 'https',
+//         hostname: 'equifirst.ae',
 //         port: '', // leave empty unless needed
 //         pathname: '/**',
 //       },
@@ -38,4 +22,20 @@ export default nextConfig;
 //   },
 // };
 
-// module.exports = nextConfig;
+// export default nextConfig;
+
+
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '', // leave empty unless needed
+        pathname: '/**',
+      },
+    ],
+  },
+};
+
+module.exports = nextConfig;

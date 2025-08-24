@@ -155,22 +155,23 @@ export default function MortgageCalculator() {
       <div className="mb-8">
         <div className="block font-semibold mb-3 flex items-center justify-between"><div>Down payment<span className="ml-1 text-red-500">*</span></div> AED {formatNumber(state.DownPayment)}</div>
         <input
-          type="range"
-          min={10}
-          max={state.Price}
-          step={10000}
-          value={state.DownPayment}
-          onChange={(e) =>
-            setState(prev => ({
-              ...prev,
-              DownPayment: +e.target.value,
-            }))
-          }
-          className="w-full appearance-none h-3 rounded-full slider-thumb"
-          style={{
-            background: `linear-gradient(to right, #0e7490 0%, #0e7490 ${(state.DownPayment / state.Price) * 100}%, #d1d5db ${(state.DownPayment / state.Price) * 100}%, #d1d5db 100%)`,
-          }}
-        />
+  type="range"
+  min={10}
+  max={state.Price}
+  step={10000}
+  value={state.DownPayment}
+  onChange={(e) =>
+    setState(prev => ({
+      ...prev,
+      DownPayment: +e.target.value,
+    }))
+  }
+  className="w-full appearance-none h-4 rounded-full slider-thumb"
+  style={{
+    background: `linear-gradient(to right, #0e7490 0%, #0e7490 ${(state.DownPayment / state.Price) * 100}%, #d1d5db ${(state.DownPayment / state.Price) * 100}%, #d1d5db 100%)`,
+  }}
+/>
+
       </div>
 
 <div className="mb-8 flex items-center justify-between">
@@ -213,9 +214,9 @@ export default function MortgageCalculator() {
         <label className="block font-semibold  mb-3 flex items-center justify-between"><div>Loan duration<span className="ml-1 text-red-500">*</span></div>  <div>{state.LoanDuration} Years</div></label>
         <input
           type="range"
-          min={0}
+          min={5}
           max={state.Price}
-          step={10000}
+          step={35}
           value={state.LoanDuration}
           onChange={(e) =>
             setState(prev => ({
