@@ -2,7 +2,7 @@
 // import { useEffect, useState } from 'react';
 // import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import SubPageHeroBanner from "../components/SubPageHeroBanner";
+import SubPageBlogBanner from "../components/SubPageBlogBanner";
 
 interface Author {
   image: string;
@@ -33,7 +33,7 @@ export default function BlogDetail({ blog }: { blog: Blog }) {
   return (
     <div>
       <div className="ef-sub-page-top-style">
-            <SubPageHeroBanner
+            <SubPageBlogBanner
               title="Blog"
               subtitle={blog.title}
               image={blog.image}

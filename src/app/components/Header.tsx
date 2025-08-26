@@ -36,7 +36,7 @@ export default function Header() {
     { href: '/blog', label: 'Blog' },
     { href: '/about-us', label: 'About Us' },
     { href: '/faqs', label: 'FAQs' },
-    { href: '/contact-us', label: 'Contact Us' },
+    // { href: '/contact-us', label: 'Contact Us' },
   ];
 
   const navItemsRespo = [

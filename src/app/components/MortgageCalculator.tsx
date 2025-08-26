@@ -1,8 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { Info } from "lucide-react";
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
+// import Slider from 'rc-slider';
+// import 'rc-slider/assets/index.css';
 
 export default function MortgageCalculator() {
   const [state, setState] = useState({
@@ -146,9 +146,9 @@ export default function MortgageCalculator() {
         <div className="mb-8">
           <div className="block font-semibold mb-3 flex items-center justify-between">
             <div>Down payment<span className="ml-1 text-red-500">*</span></div> AED {formatNumber(state.DownPayment)}
-          </div>
-          <Slider
-            min={10}
+          </div> {formatNumber(state.Price)} {state.DownPayment}
+          {/* <Slider
+            min={15}
             max={state.Price}
             step={10000}
             value={state.DownPayment}
@@ -169,7 +169,7 @@ export default function MortgageCalculator() {
     opacity: 1,
     boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
             }}
-          />
+          /> */}
         </div>
 
         <div className="mb-8 flex items-center justify-between">
@@ -208,16 +208,27 @@ export default function MortgageCalculator() {
             <div>Loan duration<span className="ml-1 text-red-500">*</span></div>
             <div>{state.LoanDuration} Years</div>
           </label>
-          <Slider
-  min={5}
+          {/* <Slider
+  min={0}
   max={25}
   step={1}
   value={state.LoanDuration}
   onChange={(value) => {
-    setState(prev => ({
-      ...prev,
-      LoanDuration: value as number,
-    }));
+    if (typeof value === "number") {
+      // Clamp single value
+      const clampedValue = value < 5 ? 5 : value;
+      setState((prev) => ({
+        ...prev,
+        LoanDuration: clampedValue,
+      }));
+    } else {
+      // If it's an array (range slider) - handle accordingly
+      const clampedValue = value.map((v) => (v < 5 ? 5 : v));
+      setState((prev) => ({
+        ...prev,
+        LoanDuration: clampedValue,
+      }));
+    }
   }}
   trackStyle={{ backgroundColor: '#0e7490', height: 10 }}
   railStyle={{ backgroundColor: '#d1d5db', height: 10 }}
@@ -230,7 +241,10 @@ export default function MortgageCalculator() {
     opacity: 1,
     boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
   }}
-/>
+/> */}
+
+
+
         </div>
         
         <div className="mb-8">

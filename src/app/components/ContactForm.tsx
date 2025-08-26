@@ -26,50 +26,11 @@ const ContactForm = () => {
   return (
     <div>
       <div className="ef-sub-page-top-style">
-      <LeftPanel />
-      <MortgageForm />
+        <div className="flex w-full">
+          <LeftPanel />
+          <MortgageForm />
+      </div>
     </div>
-    {/* <div className="contact-form-container">
-      <h2>Let&apos;s connect - this won&apos;t take long!</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>What are you looking for?</label>
-          <select
-            name="question1"
-            value={formData.question1}
-            onChange={handleChange}
-          >
-            <option value="buying">I&apos;m buying a property</option>
-            <option value="refinancing">I&apos;m refinancing my home</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label>What is the property status?</label>
-          <select
-            name="question2"
-            value={formData.question2}
-            onChange={handleChange}
-          >
-            <option value="completed">Completed</option>
-            <option value="under-construction">Under construction</option>
-            <option value="land">Land</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label>What is the value of the property?</label>
-          <input
-            type="number"
-            name="question3"
-            value={formData.question3}
-            onChange={handleChange}
-          />
-        </div>
-
-        <button type="submit">Next</button>
-      </form>
-    </div> */}
     </div>
   );
 };
