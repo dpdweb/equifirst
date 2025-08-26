@@ -112,14 +112,11 @@ export default function MortgageForm() {
     };
 
     try {
-      const res = await fetch(
-        "https://hooks.zapier.com/hooks/catch/21299663/u63cv1h/",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }
-      );
+      const res = await fetch("/api/submit", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(payload),
+});
 
       if (res.ok) {
         setSuccess(true);
