@@ -131,9 +131,11 @@ export default function MortgageForm() {
 
   if (success) {
     return (
-      <div className="p-8 text-center bg-green-100 rounded-xl">
-        <h2 className="text-2xl font-bold text-green-700">✅ Thank you!</h2>
+      <div className="w-full md:w-[65%]">
+      <div className="p-8 text-center bg-[#eaf4f7] rounded-xl">
+        <h2 className="text-2xl font-bold text-ef-blue"> Thank you!</h2>
         <p className="mt-2">Your information has been submitted successfully.</p>
+      </div>
       </div>
     );
   }
