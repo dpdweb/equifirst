@@ -112,7 +112,7 @@ export default function MortgageForm() {
     };
 
     try {
-      const res = await fetch("/api/submit", {
+      const res = await fetch("/zapapi/submit", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(payload),
