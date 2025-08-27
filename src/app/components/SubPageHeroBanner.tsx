@@ -1,4 +1,3 @@
-'use client';
 import Image from 'next/image';
 
 interface HeroBannerProps {
@@ -12,12 +11,14 @@ export default function SubPageHeroBanner({ title, subtitle, image }: HeroBanner
 <section className="relative md:rounded-4xl overflow-hidden max-w-8xl mx-auto h-[500px] md:h-[300px]">
   {/* Background Image */}
   <Image
-    src={image}
-    alt={title}
-    fill
-    className="w-full h-full object-cover"
-    priority
-  />
+  src={image}
+  alt={title}
+  fill
+  priority
+  sizes="100vw"
+  className="w-full h-full object-cover"
+/>
+
 
   {/* Overlay */}
   <div className="absolute inset-0" />
