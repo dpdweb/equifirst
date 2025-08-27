@@ -81,7 +81,7 @@ export default function ScrollHighlight() {
   {/* Left content (timeline) */}
   <div className="relative flex flex-col space-y-16 w-full md:w-[60%]">
     <div
-      className="absolute left-[30px] top-0 w-1 bg-ef-blue z-0 transition-all duration-500 ease-in-out"
+      className="absolute left-[29px] top-0 w-1 bg-[#AC9362] z-0 transition-all duration-500 ease-in-out"
       style={{ height: `${lineHeight}px` }}
     ></div>
 
@@ -90,7 +90,7 @@ export default function ScrollHighlight() {
         key={index}
         ref={(el) => (sectionRefs.current[index] = el)}
         className={clsx(
-          'transition-all duration-500 ease-in-out h-[150px] flex items-start gap-4 relative z-10',
+          'transition-all duration-500 ease-in-out h-[100px] flex items-start gap-4 relative z-10',
           index === activeIndex
             ? 'text-ef-blue font-bold'
             : 'border-gray-300 text-black'
@@ -111,7 +111,7 @@ export default function ScrollHighlight() {
         {/* Title Text */}
         <div
           className={clsx(
-            'text-5xl pt-3 transition-opacity duration-500 font-bold',
+            'text-4xl pt-3 transition-opacity duration-500 font-bold',
             index === activeIndex
               ? 'text-ef-blue'
               : 'border-gray-300 text-black opacity-10'

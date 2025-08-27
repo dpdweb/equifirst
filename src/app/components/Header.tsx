@@ -10,7 +10,6 @@ import SocialMediaLinks from './SocialMediaLinks';
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [hasMounted, setHasMounted] = useState(false);
   const settings = useSettings();
   const pathname = usePathname();
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(null);
@@ -36,38 +35,16 @@ export default function Header() {
     { href: '/blog', label: 'Blog' },
     { href: '/about-us', label: 'About Us' },
     { href: '/faqs', label: 'FAQs' },
-    // { href: '/contact-us', label: 'Contact Us' },
   ];
 
-  const navItemsRespo = [
-    { href: '/', label: 'Home' },
-    { href: '/mortgage-calculator', label: 'Mortgage Calculator' },
-    {
-      label: 'Services',
-      children: [
-        { href: '/services/off-plan-finance', label: 'Off-Plan Finance' },
-        { href: '/services/secondary-market-finance', label: 'Secondary Market Finance' },
-        { href: '/services/equity-release', label: 'Equity Release' },
-        { href: '/services/handover-finance', label: 'Handover Finance' },
-        { href: '/services/buyout-refinance', label: 'Buyout / Refinance' },
-        { href: '/services/non-resident-mortgage', label: 'Non-Resident Mortgage' },
-      ],
-    },
-    { href: '/blog', label: 'Blog' },
-    { href: '/about-us', label: 'About Us' },
-    { href: '/faqs', label: 'FAQs' },
-    { href: '/contact-us', label: 'Contact Us' },
-  ];
+  const navItemsRespo = [...navItems, { href: '/contact-us', label: 'Contact Us' }];
 
   useEffect(() => {
-    setHasMounted(true);
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  if (!hasMounted) return null;
 
   return (
     <div>
@@ -88,6 +65,7 @@ export default function Header() {
             />
           </Link>
 
+          {/* Desktop nav */}
           <nav className="hidden md:flex gap-6 text-ef-gray font-medium relative">
             {navItems.map((item, index) => (
               <div
@@ -113,7 +91,7 @@ export default function Header() {
                         onClick={handleDropdownClick}
                         className="px-4 py-2 text-sm hover:bg-ef-blue text-ef-gray hover:text-white whitespace-nowrap"
                       >
-                        {child.label} 
+                        {child.label}
                       </Link>
                     ))}
                   </div>
@@ -122,6 +100,7 @@ export default function Header() {
             ))}
           </nav>
 
+          {/* Mobile toggle */}
           <div className="md:hidden pt-2">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -137,6 +116,7 @@ export default function Header() {
         </div>
       </header>
 
+      {/* Mobile menu */}
       {isOpen && (
         <div className="fixed md:hidden inset-0 z-50 pr-[25%] bg-black text-white flex flex-col justify-between p-6 transition-transform duration-300 animate-menu-slide-in-left">
           <div className="flex justify-end">
@@ -145,54 +125,52 @@ export default function Header() {
             </button>
           </div>
 
-<div className="flex flex-col gap-6 text-lg items-end mt-8 px-4">
-  {navItemsRespo.map((item, index) => {
-    const isActive = pathname === item.href;
-    const hasChildren = item.children && item.children.length > 0;
-    const isDropdownOpen = openDropdownIndex === index;
+          <div className="flex flex-col gap-6 text-lg items-end mt-8 px-4">
+            {navItemsRespo.map((item, index) => {
+              const isActive = pathname === item.href;
+              const hasChildren = item.children && item.children.length > 0;
+              const isDropdownOpen = openDropdownIndex === index;
 
-    return (
-      <div key={index} className="w-full text-right">
-        {item.href && !hasChildren ? (
-          <Link
-            href={item.href}
-            onClick={() => setIsOpen(false)}
-            className={`mobile-nav-link ${isActive ? 'active' : ''}`}
-          >
-            {item.label} 
-          </Link>
-        ) : hasChildren ? (
-          <>
-            <button
-              onClick={() =>
-                setOpenDropdownIndex(isDropdownOpen ? null : index)
-              }
-              className="mobile-nav-link w-full text-right font-medium"
-            >
-              {item.label}
-            </button>
-            {isDropdownOpen && (
-              <div className="mt-2 pl-4 flex flex-col gap-2 text-base">
-                {item.children.map((child) => (
-                  <Link
-                    key={child.href}
-                    href={child.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`mobile-nav-link ${pathname === child.href ? 'active' : ''}`}
-                  >
-                    {child.label} 
-                  </Link>
-                ))}
-              </div>
-            )}
-          </>
-        ) : null}
-        
-      </div>
-    );
-  })}
-</div>
-
+              return (
+                <div key={index} className="w-full text-right">
+                  {item.href && !hasChildren ? (
+                    <Link
+                      href={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`mobile-nav-link ${isActive ? 'active' : ''}`}
+                    >
+                      {item.label}
+                    </Link>
+                  ) : hasChildren ? (
+                    <>
+                      <button
+                        onClick={() =>
+                          setOpenDropdownIndex(isDropdownOpen ? null : index)
+                        }
+                        className="mobile-nav-link w-full text-right font-medium"
+                      >
+                        {item.label}
+                      </button>
+                      {isDropdownOpen && (
+                        <div className="mt-2 pl-4 flex flex-col gap-2 text-base">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              onClick={() => setIsOpen(false)}
+                              className={`mobile-nav-link ${pathname === child.href ? 'active' : ''}`}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : null}
+                </div>
+              );
+            })}
+          </div>
 
           <div className="mt-auto space-y-4 text-sm text-center">
             <Image
@@ -220,6 +198,8 @@ export default function Header() {
           </div>
         </div>
       )}
+
+      {/* Spacer for fixed header */}
       <div className="h-0 md:h-25"></div>
     </div>
   );

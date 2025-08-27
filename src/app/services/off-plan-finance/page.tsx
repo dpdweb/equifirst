@@ -39,7 +39,8 @@ export default function OffPlanFinance() {
       </ul>
 
         {/* Expanding Content (triggered on hover of group wrapper) */}
-  <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-80 group-hover:opacity-100 transition-all duration-500 ease-in-out">
+          {/* <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-80 group-hover:opacity-100 transition-all duration-500 ease-in-out"> */}
+  <div className="">
         <ul className="text-gray-700 list-disc list-inside space-y-1 mb-4">
 
         <li>50% payment already made to developer</li>

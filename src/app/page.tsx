@@ -37,11 +37,15 @@ export default function Home() {
         <MortgageServices />
       </div>
       <FinanceOptions />
+      <div className="pt-2">
       <MortgageMadeSimple />
+      </div>
       <MortgageCalculator />
       {/* <ContactForm /> */}
       <Testimonials />
+      <div className="mb-20">
       <GotQuestion /> 
+      </div>
       
       </div>
   );

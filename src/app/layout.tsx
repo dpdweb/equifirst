@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import MetaHead from "./components/MetaHead";
 import { SettingsProvider, Settings } from "./context/SettingsContext";
 import { fetchSettings } from "./lib/api";
 
@@ -27,7 +26,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body>
         {/* SettingsProvider is a client component but can be fed server data */}
         <SettingsProvider settings={settings}>
-          <MetaHead />
           <Header />
           {children}
           <Footer />

@@ -17,7 +17,7 @@ interface Blog {
   content: string;
   image: string;
   date: string;
-  author: Author;
+  author?: Author | null;
 }
 
 export default function BlogDetail({ blog }: { blog: Blog }) {
@@ -62,25 +62,30 @@ export default function BlogDetail({ blog }: { blog: Blog }) {
               </div>
             </div>
 
-            <div className="border-b pb-6">
-              <h4 className="text-lg font-semibold mb-4">Author</h4>
-              <div className="flex items-center space-x-4">
-                <Image
-                  src={blog.author.image}
-                  alt={blog.author.name}
-                  width={50}
-                  height={50}
-                  className="rounded-full"
-                />
-                <div>
-                  <p className="font-medium">{blog.author.name}</p>
-                  <p className="text-sm text-gray-600">{blog.author.role}</p>
-                </div>
-              </div>
-              <p className="text-sm mt-3 text-gray-500 leading-snug">
-                {blog.author.description}
-              </p>
-            </div>
+{blog.author && (
+  <div className="border-b pb-6">
+    <h4 className="text-lg font-semibold mb-4">Author</h4>
+    <div className="flex items-center space-x-4">
+      {blog.author.image && (
+        <Image
+          src={blog.author.image}
+          alt={blog.author.name}
+          width={50}
+          height={50}
+          className="rounded-full"
+        />
+      )}
+      <div>
+        <p className="font-medium">{blog.author.name}</p>
+        <p className="text-sm text-gray-600">{blog.author.role}</p>
+      </div>
+    </div>
+    <p className="text-sm mt-3 text-gray-500 leading-snug">
+      {blog.author.description}
+    </p>
+  </div>
+)}
+
 
             {/* <div>
               <h4 className="text-lg font-semibold mb-4">Share</h4>

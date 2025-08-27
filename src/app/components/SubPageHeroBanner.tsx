@@ -20,7 +20,7 @@ export default function SubPageHeroBanner({ title, subtitle, image }: HeroBanner
   />
 
   {/* Overlay */}
-  <div className="absolute inset-0 bg-black/60 z-0" />
+  <div className="absolute inset-0" />
 
   {/* Content */}
   <div className="relative z-10 px-6 pt-50 pb-50 md:pt-20 md:pb-40 md:px-16 text-white max-w-4xl">

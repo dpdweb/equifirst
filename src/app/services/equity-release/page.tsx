@@ -41,7 +41,7 @@ export default function EquityRelease() {
       </ul>
 
         {/* Expanding Content (triggered on hover of group wrapper) */}
-  <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-60 group-hover:opacity-100 transition-all duration-500 ease-in-out">
+  <div className="">
         <ul className="text-gray-700 list-disc list-inside space-y-1 mb-4">
         <li>Funds can be used to purchase a new property or renovate existing home</li>
         <li>Available for residents, non-residents, UAE nationals</li>

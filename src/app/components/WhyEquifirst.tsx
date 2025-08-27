@@ -51,7 +51,7 @@ export default function WhyEquifirst({ onScrollClick }: HeroSliderProps) {
   };
 
   return (
-    <div className="ef-section-style">
+    <div className="ef-section-style !pt-5">
       <div className="grid md:grid-cols-[490px_1fr] md:gap-6">
         {/* LEFT SIDE */}
         <div className="md:mb-6 md:text-left">
