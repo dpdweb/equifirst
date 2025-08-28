@@ -68,7 +68,7 @@ const [state, setState] = useState({
         (0.02 * state.Price) * 0.8;
     }
 
-    setDownPaymentPercentage((state.DownPayment / state.Price) * 100);
+    // setDownPaymentPercentage((state.DownPayment / state.Price) * 100);
     setLoanAmount(Math.round(Principal));
     setMonthlyCost(Math.round(Monthly + LifeIns + PropIns));
     setUpfrontCosts(Math.round(Upfront));

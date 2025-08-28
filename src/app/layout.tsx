@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { SettingsProvider, Settings } from "./context/SettingsContext";
 import { fetchSettings } from "./lib/api";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Equifirst",
@@ -19,16 +20,19 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const settings: Settings = await fetchSettings(); // server-side
+  const settings: Settings = await fetchSettings();
+  const cookieStore = await cookies();
+  const hasReviewAccess = cookieStore.has("review_access");
+
 
   return (
     <html lang="en">
       <body>
         {/* SettingsProvider is a client component but can be fed server data */}
         <SettingsProvider settings={settings}>
-          <Header />
+          {hasReviewAccess && <Header />}
           {children}
-          <Footer />
+          {hasReviewAccess && <Footer />}
         </SettingsProvider>
       </body>
     </html>
