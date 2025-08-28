@@ -4,24 +4,17 @@ import type { NextRequest } from 'next/server'
 export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone()
 
-  // Secret key for reviewers
   const previewKey = process.env.NEXT_PUBLIC_REVIEW_KEY || 'letmein'
-
-  // Check if user already has access cookie
   const hasAccess = req.cookies.get('review_access')?.value === 'true'
 
-  // Check if ?review=secret is in URL (grant access)
+  // grant access with secret
   if (url.searchParams.get('review') === previewKey) {
-    const res = NextResponse.next()
+    const res = NextResponse.redirect(new URL('/', req.url)) // redirect to home (or keep current url)
     res.cookies.set('review_access', 'true', { path: '/' })
     return res
   }
 
-  // Allow access to:
-  // - coming-soon page
-  // - API routes
-  // - Next.js assets
-  // - static files (css, js, images, fonts, etc.)
+  // allow these
   if (
     url.pathname.startsWith('/coming-soon') ||
     url.pathname.startsWith('/api') ||
@@ -31,10 +24,9 @@ export function middleware(req: NextRequest) {
     return NextResponse.next()
   }
 
-  // If no access → redirect to /coming-soon
+  // block others
   if (!hasAccess) {
-    url.pathname = '/coming-soon'
-    return NextResponse.rewrite(url)
+    return NextResponse.redirect(new URL('/coming-soon', req.url))
   }
 
   return NextResponse.next()
