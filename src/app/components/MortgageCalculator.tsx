@@ -31,18 +31,6 @@ export default function MortgageCalculator() {
 
 
   useEffect(() => {
-    calculateMortgage();
-  }, [
-    state.Price,
-    state.DownPayment,
-    state.InterestRate,
-    state.LoanDuration,
-    state.ToggleFinancing,
-    state.LifeInsurance,
-    state.PropertyInsurance,
-  ]);
-
-  const calculateMortgage = () => {
     const Months = state.LoanDuration * 12;
     const Rate = (state.InterestRate / 100) / 12;
     let Principal = state.Price - state.DownPayment;
@@ -72,7 +60,15 @@ export default function MortgageCalculator() {
     setLoanAmount(Math.round(Principal));
     setMonthlyCost(Math.round(Monthly + LifeIns + PropIns));
     setUpfrontCosts(Math.round(Upfront));
-  }
+  }, [
+    state.Price,
+    state.DownPayment,
+    state.InterestRate,
+    state.LoanDuration,
+    state.ToggleFinancing,
+    state.LifeInsurance,
+    state.PropertyInsurance,
+  ]);
 
 
   const formatNumber = (val: number) =>
@@ -111,7 +107,6 @@ export default function MortgageCalculator() {
       DownPayment: newDownPayment,
     }));
     setDisplayValueInterest(updatedRate.toFixed(2));
-    // calculateMortgage()
   };
 
 
