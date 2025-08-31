@@ -1,12 +1,15 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Info } from "lucide-react";
+import { Icon, Info } from "lucide-react";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/outline"; // ✅ Added ChevronDownIcon
+import { parse } from 'path';
 
 export default function MortgageCalculator() {
   const initialPrice = 1200000;
   const thresholdPrice = 5000000;
+
   const [DownPaymentPercentage, setDownPaymentPercentage] = useState(20);
   const [downPaymentMinMax, setDownPaymentMixMax] = useState({ min: 20, max: 80 });
 
@@ -24,6 +27,8 @@ export default function MortgageCalculator() {
   const [loanAmount, setLoanAmount] = useState(0);
   const [monthlyCost, setMonthlyCost] = useState(0);
   const [upfrontCosts, setUpfrontCosts] = useState(0);
+  const [displayValueInterest, setDisplayValueInterest] = useState<string>("4.0");
+
 
 
   useEffect(() => {
@@ -108,6 +113,74 @@ export default function MortgageCalculator() {
       DownPayment: newDownPayment,
     }));
     // calculateMortgage()
+  };
+
+
+  const MIN = 0.6;
+  const MAX = 10.0;
+  const STEP = 0.1;
+
+  const handleInterestChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setDisplayValueInterest(value); // update UI immediately
+
+    if (value === "") {
+      // user cleared input → keep old rate, just empty UI
+      return;
+    }
+
+    const parsed = parseFloat(value);
+    if (!isNaN(parsed)) {
+
+      let clamped = parsed;
+      if (clamped < MIN) clamped = MIN;
+      if (clamped > MAX) clamped = MAX;
+
+      setState(prev => ({
+        ...prev,
+        InterestRate: clamped,
+      }));
+    }
+  };
+
+  // ✅ On blur, snap value if empty or invalid
+  const handleInterestBlur = () => {
+    if (displayValueInterest === "") {
+      // restore last known valid rate
+      setDisplayValueInterest(state.InterestRate.toFixed(2));
+    } else {
+      // normalize formatting
+      setDisplayValueInterest(state.InterestRate.toFixed(2));
+    }
+  };
+
+
+  const increment = () => {
+    const current = isNaN(state.InterestRate) ? MIN : state.InterestRate;
+    let newValue = current + STEP;
+    if (newValue > MAX) newValue = MAX;
+    newValue = parseFloat(newValue.toFixed(2));
+    setDisplayValueInterest(newValue.toFixed(2));
+    setState(prev => ({
+      ...prev,
+      InterestRate: newValue,
+    }));
+  };
+
+
+  const decrement = () => {
+
+    const current = isNaN(state.InterestRate) ? MIN : state.InterestRate;
+    let newValue = current - STEP;
+    if (newValue < MIN) newValue = MIN;
+    newValue = parseFloat(newValue.toFixed(2));
+    setDisplayValueInterest(newValue.toFixed(2));
+
+    setState(prev => ({
+      ...prev,
+      InterestRate: newValue,
+    }));
+
   };
 
   return (
@@ -309,20 +382,24 @@ export default function MortgageCalculator() {
         <div className="mb-8">
           <label className="mb-2 font-semibold">Interest rate</label>
           <div className="flex items-center border border-gray-300 rounded-xl overflow-hidden bg-gray-50 w-full mb-5">
+            <MinusCircleIcon className="w-6 h-6 mx-2 text-ef-blue" onClick={decrement} />
+
             <input
               type="number"
-              value={state.InterestRate}
-              onChange={(e) =>
-                setState(prev => ({
-                  ...prev,
-                  InterestRate: +e.target.value,
-                }))
-              }
-              className="flex-1 px-4 py-3 bg-gray-50 text-black text-lg outline-none"
+              step={0.1}
+              min={0.6}
+              max={10.0}
+              value={displayValueInterest}
+              onChange={handleInterestChange}
+              onBlur={handleInterestBlur}
+              className="flex-1 px-4 py-3 bg-gray-50 text-black text-lg outline-none border-none"
             />
+
+            <PlusCircleIcon className="w-6 h-6 mx-2 text-ef-blue" onClick={increment} />
             <div className="px-4 py-3 text-ef-blue font-medium text-lg border-l border-gray-300">
               %
             </div>
+
           </div>
         </div>
       </div>
