@@ -6,48 +6,46 @@ import 'rc-slider/assets/index.css';
 
 export default function MortgageCalculator() {
   const initialPrice = 1200000;
+  const thresholdPrice = 5000000;
+  const [DownPaymentPercentage, setDownPaymentPercentage] = useState(20);
+  const [downPaymentMinMax, setDownPaymentMixMax] = useState({ min: 20, max: 80 });
 
-const [DownPaymentPercentage, setDownPaymentPercentage] = useState(20);
+  const [state, setState] = useState({
+    Price: initialPrice,
+    DownPayment: Math.round(initialPrice * downPaymentMinMax.min / 100),
+    LoanDuration: 25,
+    InterestRate: 2.5,
+    LifeInsurance: 0.2298,
+    PropertyInsurance: 0.041,
+    ActiveProduct: 'Resident',
+    ToggleFinancing: false,
+  });
 
-const [state, setState] = useState({
-  Price: initialPrice,
-  DownPayment: Math.round(initialPrice * 0.2), // default 20%
-  LoanDuration: 25,
-  InterestRate: 2.5,
-  LifeInsurance: 0.2298,
-  PropertyInsurance: 0.041,
-  ActiveProduct: 'Resident',
-  ToggleFinancing: false,
-});
-
-  const [loanAmount, setLoanAmount] = useState(960000);
+  const [loanAmount, setLoanAmount] = useState(0);
   const [monthlyCost, setMonthlyCost] = useState(0);
   const [upfrontCosts, setUpfrontCosts] = useState(0);
 
-  const formatNumber = (val: number) =>
-    val.toLocaleString(undefined, { maximumFractionDigits: 0 });
-
-  const handleResidencyClick = (product: string) => {
-    let updatedRate = state.InterestRate;
-
-    if (product === 'National') updatedRate = 4.0;
-    else if (product === 'Resident') updatedRate = 4.0;
-    else if (product === 'NonResident') updatedRate = 5;
-
-    setState(prev => ({
-      ...prev,
-      ActiveProduct: product,
-      InterestRate: updatedRate,
-    }));
-  };
 
   useEffect(() => {
+    calculateMortgage()
+  }, [
+    state.Price,
+    state.DownPayment,
+    state.InterestRate,
+    state.LoanDuration,
+    state.ToggleFinancing,
+    state.LifeInsurance,
+    state.PropertyInsurance,
+
+  ]);
+
+  const calculateMortgage = () => {
     const Months = state.LoanDuration * 12;
     const Rate = (state.InterestRate / 100) / 12;
     let Principal = state.Price - state.DownPayment;
 
     if (state.ToggleFinancing) {
-      Principal += Principal * 0.06;
+      Principal += (Principal * 0.06);
     }
 
     const Factor = Math.pow(1 + Rate, Months);
@@ -68,20 +66,49 @@ const [state, setState] = useState({
         (0.02 * state.Price) * 0.8;
     }
 
-    // setDownPaymentPercentage((state.DownPayment / state.Price) * 100);
     setLoanAmount(Math.round(Principal));
     setMonthlyCost(Math.round(Monthly + LifeIns + PropIns));
     setUpfrontCosts(Math.round(Upfront));
-  }, [
-    state.Price,
-    state.DownPayment,
-    state.InterestRate,
-    state.LoanDuration,
-    state.ToggleFinancing,
-    state.LifeInsurance,
-    state.PropertyInsurance,
+  }
 
-  ]);
+
+  const formatNumber = (val: number) =>
+    val.toLocaleString(undefined, { maximumFractionDigits: 0 });
+
+  const handleResidencyClick = (product: string) => {
+    let updatedRate = state.InterestRate;
+    let newDownPayment = 0;
+    if (product === 'National') {
+      updatedRate = 2.5
+      let minDownpayment = state.Price >= thresholdPrice ? 25 : 15;
+      let maxDownPayment = state.Price >= thresholdPrice ? 80 : 85;
+      setDownPaymentPercentage(minDownpayment);
+      setDownPaymentMixMax({ min: minDownpayment, max: maxDownPayment })
+      newDownPayment = Math.round((state.Price * minDownpayment) / 100);
+
+    } else if (product === 'Resident') {
+      updatedRate = 2.5
+      let minDownpayment = state.Price >= thresholdPrice ? 30 : 20;
+      let maxDownPayment = state.Price >= thresholdPrice ? 80 : 80;
+      setDownPaymentPercentage(minDownpayment);
+      setDownPaymentMixMax({ min: minDownpayment, max: maxDownPayment })
+      newDownPayment = Math.round((state.Price * minDownpayment) / 100);
+    } else if (product === 'NonResident') {
+      updatedRate = 4.9
+      let minDownpayment = state.Price >= thresholdPrice ? 40 : 25;
+      let maxDownPayment = state.Price >= thresholdPrice ? 80 : 80;
+      setDownPaymentPercentage(minDownpayment);
+      setDownPaymentMixMax({ min: minDownpayment, max: maxDownPayment })
+      newDownPayment = Math.round((state.Price * minDownpayment) / 100);
+    };
+    setState(prev => ({
+      ...prev,
+      ActiveProduct: product,
+      InterestRate: updatedRate,
+      DownPayment: newDownPayment,
+    }));
+    // calculateMortgage()
+  };
 
   return (
     <div className="ef-section-style-3 grid grid-cols-1 md:grid-cols-2 mx-auto p-2 md:p-6 bg-ef-dark-blue-2 rounded-lg gap-8">
@@ -96,9 +123,8 @@ const [state, setState] = useState({
               <button
                 key={status}
                 onClick={() => handleResidencyClick(status)}
-                className={`w-full md:flex-1 px-4 py-2 rounded mb-2 md:mb-0 text-center ${
-                  state.ActiveProduct === status ? 'btn' : 'btn btn-outlined-blue'
-                }`}
+                className={`w-full md:flex-1 px-4 py-2 rounded mb-2 md:mb-0 text-center ${state.ActiveProduct === status ? 'btn' : 'btn btn-outlined-blue'
+                  }`}
               >
                 {status}
               </button>
@@ -116,9 +142,42 @@ const [state, setState] = useState({
                 const raw = e.target.value.replace(/,/g, '');
                 const parsed = Number(raw);
                 if (!isNaN(parsed)) {
+                  let downValue = Math.round((parsed * DownPaymentPercentage) / 100);
+
+                  if (parsed >= thresholdPrice) {
+                    if (state.ActiveProduct === 'National') {
+                      if (DownPaymentPercentage < 25) {
+                        setDownPaymentPercentage(25);
+                        downValue = Math.round((parsed * 25) / 100);
+                      }
+                      setDownPaymentMixMax({ min: 25, max: 80 });
+                    } else if (state.ActiveProduct === 'Resident') {
+                      if (DownPaymentPercentage < 30) {
+                        setDownPaymentPercentage(30);
+                        downValue = Math.round((parsed * 30) / 100);
+                      }
+                      setDownPaymentMixMax({ min: 30, max: 80 });
+                    } else if (state.ActiveProduct === 'NonResident') {
+                      if (DownPaymentPercentage < 40) {
+                        setDownPaymentPercentage(40);
+                        downValue = Math.round((parsed * 40) / 100);
+                      }
+                      setDownPaymentMixMax({ min: 40, max: 80 });
+                    }
+                  } else {
+                    if (state.ActiveProduct === 'National') {
+                      setDownPaymentMixMax({ min: 15, max: 85 });
+                    } else if (state.ActiveProduct === 'Resident') {
+                      setDownPaymentMixMax({ min: 20, max: 80 });
+                    } else if (state.ActiveProduct === 'NonResident') {
+                      setDownPaymentMixMax({ min: 25, max: 80 });
+                    }
+                  }
+
                   setState(prev => ({
                     ...prev,
                     Price: parsed,
+                    DownPayment: downValue,
                   }));
                 }
               }}
@@ -149,52 +208,46 @@ const [state, setState] = useState({
           <span className="text-black font-bold">AED {formatNumber(upfrontCosts)}</span>
         </div>
 
-<div className="mb-8">
-  <div className="block font-semibold mb-3 flex items-center justify-between">
-    <div>
-      Down payment<span className="ml-1 text-red-500">*</span> {DownPaymentPercentage.toFixed(0)}%
-    </div>
-    AED {formatNumber(state.DownPayment)}
-  </div>
- 
- 
-  <div className="mb-8">
-  <Slider
-    min={0}
-    max={100}
-    step={1}
-    value={DownPaymentPercentage}
-    onChange={(value) => {
-      if (typeof value === "number") {
-        // 🔒 clamp between 20–80
-        const clamped = Math.min(Math.max(value, 20), 80);
-        const newDownPayment = Math.round((state.Price * clamped) / 100);
-
-        setDownPaymentPercentage(clamped);
-        setState((prev) => ({
-          ...prev,
-          DownPayment: newDownPayment,
-        }));
-      }
-    }}
-    trackStyle={{ backgroundColor: "#0e7490", height: 10 }}
-    railStyle={{ backgroundColor: "#d1d5db", height: 10 }}
-    handleStyle={{
-      borderColor: "#0e7490",
-      height: 30,
-      width: 30,
-      backgroundColor: "#fff",
-      marginTop: -10,
-      opacity: 1,
-      boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
-    }}
-  />
-</div>
+        <div className="mb-8">
+          <div className="block font-semibold mb-3 flex items-center justify-between">
+            <div>
+              Down payment<span className="ml-1 text-red-500">*</span> {DownPaymentPercentage.toFixed(0)}%
+            </div>
+            AED {formatNumber(state.DownPayment)}
+          </div>
 
 
-
-</div>
-
+          <div className="mb-8">
+            <Slider
+              min={0}
+              max={100}
+              step={1}
+              value={DownPaymentPercentage}
+              onChange={(value) => {
+                if (typeof value === "number") {
+                  const clamped = Math.min(Math.max(value, downPaymentMinMax.min), downPaymentMinMax.max);
+                  const newDownPayment = Math.round((state.Price * clamped) / 100);
+                  setDownPaymentPercentage(clamped);
+                  setState((prev) => ({
+                    ...prev,
+                    DownPayment: newDownPayment,
+                  }));
+                }
+              }}
+              trackStyle={{ backgroundColor: "#0e7490", height: 10 }}
+              railStyle={{ backgroundColor: "#d1d5db", height: 10 }}
+              handleStyle={{
+                borderColor: "#0e7490",
+                height: 30,
+                width: 30,
+                backgroundColor: "#fff",
+                marginTop: -10,
+                opacity: 1,
+                boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+              }}
+            />
+          </div>
+        </div>
 
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center space-x-2 relative group">
@@ -215,15 +268,8 @@ const [state, setState] = useState({
                 ToggleFinancing: !prev.ToggleFinancing,
               }))
             }
-            className={`w-12 h-6 flex items-center rounded-full p-1 ${
-              state.ToggleFinancing ? "bg-blue-600" : "bg-gray-300"
-            }`}
-          >
-            <div
-              className={`bg-white w-4 h-4 rounded-full shadow-md transform duration-300 ease-in-out ${
-                state.ToggleFinancing ? "translate-x-6" : "translate-x-0"
-              }`}
-            />
+            className={`w-12 h-6 flex items-center rounded-full p-1 ${state.ToggleFinancing ? "bg-blue-600" : "bg-gray-300"}`}>
+            <div className={`bg-white w-4 h-4 rounded-full shadow-md transform duration-300 ease-in-out ${state.ToggleFinancing ? "translate-x-6" : "translate-x-0"}`} />
           </button>
         </div>
 
@@ -233,37 +279,33 @@ const [state, setState] = useState({
             <div>{state.LoanDuration} Years</div>
           </label>
           <Slider
-  min={0}
-  max={25}
-  step={1}
-  value={state.LoanDuration}
-  onChange={(value) => {
-    if (typeof value === "number") {
-      const clampedValue = value < 5 ? 5 : value; // enforce min=5
-      setState((prev) => ({
-        ...prev,
-        LoanDuration: clampedValue,
-      }));
-    }
-  }}
-  trackStyle={{ backgroundColor: '#0e7490', height: 10 }}
-  railStyle={{ backgroundColor: '#d1d5db', height: 10 }}
-  handleStyle={{
-    borderColor: '#0e7490',
-    height: 30,
-    width: 30,
-    backgroundColor: '#fff',
-    marginTop: -10,
-    opacity: 1,
-    boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-  }}
-/>
-
-
-
-
+            min={0}
+            max={25}
+            step={1}
+            value={state.LoanDuration}
+            onChange={(value) => {
+              if (typeof value === "number") {
+                const clampedValue = value < 5 ? 5 : value; // enforce min=5
+                setState((prev) => ({
+                  ...prev,
+                  LoanDuration: clampedValue,
+                }));
+              }
+            }}
+            trackStyle={{ backgroundColor: '#0e7490', height: 10 }}
+            railStyle={{ backgroundColor: '#d1d5db', height: 10 }}
+            handleStyle={{
+              borderColor: '#0e7490',
+              height: 30,
+              width: 30,
+              backgroundColor: '#fff',
+              marginTop: -10,
+              opacity: 1,
+              boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+            }}
+          />
         </div>
-        
+
         <div className="mb-8">
           <label className="mb-2 font-semibold">Interest rate</label>
           <div className="flex items-center border border-gray-300 rounded-xl overflow-hidden bg-gray-50 w-full mb-5">
@@ -306,9 +348,9 @@ const [state, setState] = useState({
           <hr className="border-gray-300" />
           <p className="text-sm text-gray-600">
             Estimated monthly payment based on a {formatNumber(loanAmount)} AED loan amount with a{" "}
-  {state.InterestRate}% fixed interest rate for the entire duration of the loan
+            {state.InterestRate}% fixed interest rate for the entire duration of the loan
           </p>
-          
+
         </div>
       </div>
     </div>
