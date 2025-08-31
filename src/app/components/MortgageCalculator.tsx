@@ -14,7 +14,7 @@ export default function MortgageCalculator() {
     Price: initialPrice,
     DownPayment: Math.round(initialPrice * downPaymentMinMax.min / 100),
     LoanDuration: 25,
-    InterestRate: 2.5,
+    InterestRate: 4.0,
     LifeInsurance: 0.2298,
     PropertyInsurance: 0.041,
     ActiveProduct: 'Resident',
@@ -79,7 +79,7 @@ export default function MortgageCalculator() {
     let updatedRate = state.InterestRate;
     let newDownPayment = 0;
     if (product === 'National') {
-      updatedRate = 2.5
+      updatedRate = 4.0
       let minDownpayment = state.Price >= thresholdPrice ? 25 : 15;
       let maxDownPayment = state.Price >= thresholdPrice ? 80 : 85;
       setDownPaymentPercentage(minDownpayment);
@@ -87,14 +87,14 @@ export default function MortgageCalculator() {
       newDownPayment = Math.round((state.Price * minDownpayment) / 100);
 
     } else if (product === 'Resident') {
-      updatedRate = 2.5
+      updatedRate = 4.0
       let minDownpayment = state.Price >= thresholdPrice ? 30 : 20;
       let maxDownPayment = state.Price >= thresholdPrice ? 80 : 80;
       setDownPaymentPercentage(minDownpayment);
       setDownPaymentMixMax({ min: minDownpayment, max: maxDownPayment })
       newDownPayment = Math.round((state.Price * minDownpayment) / 100);
     } else if (product === 'NonResident') {
-      updatedRate = 4.9
+      updatedRate = 5.0
       let minDownpayment = state.Price >= thresholdPrice ? 40 : 25;
       let maxDownPayment = state.Price >= thresholdPrice ? 80 : 80;
       setDownPaymentPercentage(minDownpayment);
