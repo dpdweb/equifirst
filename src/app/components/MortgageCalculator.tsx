@@ -191,7 +191,7 @@ export default function MortgageCalculator() {
             Residency status <span className="text-red-500">*</span>
           </div>
           <div className="md:flex gap-2 items-center justify-between">
-            {['Resident', 'National', 'NonResident'].map(status => (
+            {['Resident', 'UAE National', 'NonResident'].map(status => (
               <button
                 key={status}
                 onClick={() => handleResidencyClick(status)}
