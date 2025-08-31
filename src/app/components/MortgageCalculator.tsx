@@ -6,20 +6,21 @@ import 'rc-slider/assets/index.css';
 import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/outline"; // ✅ Added ChevronDownIcon
 
 export default function MortgageCalculator() {
-  const residentialStatus = [
-    {
+  const residentialStatus = {
+    NATIONAL: {
       id: 'national',
       label: 'UAE National'
     },
-    {
+    RESIDENTS: {
       id: 'residents',
       label: 'Residents'
     },
-    {
+    NON_RESIDENTS: {
       id: 'non_residents',
       label: 'Non-Residents'
     },
-  ]
+  }
+
   const initialPrice = 1200000;
   const thresholdPrice = 5000000;
 
@@ -33,7 +34,7 @@ export default function MortgageCalculator() {
     InterestRate: 4.0,
     LifeInsurance: 0.2298,
     PropertyInsurance: 0.041,
-    ActiveProduct: 'Resident',
+    ActiveProduct: residentialStatus.NATIONAL.id,
     ToggleFinancing: false,
   });
 
@@ -87,10 +88,10 @@ export default function MortgageCalculator() {
   const formatNumber = (val: number) =>
     val.toLocaleString(undefined, { maximumFractionDigits: 0 });
 
-  const handleResidencyClick = (status : string) => {
+  const handleResidencyClick = (status: string) => {
     let updatedRate = state.InterestRate;
     let newDownPayment = 0;
-    if (status === 'national') {
+    if (status === residentialStatus.NATIONAL.id) {
       updatedRate = 4.0
       const minDownpayment = state.Price >= thresholdPrice ? 25 : 15;
       const maxDownPayment = state.Price >= thresholdPrice ? 80 : 85;
@@ -98,7 +99,7 @@ export default function MortgageCalculator() {
       setDownPaymentMixMax({ min: minDownpayment, max: maxDownPayment })
       newDownPayment = Math.round((state.Price * minDownpayment) / 100);
 
-    } else if (status === 'residents') {
+    } else if (status === residentialStatus.RESIDENTS.id) {
       updatedRate = 4.0
       const minDownpayment = state.Price >= thresholdPrice ? 30 : 20;
       const maxDownPayment = state.Price >= thresholdPrice ? 80 : 80;
@@ -106,7 +107,7 @@ export default function MortgageCalculator() {
       setDownPaymentMixMax({ min: minDownpayment, max: maxDownPayment })
 
       newDownPayment = Math.round((state.Price * minDownpayment) / 100);
-    } else if (status === 'non_residents') {
+    } else if (status === residentialStatus.NON_RESIDENTS.id) {
       updatedRate = 5.0
       const minDownpayment = state.Price >= thresholdPrice ? 40 : 25;
       const maxDownPayment = state.Price >= thresholdPrice ? 80 : 80;
@@ -140,24 +141,22 @@ export default function MortgageCalculator() {
     const parsed = parseFloat(value);
     if (!isNaN(parsed)) {
 
-      let clamped = parsed;
-      if (clamped < MIN) clamped = MIN;
-      if (clamped > MAX) clamped = MAX;
+      // let clamped = parsed;
+      // if (clamped < MIN) clamped = MIN;
+      // if (clamped > MAX) clamped = MAX;
 
       setState(prev => ({
         ...prev,
-        InterestRate: clamped,
+        InterestRate: parsed,
       }));
     }
   };
 
-  // ✅ On blur, snap value if empty or invalid
+
   const handleInterestBlur = () => {
     if (displayValueInterest === "") {
-      // restore last known valid rate
       setDisplayValueInterest(state.InterestRate.toFixed(2));
     } else {
-      // normalize formatting
       setDisplayValueInterest(state.InterestRate.toFixed(2));
     }
   };
@@ -200,14 +199,14 @@ export default function MortgageCalculator() {
             Residency status <span className="text-red-500">*</span>
           </div>
           <div className="md:flex gap-2 items-center justify-between">
-            {residentialStatus.map(product => (
+            {Object.values(residentialStatus).map(resStatus => (
               <button
-                key={product.id}
-                onClick={() => handleResidencyClick(product.id)}
-                className={`w-full md:flex-1 px-4 py-2 rounded mb-2 md:mb-0 text-center ${state.ActiveProduct === product.id ? 'btn' : 'btn btn-outlined-blue'
-                }`}
+                key={resStatus.id}
+                onClick={() => handleResidencyClick(resStatus.id)}
+                className={`w-full md:flex-1 px-4 py-2 rounded mb-2 md:mb-0 text-center ${state.ActiveProduct === resStatus.id ? 'btn' : 'btn btn-outlined-blue'
+                  }`}
               >
-                {product.label}
+                {resStatus.label}
               </button>
             ))}
           </div>
@@ -226,19 +225,19 @@ export default function MortgageCalculator() {
                   let downValue = Math.round((parsed * DownPaymentPercentage) / 100);
 
                   if (parsed >= thresholdPrice) {
-                    if (state.ActiveProduct === 'National') {
+                    if (state.ActiveProduct === residentialStatus.NATIONAL.id) {
                       if (DownPaymentPercentage < 25) {
                         setDownPaymentPercentage(25);
                         downValue = Math.round((parsed * 25) / 100);
                       }
                       setDownPaymentMixMax({ min: 25, max: 80 });
-                    } else if (state.ActiveProduct === 'Resident') {
+                    } else if (state.ActiveProduct === residentialStatus.RESIDENTS.id) {
                       if (DownPaymentPercentage < 30) {
                         setDownPaymentPercentage(30);
                         downValue = Math.round((parsed * 30) / 100);
                       }
                       setDownPaymentMixMax({ min: 30, max: 80 });
-                    } else if (state.ActiveProduct === 'NonResident') {
+                    } else if (state.ActiveProduct === residentialStatus.NON_RESIDENTS.id) {
                       if (DownPaymentPercentage < 40) {
                         setDownPaymentPercentage(40);
                         downValue = Math.round((parsed * 40) / 100);
@@ -246,12 +245,18 @@ export default function MortgageCalculator() {
                       setDownPaymentMixMax({ min: 40, max: 80 });
                     }
                   } else {
-                    if (state.ActiveProduct === 'National') {
+                    if (state.ActiveProduct === residentialStatus.NATIONAL.id) {
                       setDownPaymentMixMax({ min: 15, max: 85 });
-                    } else if (state.ActiveProduct === 'Resident') {
+                      setDownPaymentPercentage(15);
+                      downValue = Math.round((parsed * 15) / 100);
+                    } else if (state.ActiveProduct === residentialStatus.RESIDENTS.id) {
                       setDownPaymentMixMax({ min: 20, max: 80 });
-                    } else if (state.ActiveProduct === 'NonResident') {
+                      setDownPaymentPercentage(20);
+                      downValue = Math.round((parsed * 20) / 100);
+                    } else if (state.ActiveProduct === residentialStatus.NON_RESIDENTS.id) {
                       setDownPaymentMixMax({ min: 25, max: 80 });
+                      setDownPaymentPercentage(25);
+                      downValue = Math.round((parsed * 25) / 100);
                     }
                   }
 
@@ -272,7 +277,7 @@ export default function MortgageCalculator() {
 
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center relative group">
-            <div className='text-lg flex font-semibold text-gray-700 '> Upfront costs</div> 
+            <div className='text-lg flex font-semibold text-gray-700 '> Upfront costs</div>
             <Info className="w-4 h-4 m-2 text-gray-500 cursor-pointer " />
             <div className="absolute left-0 top-0 mt-6 w-80 bg-white rounded-xl shadow-xl p-4 text-sm hidden group-hover:block z-10 transition-all duration-300">
               <h3 className="text-lg font-semibold mb-2">Upfront Costs</h3>
@@ -432,8 +437,8 @@ export default function MortgageCalculator() {
           </div>
           <hr className="border-gray-300" />
           <p className="text-sm text-gray-600">
-            Estimated monthly payment based on a {formatNumber(loanAmount)} AED loan amount with a{" "}
-            {state.InterestRate}% fixed interest rate for the entire duration of the loan
+            Estimated monthly payment based on a <span className="font-semibold">{formatNumber(loanAmount)}</span> AED loan amount with a{" "}
+            <span className="font-semibold">{state.InterestRate}%</span> fixed interest rate for the entire duration of the loan
           </p>
 
         </div>
