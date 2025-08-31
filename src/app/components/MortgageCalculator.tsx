@@ -1,10 +1,9 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Icon, Info } from "lucide-react";
+import { Info } from "lucide-react";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/outline"; // ✅ Added ChevronDownIcon
-import { parse } from 'path';
 
 export default function MortgageCalculator() {
   const initialPrice = 1200000;
@@ -32,7 +31,7 @@ export default function MortgageCalculator() {
 
 
   useEffect(() => {
-    calculateMortgage()
+    calculateMortgage();
   }, [
     state.Price,
     state.DownPayment,
@@ -41,7 +40,6 @@ export default function MortgageCalculator() {
     state.ToggleFinancing,
     state.LifeInsurance,
     state.PropertyInsurance,
-
   ]);
 
   const calculateMortgage = () => {
@@ -85,23 +83,23 @@ export default function MortgageCalculator() {
     let newDownPayment = 0;
     if (product === 'National') {
       updatedRate = 4.0
-      let minDownpayment = state.Price >= thresholdPrice ? 25 : 15;
-      let maxDownPayment = state.Price >= thresholdPrice ? 80 : 85;
+      const minDownpayment = state.Price >= thresholdPrice ? 25 : 15;
+      const maxDownPayment = state.Price >= thresholdPrice ? 80 : 85;
       setDownPaymentPercentage(minDownpayment);
       setDownPaymentMixMax({ min: minDownpayment, max: maxDownPayment })
       newDownPayment = Math.round((state.Price * minDownpayment) / 100);
 
     } else if (product === 'Resident') {
       updatedRate = 4.0
-      let minDownpayment = state.Price >= thresholdPrice ? 30 : 20;
-      let maxDownPayment = state.Price >= thresholdPrice ? 80 : 80;
+      const minDownpayment = state.Price >= thresholdPrice ? 30 : 20;
+      const maxDownPayment = state.Price >= thresholdPrice ? 80 : 80;
       setDownPaymentPercentage(minDownpayment);
       setDownPaymentMixMax({ min: minDownpayment, max: maxDownPayment })
       newDownPayment = Math.round((state.Price * minDownpayment) / 100);
     } else if (product === 'NonResident') {
       updatedRate = 5.0
-      let minDownpayment = state.Price >= thresholdPrice ? 40 : 25;
-      let maxDownPayment = state.Price >= thresholdPrice ? 80 : 80;
+      const minDownpayment = state.Price >= thresholdPrice ? 40 : 25;
+      const maxDownPayment = state.Price >= thresholdPrice ? 80 : 80;
       setDownPaymentPercentage(minDownpayment);
       setDownPaymentMixMax({ min: minDownpayment, max: maxDownPayment })
       newDownPayment = Math.round((state.Price * minDownpayment) / 100);
@@ -112,6 +110,7 @@ export default function MortgageCalculator() {
       InterestRate: updatedRate,
       DownPayment: newDownPayment,
     }));
+    setDisplayValueInterest(updatedRate.toFixed(2));
     // calculateMortgage()
   };
 
