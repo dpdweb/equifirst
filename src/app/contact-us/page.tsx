@@ -8,7 +8,7 @@ export default function ContactUs() {
       <SubPageHeroBanner
   title="Contact Us"
   subtitle="We’re Here to Help You Anytime"
-  image="/assets/images/about-us-hero.jpg"
+  image="/assets/images/contact-hero.jpg"
 />
     <div className="mt-20">
    

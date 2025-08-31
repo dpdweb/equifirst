@@ -35,7 +35,7 @@ const Testimonials = () => {
       <h3 className="md:text-[44px] font-medium text-ef-yellow mb-2">
         Rated 5/5 on Google! <span className="inline-block">
           <Image
-            src="/assets/images/google-icon.png"
+            src="/assets/images/google-icon.webp"
             alt="Google Icon"
             width={32}
             height={32}

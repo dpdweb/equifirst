@@ -16,7 +16,7 @@ export default function Footer() {
           {/* Logo and Address */}
           <div>
             <Image
-              src="/assets/images/footer-logo.png"
+              src="/assets/images/footer-logo.svg"
               alt="Equifirst"
               width={216}
               height={44}

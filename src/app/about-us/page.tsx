@@ -1,4 +1,4 @@
-'use client';
+
 import SubPageHeroBanner from "../components/SubPageHeroBanner";
 import OurTeam from "../components/OurTeam";
 import WhoWeAre from "../components/WhoWeAre";
@@ -19,7 +19,6 @@ export default function AboutUs() {
        <WhoWeAre />
       <OurTeam />
       <RedefinedYourHome />
-    
     </div>
   );
 }

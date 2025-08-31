@@ -56,7 +56,8 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
           <Link href="/">
             <Image
-              src={settings?.site_logo_desktop || '/assets/images/equifirst_logo.png'}
+              // src={settings?.site_logo_desktop || '/assets/images/equifirst_logo.png'}
+              src='/assets/images/equifirst_logo.svg'
               alt={settings?.site_title || 'Equifirst'}
               width={600}
               height={150}
