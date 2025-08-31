@@ -6,6 +6,20 @@ import 'rc-slider/assets/index.css';
 import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/outline"; // ✅ Added ChevronDownIcon
 
 export default function MortgageCalculator() {
+  const residentialStatus = [
+    {
+      id: 'national',
+      label: 'UAE National'
+    },
+    {
+      id: 'residents',
+      label: 'Residents'
+    },
+    {
+      id: 'non_residents',
+      label: 'Non-Residents'
+    },
+  ]
   const initialPrice = 1200000;
   const thresholdPrice = 5000000;
 
@@ -27,7 +41,6 @@ export default function MortgageCalculator() {
   const [monthlyCost, setMonthlyCost] = useState(0);
   const [upfrontCosts, setUpfrontCosts] = useState(0);
   const [displayValueInterest, setDisplayValueInterest] = useState<string>("4.0");
-
 
 
   useEffect(() => {
@@ -74,10 +87,10 @@ export default function MortgageCalculator() {
   const formatNumber = (val: number) =>
     val.toLocaleString(undefined, { maximumFractionDigits: 0 });
 
-  const handleResidencyClick = (product: string) => {
+  const handleResidencyClick = (status : string) => {
     let updatedRate = state.InterestRate;
     let newDownPayment = 0;
-    if (product === 'National') {
+    if (status === 'national') {
       updatedRate = 4.0
       const minDownpayment = state.Price >= thresholdPrice ? 25 : 15;
       const maxDownPayment = state.Price >= thresholdPrice ? 80 : 85;
@@ -85,14 +98,15 @@ export default function MortgageCalculator() {
       setDownPaymentMixMax({ min: minDownpayment, max: maxDownPayment })
       newDownPayment = Math.round((state.Price * minDownpayment) / 100);
 
-    } else if (product === 'Resident') {
+    } else if (status === 'residents') {
       updatedRate = 4.0
       const minDownpayment = state.Price >= thresholdPrice ? 30 : 20;
       const maxDownPayment = state.Price >= thresholdPrice ? 80 : 80;
       setDownPaymentPercentage(minDownpayment);
       setDownPaymentMixMax({ min: minDownpayment, max: maxDownPayment })
+
       newDownPayment = Math.round((state.Price * minDownpayment) / 100);
-    } else if (product === 'NonResident') {
+    } else if (status === 'non_residents') {
       updatedRate = 5.0
       const minDownpayment = state.Price >= thresholdPrice ? 40 : 25;
       const maxDownPayment = state.Price >= thresholdPrice ? 80 : 80;
@@ -102,7 +116,7 @@ export default function MortgageCalculator() {
     };
     setState(prev => ({
       ...prev,
-      ActiveProduct: product,
+      ActiveProduct: status,
       InterestRate: updatedRate,
       DownPayment: newDownPayment,
     }));
@@ -186,14 +200,14 @@ export default function MortgageCalculator() {
             Residency status <span className="text-red-500">*</span>
           </div>
           <div className="md:flex gap-2 items-center justify-between">
-            {['Resident', 'UAE National', 'NonResident'].map(status => (
+            {residentialStatus.map(product => (
               <button
-                key={status}
-                onClick={() => handleResidencyClick(status)}
-                className={`w-full md:flex-1 px-4 py-2 rounded mb-2 md:mb-0 text-center ${state.ActiveProduct === status ? 'btn' : 'btn btn-outlined-blue'
-                  }`}
+                key={product.id}
+                onClick={() => handleResidencyClick(product.id)}
+                className={`w-full md:flex-1 px-4 py-2 rounded mb-2 md:mb-0 text-center ${state.ActiveProduct === product.id ? 'btn' : 'btn btn-outlined-blue'
+                }`}
               >
-                {status}
+                {product.label}
               </button>
             ))}
           </div>
@@ -257,10 +271,10 @@ export default function MortgageCalculator() {
         </div>
 
         <div className="mb-8 flex items-center justify-between">
-          <div className="text-lg flex font-semibold text-gray-700 relative group">
-            Upfront costs
-            <Info className="w-4 h-4 mt-2 ml-1 text-gray-500 cursor-pointer" />
-            <div className="absolute left-0 mt-6 w-80 bg-white rounded-xl shadow-xl p-4 text-sm hidden group-hover:block z-10 transition-all duration-300">
+          <div className="flex items-center relative group">
+            <div className='text-lg flex font-semibold text-gray-700 '> Upfront costs</div> 
+            <Info className="w-4 h-4 m-2 text-gray-500 cursor-pointer " />
+            <div className="absolute left-0 top-0 mt-6 w-80 bg-white rounded-xl shadow-xl p-4 text-sm hidden group-hover:block z-10 transition-all duration-300">
               <h3 className="text-lg font-semibold mb-2">Upfront Costs</h3>
               <ul className="space-y-2">
                 <li><span className="font-semibold text-green-600">Land Department Fee:</span> 4% of property value + 580 AED admin fee</li>
@@ -318,9 +332,9 @@ export default function MortgageCalculator() {
 
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center space-x-2 relative group">
-            <label className="font-semibold">
+            <div className="font-semibold">
               Would you like to finance your fees?
-            </label>
+            </div>
             <Info className="w-4 h-4 text-gray-500 cursor-pointer" />
             <div className="absolute left-0 top-6 w-72 bg-white rounded-xl shadow-xl p-4 text-sm hidden group-hover:block z-10 transition-all duration-300">
               <p className="text-gray-600">
