@@ -50,7 +50,7 @@ To the maximum extent permitted by applicable law and regulatory requirements, E
 Your use of this website and any dispute arising out of such use of the website is subject to the laws of the United Arab Emirates.
 </li>
 <li>
-Our failure to insist upon strict enforcement of any provision of these terms and conditions will not constitute a waiver of any provision or right. Any legal action or proceeding between us and you related to these terms and conditions will be brought exclusively in a court of competent jurisdiction in Dubai, United Arab Emirates.
+Our failure to insist upon strict enforcement of any provision of these terms and conditions will not constitute a waiver of any provision or right. Any legal action or proceeding between us and you related to these terms and conditions will be brought exclusively in a court of competent jurisdiction in UAE, United Arab Emirates.
 </li>
 <li>
 The logos, images (artistic and photos) have been used solely for the purpose of reference to the original brand, company, builder, developer only to provide a perspective to the website user and does not associate the website or its owners, affiliates, vendors, and employees with any of the brands mentioned in the website in any way whatsoever.

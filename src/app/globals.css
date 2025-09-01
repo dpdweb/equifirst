@@ -238,6 +238,9 @@
   .ef-section-style-testimonials {
     @apply max-w-7xl mx-auto mb-10;
   }
+    .ef-section-style-testimonials {
+    @apply max-w-7xl mx-auto py-5  px-4 sm:px-0 lg:px-0;
+  }
 
   /* .ef-sub-page-top-style {
     @apply max-w-7xl mx-auto pb-20 px-4 sm:px-0 lg:px-0;

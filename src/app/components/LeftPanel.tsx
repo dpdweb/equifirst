@@ -68,7 +68,7 @@ export default function LeftPanel() {
 
       <Image
         src="/assets/images/service-1.jpg"
-        alt="Dubai Property"
+        alt="UAE Property"
         width={500}
         height={300}
         className="w-full h-52 object-cover rounded-2xl"

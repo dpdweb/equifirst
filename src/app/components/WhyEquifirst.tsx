@@ -33,7 +33,7 @@ const features = [
   {
     id: 5,
     title: 'Efficiency',
-    description: 'We are directly impaneled with every major bank in the UAE so you can secure the right financial service without delay.',
+    description: 'We have access to every major bank in the UAE so you can secure the right mortgage without delay.',
     image: '/assets/images/efficiency.jpg',
   },
 ];
@@ -57,7 +57,7 @@ export default function WhyEquifirst({ onScrollClick }: HeroSliderProps) {
         <div className="md:mb-6 md:text-left">
           <div className="pre-mobile-heading md:pre-heading">Why Equifirst?</div>
           <h1 className="text-ef-mobile-heading1-size md:text-ef-heading1-size text-ef-dark-blue">
-            We Help You Get the Yes - Even When Banks Say No
+            We Provide Fast, Hassle-Free Mortgage Approvals for Residents & Expats
           </h1>
           <p className="mt-6">
             At Equifirst, we’re committed to making your homeownership dreams a reality.

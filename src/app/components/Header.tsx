@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useSettings } from "../context/SettingsContext";
 import { usePathname } from 'next/navigation';
 import SocialMediaLinks from './SocialMediaLinks';
+import { ChevronDown } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,20 +51,32 @@ export default function Header() {
     <div>
       <header
         className={`fixed top-0 w-full transition-all duration-300 z-50 ${
-          scrolled ? 'bg-[rgba(255,255,255,0.8)] backdrop-blur-sm' : 'bg-transparent'
+          scrolled ? 'bg-[rgba(255,255,255,0.8)] backdrop-blur-sm' : 'bg-transparen'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
           <Link href="/">
-            <Image
-              // src={settings?.site_logo_desktop || '/assets/images/equifirst_logo.png'}
-              src='/assets/images/equifirst_logo.svg'
+            {/* <Image
+              src={settings?.site_logo_desktop || '/assets/images/equifirst_logo.png'}
+              // src='/assets/images/equifirst_logo.svg'
               alt={settings?.site_title || 'Equifirst'}
               width={600}
               height={150}
               className="w-[150px] md:w-[215px] h-auto object-contain"
               priority
-            />
+            /> */}
+            <Image
+  src={
+    scrolled
+      ? (settings?.site_logo_desktop || '/assets/images/equifirst_logo_colored.png')
+      : (settings?.footer_logo || '/assets/images/equifirst_logo_white.png')
+  }
+  alt={settings?.site_title || 'Equifirst'}
+  width={600}
+  height={150}
+  className="w-[150px] md:w-[215px] h-auto object-contain transition-all duration-300"
+  priority
+/>
           </Link>
 
           {/* Desktop nav */}
@@ -119,59 +132,70 @@ export default function Header() {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="fixed md:hidden inset-0 z-50 pr-[25%] bg-black text-white flex flex-col justify-between p-6 transition-transform duration-300 animate-menu-slide-in-left">
+        <div className="fixed md:hidden inset-0 z-50 pr-[25%] bg-black text-white flex flex-col justify-between p-3 transition-transform duration-300 animate-menu-slide-in-left">
           <div className="flex justify-end">
             <button onClick={() => setIsOpen(false)}>
               <X size={24} className="text-white" />
             </button>
           </div>
 
-          <div className="flex flex-col gap-6 text-lg items-end mt-8 px-4">
-            {navItemsRespo.map((item, index) => {
-              const isActive = pathname === item.href;
-              const hasChildren = item.children && item.children.length > 0;
-              const isDropdownOpen = openDropdownIndex === index;
+    <div className="flex flex-col gap-3 text-lg items-end mt-8 px-4">
+      {navItemsRespo.map((item, index) => {
+        const isActive = pathname === item.href;
+        const hasChildren = item.children && item.children.length > 0;
+        const isDropdownOpen = openDropdownIndex === index;
 
-              return (
-                <div key={index} className="w-full text-right">
-                  {item.href && !hasChildren ? (
-                    <Link
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
-                      className={`mobile-nav-link ${isActive ? 'active' : ''}`}
-                    >
-                      {item.label}
-                    </Link>
-                  ) : hasChildren ? (
-                    <>
-                      <button
-                        onClick={() =>
-                          setOpenDropdownIndex(isDropdownOpen ? null : index)
-                        }
-                        className="mobile-nav-link w-full text-right font-medium"
+        return (
+          <div key={index} className="w-full text-right">
+            {/* Normal link (no children) */}
+            {item.href && !hasChildren ? (
+              <Link
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className={`mobile-nav-link ${isActive ? "active" : ""}`}
+              >
+                {item.label}
+              </Link>
+            ) : hasChildren ? (
+              <>
+                {/* Button with arrow */}
+                <button
+                  onClick={() =>
+                    setOpenDropdownIndex(isDropdownOpen ? null : index)
+                  }
+                  className="mobile-nav-link w-full flex items-center justify-end gap-2 font-medium"
+                >
+                  <span>{item.label}</span>
+                  <ChevronDown
+                    className={`w-5 h-5 transition-transform duration-300 ${
+                      isDropdownOpen ? "rotate-180" : "rotate-0"
+                    }`}
+                  />
+                </button>
+
+                {/* Dropdown sublinks */}
+                {isDropdownOpen && (
+                  <div className="mt-2 pr-6 flex flex-col gap-2 text-base text-right">
+                    {item.children?.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`mobile-nav-sublink ${
+                          pathname === child.href ? "active" : ""
+                        }`}
                       >
-                        {item.label}
-                      </button>
-                      {isDropdownOpen && (
-                        <div className="mt-2 pl-4 flex flex-col gap-2 text-base">
-                          {item.children.map((child) => (
-                            <Link
-                              key={child.href}
-                              href={child.href}
-                              onClick={() => setIsOpen(false)}
-                              className={`mobile-nav-link ${pathname === child.href ? 'active' : ''}`}
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </>
-                  ) : null}
-                </div>
-              );
-            })}
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : null}
           </div>
+        );
+      })}
+    </div>
 
           <div className="mt-auto space-y-4 text-sm text-center">
             <Image

@@ -44,7 +44,7 @@ export default function BuyoutRefinance() {
         <ul className="text-gray-700 list-disc list-inside space-y-1 mb-4">
 
         <li>60% financing for second properties</li>
-        <li>Available for residents, non-residents, UAE nationals</li>
+        <li>Available for residents, non-residents & UAE nationals</li>
         <li>Salaried & self-employed accepted</li>
         <li>Tenure up to 25 years</li>
       </ul>
@@ -67,7 +67,7 @@ export default function BuyoutRefinance() {
     <div className="flex-1 mt-8 md:mt-0 relative rounded-2xl overflow-hidden">
       <Image
         src="/assets/images/service-1.jpg"
-        alt="Dubai Skyline"
+        alt="UAE Skyline"
         width={600}
         height={400}
         className="w-full h-auto object-cover"

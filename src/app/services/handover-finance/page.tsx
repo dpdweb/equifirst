@@ -39,7 +39,7 @@ export default function HandoverFinance() {
       <h3 className="text-lg font-semibold text-[#007190]">Key Features:</h3>
       <ul className="text-gray-700 list-disc list-inside space-y-1 mb-1">
         <li>Finance up to 100% of your handover payment</li>
-        <li>Available for residents, non-residents, UAE nationals</li>
+        <li>Available for residents, non-residents & UAE nationals</li>
 
       </ul>
 
@@ -68,7 +68,7 @@ export default function HandoverFinance() {
     <div className="flex-1 mt-8 md:mt-0 relative rounded-2xl overflow-hidden">
       <Image
         src="/assets/images/service-3.jpg"
-        alt="Dubai Skyline"
+        alt="UAE Skyline"
         width={600}
         height={400}
         className="w-full h-auto object-cover"

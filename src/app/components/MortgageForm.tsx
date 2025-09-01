@@ -343,7 +343,7 @@ export default function MortgageForm() {
                     className="w-full border p-2 rounded-lg"
                   >
                     <option value="">Choose an area</option>
-                    <option>Dubai</option>
+                    <option>UAE</option>
                     <option>Abu Dhabi</option>
                     <option>Sharjah</option>
                     <option>Ajman</option>

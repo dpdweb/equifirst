@@ -15,11 +15,12 @@ const FinanceOptionCards = [
     link: 'services/off-plan-finance',
   },
   {
-    title: 'Secondary Market Finance',
-    description: 'Finance completed and ready-to-move-in properties across Dubai.',
-    image: '/assets/images/secondary-market-hero-small.jpg',
-    link: 'services/secondary-market-finance',
+    title: 'Handover Finance',
+    description: 'Bridge your final payment during property handover.',
+    image: '/assets/images/handover-finance-hero-small.jpg',
+    link: 'services/handover-finance',
   },
+  
   {
     title: 'Equity Release',
     description: 'Unlock your home’s equity without selling.',
@@ -27,10 +28,10 @@ const FinanceOptionCards = [
     link: 'services/equity-release',
   },
   {
-    title: 'Handover Finance',
-    description: 'Bridge your final payment during property handover.',
-    image: '/assets/images/handover-finance-hero-small.jpg',
-    link: 'services/handover-finance',
+    title: 'Secondary Market Finance',
+    description: 'Finance completed and ready-to-move-in properties across UAE.',
+    image: '/assets/images/secondary-market-hero-small.jpg',
+    link: 'services/secondary-market-finance',
   },
   {
     title: 'Buyout/Refinance',
@@ -40,7 +41,7 @@ const FinanceOptionCards = [
   },
   {
     title: 'Non-Resident Mortgage',
-    description: 'Helping non-residents invest confidently in Dubai.',
+    description: 'Helping non-residents invest confidently in UAE.',
     image: '/assets/images/non-resident-mortgage-small.jpg',
     link: 'services/non-resident-mortgage',
   },

@@ -15,13 +15,13 @@ const Testimonials = () => {
     fetchTestimonials().then(setTestimonials).catch(console.error);
   }, []);
 
-  // ✅ Detect screen size and toggle autoplay
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
-        setEnableAutoplay(true);  // Desktop → autoplay ON
+        setEnableAutoplay(true);
       } else {
-        setEnableAutoplay(false); // Mobile → autoplay OFF
+        setEnableAutoplay(false);
       }
     };
 
@@ -31,7 +31,7 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section className="bg-ef-dark-blue py-8 md:py-8 text-center">
+    <section className="bg-ef-dark-blue py-8 md:pt-8 md:mb-15 text-center">
       <h3 className="md:text-[44px] font-medium text-ef-yellow mb-2">
         Rated 5/5 on Google! <span className="inline-block">
           <Image
@@ -48,7 +48,7 @@ const Testimonials = () => {
       </h2>
 
       {/* Swiper */}
-      <div className="ef-section-style relative px-4">
+      <div className="ef-section-style-testimonials relative px-4">
         <Swiper
           spaceBetween={16}
           grabCursor={true}
@@ -117,10 +117,10 @@ const Testimonials = () => {
         </Swiper>
 
         {/* Arrows */}
-        <div className="equi-swiper-testimonial">
+        {/* <div className="equi-swiper-testimonial">
           <div className="swiper-button-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer text-black"></div>
           <div className="swiper-button-next absolute right-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer text-black"></div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -146,7 +146,7 @@ export default function HeroSlider({ onScrollClick }: HeroSliderProps) {
               </h1>
             </div>
             <div className="w-full mt-32 md:mt-20 flex flex-col sm:flex-row gap-4">
-              <Link href="/" className="btn btn-slider md:w-[200px]">
+              <Link href="/contact-us" className="btn btn-slider md:w-[200px]">
                 Apply Online in Two Minutes
               </Link>
               <button

@@ -1,9 +1,8 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import SocialMediaLinks from './SocialMediaLinks';
 import Landbot from './Landbot';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
   
@@ -22,14 +21,26 @@ export default function Footer() {
               height={44}
               className="mb-4 mx-auto sm:mx-0"
             />
-            <p className="text-sm leading-relaxed mt-5 sm:mt-12">
-              2803, Control Tower, Motor City
-              <br />
-              Detroit Road, Dubai, UAE
-            </p>
-            <p className="text-sm leading-relaxed mt-5 sm:mt-12">
+            
+            <p className="flex items-center gap-2 text-sm leading-relaxed mt-5 sm:mt-8 justify-center sm:justify-start">
+              <Mail size={16} className="text-ef-gold" />
               info@equifirst.ae
             </p>
+
+            <p className="flex items-center gap-2 text-sm leading-relaxed mt-5 sm:mt-4 justify-center sm:justify-start">
+              <Phone size={16} className="text-ef-gold" />
+              (045421094)
+            </p>
+
+            <p className="flex items-start gap-2 text-sm leading-relaxed mt-5 sm:mt-4 justify-center sm:justify-start">
+              <MapPin size={16} className="text-ef-gold mt-1" />
+              <span>
+                2803, Control Tower, Motor City
+                <br />
+                Detroit Road, UAE, UAE
+              </span>
+            </p>
+
           </div>
 
           {/* Company Links */}

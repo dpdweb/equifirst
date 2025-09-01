@@ -44,7 +44,7 @@ export default function EquityRelease() {
   <div className="">
         <ul className="text-gray-700 list-disc list-inside space-y-1 mb-4">
         <li>Funds can be used to purchase a new property or renovate existing home</li>
-        <li>Available for residents, non-residents, UAE nationals</li>
+        <li>Available for residents, non-residents & UAE nationals</li>
         <li>Salaried & self-employed accepted</li>
         <li>Tenure up to 25 years</li>
       </ul>
@@ -53,7 +53,7 @@ export default function EquityRelease() {
 while retaining ownership.
       </p> */}
       <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
-        <b>Ideal for:</b> Property owners who want to access cash while retaining ownership.
+        <b>Ideal for:</b> Property owners who want to access liquidity while retaining ownership.
       </button>
   </div>
 
@@ -68,7 +68,7 @@ while retaining ownership.
     <div className="flex-1 mt-8 md:mt-0 relative rounded-2xl overflow-hidden">
       <Image
         src="/assets/images/service-2.jpg"
-        alt="Dubai Skyline"
+        alt="UAE Skyline"
         width={600}
         height={400}
         className="w-full h-auto object-cover"

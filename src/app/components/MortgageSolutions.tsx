@@ -18,7 +18,7 @@ export default function MortgageSolutions() {
         <div className="">
 
           <p className="mb-5">
-            Discover flexible mortgage solutions in Dubai with Equifirst Capital Financing. Off-Plan Finance, Secondary Market, Equity Release, Handover Finance, Buyout & Non-Resident options.
+            Discover flexible mortgage solutions in UAE with Equifirst Capital Financing. Off-Plan Finance, Secondary Market, Equity Release, Handover Finance, Buyout & Non-Resident options.
           </p>
           <h2 className="text-ef-blue">Find the Right Mortgage Solution for You</h2>
           <p className="mb-5">

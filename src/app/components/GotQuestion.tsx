@@ -7,7 +7,7 @@ import GotQuestionSection from './GotQuestionSection';
 import GotVideoSection from './GotVideoSection';
 
 export default function AnimatedTabs() {
-  const [activeTab, setActiveTab] = useState('tab1');
+  const [activeTab, setActiveTab] = useState('tab2');
 
   return (
     <div>

@@ -43,15 +43,21 @@ export default function OffPlanFinance() {
   <div className="">
         <ul className="text-gray-700 list-disc list-inside space-y-1 mb-4">
 
-        <li>50% payment already made to developer</li>
+        <li>40% payment already made to developer</li>
         <li><b>Approved developers:</b>
           <ul className="list-disc list-inside ml-4">
-            <li>Meraas</li>
+
             <li>Emaar</li>
-            <li>Nakheel</li>
-            <li>Sobha</li>
+            <li>Dubai Holding</li>
+            <li>Majid AL Futtaim</li>
+            <li>Al Wasl Group</li>
+            <li>AL - DAR [Dubai projects]</li>
+            <li>Shoba</li>
             <li>Damac</li>
-            <li>Dubai Properties</li>
+            <li>Ellington</li>
+            <li>Omniyat</li>
+            <li>Binghatti</li>
+
           </ul>
         </li>
         <li>Not available for non-residents</li>
@@ -75,7 +81,7 @@ export default function OffPlanFinance() {
     <div className="flex-1 mt-8 md:mt-0 relative rounded-2xl overflow-hidden">
       <Image
         src="/assets/images/service-5.jpg"
-        alt="Dubai Skyline"
+        alt="UAE Skyline"
         width={600}
         height={400}
         className="w-full h-auto object-cover"

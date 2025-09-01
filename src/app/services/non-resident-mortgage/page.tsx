@@ -27,7 +27,7 @@ export default function WhoWeAre() {
         Non-Resident Mortgage
       </h2>
       <p className="text-gray-700 mb-4">
-        Helping non-residents invest confidently in Dubai.
+        Helping non-residents invest confidently in UAE.
       </p>
 
       <h3 className="text-lg font-semibold text-[#007190]">Key Features:</h3>
@@ -46,10 +46,10 @@ export default function WhoWeAre() {
         <li>Tenure up to 25 years</li>
       </ul>
             {/* <p className="text-[#007190] font-semibold mb-4">
-        Ideal for: International investors purchasing property in Dubai.
+        Ideal for: International investors purchasing property in UAE.
       </p> */}
       <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
-        <b>Ideal for:</b> International investors purchasing property in Dubai.
+        <b>Ideal for:</b> International investors purchasing property in UAE.
       </button>
   </div>
 
@@ -64,7 +64,7 @@ export default function WhoWeAre() {
     <div className="flex-1 mt-8 md:mt-0 relative rounded-2xl overflow-hidden">
       <Image
         src="/assets/images/service-4.jpg"
-        alt="Dubai Skyline"
+        alt="UAE Skyline"
         width={600}
         height={400}
         className="w-full h-auto object-cover"

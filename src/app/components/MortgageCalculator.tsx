@@ -287,7 +287,7 @@ export default function MortgageCalculator() {
                 <li><span className="font-semibold text-gray-600">Mortgage Registration Fee:</span> 0.25% of loan + 10 AED admin fee</li>
                 <li><span className="font-semibold text-blue-600">Real Estate Agency Fee:</span> 2% of property value + 5% VAT</li>
                 <li><span className="font-semibold text-purple-600">Valuation Fee:</span> 2,500 – 3,500 AED + 5% VAT</li>
-                <li><span className="font-semibold text-cyan-600">Sales Progression Fee:</span> 4,200 AED</li>
+                {/* <li><span className="font-semibold text-cyan-600">Sales Progression Fee:</span> 4,200 AED</li> */}
               </ul>
             </div>
           </div>
