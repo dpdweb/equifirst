@@ -56,15 +56,15 @@ export default function Header() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
           <Link href="/">
-            {/* <Image
+            <Image
               src={settings?.site_logo_desktop || '/assets/images/equifirst_logo.png'}
               // src='/assets/images/equifirst_logo.svg'
               alt={settings?.site_title || 'Equifirst'}
               width={600}
               height={150}
-              className="w-[150px] md:w-[215px] h-auto object-contain"
+              className="w-[150px] md:w-[215px] h-auto object-contain hidden md:block"
               priority
-            /> */}
+            />
             <Image
   src={
     scrolled
@@ -74,7 +74,7 @@ export default function Header() {
   alt={settings?.site_title || 'Equifirst'}
   width={600}
   height={150}
-  className="w-[150px] md:w-[215px] h-auto object-contain transition-all duration-300"
+  className="w-[150px] md:w-[215px] h-auto object-contain transition-all duration-300 block md:hidden"
   priority
 />
           </Link>
