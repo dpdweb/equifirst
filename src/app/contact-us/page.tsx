@@ -1,4 +1,3 @@
-'use client';
 import ContactForm from "../components/ContactForm";
 import SubPageHeroBanner from "../components/SubPageHeroBanner";
 

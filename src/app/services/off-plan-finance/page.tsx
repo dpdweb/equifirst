@@ -33,7 +33,7 @@ export default function OffPlanFinance() {
 
       <h3 className="text-lg font-semibold text-[#007190]">Eligibility:</h3>
       <ul className="text-gray-700 list-disc list-inside space-y-1 mb-1">
-        <li>Property must be at least 50% completed</li>
+        <li>Property must be at least 40% completed</li>
         <li>Delivery (SPA) scheduled within 18 months</li>
 
       </ul>

@@ -35,7 +35,7 @@ const FinanceOptionCards = [
   },
   {
     title: 'Buyout/Refinance',
-    description: 'Transfer your mortgage to better terms.',
+    description: 'Transfer your mortgage to get better terms.',
     image: '/assets/images/buyout-refinance-hero-small.jpg',
     link: 'services/buyout-refinance',
   },
