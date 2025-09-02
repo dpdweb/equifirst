@@ -65,7 +65,7 @@ export default function Footer() {
               <li><Link href="/services/equity-release" className="footer-nav-link">Equity Release</Link></li>
               <li><Link href="/services/handover-finance" className="footer-nav-link">Handover Finance</Link></li>
               <li><Link href="/services/buyout-refinance" className="footer-nav-link">Buyout Refinance</Link></li>
-              <li><Link href="/services/non-resident-mortgage" className="footer-nav-link">Non-Resident Mortgage</Link></li>
+              <li><Link href="/services/non-resident-finance" className="footer-nav-link">Non-Resident Finance</Link></li>
             </ul>
           </div>
 

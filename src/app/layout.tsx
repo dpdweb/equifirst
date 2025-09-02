@@ -30,9 +30,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body>
         {/* SettingsProvider is a client component but can be fed server data */}
         <SettingsProvider settings={settings}>
-          {hasReviewAccess && <Header />}
+          <Header />
+          {/* {hasReviewAccess && <Header />} */}
           {children}
-          {hasReviewAccess && <Footer />}
+          <Footer />
+          {/* {hasReviewAccess && <Footer />} */}
         </SettingsProvider>
       </body>
     </html>

@@ -24,7 +24,7 @@ export default function WhoWeAre() {
     {/* Left Section */}
     <div className="flex-1">
       <h2 className="text-2xl md:text-3xl font-semibold text-[#007190] mb-2">
-        Non-Resident Mortgage
+        Non-Resident Finance
       </h2>
       <p className="text-gray-700 mb-4">
         Helping non-residents invest confidently in UAE.

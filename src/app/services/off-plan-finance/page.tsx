@@ -43,7 +43,6 @@ export default function OffPlanFinance() {
   <div className="">
         <ul className="text-gray-700 list-disc list-inside space-y-1 mb-4">
 
-        <li>40% payment already made to developer</li>
         <li><b>Approved developers:</b>
           <ul className="list-disc list-inside ml-4">
 

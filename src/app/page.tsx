@@ -32,16 +32,17 @@ export default function Home() {
       <HeroSlider onScrollClick={scrollToMortgage} />
       <ScrollHighlight />
       <Testimonials />
-       <WhyEquifirst onScrollClick={scrollToMortgage}  />
+      <WhyEquifirst onScrollClick={scrollToMortgage}  />
        
       <UnlockDoor />
-      <div ref={mortgageRef}  className="scroll-mt-25">
+      <div ref={mortgageRef}  className="scroll-mt-28">
         <MortgageServices />
       </div>
       <FinanceOptions />
-      <div ref={mortgageRef}  className="scroll-mt-25">
+      {/* <div ref={mortgageRef}  className="scroll-mt-0"> */}
       <MortgageMadeSimple />
-      </div>
+      {/* </div> */}
+      
       <MortgageCalculator />
       {/* <ContactForm /> */}
       

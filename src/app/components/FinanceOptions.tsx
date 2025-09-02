@@ -29,7 +29,7 @@ const FinanceOptionCards = [
   },
   {
     title: 'Secondary Market Finance',
-    description: 'Finance completed and ready-to-move-in properties across UAE.',
+    description: 'Finance completed properties and ready-to-move-in properties across the UAE.',
     image: '/assets/images/secondary-market-hero-small.jpg',
     link: 'services/secondary-market-finance',
   },
