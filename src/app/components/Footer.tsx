@@ -29,7 +29,7 @@ export default function Footer() {
 
             <p className="flex items-center gap-2 text-sm leading-relaxed mt-5 sm:mt-4 justify-center sm:justify-start">
               <Phone size={16} className="text-ef-gold" />
-              (045421094)
+              045421094
             </p>
 
             <p className="flex items-start gap-2 text-sm leading-relaxed mt-5 sm:mt-4 justify-center sm:justify-start">

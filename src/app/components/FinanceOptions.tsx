@@ -40,7 +40,7 @@ const FinanceOptionCards = [
     link: 'services/buyout-refinance',
   },
   {
-    title: 'Non-Resident Mortgage',
+    title: 'Non-Resident Finance',
     description: 'Helping non-residents invest confidently in UAE.',
     image: '/assets/images/non-resident-mortgage-small.jpg',
     link: 'services/non-resident-mortgage',

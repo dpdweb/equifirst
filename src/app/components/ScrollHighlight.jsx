@@ -33,7 +33,7 @@ const points = [
     image: '/assets/images/scroll-img1.png',
   },
   {
-    title: '5/5 Google Review Score',
+    title: '5-Star Reviews',
     image: '/assets/images/scroll-img2.png',
   },
 ];

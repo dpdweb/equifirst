@@ -30,7 +30,7 @@ export default function Header() {
         { href: '/services/equity-release', label: 'Equity Release' },
         { href: '/services/handover-finance', label: 'Handover Finance' },
         { href: '/services/buyout-refinance', label: 'Buyout / Refinance' },
-        { href: '/services/non-resident-mortgage', label: 'Non-Resident Mortgage' },
+        { href: '/services/non-resident-finance', label: 'Non-Resident Finance' },
       ],
     },
     { href: '/blog', label: 'Blog' },
