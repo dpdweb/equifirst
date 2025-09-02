@@ -46,10 +46,12 @@ export default function BlogDetail({ blog }: { blog: Blog }) {
         <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 space-y-10">
             <div
-              className="prose max-w-none"
+              className="content max-w-none"
               dangerouslySetInnerHTML={{ __html: blog.content }}
             />
           </div>
+
+
 
           <aside className="space-y-8">
             <div className="border-b pb-6">
