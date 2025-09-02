@@ -63,7 +63,7 @@ export default function MortgageCalculator() {
       0.04 * state.Price +
       0.0025 * Principal +
       (0.02 * state.Price + 0.05 * 0.02 * state.Price) +
-      11615;
+      (11615 - 4200);
 
     if (state.ToggleFinancing) {
       Upfront -=
