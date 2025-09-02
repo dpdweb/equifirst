@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { SettingsProvider, Settings } from "./context/SettingsContext";
 import { fetchSettings } from "./lib/api";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Equifirst",
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const settings: Settings = await fetchSettings();
-  const cookieStore = await cookies();
-  const hasReviewAccess = cookieStore.has("review_access");
+  // const cookieStore = await cookies();
+  // const hasReviewAccess = cookieStore.has("review_access");
 
 
   return (
