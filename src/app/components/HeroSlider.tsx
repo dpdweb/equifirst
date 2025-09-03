@@ -100,7 +100,7 @@ export default function HeroSlider({ onScrollClick }: HeroSliderProps) {
       {/* Thumbnail (shows until video loads) */}
       {!videoLoaded && (
         <Image
-          src="/assets/slider-thumbnail.jpg"
+          src="/assets/video-thumbnail.jpg"
           alt="Video thumbnail"
           fill
           className="object-cover"
