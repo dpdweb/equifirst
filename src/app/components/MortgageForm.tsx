@@ -145,28 +145,33 @@ export default function MortgageForm() {
       <div className="bg-[#eaf4f7] p-8 md:rounded-2xl">
         <div className="p-6 rounded-xl">
           {/* Stepper */}
-          <div className="flex items-center justify-between mb-6">
-            {[1, 2, 3].map((s) => (
-              <div key={s} className="flex flex-col items-center flex-1">
-                <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                    step === s
-                      ? "bg-ef-blue text-white"
-                      : "bg-gray-300 text-gray-600"
-                  }`}
-                >
-                  {s}
-                </div>
-                <span
-                  className={`mt-2 ${
-                    step === s ? "text-black font-bold" : "text-gray-500"
-                  }`}
-                >
-                  {titles[s]}
-                </span>
-              </div>
-            ))}
-          </div>
+ <div className="flex items-center justify-between mb-6">
+  {[1, 2, 3].map((s) => (
+    <div
+      key={s}
+      className={`flex flex-col items-center flex-1 
+        ${step !== s ? "hidden sm:flex" : "flex"}`}
+    >
+      <div
+        className={`w-8 h-8 rounded-full flex items-center justify-center ${
+          step === s
+            ? "bg-ef-blue text-white"
+            : "bg-gray-300 text-gray-600"
+        }`}
+      >
+        {s}
+      </div>
+      <span
+        className={`mt-2 ${
+          step === s ? "text-black font-bold" : "text-gray-500"
+        }`}
+      >
+        {titles[s]}
+      </span>
+    </div>
+  ))}
+</div>
+
 
           {/* Form */}
           <form onSubmit={handleSubmit}>
