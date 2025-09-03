@@ -6,7 +6,7 @@ import Link from 'next/link';
 // import { Navigation, Autoplay  } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import Image from "next/image";
+// import Image from "next/image";
 
 import 'swiper/css';
 
@@ -28,7 +28,6 @@ export default function HeroSlider({ onScrollClick }: HeroSliderProps) {
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState<string | null>(null);
   const [animateLine, setAnimateLine] = useState(false);
-  const [videoLoaded, setVideoLoaded] = useState(false);
 
 
 
@@ -96,35 +95,24 @@ export default function HeroSlider({ onScrollClick }: HeroSliderProps) {
    
       </Swiper> */}
 
-    <div className="relative max-h-[calc(min(85vh,760px))] min-h-[720px] max-w-[1440px] overflow-hidden max-lg:h-[756px] md:max-h-[calc(min(95dvh,960px))] scale-x-[1]">
-      {/* Thumbnail (shows until video loads) */}
-      {!videoLoaded && (
-        <Image
-          src="/assets/video-thumbnail.jpg"
-          alt="Video thumbnail"
-          fill
-          className="object-cover"
-          priority
-        />
-      )}
+<div className="relative max-h-[calc(min(85vh,760px))] min-h-[720px] max-w-[1440px] overflow-hidden max-lg:h-[756px] md:max-h-[calc(min(95dvh,960px))] scale-x-[1]">
+  <video
+    autoPlay
+    loop
+    muted
+    playsInline
+    preload="auto"
+    poster="/assets/video-thumbnail.jpg"
+    src="/assets/slider-video.mp4"
+    className="h-full w-full object-cover rtl:scale-x-[-1]"
+  />
 
-      {/* Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        src="/assets/slider-video.mp4"
-        className="h-full w-full object-cover rtl:scale-x-[-1]"
-        onLoadedData={() => setVideoLoaded(true)}
-      />
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-black/50"></div>
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/50"></div>
-
-     
-    </div>
+  {/* Overlay content */}
+  
+</div>
 
 
       
