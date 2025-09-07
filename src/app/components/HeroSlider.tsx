@@ -10,8 +10,8 @@ type HeroSliderProps = {
 };
 
 export default function HeroSlider({ onScrollClick }: HeroSliderProps) {
-  const lineRef = useRef<HTMLDivElement>(null);
-  const [animateLine, setAnimateLine] = useState(false);
+  // const lineRef = useRef<HTMLDivElement>(null);
+  // const [animateLine, setAnimateLine] = useState(false);
 
   useEffect(() => {
     requestAnimationFrame(() => setAnimateLine(true));
