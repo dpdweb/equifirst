@@ -39,14 +39,14 @@ export default function HeroSlider({ onScrollClick }: HeroSliderProps) {
         <div className="grid grid-cols-[70px_1fr] gap-2 p-6 md:p-[90px]">
           {/* Timeline Placeholder */}
           <div className="relative w-[40px] h-64 flex flex-col items-center justify-between">
-            <div
+            {/* <div
               ref={lineRef}
               className="absolute w-1 bg-white transition-all duration-1000 ease-in-out"
               style={{
                 top: '20px',
                 height: animateLine ? 'calc(100% - 60px)' : '0px',
               }}
-            />
+            /> */}
           </div>
 
           {/* Main Text */}
