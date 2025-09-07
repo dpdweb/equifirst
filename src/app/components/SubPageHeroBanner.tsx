@@ -8,22 +8,20 @@ interface HeroBannerProps {
 
 export default function SubPageHeroBanner({ title, subtitle, image }: HeroBannerProps) {
   return (
-<section className="relative md:rounded-4xl overflow-hidden max-w-8xl mx-auto h-[500px] md:h-[300px]">
-  {/* Background Image */}
+<section className="relative md:rounded-4xl overflow-hidden max-w-8xl mx-auto h-[500px] md:h-[300px] flex items-center">
   <Image
-        src={image}
-        alt={title || "Hero Section"}
-        fill
-        priority
-        quality={75} // balance speed & quality
-        sizes="100vw"
-        className="object-cover"
-      />
-  {/* Overlay */}
+    src={image}
+    alt={title || "Hero Section"}
+    fill
+    priority
+    quality={75}
+    sizes="100vw"
+    className="object-cover"
+  />
+
   <div className="absolute inset-0" />
 
-  {/* Content */}
-  <div className="relative z-10 px-6 pt-50 pb-50 md:pt-20 md:pb-40 md:px-16 text-white max-w-4xl">
+  <div className="relative z-10 px-6 py-12 md:py-16 md:px-16 text-white max-w-4xl">
     {title && (
       <p className="text-[16px] text-center md:text-left uppercase mb-0 tracking-wider">
         {title}
@@ -34,6 +32,5 @@ export default function SubPageHeroBanner({ title, subtitle, image }: HeroBanner
     </h1>
   </div>
 </section>
-
   );
 }

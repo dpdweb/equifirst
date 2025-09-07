@@ -79,7 +79,7 @@ export default function FaqPage() {
         subtitle="Answers At Your Fingertips"
         image="/assets/images/faq-hero.jpg"
       />
-      <div className="md:flex mb-20 pt-10 md:mt-0">
+      <div className=" mb-20 pt-10 md:mt-0">
         <CategorySidebar
           categories={categories}
           activeId={selectedCategory}

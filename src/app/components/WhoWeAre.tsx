@@ -59,7 +59,7 @@ export default function WhoWeAre() {
   };
 
   return (
-    <div className="ef-section-style">
+    <div className="max-w-7xl mx-auto py-5 md:pt-10 px-4 sm:px-0 lg:px-0">
       <div className="grid md:grid-cols-[490px_1fr] gap-6">
         
         <div className="mb-6 md:md-0 text-center md:text-left">

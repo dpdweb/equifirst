@@ -192,7 +192,7 @@ export default function MortgageCalculator() {
   };
 
   return (
-    <div className="ef-section-style-3 grid grid-cols-1 md:grid-cols-2 mx-auto p-2 md:p-6 bg-ef-dark-blue-2 rounded-lg gap-8">
+    <div className="ef-section-style-calc grid grid-cols-1 md:grid-cols-2 mx-auto p-2 md:p-6 border-4 border-ef-dark-blue rounded-4xl gap-8">
       {/* Residency Status */}
       <div className="md:pr-12">
         <div className="mb-8">
@@ -204,7 +204,7 @@ export default function MortgageCalculator() {
               <button
                 key={resStatus.id}
                 onClick={() => handleResidencyClick(resStatus.id)}
-                className={`w-full md:flex-1 px-4 py-2 rounded mb-2 md:mb-0 text-center ${state.ActiveProduct === resStatus.id ? 'btn' : 'btn btn-outlined-blue'
+                className={`w-full md:flex-1 px-4 py-2 rounded-lg mb-2 md:mb-0 text-center ${state.ActiveProduct === resStatus.id ? 'btn' : 'btn btn-outlined-blue'
                   }`}
               >
                 {resStatus.label}
@@ -268,7 +268,7 @@ export default function MortgageCalculator() {
                   }));
                 }
               }}
-              className="flex-1 px-4 py-3 bg-gray-50 text-black text-lg outline-none"
+               className="flex-1 px-4 py-3 bg-gray-50 text-black text-lg border-0 focus:outline-none focus:border-0 focus:ring-0"
             />
             <div className="px-4 py-3 text-ef-blue font-medium text-lg border-l border-gray-300">
               AED
@@ -277,28 +277,33 @@ export default function MortgageCalculator() {
         </div>
 
 <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-  {/* Label + Info with tooltip */}
+
   <div className="flex items-center relative group">
     <div className="text-lg font-semibold text-gray-700">Upfront costs</div>
 
-    {/* Info button (focusable for mobile) */}
-    <button className="ml-2 focus:outline-none">
-      <Info className="w-6 h-6 md:w-4 md:h-4 text-gray-500 cursor-pointer" />
-    </button>
+<div className="relative inline-block group">
+  <button className="ml-2 focus:outline-none">
+    <Info className="w-6 h-6 md:w-4 md:h-4 text-gray-500 cursor-pointer" />
+  </button>
 
-    {/* Tooltip */}
-    <div className="absolute left-1/2 sm:left-0 top-8 transform -translate-x-1/2 sm:translate-x-0 
-                    w-64 sm:w-80 max-w-xs sm:max-w-sm bg-white rounded-xl shadow-xl p-4 text-sm 
-                    hidden group-hover:block group-focus-within:block z-10 transition-all duration-300">
-      <h3 className="text-lg font-semibold mb-2">Upfront Costs</h3>
-      <ul className="space-y-2">
-        <li><span className="font-semibold text-green-600">Land Department Fee:</span> 4% of property value + 580 AED admin fee</li>
-        <li><span className="font-semibold text-green-700">Registration Fee:</span> 4,000 AED for properties over 500,000 AED + 5% VAT</li>
-        <li><span className="font-semibold text-gray-600">Mortgage Registration Fee:</span> 0.25% of loan + 10 AED admin fee</li>
-        <li><span className="font-semibold text-blue-600">Real Estate Agency Fee:</span> 2% of property value + 5% VAT</li>
-        <li><span className="font-semibold text-purple-600">Valuation Fee:</span> 2,500 – 3,500 AED + 5% VAT</li>
-      </ul>
-    </div>
+  {/* Tooltip */}
+  <div
+    className="absolute left-1/2 sm:left-0 top-8 transform -translate-x-1/2 sm:translate-x-0
+               w-64 sm:w-80 max-w-xs sm:max-w-sm bg-ef-dark-blue-2 rounded-xl shadow-xl p-4 text-sm
+               hidden group-hover:block group-focus-within:block z-10 transition-all duration-300"
+  >
+    <h3 className="text-lg font-semibold mb-2">Upfront Costs</h3>
+    <ul className="space-y-2">
+      <li><span className="font-semibold text-green-600">Land Department Fee:</span> 4% of property value + 580 AED admin fee</li>
+      <li><span className="font-semibold text-green-700">Registration Fee:</span> 4,000 AED for properties over 500,000 AED + 5% VAT</li>
+      <li><span className="font-semibold text-gray-600">Mortgage Registration Fee:</span> 0.25% of loan + 10 AED admin fee</li>
+      <li><span className="font-semibold text-blue-600">Real Estate Agency Fee:</span> 2% of property value + 5% VAT</li>
+      <li><span className="font-semibold text-purple-600">Valuation Fee:</span> 2,500 – 3,500 AED + 5% VAT</li>
+    </ul>
+  </div>
+</div>
+
+    
   </div>
 
   {/* AED Value */}
@@ -353,17 +358,30 @@ export default function MortgageCalculator() {
 <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
 
 <div className="flex items-center space-x-2 relative group">
-  <div className="font-semibold">Would you like to finance your fees?</div>
+  <div className="font-semibold hidden md:block">Would you like to finance your fees?</div>
   
-  <button className="focus:outline-none">
-    <Info className="w-8 h-8 md:w-4 md:h-4 text-gray-500 cursor-pointer" />
-  </button>
+<div className="relative inline-block group">
+  <div className="font-semibold">Would you like to finance your fees?
+    <button className="focus:outline-none ml-2">
+    <Info className="w-6 h-6 md:w-4 md:h-4 text-gray-500 cursor-pointer" />
+  </button></div>
   
-  <div className="absolute left-0 top-6 w-64 sm:w-72 max-w-xs sm:max-w-sm bg-white rounded-xl shadow-xl p-4 text-sm hidden group-hover:block group-focus-within:block z-10 transition-all duration-300">
-  <p className="text-gray-600">
-    Some banks will finance most of your property transaction fees through your monthly instalments
-  </p>
+
+  <div
+    className="absolute top-8 left-1/2 -translate-x-1/2 sm:left-0 sm:translate-x-0
+               w-64 sm:w-72 max-w-[calc(100vw-2rem)]
+               bg-ef-dark-blue-2 rounded-xl shadow-xl p-4 text-sm
+               hidden group-hover:block group-focus-within:block
+               z-10 transition-all duration-300"
+  >
+    <p className="text-gray-600">
+      Some banks will finance most of your property transaction fees through
+      your monthly instalments
+    </p>
+  </div>
 </div>
+
+
 
 </div>
 
@@ -376,7 +394,7 @@ export default function MortgageCalculator() {
       }))
     }
     className={`w-12 h-6 flex items-center rounded-full p-1 ${
-      state.ToggleFinancing ? "bg-blue-600" : "bg-gray-300"
+      state.ToggleFinancing ? "bg-ef-blue" : "bg-gray-300"
     }`}
   >
     <div
@@ -421,9 +439,9 @@ export default function MortgageCalculator() {
           />
         </div>
 
-        <div className="mb-8">
+        <div className="">
           <label className="mb-2 font-semibold">Interest rate</label>
-          <div className="flex items-center border border-gray-300 rounded-xl overflow-hidden bg-gray-50 w-full mb-5">
+          <div className="flex items-center border border-gray-300 rounded-xl overflow-hidden bg-gray-50 w-full">
             <MinusCircleIcon className="w-6 h-6 mx-2 text-ef-blue" onClick={decrement} />
 
             <input
@@ -434,7 +452,7 @@ export default function MortgageCalculator() {
               value={displayValueInterest}
               onChange={handleInterestChange}
               onBlur={handleInterestBlur}
-              className="flex-1 px-4 py-3 bg-gray-50 text-black text-lg outline-none border-none"
+              className="flex-1 px-4 py-3 bg-gray-50 text-black text-lg border-0 focus:outline-none focus:border-0 focus:ring-0"
             />
 
             <PlusCircleIcon className="w-6 h-6 mx-2 text-ef-blue" onClick={increment} />
@@ -446,33 +464,40 @@ export default function MortgageCalculator() {
         </div>
       </div>
 
-      <div className="md:pl-12">
-        <div className="space-y-8">
-          <div className="space-y-4">
-  <Link href="/contact-us" className="w-full block btn text-center">
-    Apply Online in Two Minutes
-  </Link>
-  <Link href="/about-us" className="w-full block btn btn-outlined-blue text-center">
-    Find Out More
-  </Link>
+<div className="md:pl-12 md:pt-14 h-full flex flex-col">
+  <div className="space-y-8 flex-1">
+    <div className="text-right">
+      <h2 className="text-lg text-gray-600">Loan amount</h2>
+      <p className="text-3xl font-bold text-ef-blue">
+        {formatNumber(loanAmount)} AED
+      </p>
+    </div>
+    <div className="text-right">
+      <h2 className="text-lg text-gray-600">Monthly cost</h2>
+      <p className="text-3xl font-bold text-ef-blue">
+        {formatNumber(monthlyCost)} AED
+      </p>
+    </div>
+    <hr className="border-gray-300" />
+    <p className="text-sm text-gray-600">
+      Estimated monthly payment based on a{" "}
+      <span className="font-semibold">{formatNumber(loanAmount)}</span> AED loan amount with a{" "}
+      <span className="font-semibold">{state.InterestRate}%</span> fixed interest rate for the entire duration of the loan
+    </p>
+  </div>
+
+  {/* Buttons at bottom */}
+  <div className="space-y-4 mt-8">
+    <Link href="/contact-us" className="w-full block btn text-center">
+      Apply Online in Two Minutes
+    </Link>
+    <Link href="/about-us" className="w-full block btn btn-outlined-blue text-center">
+      Find Out More
+    </Link>
+  </div>
 </div>
 
-          <div className="text-right">
-            <h2 className="text-lg text-gray-600">Loan amount</h2>
-            <p className="text-3xl font-bold text-ef-blue">{formatNumber(loanAmount)} AED</p>
-          </div>
-          <div className="text-right">
-            <h2 className="text-lg text-gray-600">Monthly cost</h2>
-            <p className="text-3xl font-bold text-ef-blue">{formatNumber(monthlyCost)} AED</p>
-          </div>
-          <hr className="border-gray-300" />
-          <p className="text-sm text-gray-600">
-            Estimated monthly payment based on a <span className="font-semibold">{formatNumber(loanAmount)}</span> AED loan amount with a{" "}
-            <span className="font-semibold">{state.InterestRate}%</span> fixed interest rate for the entire duration of the loan
-          </p>
 
-        </div>
-      </div>
     </div>
   );
 }

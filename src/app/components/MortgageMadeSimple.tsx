@@ -6,10 +6,10 @@
 
 export default function MortgageMadeSimple() {
   return (
-    <div className="max-w-7xl mx-auto my-10 px-4 md:px-6">
-      <div className="grid md:grid-cols-[490px_1fr] gap-6">
+    <div className="max-w-7xl mx-auto py-5 md:pt-5 px-4 sm:px-0 lg:px-0">
+      <div className="grid md:grid-cols-[490px_1fr] md:gap-6">
         
-        <div className="mb-6 md:md-0 text-center md:text-left">
+        <div className="mb-0 md:md-0 text-center md:text-left">
           <div className="pre-mobile-heading md:pre-heading">Mortgage Calculator</div>
           <h1 className="text-ef-heading1-size text-ef-dark-blue">
             Your Mortgage Made Simple

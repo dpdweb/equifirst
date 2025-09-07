@@ -25,7 +25,7 @@ const videos = [
     title:
       "Exclusive Podcast : Mortgage Expertise Meets UAE Real Estate with Our Expert Partner",
     description:
-      "Welcome to our exclusive podcast episode where industry-leading mortgage expert Manan Law sits down with our trusted real estate partner in UAE, Firas Al Msaddi, to discuss the latest trends, opportunities, and insights in the ever-evolving UAE property market.",
+      "Industry-leading mortgage expert Manan Law and trusted real estate partner Firas Al Msaddi talk trends, opportunities, and insights in the UAE property market.",
     url: "https://www.youtube.com/watch?v=zj3OPsOac04&t=4s",
   },
   {
@@ -34,7 +34,7 @@ const videos = [
     title:
       "Renting vs. Owning in UAE: 2024 Market Trends with Mortgage Expert",
     description:
-      "We break down the latest rental price trends in UAE, explore why rates are rising, and weigh the benefits and drawbacks of renting versus owning a property. From understanding market dynamics to evaluating your financial goals, we've got all the insights you need to make an informed decision.",
+      "Latest price trends in UAE, why rates are rising, and benefits and drawbacks of renting versus owning a property.",
     url: "https://www.youtube.com/watch?v=ez8JsIpMbc4",
   },
 ];

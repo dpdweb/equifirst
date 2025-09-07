@@ -4,6 +4,7 @@ import MortgageSolutions from '@/app/components/MortgageSolutions';
 import Image from "next/image";
 // import { PlayCircle } from "lucide-react";
 import SubPageHeroBanner from '@/app/components/SubPageHeroBanner';
+import Link from 'next/link';
 
 export default function OffPlanFinance() {
 
@@ -64,9 +65,16 @@ export default function OffPlanFinance() {
       {/* <p className="text-[#007190] font-semibold mb-4">
         Ideal for: UAE residents investing in top projects.
       </p> */}
-      <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
-        Ideal for: UAE residents investing in top projects.
-      </button>
+
+        <b>Ideal for:</b> UAE residents investing in top projects.
+      <div className="space-y-4 mt-8">
+    <Link href="/contact-us" className="w-full block btn text-center">
+      Apply Online in Two Minutes
+    </Link>
+    <Link href="/about-us" className="w-full block btn btn-outlined-blue text-center">
+      Find Out More
+    </Link>
+  </div>
   </div>
 
 

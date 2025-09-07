@@ -4,7 +4,7 @@ import MortgageSolutions from '@/app/components/MortgageSolutions';
 import Image from "next/image";
 // import { PlayCircle } from "lucide-react";
 import SubPageHeroBanner from '@/app/components/SubPageHeroBanner';
-
+import Link from 'next/link';
 
 export default function BuyoutRefinance() {
 
@@ -48,9 +48,16 @@ export default function BuyoutRefinance() {
         <li>Salaried & self-employed accepted</li>
         <li>Tenure up to 25 years</li>
       </ul>
-      <button className="bg-[#007190] text-white font-medium px-6 py-3 rounded-md hover:bg-[#005e78] transition mt-4">
-        Ideal for: Borrowers seeking better interest rates or flexible terms.
-      </button>
+
+        <b>Ideal for:</b> Borrowers seeking better interest rates or flexible terms.
+ <div className="space-y-4 mt-8">
+    <Link href="/contact-us" className="w-full block btn text-center">
+      Apply Online in Two Minutes
+    </Link>
+    <Link href="/about-us" className="w-full block btn btn-outlined-blue text-center">
+      Find Out More
+    </Link>
+  </div>
             {/* <p className="text-[#007190] font-semibold mb-4">
         Ideal for: Borrowers seeking better interest rates or flexible terms.
       </p> */}

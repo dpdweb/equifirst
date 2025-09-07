@@ -232,11 +232,14 @@
   .ef-section-style-3 {
     @apply max-w-7xl mx-auto p-10 mb-20;
   }
+    .ef-section-style-calc {
+    @apply max-w-7xl mx-auto px-5 py-10 md:p-10 mb-5;
+  }
    .ef-section-style-4 {
-    @apply max-w-7xl mx-auto md:pb-20;
+    @apply max-w-7xl mx-auto md:pb-10;
   }
   .ef-section-style-testimonials {
-    @apply max-w-7xl mx-auto mb-10;
+    @apply max-w-7xl mx-auto mb-5;
   }
     .ef-section-style-testimonials {
     @apply max-w-7xl mx-auto py-5  px-4 sm:px-0 lg:px-0;
@@ -487,6 +490,16 @@ input[type='range'].slider-thumb::-moz-range-track {
 }
 
 
+
+.swiper-pagination-bullet-active{
+  background-color: #0a4456 !important; /* ef-blue */
+  width: 1rem;  /* w-4 */
+  height: 1rem; /* h-4 */
+  opacity: 1;
+}
+
+
+
 }
 @layer components {
   /* Contact Form */
@@ -539,6 +552,7 @@ input[type='range'].slider-thumb::-moz-range-track {
   .contact-btn:hover {
     @apply bg-ef-hover-blue;
   }
+  
 }
 
 @layer utilities {

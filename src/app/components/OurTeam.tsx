@@ -47,7 +47,7 @@ useEffect(() => {
   if (error) return <div className="text-center text-red-500 p-10">{error}</div>;
 
   return (
-    <section className="ef-section-style">
+    <section className="max-w-7xl mx-auto py-5 md:pt-10 px-4 sm:px-0 lg:px-0">
       <div className="hidden md:grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {/* Intro Box */}
         <div className="rounded-xl text-center md:text-left md:bg-ef-dark-blue-2 text-white pt-20 px-6">

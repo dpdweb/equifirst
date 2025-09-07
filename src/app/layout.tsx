@@ -6,6 +6,19 @@ import { SettingsProvider, Settings } from "./context/SettingsContext";
 import { fetchSettings } from "./lib/api";
 // import { cookies } from "next/headers";
 
+// export const metadata: Metadata = {
+//   title: "Equifirst",
+//   description: "Equifirst - Capital Financing",
+//   icons: {
+//     icon: [
+//       { url: '/assets/images/favicon.ico', type: 'image/x-icon', sizes: 'any' },
+//       { url: '/assets/images/favicon.png', type: 'image/png', sizes: '16x16' },
+//       { url: '/assets/images/favicon.png', type: 'image/png', sizes: '32x32' },
+//     ],
+//     apple: [{ url: '/assets/images/favicon.png' }],
+//   },
+// };
+
 export const metadata: Metadata = {
   title: "Equifirst",
   description: "Equifirst - Capital Financing",
@@ -15,7 +28,9 @@ export const metadata: Metadata = {
       { url: '/assets/images/favicon.png', type: 'image/png', sizes: '16x16' },
       { url: '/assets/images/favicon.png', type: 'image/png', sizes: '32x32' },
     ],
-    apple: [{ url: '/assets/images/favicon.png' }],
+    apple: [
+      { url: '/assets/images/favicon.png', sizes: '180x180' },
+    ],
   },
 };
 

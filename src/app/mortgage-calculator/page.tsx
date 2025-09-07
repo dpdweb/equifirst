@@ -14,7 +14,7 @@ export default function Page() {
   image="/assets/images/mortgage-calculator-hero.jpg"
 />
 
-    <div className="p-6 mt-4">
+    <div className="md:p-6 mt-4">
       <MortgageCalculator />
     </div>
 

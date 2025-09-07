@@ -20,9 +20,9 @@ const CategorySidebar: React.FC<CategorySidebarProps> = ({
   onSelect,
 }) => {
   return (
-    <div className="w-full md:w-4/12">
+    <div className="w-full">
       {/* Sidebar for medium and larger screens */}
-      <div className="hidden md:block border-r border-ef-blue border-r-2 p-4 overflow-y-auto h-full">
+      <div className="hidden md:hidden border-r border-ef-blue border-r-2 p-4 overflow-y-auto h-full">
         <ul className="space-y-2">
           {categories.map((cat) => (
             <li
@@ -39,7 +39,7 @@ const CategorySidebar: React.FC<CategorySidebarProps> = ({
       </div>
 
       {/* Dropdown for small screens */}
-      <div className="block md:hidden w-full px-4 py-2">
+      <div className="block w-full px-4 py-2">
         <select
           value={activeId}
           onChange={(e) => onSelect(e.target.value)}

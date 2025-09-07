@@ -172,7 +172,6 @@ export default function MortgageForm() {
   ))}
 </div>
 
-
           {/* Form */}
           <form onSubmit={handleSubmit}>
             {/* Step 1 */}
@@ -181,7 +180,7 @@ export default function MortgageForm() {
                 {(["first_name", "last_name", "email", "phone"] as const).map(
                   (field) => (
                     <div key={field}>
-                      <p className="font-semibold capitalize">
+                      <p className="font-semibold capitalize mb-2">
                         {field.replace("_", " ")}
                       </p>
                       <input
@@ -190,11 +189,11 @@ export default function MortgageForm() {
                         value={formData[field]}
                         onChange={handleChange}
                         placeholder={field.replace("_", " ")}
-                        className="w-full px-4 py-3 bg-gray-50 border rounded-lg outline-none"
+                        className="w-full px-4 py-3 bg-gray-50 text-black text-lg border-0 focus:outline-none focus:border-0 focus:ring-0"
                       />
                       {errors[field] && (
-                        <p className="text-red-500 text-sm">{errors[field]}</p>
-                      )}
+                        <p className="text-red-500 text-sm mt-2">{errors[field]}</p>
+                      )} 
                     </div>
                   )
                 )}
@@ -216,7 +215,7 @@ export default function MortgageForm() {
               <div className="space-y-4">
                 {/* Residency */}
                 <div>
-                  <p className="font-semibold">What is your Resident Status?</p>
+                  <p className="font-semibold mb-2">What is your Resident Status?</p>
                   <div className="flex flex-wrap gap-2">
                     {["UAE National", "Non-UAE Resident", "Expat"].map(
                       (status) => (
@@ -244,18 +243,19 @@ export default function MortgageForm() {
 
                 {/* Age */}
                 <div>
-                  <label className="block font-semibold mb-1">
+                  <p className="font-semibold mb-2">
                     Oldest applicant age
-                  </label>
+                  </p>
                   <div className="flex">
                     <input
                       type="number"
                       name="applicant_oldest_age"
                       value={formData.applicant_oldest_age}
                       onChange={handleChange}
-                      className="flex-1 border p-2 rounded-l-lg"
+                      className="flex-1 px-4 py-3 bg-gray-50 text-black text-lg border-0 focus:outline-none focus:border-0 focus:ring-0 rounded-none rounded-l-lg"
+                  
                     />
-                    <span className="bg-gray-200 px-4 py-2 rounded-r-lg">
+                    <span className="bg-gray-200 px-4 py-2 rounded-r-lg flex items-center">
                       Years
                     </span>
                   </div>
@@ -267,7 +267,7 @@ export default function MortgageForm() {
                 </div>
 
                 {/* Employment */}
-                <p className="font-semibold">Which one best describes you?</p>
+                <p className="font-semibold mb-2">Which one best describes you?</p>
                 <div className="flex gap-2">
                   {["Salaried", "Self-employed"].map((type) => (
                     <button
@@ -291,7 +291,7 @@ export default function MortgageForm() {
                 )}
 
                 {/* Property Status */}
-                <p className="font-semibold">Property status?</p>
+                <p className="font-semibold mb-2">Property status?</p>
                 <div className="flex gap-2 flex-wrap">
                   {["Completed", "Under-construction", "Land"].map((status) => (
                     <button
@@ -316,18 +316,18 @@ export default function MortgageForm() {
 
                 {/* Property Value */}
                 <div>
-                  <label className="block font-semibold mb-1">
+                  <p className="font-semibold mb-2">
                     Property value
-                  </label>
+                  </p>
                   <div className="flex">
                     <input
                       type="number"
                       name="property_value"
                       value={formData.property_value}
                       onChange={handleChange}
-                      className="flex-1 border p-2 rounded-l-lg"
+                      className="flex-1 px-4 py-3 bg-gray-50 text-black text-lg border-0 focus:outline-none focus:border-0 focus:ring-0 rounded-none rounded-l-lg"
                     />
-                    <span className="bg-gray-200 px-4 py-2 rounded-r-lg">
+                    <span className="bg-gray-200 px-4 py-2 rounded-r-lg  flex items-center">
                       {formData.currency}
                     </span>
                   </div>
@@ -340,15 +340,15 @@ export default function MortgageForm() {
 
                 {/* Area */}
                 <div>
-                  <label className="block font-semibold mb-1">Area</label>
+                  <p className="font-semibold mb-2">Area</p>
                   <select
                     name="area"
                     value={formData.area}
                     onChange={handleChange}
-                    className="w-full border p-2 rounded-lg"
+                    className="w-full px-4 py-3 bg-gray-50 text-black text-lg border-0 focus:outline-none focus:border-0 focus:ring-0 rounded-l-lg"
                   >
                     <option value="">Choose an area</option>
-                    <option>UAE</option>
+                    <option>Dubai</option>
                     <option>Abu Dhabi</option>
                     <option>Sharjah</option>
                     <option>Ajman</option>

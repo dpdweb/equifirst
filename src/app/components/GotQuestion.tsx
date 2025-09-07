@@ -11,22 +11,12 @@ export default function AnimatedTabs() {
 
   return (
     <div>
-      <div className="ef-section-style hidden md:block">
+      <div className="max-w-7xl mx-auto py-5 md:pt-10 px-4 sm:px-0 lg:px-0 hidden md:block">
         
         {/* Tabs */}
         <div className="grid grid-cols-2">
           <div className="text-3xl">Got questions? We&apos;re here to help!</div>
           <div className="flex justify-end space-x-4 mb-4">
-            <button
-              onClick={() => setActiveTab('tab1')}
-              className={`btn ${
-                activeTab === 'tab1'
-                  ? ''
-                  : 'btn-outlined'
-              }`}
-            >
-              Got questions?
-            </button>
             <button
               onClick={() => setActiveTab('tab2')}
               className={`btn ${
@@ -37,6 +27,17 @@ export default function AnimatedTabs() {
             >
               Guides
             </button>
+            <button
+              onClick={() => setActiveTab('tab1')}
+              className={`btn ${
+                activeTab === 'tab1'
+                  ? ''
+                  : 'btn-outlined'
+              }`}
+            >
+              Got questions?
+            </button>
+            
           </div>
         </div>
 

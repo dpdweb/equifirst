@@ -46,9 +46,8 @@ export default function Home() {
       <MortgageCalculator />
       {/* <ContactForm /> */}
       
-      <div className="mb-20">
+
       <GotQuestion /> 
-      </div>
       
       </div>
   );

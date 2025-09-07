@@ -29,12 +29,12 @@ const FinanceOptionCards = [
   },
   {
     title: 'Secondary Market Finance',
-    description: 'Finance completed properties and ready-to-move-in properties across the UAE.',
+    description: 'Finance completed, ready-to-move-in properties across the UAE.',
     image: '/assets/images/secondary-market-hero-small.jpg',
     link: 'services/secondary-market-finance',
   },
   {
-    title: 'Buyout/Refinance',
+    title: 'Buyout <br>Refinance',
     description: 'Transfer your mortgage to get better terms.',
     image: '/assets/images/buyout-refinance-hero-small.jpg',
     link: 'services/buyout-refinance',
@@ -51,14 +51,14 @@ const FinanceOptionCards = [
 
 export default function FinanceOptions() {
   return (
-    <div className="ef-section-style">
+    <div className="max-w-7xl mx-auto py-5 md:pt-0 px-4 sm:px-0 lg:px-0">
 
       <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 py-6">
 
         {FinanceOptionCards.map((card, index) => (
   <div key={index} className="blue-box md:h-[375px] flex flex-col justify-between relative">
     <div>
-      <h3 className="text-ef-heading1-size text-ef-dark-blue">{card.title}</h3>
+      <h3 className="text-ef-heading1-size text-ef-dark-blue" dangerouslySetInnerHTML={{ __html: card.title }}></h3>
       <p className="mt-2">{card.description}</p>
     </div>
 
@@ -86,7 +86,7 @@ export default function FinanceOptions() {
 
 </div>
 
-    <div className="block md:hidden relative w-full max-w-4xl mx-auto">
+    <div className="block h-[390px] md:hidden relative w-full max-w-4xl mx-auto">
       <Swiper
   modules={[Navigation]} // 👈 removed Autoplay module
     navigation
@@ -103,7 +103,7 @@ export default function FinanceOptions() {
         <div className="w-[40px] h-[40px] flex-none rounded-full bg-ef-dark-blue text-white flex items-center justify-center text-[18px] font-bold leading-none">
           {String(index + 1).padStart(1, '0')}
         </div>
-        <h2 className="text-2xl font-bold text-ef-dark-blue leading-snug">{slide.title}</h2>
+        <h2 className="text-2xl font-bold text-ef-dark-blue leading-snug" dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
       </div>
 
       <div className="overflow-hidden rounded-2xl">

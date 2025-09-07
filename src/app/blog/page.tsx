@@ -38,7 +38,7 @@ export default function BlogList() {
         />
       </div>
     <div className="ef-sub-page-top-style">
-      <div className="grid p-2  md:gap-6 lg:grid-cols-3 my-20">
+      <div className="grid p-2  md:gap-6 lg:grid-cols-3 my-10">
         {blogs.length === 0 ? (
           <p>No blogs found.</p>
         ) : (

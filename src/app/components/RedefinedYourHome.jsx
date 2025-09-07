@@ -40,7 +40,7 @@ export default function RedefinedYourHome() {
   }, []);
 
   return (
-    <div className="ef-section-style">
+    <div className="max-w-7xl mx-auto py-5 md:pt-10 px-4 sm:px-0 lg:px-0">
 
   <div className="hidden md:block bg-ef-dark-blue-2 rounded-4xl px-25 py-15">
     {points.map((point, index) => (

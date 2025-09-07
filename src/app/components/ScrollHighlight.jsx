@@ -72,7 +72,7 @@ export default function ScrollHighlight() {
   }, [activeIndex]);
 
   return (
-    <div className="ef-section-style">
+    <div className="max-w-7xl mx-auto py-8 md:pt-15 px-4 sm:px-0 lg:px-0">
 
       <div className="hidden md:block">
         {/* <h2 className="text-ef-blue font-extrabold text-5xl mb-10">Why choose Equifirst?</h2> */}
@@ -81,9 +81,15 @@ export default function ScrollHighlight() {
   {/* Left content (timeline) */}
   <div className="relative flex flex-col space-y-16 w-full md:w-[60%]">
     <div
-      className="absolute left-[29px] top-0 w-1 bg-[#AC9362] z-0 transition-all duration-500 ease-in-out"
-      style={{ height: `${lineHeight}px` }}
-    ></div>
+  className="absolute left-[27px] top-0 w-2 z-0 transition-all duration-500 ease-in-out"
+  style={{
+    height: `${lineHeight}px`,
+    backgroundImage: "radial-gradient(circle, #AC9362 3px, transparent 3px)",
+    backgroundSize: "8px 16px", // dot size & spacing
+    backgroundRepeat: "repeat-y",
+  }}
+></div>
+
 
     {points.map((point, index) => (
       <div
@@ -162,9 +168,9 @@ export default function ScrollHighlight() {
   <SwiperSlide key={index}>
     <div className="p-6 rounded-lg max-w-5xl mx-auto">
       <div className="flex items-center gap-4 mb-4">
-        <div className="w-[40px] h-[40px] flex-none rounded-full bg-ef-dark-blue text-white flex items-center justify-center text-[18px] font-bold leading-none">
+        {/* <div className="w-[40px] h-[40px] flex-none rounded-full bg-ef-dark-blue text-white flex items-center justify-center text-[18px] font-bold leading-none">
           {index + 1}
-        </div>
+        </div> */}
         <h2 className="text-2xl font-bold text-ef-dark-blue leading-snug">{point.title}</h2>
       </div>
 
@@ -181,9 +187,6 @@ export default function ScrollHighlight() {
   </SwiperSlide>
 ))}
 
-      
-
-         
             </Swiper>
       
       <div
