@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+// import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -13,9 +13,9 @@ export default function HeroSlider({ onScrollClick }: HeroSliderProps) {
   // const lineRef = useRef<HTMLDivElement>(null);
   // const [animateLine, setAnimateLine] = useState(false);
 
-  useEffect(() => {
-    requestAnimationFrame(() => setAnimateLine(true));
-  }, []);
+  // useEffect(() => {
+  //   requestAnimationFrame(() => setAnimateLine(true));
+  // }, []);
 
   return (
     <div className="relative mx-auto max-w-8xl h-[600px] md:h-[550px] sm:rounded-[30px] overflow-hidden">
