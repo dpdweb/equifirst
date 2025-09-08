@@ -51,7 +51,7 @@ const FinanceOptionCards = [
 
 export default function FinanceOptions() {
   return (
-    <div className="max-w-7xl mx-auto py-5 md:pt-0 px-4 sm:px-0 lg:px-0">
+    <div className="mx-auto w-full max-w-[1366px] py-5 md:pt-0 px-4 sm:px-6 lg:px-8">
 
       <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 py-6">
 

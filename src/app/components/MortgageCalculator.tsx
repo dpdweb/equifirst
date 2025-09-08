@@ -189,10 +189,11 @@ export default function MortgageCalculator() {
       InterestRate: newValue,
     }));
 
-  };
+  }
 
   return (
-    <div className="ef-section-style-calc grid grid-cols-1 md:grid-cols-2 mx-auto p-2 md:p-6 border-4 border-ef-dark-blue rounded-4xl gap-8">
+    <div className="mx-auto w-full max-w-[1366px] py-5 md:pt-0 px-4 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-1 md:grid-cols-2  p-2 md:p-6 border-4 border-ef-dark-blue rounded-4xl gap-8">
       {/* Residency Status */}
       <div className="md:pr-12">
         <div className="mb-8">
@@ -502,6 +503,8 @@ export default function MortgageCalculator() {
   </div>
 </div>
 
+
+    </div>
 
     </div>
   );

@@ -44,7 +44,7 @@ const CategorySidebar: React.FC<CategorySidebarProps> = ({
         <select
   value={activeId}
   onChange={(e) => onSelect(e.target.value)}
-  className="w-full p-2 border-[3px] border-ef-blue rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-ef-blue"
+  className="w-full p-2 border-[3px] border-ef-blue rounded-lg text-[20px] font-bold text-gray-700 focus:outline-none focus:ring-2 focus:ring-ef-blue"
 >
 
           {categories.map((cat) => (

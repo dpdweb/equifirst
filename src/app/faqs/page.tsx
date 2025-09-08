@@ -72,14 +72,12 @@ export default function FaqPage() {
   return (
     <div>
      
-    
-    <div className="ef-sub-page-top-style">
       <SubPageHeroBanner
         title="FAQs"
         subtitle="Answers At Your Fingertips"
         image="/assets/images/faq-hero.jpg"
       />
-      <div className=" mb-20 pt-10 md:mt-0">
+      <div className="mx-auto w-full max-w-[1366px] py-5 md:pt-10 px-4 sm:px-6 lg:px-8">
         <CategorySidebar
           categories={categories}
           activeId={selectedCategory}
@@ -104,7 +102,7 @@ export default function FaqPage() {
           )}
         </div>
       </div>
-    </div>
+
     </div>
   );
 }

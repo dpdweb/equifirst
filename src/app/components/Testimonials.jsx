@@ -49,7 +49,9 @@ const Testimonials = () => {
       </h2>
 
       {/* Swiper */}
-<div className="ef-section-style-testimonials relative px-4">
+{/* <div className="ef-section-style-testimonials relative px-4"> */}
+  <div className="relative mx-auto w-full max-w-[1366px] py-5 md:pt-10 px-4 sm:px-6 lg:px-8">
+    
   <Swiper
     className="mb-5"
     spaceBetween={16}

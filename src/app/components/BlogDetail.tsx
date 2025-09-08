@@ -33,14 +33,14 @@ export default function BlogDetail({ blog }: { blog: Blog }) {
 
   return (
     <div>
-      <div className="ef-sub-page-top-style">
+
         
             <SubPageHeroBanner
                             title="Off-Plan Finance"
                             subtitle={blog.title}
                             image={blog.image}
                           />
-            </div>
+
 
 
       {/* Blog Content */}

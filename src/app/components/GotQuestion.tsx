@@ -11,7 +11,7 @@ export default function AnimatedTabs() {
 
   return (
     <div>
-      <div className="max-w-7xl mx-auto py-5 md:pt-10 px-4 sm:px-0 lg:px-0 hidden md:block">
+      <div className="mx-auto w-full max-w-[1366px] py-5 md:pt-5 px-4 sm:px-6 lg:px-8 hidden md:block">
         
         {/* Tabs */}
         <div className="grid grid-cols-2">

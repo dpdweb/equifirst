@@ -6,7 +6,7 @@
 
 export default function MortgageMadeSimple() {
   return (
-    <div className="max-w-7xl mx-auto py-5 md:pt-5 px-4 sm:px-0 lg:px-0">
+    <div className="mx-auto w-full max-w-[1366px] py-5 md:pt-0 px-4 sm:px-6 lg:px-8">
       <div className="grid md:grid-cols-[490px_1fr] md:gap-6">
         
         <div className="mb-0 md:md-0 text-center md:text-left">
@@ -21,7 +21,6 @@ export default function MortgageMadeSimple() {
             Make informed decisions about your mortgage options. Use our free mortgage calculator to find out the costs associated with buying your property.
           </p>
         </div>
-
       </div>
     </div>
   );

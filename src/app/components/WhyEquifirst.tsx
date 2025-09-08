@@ -51,7 +51,8 @@ export default function WhyEquifirst({ onScrollClick }: HeroSliderProps) {
   };
 
   return (
-    <div className="max-w-7xl mx-auto py-8 md:pt-15 px-4 sm:px-0 lg:px-0">
+    <div className="mx-auto w-full max-w-[1366px] py-5 md:pt-10 px-4 sm:px-6 lg:px-8">
+
       <div className="grid md:grid-cols-[490px_1fr] md:gap-6">
         {/* LEFT SIDE */}
         <div className="md:mb-6 md:text-left">

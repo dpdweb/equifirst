@@ -25,7 +25,7 @@ const ContactForm = () => {
 
   return (
     <div>
-      <div className="ef-sub-page-top-style">
+      <div className="mx-auto w-full max-w-[1366px] py-5 md:pt-10 px-4 sm:px-6 lg:px-8">
         <div className="flex w-full">
           <LeftPanel />
           <MortgageForm />

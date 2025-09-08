@@ -72,7 +72,7 @@ export default function ScrollHighlight() {
   }, [activeIndex]);
 
   return (
-    <div className="max-w-7xl mx-auto py-8 md:pt-15 px-4 sm:px-0 lg:px-0">
+    <div className="mx-auto w-full max-w-[1366px] py-5 md:pt-10 px-4 sm:px-6 lg:px-8">
 
       <div className="hidden md:block">
         {/* <h2 className="text-ef-blue font-extrabold text-5xl mb-10">Why choose Equifirst?</h2> */}

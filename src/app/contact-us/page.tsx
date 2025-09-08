@@ -9,7 +9,7 @@ export default function ContactUs() {
   subtitle="We’re Here to Help You Anytime"
   image="/assets/images/contact-hero.jpg"
 />
-    <div className="mt-20">
+    <div className="mt-5">
    
       <ContactForm />
       </div>

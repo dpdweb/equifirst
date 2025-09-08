@@ -6,7 +6,9 @@
 
 export default function FinaMortgageServices() {
   return (
-    <div className="max-w-7xl mx-auto py-5 md:pt-5 px-4 sm:px-0 lg:px-0">
+   
+      <div className="mx-auto w-full max-w-[1366px] pt-5 md:pt-5 px-4 sm:px-6 lg:px-8">
+      
       <div className="grid md:grid-cols-[490px_1fr] gap-6">
         
         <div className="mb-6 md:md-0">

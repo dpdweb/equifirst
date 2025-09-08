@@ -30,13 +30,13 @@ export default function BlogList() {
 
   return (
     <div>
-      <div className="ef-sub-page-top-style">
+    
         <SubPageHeroBanner
           title="Blog"
           subtitle="Insights To Guide You"
           image="/assets/images/blog-hero.jpg"
         />
-      </div>
+
     <div className="ef-sub-page-top-style">
       <div className="grid p-2  md:gap-6 lg:grid-cols-3 my-10">
         {blogs.length === 0 ? (

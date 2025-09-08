@@ -18,7 +18,10 @@ interface FormData {
   property_value: string;
   currency: string;
   area: string;
-  timeframe_to_buy: string;
+  timeframe_to_buy: {
+    value: string;
+    label: string;
+  };
   income: string;
 
 }
@@ -47,7 +50,7 @@ export default function MortgageForm() {
     property_value: "",
     currency: "AED",
     area: "",
-    timeframe_to_buy: "",
+    timeframe_to_buy: { value: "", label: "" },
     income: "",
   
   });
@@ -119,7 +122,7 @@ export default function MortgageForm() {
         value: Number(formData.property_value),
         currency: formData.currency,
         area: formData.area,
-        timeframe_to_buy: formData.timeframe_to_buy,
+        timeframe_to_buy: formData.timeframe_to_buy.value,
         income: formData.income,
       },
     };
@@ -396,23 +399,31 @@ export default function MortgageForm() {
   <p className="font-semibold mb-2">Timeframe to Buy</p>
   <select
     name="timeframe_to_buy"
-    value={formData.timeframe_to_buy}
-    onChange={handleChange}
+    value={formData.timeframe_to_buy.value || ""} // value stored in object
+    onChange={(e) => {
+      const { value, options, selectedIndex } = e.target;
+      const label = options[selectedIndex].text;
+      setFormData((prev) => ({
+        ...prev,
+        timeframe_to_buy: { value, label }, // store both
+      }));
+    }}
     className="w-full px-4 py-3 bg-gray-50 text-black text-lg border-0 focus:outline-none focus:border-0 focus:ring-0 rounded-lg"
   >
     <option value="">Choose a Timeframe To Buy</option>
     <option value="+4">{"< 1 month"}</option>
     <option value="+3">1–3 months</option>
     <option value="+2">3–6 months</option>
-    <option value="exploring">Just exploring</option>
+    <option value="+0">Just exploring</option>
   </select>
   {errors.timeframe_to_buy && (
     <p className="text-red-500 text-sm">{errors.timeframe_to_buy}</p>
   )}
 </div>
 
+
 <div>
-  <p className="font-semibold mb-2">Income</p>
+  <p className="font-semibold mb-2">Monthly Income</p>
   <div className="relative">
  
 
@@ -422,7 +433,7 @@ export default function MortgageForm() {
       name="income"
       value={formData.income}
       onChange={handleChange}
-      placeholder="Enter your income"
+      placeholder="Enter value in AED"
       className="w-full pl-4 pr-4 py-3 bg-gray-50 text-black text-lg border-0 focus:outline-none focus:ring-0 rounded-lg"
     />
   </div>
@@ -488,7 +499,7 @@ export default function MortgageForm() {
                     <strong>Area:</strong> {formData.area}
                   </p>
                   <p>
-                    <strong>Timeframe to Buy:</strong> {formData.timeframe_to_buy}
+                    <strong>Timeframe to Buy:</strong> {formData.timeframe_to_buy.label || ""}
                   </p>
                   <p>
                     <strong>Income:</strong> {formData.income}{" "}

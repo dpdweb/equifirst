@@ -4,7 +4,8 @@ export default function UnlockDoor() {
 
 
   return (
-    <div className="max-w-7xl mx-auto py-5 md:pt-10 px-4 sm:px-0 lg:px-0">
+    <div className="mx-auto w-full max-w-[1366px] py-5 md:pt-10 px-4 sm:px-6 lg:px-8">
+      
   <div className="relative section-padding bg-[url('/assets/images/unlocking-doors.jpg')] bg-cover bg-center h-[200px] md:h-[450px] rounded-[15px] md:rounded-[30px] p-15 text-center md:text-left flex items-center justify-center md:items-start md:justify-start overflow-hidden">
     
     {/* Overlay */}

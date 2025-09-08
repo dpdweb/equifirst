@@ -8,7 +8,7 @@ interface HeroBannerProps {
 
 export default function SubPageHeroBanner({ title, subtitle, image }: HeroBannerProps) {
   return (
-<section className="relative md:rounded-4xl overflow-hidden max-w-8xl mx-auto h-[500px] md:h-[300px] flex items-center">
+<section className="relative w-full max-w-[1440px] h-[500px] md:h-[300px] flex items-center overflow-hidden md:rounded-4xl mx-0 md:mx-[1px] xl:mx-auto">
   <Image
     src={image}
     alt={title || "Hero Section"}
