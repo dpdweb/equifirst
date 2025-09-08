@@ -40,11 +40,13 @@ const CategorySidebar: React.FC<CategorySidebarProps> = ({
 
       {/* Dropdown for small screens */}
       <div className="block w-full px-4 py-2">
+        <h2 className="mb-3">Pick a category, get your answers.</h2>
         <select
-          value={activeId}
-          onChange={(e) => onSelect(e.target.value)}
-          className="w-full p-2 border border-ef-blue rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-ef-blue"
-        >
+  value={activeId}
+  onChange={(e) => onSelect(e.target.value)}
+  className="w-full p-2 border-[3px] border-ef-blue rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-ef-blue"
+>
+
           {categories.map((cat) => (
             <option key={cat.id} value={cat.id}>
               {cat.name}

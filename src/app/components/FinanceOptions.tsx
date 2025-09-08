@@ -34,7 +34,7 @@ const FinanceOptionCards = [
     link: 'services/secondary-market-finance',
   },
   {
-    title: 'Buyout <br>Refinance',
+    title: 'Buyout <br>(Refinance)',
     description: 'Transfer your mortgage to get better terms.',
     image: '/assets/images/buyout-refinance-hero-small.jpg',
     link: 'services/buyout-refinance',

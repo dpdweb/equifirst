@@ -65,7 +65,7 @@ const Testimonials = () => {
             delay: 3000,
             disableOnInteraction: false,
           }
-        : false
+        : true
     }
     pagination={{
       clickable: true,

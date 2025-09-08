@@ -3,6 +3,7 @@
 // import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import SubPageHeroBanner from './SubPageHeroBanner';
+import Link from 'next/link';
 
 interface Author {
   image: string;
@@ -88,6 +89,17 @@ export default function BlogDetail({ blog }: { blog: Blog }) {
     </p>
   </div>
 )}
+
+<div className="border-b pb-6">
+  <div className="space-y-4 mt-8">
+    <Link href="/contact-us" className="w-full block btn text-center">
+      Apply Online in Two Minutes
+    </Link>
+    <Link href="/about-us" className="w-full block btn btn-outlined-blue text-center">
+      Find Out More
+    </Link>
+  </div>
+</div>
 
 
             {/* <div>

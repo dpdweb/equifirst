@@ -18,7 +18,7 @@ export default function HeroSlider({ onScrollClick }: HeroSliderProps) {
   // }, []);
 
   return (
-    <div className="relative mx-auto max-w-8xl h-[600px] md:h-[550px] sm:rounded-[30px] overflow-hidden">
+    <div className="relative mx-auto max-w-7xl h-[600px] md:h-[550px] sm:rounded-[30px] overflow-hidden">
       {/* Background Video */}
       <div className="relative max-h-[calc(min(85vh,760px))] min-h-[720px] max-w-[1440px] overflow-hidden max-lg:h-[756px] md:max-h-[calc(min(95dvh,960px))]">
         <video

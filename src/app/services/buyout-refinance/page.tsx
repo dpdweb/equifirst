@@ -30,7 +30,7 @@ export default function BuyoutRefinance() {
         Buyout / Refinance
       </h2>
       <p className="text-gray-700 mb-4">
-        Transfer your mortgage to better terms.
+        Transfer your mortgage to get better terms.
       </p>
       <h3 className="text-lg font-semibold text-[#007190]">Key Features:</h3>
       <ul className="text-gray-700 list-disc list-inside space-y-1 mb-1">

@@ -1,5 +1,8 @@
 "use client";
 import { useState } from "react";
+import "react-phone-input-2/lib/style.css";
+import PhoneInput from "react-phone-input-2";
+import { time } from "console";
 
 interface FormData {
   lead_source: string;
@@ -15,6 +18,9 @@ interface FormData {
   property_value: string;
   currency: string;
   area: string;
+  timeframe_to_buy: string;
+  income: string;
+
 }
 
 interface Errors {
@@ -37,10 +43,13 @@ export default function MortgageForm() {
     residency: "",
     applicant_oldest_age: "",
     employment_type: "",
-    property_status: "",
+    property_status: "",  
     property_value: "",
     currency: "AED",
     area: "",
+    timeframe_to_buy: "",
+    income: "",
+  
   });
 
   // handle input change
@@ -76,6 +85,8 @@ export default function MortgageForm() {
       if (!formData.property_value)
         newErrors.property_value = "Property value is required";
       if (!formData.area) newErrors.area = "Area is required";
+      if (!formData.timeframe_to_buy) newErrors.timeframe_to_buy = "Timeframe to buy is required";
+      if (!formData.income) newErrors.income = "Income is required";
     }
 
     setErrors(newErrors);
@@ -108,6 +119,8 @@ export default function MortgageForm() {
         value: Number(formData.property_value),
         currency: formData.currency,
         area: formData.area,
+        timeframe_to_buy: formData.timeframe_to_buy,
+        income: formData.income,
       },
     };
 
@@ -177,7 +190,7 @@ export default function MortgageForm() {
             {/* Step 1 */}
             {step === 1 && (
               <div className="space-y-4">
-                {(["first_name", "last_name", "email", "phone"] as const).map(
+                {(["first_name","last_name", "email"] as const).map(
                   (field) => (
                     <div key={field}>
                       <p className="font-semibold capitalize mb-2">
@@ -198,6 +211,21 @@ export default function MortgageForm() {
                   )
                 )}
 
+                <div>
+    <p className="font-semibold capitalize mb-2">Phone</p>
+    <PhoneInput
+      country={"ae"} // default country
+      value={formData.phone}
+      onChange={(value) =>
+        setFormData((prev) => ({ ...prev, phone: value }))
+      }
+      inputClass="!w-full !px-12 !py-3 !bg-gray-50 !text-black !text-lg !border-0 focus:!ring-0"
+      buttonClass="!border-0"
+    />
+    {errors.phone && (
+      <p className="text-red-500 text-sm mt-2">{errors.phone}</p>
+    )}
+  </div>
                 <div className="flex justify-end">
                   <button
                     type="button"
@@ -364,6 +392,47 @@ export default function MortgageForm() {
                   )}
                 </div>
 
+<div>
+  <p className="font-semibold mb-2">Timeframe to Buy</p>
+  <select
+    name="timeframe_to_buy"
+    value={formData.timeframe_to_buy}
+    onChange={handleChange}
+    className="w-full px-4 py-3 bg-gray-50 text-black text-lg border-0 focus:outline-none focus:border-0 focus:ring-0 rounded-lg"
+  >
+    <option value="">Choose a Timeframe To Buy</option>
+    <option value="+4">{"< 1 month"}</option>
+    <option value="+3">1–3 months</option>
+    <option value="+2">3–6 months</option>
+    <option value="exploring">Just exploring</option>
+  </select>
+  {errors.timeframe_to_buy && (
+    <p className="text-red-500 text-sm">{errors.timeframe_to_buy}</p>
+  )}
+</div>
+
+<div>
+  <p className="font-semibold mb-2">Income</p>
+  <div className="relative">
+ 
+
+    {/* Input */}
+    <input
+      type="number"
+      name="income"
+      value={formData.income}
+      onChange={handleChange}
+      placeholder="Enter your income"
+      className="w-full pl-4 pr-4 py-3 bg-gray-50 text-black text-lg border-0 focus:outline-none focus:ring-0 rounded-lg"
+    />
+  </div>
+
+  {errors.income && (
+    <p className="text-red-500 text-sm mt-2">{errors.income}</p>
+  )}
+</div>
+
+
                 <div className="flex justify-between">
                   <button
                     type="button"
@@ -417,6 +486,13 @@ export default function MortgageForm() {
                   </p>
                   <p>
                     <strong>Area:</strong> {formData.area}
+                  </p>
+                  <p>
+                    <strong>Timeframe to Buy:</strong> {formData.timeframe_to_buy}
+                  </p>
+                  <p>
+                    <strong>Income:</strong> {formData.income}{" "}
+                    {formData.currency}
                   </p>
                 </div>
 

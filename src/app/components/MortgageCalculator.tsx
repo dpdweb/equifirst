@@ -358,10 +358,15 @@ export default function MortgageCalculator() {
 <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
 
 <div className="flex items-center space-x-2 relative group">
-  <div className="font-semibold hidden md:block">Would you like to finance your fees?</div>
+
+<div className="font-semibold hidden md:flex items-center gap-2">
+  <span>Would you like to finance your fees?</span>
+  <Info className="w-6 h-6 md:w-4 md:h-4 text-gray-500 cursor-pointer" />
+</div>
+
   
 <div className="relative inline-block group">
-  <div className="font-semibold">Would you like to finance your fees?
+  <div className="font-semibold block md:hidden">Would you like to finance your fees?
     <button className="focus:outline-none ml-2">
     <Info className="w-6 h-6 md:w-4 md:h-4 text-gray-500 cursor-pointer" />
   </button></div>
