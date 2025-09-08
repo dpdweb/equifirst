@@ -2,7 +2,7 @@
 import { useState } from "react";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
-import { time } from "console";
+
 
 interface FormData {
   lead_source: string;
