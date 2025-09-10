@@ -68,7 +68,7 @@ export default function MortgageForm() {
   
   // Function to extract Google Ads URL parameters
   useEffect(() => {
-  console.log("useEffect has been triggered");
+  
     const params = new URLSearchParams(window.location.search);
 
     // Extract Google Ads parameters if present
