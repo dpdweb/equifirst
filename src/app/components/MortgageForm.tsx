@@ -4,6 +4,15 @@ import { useEffect } from "react";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
 
+// Custom Hook to capture URL parameters
+const useQueryParams = () => {
+  const [params, setParams] = useState({
+    gclid: "",
+    utm_source: "",
+    utm_campaign: "",
+    utm_medium: "",
+    utm_term: "",
+  });
 
 interface FormData {
   lead_source: string;
