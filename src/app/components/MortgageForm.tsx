@@ -23,6 +23,11 @@ interface FormData {
     label: string;
   };
   income: string;
+  gclid: string; // Added for Google Ads
+  utm_source: string; // Added for Google Ads
+  utm_campaign: string; // Added for Google Ads
+  utm_medium: string; // Added for Google Ads
+  utm_term: string; // Added for Google Ads
 
 }
 
@@ -52,8 +57,35 @@ export default function MortgageForm() {
     area: "",
     timeframe_to_buy: { value: "", label: "" },
     income: "",
+	gclid: "",  // Initialize
+    utm_source: "",  // Initialize
+    utm_campaign: "",  // Initialize
+    utm_medium: "",  // Initialize
+    utm_term: "",  // Initialize
   
   });
+  
+  // Function to extract Google Ads URL parameters
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    // Extract Google Ads parameters if present
+    const gclid = params.get("gclid") || "";
+    const utm_source = params.get("utm_source") || "";
+    const utm_campaign = params.get("utm_campaign") || "";
+    const utm_medium = params.get("utm_medium") || "";
+    const utm_term = params.get("utm_term") || "";
+
+    // Update formData with the extracted parameters
+    setFormData((prev) => ({
+      ...prev,
+      gclid,
+      utm_source,
+      utm_campaign,
+      utm_medium,
+      utm_term,
+    }));
+  }, []);
 
   // handle input change
   const handleChange = (
@@ -125,6 +157,11 @@ export default function MortgageForm() {
         timeframe_to_buy: formData.timeframe_to_buy.value,
         income: formData.income,
       },
+	  gclid: formData.gclid, // Include Google Ads data
+      utm_source: formData.utm_source,
+      utm_campaign: formData.utm_campaign,
+      utm_medium: formData.utm_medium,
+      utm_term: formData.utm_term,
     };
 
     try {
