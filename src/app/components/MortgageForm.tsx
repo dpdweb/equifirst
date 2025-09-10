@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useEffect } from "react";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
 
@@ -75,9 +76,7 @@ export default function MortgageForm() {
     const utm_campaign = params.get("utm_campaign") || "";
     const utm_medium = params.get("utm_medium") || "";
     const utm_term = params.get("utm_term") || "";
-// Log the parameters to check if they are captured correctly
-  console.log({ 'test'});
-    // Update formData with the extracted parameters
+
     setFormData((prev) => ({
       ...prev,
       gclid,
