@@ -75,7 +75,8 @@ export default function MortgageForm() {
     const utm_campaign = params.get("utm_campaign") || "";
     const utm_medium = params.get("utm_medium") || "";
     const utm_term = params.get("utm_term") || "";
-
+// Log the parameters to check if they are captured correctly
+  console.log({ gclid, utm_source, utm_campaign, utm_medium, utm_term });
     // Update formData with the extracted parameters
     setFormData((prev) => ({
       ...prev,
