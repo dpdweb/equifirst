@@ -67,21 +67,22 @@ export default function MortgageForm() {
   
   });
   
-// Extract Google Ads parameters using Next.js router
+  // Extract Google Ads parameters using Next.js router
   useEffect(() => {
-    const { gclid, utm_source, utm_campaign, utm_medium, utm_term } = router.query;
-    console.log("Query parameters:", { gclid, utm_source, utm_campaign, utm_medium, utm_term });
+    if (router.isReady) {
+      const { gclid, utm_source, utm_campaign, utm_medium, utm_term } = router.query;
+      console.log("Query parameters:", { gclid, utm_source, utm_campaign, utm_medium, utm_term });
 
-    // Update formData with the query parameters
-    setFormData((prev) => ({
-      ...prev,
-      gclid: gclid || "",
-      utm_source: utm_source || "",
-      utm_campaign: utm_campaign || "",
-      utm_medium: utm_medium || "",
-      utm_term: utm_term || "",
-    }));
-  }, [router.query]); // Re-run whenever query parameters change
+      setFormData((prev) => ({
+        ...prev,
+        gclid: gclid ? Array.isArray(gclid) ? gclid[0] : gclid : "",
+        utm_source: utm_source ? Array.isArray(utm_source) ? utm_source[0] : utm_source : "",
+        utm_campaign: utm_campaign ? Array.isArray(utm_campaign) ? utm_campaign[0] : utm_campaign : "",
+        utm_medium: utm_medium ? Array.isArray(utm_medium) ? utm_medium[0] : utm_medium : "",
+        utm_term: utm_term ? Array.isArray(utm_term) ? utm_term[0] : utm_term : "",
+      }));
+    }
+  }, [router.isReady, router.query]);
 
   // handle input change
   const handleChange = (
