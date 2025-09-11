@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
 
@@ -36,6 +37,7 @@ interface Errors {
 }
 
 export default function MortgageForm() {
+  const router = useRouter();
   const titles = ["", "Personal Info", "Property Information", "Review & Submit"];
   const [step, setStep] = useState<number>(1);
   const [success, setSuccess] = useState<boolean>(false);
@@ -65,26 +67,21 @@ export default function MortgageForm() {
   
   });
   
-  // Function to extract Google Ads URL parameters
+// Extract Google Ads parameters using Next.js router
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+    const { gclid, utm_source, utm_campaign, utm_medium, utm_term } = router.query;
+    console.log("Query parameters:", { gclid, utm_source, utm_campaign, utm_medium, utm_term });
 
-    // Extract Google Ads parameters if present
-    const gclid = params.get("gclid") || "";
-    const utm_source = params.get("utm_source") || "";
-    const utm_campaign = params.get("utm_campaign") || "";
-    const utm_medium = params.get("utm_medium") || "";
-    const utm_term = params.get("utm_term") || "";
-
+    // Update formData with the query parameters
     setFormData((prev) => ({
       ...prev,
-      gclid,
-      utm_source,
-      utm_campaign,
-      utm_medium,
-      utm_term,
+      gclid: gclid || "",
+      utm_source: utm_source || "",
+      utm_campaign: utm_campaign || "",
+      utm_medium: utm_medium || "",
+      utm_term: utm_term || "",
     }));
-  }, []);
+  }, [router.query]); // Re-run whenever query parameters change
 
   // handle input change
   const handleChange = (
