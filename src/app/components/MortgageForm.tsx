@@ -59,11 +59,11 @@ export default function MortgageForm() {
     area: "",
     timeframe_to_buy: { value: "", label: "" },
     income: "",
-	gclid: "",  // Initialize
-    utm_source: "",  // Initialize
-    utm_campaign: "",  // Initialize
-    utm_medium: "",  // Initialize
-    utm_term: "",  // Initialize
+	 gclid: "12345", // Hardcoded for testing
+    utm_source: "google", // Hardcoded for testing
+    utm_campaign: "test_campaign", // Hardcoded for testing
+    utm_medium: "cpc", // Hardcoded for testing
+    utm_term: "test_term", // Hardcoded for testing
   
   });
   
@@ -75,11 +75,11 @@ export default function MortgageForm() {
 
       setFormData((prev) => ({
         ...prev,
-        gclid: gclid ? Array.isArray(gclid) ? gclid[0] : gclid : "",
-        utm_source: utm_source ? Array.isArray(utm_source) ? utm_source[0] : utm_source : "",
-        utm_campaign: utm_campaign ? Array.isArray(utm_campaign) ? utm_campaign[0] : utm_campaign : "",
-        utm_medium: utm_medium ? Array.isArray(utm_medium) ? utm_medium[0] : utm_medium : "",
-        utm_term: utm_term ? Array.isArray(utm_term) ? utm_term[0] : utm_term : "",
+         gclid: "12345", // Hardcoded for testing
+    utm_source: "google", // Hardcoded for testing
+    utm_campaign: "test_campaign", // Hardcoded for testing
+    utm_medium: "cpc", // Hardcoded for testing
+    utm_term: "test_term", // Hardcoded for testing
       }));
     }
   }, [router.isReady, router.query]);
