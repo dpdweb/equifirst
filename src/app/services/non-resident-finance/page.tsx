@@ -1,9 +1,9 @@
 "use client";
 import React from 'react';
-import MortgageSolutions from '@/app/components/MortgageSolutions';
+import MortgageSolutions from '@/app/components/MortgageSolutions.tsx';
 import Image from "next/image";
 // import { PlayCircle } from "lucide-react";
-import SubPageHeroBanner from '@/app/components/SubPageHeroBanner';
+import SubPageHeroBanner from '@/app/components/SubPageHeroBanner.tsx';
 import Link from 'next/link';
 
 export default function WhoWeAre() {
