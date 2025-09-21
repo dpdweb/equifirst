@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import MortgageSolutions from '@/app/components/MortgageSolutions';
+import MortgageSolutions from "@/components/MortgageSolutions";
 import Image from "next/image";
 // import { PlayCircle } from "lucide-react";
 import SubPageHeroBanner from '@/app/components/SubPageHeroBanner';
