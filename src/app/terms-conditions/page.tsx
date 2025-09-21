@@ -1,6 +1,6 @@
 'use client';
 import SubPageHeroBanner from "../components/SubPageHeroBanner";
-import Image from "next/image";
+
 
 export default function TermsConditions() {
   return (
