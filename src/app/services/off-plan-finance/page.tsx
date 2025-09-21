@@ -1,9 +1,9 @@
 "use client";
 import React from 'react';
-import MortgageSolutions from "@/components/MortgageSolutions";
+import MortgageSolutions from "@/app/components/MortgageSolutions";
 import Image from "next/image";
 // import { PlayCircle } from "lucide-react";
-import SubPageHeroBanner from '@/components/SubPageHeroBanner';
+import SubPageHeroBanner from '@/app/components/SubPageHeroBanner';
 import Link from 'next/link';
 
 export default function OffPlanFinance() {
