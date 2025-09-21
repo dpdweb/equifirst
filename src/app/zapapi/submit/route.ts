@@ -1,20 +1,21 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-const leadSchema = z.object({
-  first_name: z.string().min(1),
-  last_name: z.string().min(1),
-  email: z.string().email(),
-  phone: z.string().min(5),
-  residency: z.string().optional(),
-  property_value: z.string().optional(),
-  // ✅ Campaign fields
-  gclid: z.string().optional(),
-  utm_source: z.string().optional(),
-  utm_campaign: z.string().optional(),
-  utm_medium: z.string().optional(),
-  utm_term: z.string().optional(),
-});
+const leadSchema = z
+  .object({
+    first_name: z.string().min(1),
+    last_name: z.string().min(1),
+    email: z.string().email(),
+    phone: z.string().min(5),
+
+    // Google Ads campaign fields
+    gclid: z.string().optional(),
+    utm_source: z.string().optional(),
+    utm_campaign: z.string().optional(),
+    utm_medium: z.string().optional(),
+    utm_term: z.string().optional(),
+  })
+  .passthrough(); // ✅ allow all other fields
 
 const WEBHOOK = process.env.ZAPIER_WEBHOOK_URL;
 
@@ -30,7 +31,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const cookies = req.headers.get("cookie") || "";
 
-    // Grab campaign params from cookies if not already in body
+    // Collect campaign params from cookies if not in body
     const cookieMap = Object.fromEntries(
       cookies
         .split(";")
@@ -47,16 +48,17 @@ export async function POST(req: Request) {
       utm_term: body.utm_term || cookieMap["utm_term"] || "",
     };
 
-    // ✅ Validate enriched payload
+    // ✅ Validate but allow unknown fields
     const parsed = leadSchema.safeParse(enriched);
     if (!parsed.success) {
+      console.error("Validation failed:", parsed.error.flatten());
       return NextResponse.json(
         { error: "Invalid payload", details: parsed.error.flatten() },
         { status: 400 }
       );
     }
 
-    // ✅ Forward to Zapier webhook
+    // ✅ Forward everything (including unknown fields) to Zapier
     const zapRes = await fetch(WEBHOOK, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
