@@ -1,18 +1,67 @@
 import { NextResponse } from "next/server";
+import { z } from "zod";
+
+const leadSchema = z.object({
+  first_name: z.string().min(1),
+  last_name: z.string().min(1),
+  email: z.string().email(),
+  phone: z.string().min(5),
+  residency: z.string().optional(),
+  property_value: z.string().optional(),
+  // ✅ Campaign fields
+  gclid: z.string().optional(),
+  utm_source: z.string().optional(),
+  utm_campaign: z.string().optional(),
+  utm_medium: z.string().optional(),
+  utm_term: z.string().optional(),
+});
+
+const WEBHOOK = process.env.ZAPIER_WEBHOOK_URL;
 
 export async function POST(req: Request) {
+  if (!WEBHOOK) {
+    return NextResponse.json(
+      { error: "Server misconfigured: missing Zapier webhook URL" },
+      { status: 500 }
+    );
+  }
+
   try {
     const body = await req.json();
+    const cookies = req.headers.get("cookie") || "";
 
-    // Forward to Zapier webhook
-    const zapRes = await fetch(
-      "https://hooks.zapier.com/hooks/catch/21299663/u63cv1h/",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      }
+    // Grab campaign params from cookies if not already in body
+    const cookieMap = Object.fromEntries(
+      cookies
+        .split(";")
+        .map((c) => c.trim().split("="))
+        .filter(([k, v]) => k && v)
     );
+
+    const enriched = {
+      ...body,
+      gclid: body.gclid || cookieMap["gclid"] || "",
+      utm_source: body.utm_source || cookieMap["utm_source"] || "",
+      utm_campaign: body.utm_campaign || cookieMap["utm_campaign"] || "",
+      utm_medium: body.utm_medium || cookieMap["utm_medium"] || "",
+      utm_term: body.utm_term || cookieMap["utm_term"] || "",
+    };
+
+    // ✅ Validate enriched payload
+    const parsed = leadSchema.safeParse(enriched);
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: "Invalid payload", details: parsed.error.flatten() },
+        { status: 400 }
+      );
+    }
+
+    // ✅ Forward to Zapier webhook
+    const zapRes = await fetch(WEBHOOK, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(parsed.data),
+    });
 
     if (!zapRes.ok) {
       const text = await zapRes.text();
@@ -29,7 +78,7 @@ export async function POST(req: Request) {
   }
 }
 
-// Optional GET (for quick test in browser)
+// Quick test endpoint
 export async function GET() {
   return NextResponse.json({ message: "API is working ✅" });
 }
