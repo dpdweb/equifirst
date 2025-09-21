@@ -3,7 +3,7 @@ import React from 'react';
 import MortgageSolutions from "@/components/MortgageSolutions";
 import Image from "next/image";
 // import { PlayCircle } from "lucide-react";
-import SubPageHeroBanner from '@/app/components/SubPageHeroBanner';
+import SubPageHeroBanner from '@/components/SubPageHeroBanner';
 import Link from 'next/link';
 
 export default function EquityRelease() {
