@@ -44,18 +44,11 @@ export default async function RootLayout({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'AW-11226423965');
+              gtag('config', 'G-H0ZK1HWCP9');
             `,
           }}
         />
-        <!-- Google tag (gtag.js) -->
-<Script async src="https://www.googletagmanager.com/gtag/js?id=G-H0ZK1HWCP9" />
-<Script
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-H0ZK1HWCP9');
-/>
+        
       </head>
       <body>
         {/* ✅ GTM still works for marketing pages */}
