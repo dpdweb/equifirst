@@ -3,6 +3,13 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
+// Declare gtag globally for TypeScript
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 
 interface FormData {
   lead_source: string;
@@ -160,9 +167,9 @@ export default function MortgageForm() {
   };
 
   if (success) {
-    // ✅ Fire conversion event
-  if (typeof window !== "undefined" && typeof (window as any).gtag !== "undefined") {
-    (window as any).gtag("event", "conversion", {
+ // ✅ Fire conversion event safely
+  if (typeof window !== "undefined" && typeof window.gtag !== "undefined") {
+    window.gtag("event", "conversion", {
       send_to: "AW-11226423965/UfvDCLj1x5sbEJ3Flukp",
     });
   }
