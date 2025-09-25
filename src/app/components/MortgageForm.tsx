@@ -6,9 +6,10 @@ import PhoneInput from "react-phone-input-2";
 // Declare gtag globally for TypeScript
 declare global {
   interface Window {
-    gtag?: (...args: any[]) => void;
+    gtag?: (...args: [command: string, eventName: string, params?: Record<string, unknown>]) => void;
   }
 }
+
 
 
 interface FormData {
