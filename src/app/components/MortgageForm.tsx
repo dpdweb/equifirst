@@ -160,6 +160,12 @@ export default function MortgageForm() {
   };
 
   if (success) {
+    // ✅ Fire conversion event
+  if (typeof window !== "undefined" && typeof (window as any).gtag !== "undefined") {
+    (window as any).gtag("event", "conversion", {
+      send_to: "AW-11226423965/UfvDCLj1x5sbEJ3Flukp",
+    });
+  }
     return (
       <div className="w-full md:w-[65%]">
         <div className="p-8 text-center bg-[#eaf4f7] rounded-xl">

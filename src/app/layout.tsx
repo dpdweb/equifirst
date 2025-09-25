@@ -4,7 +4,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { SettingsProvider, Settings } from "./context/SettingsContext";
 import { fetchSettings } from "./lib/api";
-import GTMWrapper from "./GTMWrapper"; // ✅ import wrapper
+import Script from "next/script"; // ✅ import Script
+import GTMWrapper from "./GTMWrapper";
 
 export const metadata: Metadata = {
   title: "Equifirst",
@@ -28,9 +29,27 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <head />
+      <head>
+        {/* ✅ Google Ads Global Site Tag */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11226423965"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-ads"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-11226423965');
+            `,
+          }}
+        />
+      </head>
       <body>
-        {/* ✅ GTM will only load if not /dashboard or /login */}
+        {/* ✅ GTM still works for marketing pages */}
         <GTMWrapper />
 
         <SettingsProvider settings={settings}>
