@@ -36,7 +36,7 @@ export default function BlogDetail({ blog }: { blog: Blog }) {
 
         
             <SubPageHeroBanner
-                            title="Off-Plan Finance"
+                            title="Blog Post"
                             subtitle={blog.title}
                             image={blog.image}
                           />
