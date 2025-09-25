@@ -45,6 +45,7 @@ export default async function RootLayout({
               gtag('js', new Date());
               gtag('config', 'AW-11226423965');
               gtag('config', 'G-H0ZK1HWCP9');
+              gtag('config', 'G-PVXQTRW0SP');
             `,
           }}
         />
