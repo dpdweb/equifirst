@@ -39,4 +39,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...blogs.map((blog) => ({
       url: `${baseUrl}/blog/${blog.slug}`,
-      lastModified: blog.up
+      lastModified: blog.updated_at
+        ? new Date(blog.updated_at)
+        : new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    })),
+  ];
+}
