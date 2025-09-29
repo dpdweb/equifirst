@@ -1,5 +1,10 @@
 import { MetadataRoute } from "next";
 
+type Blog = {
+  slug: string;
+  updated_at?: string;
+};
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.equifirst.ae";
 
@@ -21,7 +26,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/terms-conditions",
   ];
 
-  const blogs = await fetch(`${baseUrl}/api/blogs`).then((res) => res.json());
+  const blogs: Blog[] = await fetch(`${baseUrl}/api/blogs`).then((res) =>
+    res.json()
+  );
 
   return [
     ...staticRoutes.map((route) => ({
@@ -30,11 +37,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 0.7,
     })),
-    ...blogs.map((blog: any) => ({
+    ...blogs.map((blog) => ({
       url: `${baseUrl}/blog/${blog.slug}`,
-      lastModified: blog.updated_at || new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    })),
-  ];
-}
+      lastModified: blog.up
