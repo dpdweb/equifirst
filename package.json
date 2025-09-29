@@ -25,7 +25,8 @@
     "react-phone-input-2": "^2.15.1",
     "react-player": "^3.0.0",
     "react-range-slider-input": "^3.2.1",
-    "swiper": "^11.2.8"
+    "swiper": "^11.2.8",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
