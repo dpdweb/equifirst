@@ -34,15 +34,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticRoutes.map((route) => ({
       url: `${baseUrl}${route}`,
       lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: "weekly" as const, // 👈 cast to string literal
       priority: 0.7,
     })),
     ...blogs.map((blog) => ({
       url: `${baseUrl}/blog/${blog.slug}`,
-      lastModified: blog.updated_at
-        ? new Date(blog.updated_at)
-        : new Date(),
-      changeFrequency: "weekly",
+      lastModified: blog.updated_at ? new Date(blog.updated_at) : new Date(),
+      changeFrequency: "weekly" as const, // 👈 same fix here
       priority: 0.9,
     })),
   ];
