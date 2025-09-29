@@ -1,5 +1,3 @@
-const fetch = require("node-fetch");
-
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: "https://www.equifirst.ae",
@@ -8,14 +6,13 @@ module.exports = {
   sitemapSize: 10000,
   changefreq: "weekly",
   priority: 0.7,
-    exclude: ['/admin/*'], // (optional) exclude routes
-  generateIndexSitemap: false, // single sitemap.xml
+  generateIndexSitemap: false,
   sourceDir: "src/app",
 
   // Add blog posts dynamically
-  additionalPaths: async (config) => {
+  additionalPaths: async () => {
     try {
-      const res = await fetch("https://www.equifirst.ae/api/blogs"); // adjust if your API URL differs
+      const res = await fetch("https://www.equifirst.ae/api/blogs"); // adjust to your real API
       const blogs = await res.json();
 
       return blogs.map((blog) => ({
