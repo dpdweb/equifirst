@@ -1,24 +1,32 @@
+const fetch = require("node-fetch");
+
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://www.equifirst.ae',
+  siteUrl: "https://www.equifirst.ae",
   generateRobotsTxt: true,
-  sitemapSize: 7000,       // keep everything in one sitemap
-  changefreq: 'weekly',
+  outDir: "./public",
+  sitemapSize: 10000,
+  changefreq: "weekly",
   priority: 0.7,
-  exclude: ['/admin/*'], // (optional) exclude routes
-  outDir: './public',
+    exclude: ['/admin/*'], // (optional) exclude routes
+  generateIndexSitemap: false, // single sitemap.xml
+  sourceDir: "src/app",
 
-  // Remove the manual additionalPaths with hard-coded links
-  // Let next-sitemap automatically pick all static pages
+  // Add blog posts dynamically
+  additionalPaths: async (config) => {
+    try {
+      const res = await fetch("https://www.equifirst.ae/api/blogs"); // adjust if your API URL differs
+      const blogs = await res.json();
 
-  // If you still need dynamic pages later, you can add:
-  // additionalPaths: async (config) => {
-  //   const posts = await fetch('https://api.equifirst.ae/posts').then(res => res.json());
-  //   return posts.map((post) => ({
-  //     loc: `/blog/${post.slug}`,
-  //     changefreq: 'weekly',
-  //     priority: 0.9,
-  //     lastmod: new Date().toISOString(),
-  //   }));
-  // }
+      return blogs.map((blog) => ({
+        loc: `/blog/${blog.slug}`,
+        changefreq: "weekly",
+        priority: 0.9,
+        lastmod: blog.updated_at || new Date().toISOString(),
+      }));
+    } catch (err) {
+      console.error("Error fetching blogs for sitemap:", err);
+      return [];
+    }
+  },
 };
