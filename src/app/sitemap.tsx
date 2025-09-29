@@ -1,6 +1,11 @@
 import { MetadataRoute } from "next";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+type Blog = {
+  slug: string;
+  date?: string;
+};
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.equifirst.ae";
 
   const staticRoutes = [
@@ -21,10 +26,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/terms-conditions",
   ];
 
-  return staticRoutes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
+  // Fetch blog posts from API
+  let blogs: Blog[] = [];
+  try {
+    const res = await fetch(`${baseUrl}/api/blogs`, { next: { revalidate: 60 } });
+    const json = await res.json();
+
+    if (json && Array.isArray(json.data)) {
+      blogs = json.data;
+    }
+  } catch (err) {
+    console.error("Error fetching blogs for sitemap:", err);
+  }
+
+  return [
+    // Static pages
+    ...staticRoutes.map((route) => ({
+      url: `${baseUrl}${route}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    })),
+    // Blog pages
+    ...blogs.map((blog) => ({
+      url: `${baseUrl}/blog/${blog.slug}`,
+      lastModified: blog.date ? new Date(blog.date) : new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    })),
+  ];
 }
