@@ -45,18 +45,18 @@ export default function OffPlanFinance() {
         <ul className="text-gray-700 list-disc list-inside space-y-1 mb-4">
 
         <li><b>Approved developers:</b>
-          <ul className="list-disc list-inside ml-4">
+          <ul className="pl-2 list-inside ml-4">
 
-            <li>Emaar</li>
-            <li>Dubai Holding</li>
-            <li>Majid AL Futtaim</li>
-            <li>Al Wasl Group</li>
-            <li>AL - DAR [Dubai projects]</li>
-            <li>Shoba</li>
-            <li>Damac</li>
-            <li>Ellington</li>
-            <li>Omniyat</li>
-            <li>Binghatti</li>
+            <li>- Emaar</li>
+            <li>- Dubai Holding</li>
+            <li>- Majid AL Futtaim</li>
+            <li>- Al Wasl Group</li>
+            <li>- AL - DAR [Dubai projects]</li>
+            <li>- Shoba</li>
+            <li>- Damac</li>
+            <li>- Ellington</li>
+            <li>- Omniyat</li>
+            <li>- Binghatti</li>
 
           </ul>
         </li>
