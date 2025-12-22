@@ -41,9 +41,9 @@ export function middleware(req: NextRequest) {
   }
 
   // ✅ Block others if no review access
-  if (!hasAccess) {
-    return NextResponse.redirect(new URL("/coming-soon", req.url));
-  }
+  //if (!hasAccess) {
+   // return NextResponse.redirect(new URL("/coming-soon", req.url));
+  //}
 
   return res;
 }
