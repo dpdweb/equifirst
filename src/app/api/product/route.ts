@@ -16,6 +16,14 @@ interface HealthCheckBody {
   get?: string;
 }
 
+// CORS headers
+const corsHeaders = {
+  'Access-Control-Allow-Origin': 'https://www.equifirst.ae', // Allow the main domain
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+  'Access-Control-Allow-Credentials': 'true',
+};
+
 export async function GET() {
   return NextResponse.json({
     status: 'ok',
