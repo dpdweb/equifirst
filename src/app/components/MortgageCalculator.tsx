@@ -49,7 +49,7 @@ export default function MortgageCalculator() {
 
 
   useEffect(() => {
-    const Months = state.LoanDuration * 12;
+    const Months = state.LoanDuration;
     const Rate = (state.InterestRate / 100) / 12;
     let Principal = state.Price - state.DownPayment;
 
@@ -402,16 +402,16 @@ export default function MortgageCalculator() {
           <div className="mb-8">
             <label className="block font-semibold mb-3 flex items-center justify-between">
               <div>Loan duration<span className="ml-1 text-red-500">*</span></div>
-              <div>{state.LoanDuration} Years <span className="text-gray-600 text-sm">({state.LoanDuration * 12} Months)</span> </div>
+              <div>{state.LoanDuration} Months <span className="text-gray-600 text-sm"> { Math.ceil(state.LoanDuration/12) } years {state.LoanDuration % 12} months </span> </div>
             </label>
             <Slider
               min={0}
-              max={25}
+              max={300}
               step={1}
               value={state.LoanDuration}
               onChange={(value) => {
                 if (typeof value === "number") {
-                  const clampedValue = value < 5 ? 5 : value; // enforce min=5
+                  const clampedValue = value < 60 ? 60 : value; // enforce min=5
                   setState((prev) => ({
                     ...prev,
                     LoanDuration: clampedValue,
