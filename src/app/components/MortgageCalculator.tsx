@@ -5,7 +5,7 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/outline"; // ✅ Added ChevronDownIcon
 import Link from 'next/link';
-import RadialPaymentChart from './RadialPaymentChart';
+import LoanChart from './RadialPaymentChart';
 
 export default function MortgageCalculator() {
   const residentialStatus = {
@@ -402,7 +402,7 @@ export default function MortgageCalculator() {
           <div className="mb-8">
             <label className="block font-semibold mb-3 flex items-center justify-between">
               <div>Loan duration<span className="ml-1 text-red-500">*</span></div>
-              <div>{state.LoanDuration} Months <span className="text-gray-600 text-sm"> { Math.ceil(state.LoanDuration/12) } years {state.LoanDuration % 12} months </span> </div>
+              <div>{state.LoanDuration} Months <span className="text-gray-600 text-sm"> { Math.floor(state.LoanDuration/12) } years {state.LoanDuration % 12} months </span> </div>
             </label>
             <Slider
               min={0}
@@ -459,7 +459,7 @@ export default function MortgageCalculator() {
 
         <div className="md:p5 h-full flex flex-col">
           <div className=" flex-1 flex flex-col items-center">
-            <RadialPaymentChart principalInterest={monthlyCost} lifeInsurance={lifeInsurance} propertyInsurance={propertyInsurance} />
+            <LoanChart principalInterest={monthlyCost - lifeInsurance - propertyInsurance} lifeInsurance={lifeInsurance} propertyInsurance={propertyInsurance} />
 
             {/* <div className="text-center">
               <h2 className="text-lg text-gray-600">Loan amount</h2>

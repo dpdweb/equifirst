@@ -9,7 +9,6 @@ const RadialPaymentChart = ({
 }) => {
   const [animated, setAnimated] = useState(false);
   const [hoveredSegment, setHoveredSegment] = useState<number | null>(null);
-  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
 
   const data = {
     principalInterest,
@@ -32,166 +31,114 @@ const RadialPaymentChart = ({
     return () => clearTimeout(timer);
   }, []);
 
-  // SVG circle parameters
-  const size = 300;
-  const strokeWidth = 12;
-  const radius = (size - strokeWidth) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const center = size / 2;
-
-  // Calculate segment offsets (starting from top, going clockwise)
+  // Segment configuration with colors
   const segments = [
     {
       name: 'Principle & Interest',
       value: data.principalInterest,
       percentage: percentages.principalInterest,
       color: '#167a9a',
-      offset: 0
     },
     {
       name: 'Life Insurance',
       value: data.lifeInsurance,
       percentage: percentages.lifeInsurance,
       color: '#69b6d0',
-      offset: percentages.principalInterest
     },
     {
       name: 'Property Insurance',
       value: data.propertyInsurance,
       percentage: percentages.propertyInsurance,
       color: '#e7efef',
-      offset: percentages.principalInterest + percentages.lifeInsurance
     }
   ];
 
-  const getStrokeDasharray = (percentage: number) => {
-    const segmentLength = (percentage / 100) * circumference;
-    return `${segmentLength} ${circumference - segmentLength}`;
-  };
-
-  const getStrokeDashoffset = (offset: number) => {
-    const offsetLength = (offset / 100) * circumference;
-    return -offsetLength;
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<SVGCircleElement>, index: number) => {
-    setHoveredSegment(index);
-    const rect = e.currentTarget.getBoundingClientRect();
-    setTooltipPosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
-  };
-
   return (
-    
-      <div className="bg-white max-w-md w-full ">
-        {/* Chart Container */}
-        <div className="relative flex items-center justify-center mb-8">
-          <svg 
-            width={size} 
-            height={size} 
-            className="transform -rotate-90"
-            onMouseLeave={() => setHoveredSegment(null)}
-          >
-            {/* Background circle */}
-            <circle
-              cx={center}
-              cy={center}
-              r={radius}
-              fill="none"
-              stroke="#E5E7EB"
-              strokeWidth={strokeWidth}
-            />
-            
-            {/* Animated segments */}
-            {segments.map((segment, index) => (
-              <circle
-                key={segment.name}
-                cx={center}
-                cy={center}
-                r={radius}
-                fill="none"
-                stroke={segment.color}
-                strokeWidth={strokeWidth}
-                strokeDasharray={getStrokeDasharray(segment.percentage)}
-                strokeDashoffset={getStrokeDashoffset(segment.offset)}
-                strokeLinecap="butt"
-                className="transition-all duration-1000 ease-out cursor-pointer"
-                style={{
-                  opacity: animated ? 1 : 0,
-                  strokeDasharray: animated 
-                    ? getStrokeDasharray(segment.percentage)
-                    : `0 ${circumference}`,
-                  filter: hoveredSegment === index ? 'brightness(1.1)' : 'none'
-                }}
-                onMouseMove={(e) => handleMouseMove(e, index)}
-              />
-            ))}
-          </svg>
-          
-          {/* Center text */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-            <div className="text-5xl font-bold text-gray-700">
-              {currency} {total.toLocaleString()}
-            </div>
-            <h2 className="text-gray-600 text-lg mt-2">Monthly Payment</h2>
-          </div>
-
-          {/* Hover Tooltip */}
-          {hoveredSegment !== null && (
-            <div
-              className="absolute pointer-events-none bg-gray-100 text-black px-4 py-3 rounded-lg shadow-lg z-10 transition-all"
-              style={{
-                left: `${tooltipPosition.x}px`,
-                top: `${tooltipPosition.y}px`,
-                transform: 'translate(-50%, -100%)'
-              }}
-            >
-              <div className="text-xs font-medium opacity-90 mb-1">
-                {segments[hoveredSegment].name}
-              </div>
-              <div className="text-lg font-bold">
-                {currency} {segments[hoveredSegment].value.toLocaleString()}
-              </div>
-              {/* <div className="text-xs opacity-75 mt-1">
-                {segments[hoveredSegment].percentage.toFixed(1)}% of total
-              </div> */}
-            </div>
-          )}
+    <div className="bg-white w-full">
+      {/* Total Payment Display */}
+      <div className="m-8 text-center">
+        <div className="text-4xl font-bold text-gray-800">
+          {currency} {total.toLocaleString()}
         </div>
-
-        {/* Legend - conditional rendering */}
-        {showLegend && (
-          <div className="space-y-3">
-            {segments.map((segment, index) => (
-              <div
-                key={segment.name}
-                className="flex items-center justify-between p-3 rounded-lg transition-all cursor-pointer hover:bg-gray-50"
-                onMouseEnter={() => setHoveredSegment(index)}
-                onMouseLeave={() => setHoveredSegment(null)}
-              >
-                <div className="flex items-center gap-3">
-                  <div
-                    className="w-4 h-4 rounded-full"
-                    style={{ backgroundColor: segment.color }}
-                  />
-                  <span className="text-gray-700 font-medium">{segment.name}</span>
-                </div>
-                <div className="text-right">
-                  <div className="font-semibold text-gray-900">
-                    {currency} {segment.value.toLocaleString()}
-                  </div>
-                  <div className="text-sm text-gray-500">
-                    {segment.percentage.toFixed(1)}%
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+        <p className="text-gray-600 mt-2">Monthly Payment Breakdown</p>
       </div>
 
+      {/* Horizontal Bar Chart */}
+      <div className="mb-8">
+        <div className="relative h-8 bg-gradient-to-r rounded-lg overflow-hidden shadow-sm border border-gray-100 flex"
+             style={{
+               background: `linear-gradient(to right, 
+                 ${segments[0].color} 0%, 
+                 ${segments[0].color} ${segments[0].percentage}%,
+                 ${segments[1].color} ${segments[0].percentage}%,
+                 ${segments[1].color} ${segments[0].percentage + segments[1].percentage}%,
+                 ${segments[2].color} ${segments[0].percentage + segments[1].percentage}%,
+                 ${segments[2].color} 100%)`
+             }}>
+          {segments.map((segment, index) => (
+            <div
+              key={segment.name}
+              style={{ width: `${segment.percentage}%` }}
+              className="h-full flex items-center justify-center text-white font-bold text-xs cursor-pointer transition-all duration-300"
+              onMouseEnter={() => setHoveredSegment(index)}
+              onMouseLeave={() => setHoveredSegment(null)}
+              title={segment.name}
+            >
+              {segment.percentage > 8 && `${segment.percentage.toFixed(0)}%`}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Legend Section with Horizontal Bars */}
+      {showLegend && (
+        <div className="space-y-5">
+          {segments.map((segment, index) => (
+            <div
+              key={segment.name}
+              className="transition-all duration-300 ease-out"
+              onMouseEnter={() => setHoveredSegment(index)}
+              onMouseLeave={() => setHoveredSegment(null)}
+            >
+              {/* Label and Value */}
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <div
+                    className="w-3 h-3 rounded-full transition-all duration-300"
+                    style={{ 
+                      backgroundColor: segment.color,
+                      opacity: hoveredSegment === null || hoveredSegment === index ? 1 : 0.4
+                    }}
+                  />
+                  <span className={`font-medium transition-all duration-300 ${hoveredSegment === index ? 'text-gray-900 font-semibold' : 'text-gray-700'} ${hoveredSegment !== null && hoveredSegment !== index ? 'opacity-50' : ''}`}>
+                    {segment.name}
+                  </span>
+                </div>
+                <div className={`text-right transition-all duration-300 ${hoveredSegment === index ? 'font-bold text-gray-900' : 'text-gray-600'} ${hoveredSegment !== null && hoveredSegment !== index ? 'opacity-50' : ''}`}>
+                  <span>{currency} {segment.value.toLocaleString()}</span>
+                  <span className="ml-2 text-gray-500">({segment.percentage.toFixed(1)}%)</span>
+                </div>
+              </div>
+
+              {/* Horizontal Bar */}
+              <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                <div
+                  className={`h-full rounded-full transition-all duration-300 ${
+                    hoveredSegment === index ? 'shadow-lg' : ''
+                  }`}
+                  style={{
+                    backgroundColor: segment.color,
+                    width: `${animated ? segment.percentage : 0}%`,
+                    opacity: hoveredSegment === null || hoveredSegment === index ? 1 : 0.3,
+                    boxShadow: hoveredSegment === index ? `0 0 12px ${segment.color}` : 'none'
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 
