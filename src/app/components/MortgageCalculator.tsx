@@ -32,7 +32,7 @@ export default function MortgageCalculator() {
   const [state, setState] = useState({
     Price: initialPrice,
     DownPayment: Math.round(initialPrice * downPaymentMinMax.min / 100),
-    LoanDuration: 25,
+    LoanDuration: 60,
     InterestRate: 4.0,
     LifeInsurance: 0.2298,
     PropertyInsurance: 0.041,
@@ -411,7 +411,7 @@ export default function MortgageCalculator() {
               value={state.LoanDuration}
               onChange={(value) => {
                 if (typeof value === "number") {
-                  const clampedValue = value < 60 ? 60 : value; // enforce min=5
+                  const clampedValue = value < 60 ? 60 : value; // enforce min 5years 60 months
                   setState((prev) => ({
                     ...prev,
                     LoanDuration: clampedValue,
