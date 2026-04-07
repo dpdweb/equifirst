@@ -5,6 +5,7 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { MinusCircleIcon, PlusCircleIcon } from "@heroicons/react/24/outline"; // ✅ Added ChevronDownIcon
 import Link from 'next/link';
+import LoanChart from './RadialPaymentChart';
 
 export default function MortgageCalculator() {
   const residentialStatus = {
@@ -31,7 +32,7 @@ export default function MortgageCalculator() {
   const [state, setState] = useState({
     Price: initialPrice,
     DownPayment: Math.round(initialPrice * downPaymentMinMax.min / 100),
-    LoanDuration: 25,
+    LoanDuration: 60,
     InterestRate: 4.0,
     LifeInsurance: 0.2298,
     PropertyInsurance: 0.041,
@@ -42,11 +43,13 @@ export default function MortgageCalculator() {
   const [loanAmount, setLoanAmount] = useState(0);
   const [monthlyCost, setMonthlyCost] = useState(0);
   const [upfrontCosts, setUpfrontCosts] = useState(0);
+  const [lifeInsurance, setLifeInsurance] = useState(0);
+  const [propertyInsurance, setPropertyInsurance] = useState(0);
   const [displayValueInterest, setDisplayValueInterest] = useState<string>("4.0");
 
 
   useEffect(() => {
-    const Months = state.LoanDuration * 12;
+    const Months = state.LoanDuration;
     const Rate = (state.InterestRate / 100) / 12;
     let Principal = state.Price - state.DownPayment;
 
@@ -74,6 +77,8 @@ export default function MortgageCalculator() {
 
     setLoanAmount(Math.round(Principal));
     setMonthlyCost(Math.round(Monthly + LifeIns + PropIns));
+    setLifeInsurance(Math.round(LifeIns));
+    setPropertyInsurance(Math.round(PropIns));
     setUpfrontCosts(Math.round(Upfront));
   }, [
     state.Price,
@@ -397,16 +402,16 @@ export default function MortgageCalculator() {
           <div className="mb-8">
             <label className="block font-semibold mb-3 flex items-center justify-between">
               <div>Loan duration<span className="ml-1 text-red-500">*</span></div>
-              <div>{state.LoanDuration} Years <span className="text-gray-600 text-sm">({state.LoanDuration * 12} Months)</span> </div>
+              <div>{state.LoanDuration} Months <span className="text-gray-600 text-sm"> { Math.floor(state.LoanDuration/12) } years {state.LoanDuration % 12} months </span> </div>
             </label>
             <Slider
               min={0}
-              max={25}
+              max={300}
               step={1}
               value={state.LoanDuration}
               onChange={(value) => {
                 if (typeof value === "number") {
-                  const clampedValue = value < 5 ? 5 : value; // enforce min=5
+                  const clampedValue = value < 60 ? 60 : value; // enforce min 5years 60 months
                   setState((prev) => ({
                     ...prev,
                     LoanDuration: clampedValue,
@@ -452,45 +457,29 @@ export default function MortgageCalculator() {
           </div>
         </div>
 
-        <div className="md:pl-12 md:pt-14 h-full flex flex-col">
-          <div className="space-y-8 flex-1">
-            <div className="text-center">
+        <div className="md:p5 h-full flex flex-col">
+          <div className=" flex-1 flex flex-col items-center">
+            <LoanChart principalInterest={monthlyCost - lifeInsurance - propertyInsurance} lifeInsurance={lifeInsurance} propertyInsurance={propertyInsurance} />
+
+            {/* <div className="text-center">
               <h2 className="text-lg text-gray-600">Loan amount</h2>
               <p className="text-2xl font-bold text-ef-blue">
                 {formatNumber(loanAmount)} AED
               </p>
             </div>
+            
             <div className="text-center">
               <div className="flex items-center justify-center">
               <h2 className="text-lg text-gray-600">Monthly cost</h2>
-              {/* <button className="  focus:outline-none ml-2 relative group ">
-               <Info className="w-6 h-6 md:w-4 md:h-4 text-gray-500 cursor-pointer" />
-                 <div
-                  className="absolute top-8 left-1/2 -translate-x-1/2 sm:left-0 sm:translate-x-0
-                    w-64 sm:w-72 max-w-[calc(100vw-2rem)]
-                    bg-ef-dark-blue-2 rounded-xl shadow-xl p-4 text-sm
-                    hidden group-hover:block group-focus-within:block
-                    z-10 transition-all duration-300"
-                    >
-                 <div style={{display: 'flex', flexDirection: 'column', gap: 2}}>
-                  <div>
-                    Principal & Interest - {formatNumber(monthlyCost * 0.8 ) } AED
-                  </div>
-                  <div>
-                    Life Insurance - {formatNumber(monthlyCost * 0.1 ) } AED
-                  </div>
-                  <div>
-                    Property Insurance - {formatNumber(monthlyCost * 0.1 ) } AED
-                  </div>
-                 </div>      
-                </div>
-              </button> */}
               </div>
               <p className="text-5xl font-bold text-ef-blue">
                 {formatNumber(monthlyCost)} AED
               </p>
-            </div>
-            <hr className="border-gray-300" />
+              
+            </div> */}
+
+
+            
             <p className="text-sm text-gray-600">
               Estimated monthly payment based on a{" "}
               <span className="font-semibold">{formatNumber(loanAmount)}</span> AED loan amount with a{" "}

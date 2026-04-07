@@ -79,7 +79,7 @@ const nextConfig = {
       // Production domain
       {
         protocol: 'https',
-        hostname: 'equifirst.ae',
+        hostname: 'www.equifirst.ae',
         pathname: '/**',
       },
       // Localhost without forcing port
