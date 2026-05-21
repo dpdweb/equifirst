@@ -13,6 +13,7 @@ interface Blog {
   date?: string;
   image?: string;
   views?: number;
+
 }
 
 export default function BlogList() {
@@ -53,7 +54,8 @@ export default function BlogList() {
                 date: blog.date
                   ? blog.date
                   : undefined,
-                views: blog.views
+                views: blog.views,
+                excerpt: blog.excerpt,
               }}
             />
           ))
