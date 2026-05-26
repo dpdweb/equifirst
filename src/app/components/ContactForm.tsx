@@ -25,10 +25,14 @@ const ContactForm = () => {
 
   return (
     <div>
-      <div className="mx-auto w-full max-w-[1366px] py-5 md:pt-10 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1366px] py-5 md:pt-10 px-4 sm:px-6 lg:px-8 ">
         <div className="flex w-full">
-          <LeftPanel />
-          <MortgageForm />
+          <div className="bg-white w-full md:w-[35%] flex flex-col items-center p-6 rounded-lg hidden md:block">
+            <LeftPanel />
+          </div>
+          <div className="w-full md:w-[65%]">
+            <MortgageForm />
+          </div>
       </div>
     </div>
     </div>

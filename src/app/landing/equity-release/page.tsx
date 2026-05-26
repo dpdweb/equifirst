@@ -4,6 +4,7 @@ import ProcessSection from '@/app/components/landing/ProcessSection';
 import TestimonialsSection from '@/app/components/landing/TestimonialsSection';
 import QuoteButton from '@/app/components/landing/QuoteButton';
 import LeadForm from '@/app/components/landing/LeadForm';
+import MortgageForm from '@/app/components/MortgageForm';
 
 export const metadata: Metadata = {
   title: 'Equity Release — Equifirst Capital Financing',
@@ -311,8 +312,10 @@ export default function EquityReleasePage() {
                 ))}
               </div>
             </div>
-
-            <div
+            <div className="form-container-equi">
+              <MortgageForm />
+          </div>
+            {/* <div
               style={{
                 background: 'var(--white)',
                 border: '1px solid rgba(198,182,155,0.5)',
@@ -321,12 +324,13 @@ export default function EquityReleasePage() {
                 boxShadow: '0 14px 40px rgba(44,45,46,0.08)',
               }}
             >
+              <MortgageForm />
               <LeadForm
                 heading="Find out how much equity you can release."
                 fields={LEAD_FIELDS}
                 submitLabel="Calculate My Equity"
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

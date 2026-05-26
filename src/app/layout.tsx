@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import LayoutContent from "./LayoutContent";
 import { SettingsProvider, Settings } from "./context/SettingsContext";
 import { fetchSettings } from "./lib/api";
 import Script from "next/script"; // ✅ import Script
@@ -55,11 +54,11 @@ export default async function RootLayout({
         {/* ✅ GTM still works for marketing pages */}
         <GTMWrapper />
 
-        <SettingsProvider settings={settings}>
-          <Header />
-          {children}
-          <Footer />
-        </SettingsProvider>
+<SettingsProvider settings={settings}>
+  <LayoutContent>
+    {children}
+  </LayoutContent>
+</SettingsProvider>
       </body>
     </html>
   );

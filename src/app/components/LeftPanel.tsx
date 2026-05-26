@@ -29,7 +29,7 @@ export default function LeftPanel() {
   }, []);
 
   return (
-    <div className="bg-white w-full md:w-[35%] flex flex-col items-center p-6 rounded-lg hidden md:block">
+    <div >
       <h1 className="text-ef-mobile-heading1-size md:text-ef-heading1-size text-ef-dark-blue mb-10">
         Let&apos;s connect - this won&apos;t take long!
       </h1>

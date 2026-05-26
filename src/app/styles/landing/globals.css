@@ -240,7 +240,7 @@ img { max-width: 100%; display: block; }
 .lp-hero-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  gap: 25px;
   align-items: center;
 }
 .lp-hero-content { max-width: 540px; }
@@ -410,10 +410,10 @@ img { max-width: 100%; display: block; }
 .lp-modal-backdrop { position: absolute; inset: 0; background: rgba(44,45,46,0.55); backdrop-filter: blur(6px); }
 .lp-modal-card {
   position: relative;
-  background: var(--white);
+  background: #eaf4f7;
   border-radius: 14px;
   padding: 40px;
-  max-width: 460px;
+  max-width: 660px;
   width: 100%;
   box-shadow: 0 30px 80px rgba(0,0,0,0.30);
   animation: lpPop 0.28s cubic-bezier(0.2,0,0,1);
@@ -514,4 +514,18 @@ img { max-width: 100%; display: block; }
   .lp-proc-track::before { display: none; }
 }
 
-.bg-ef-dark-gray {display: none !important;}
+/* .bg-ef-dark-gray {display: none !important;} */
+
+.form-container-equi {}
+.form-container-equi .form-container-inner-equi { padding: 30px; }
+.form-container-equi .form-container-inner-equi .top-space { padding-top: 30px !important; }
+.form-container-equi .form-container-inner-equi .form-field-equi { margin-bottom: 10px !important; }
+.form-container-equi .form-container-inner-equi .form-field-equi input, select { padding: 10px;}
+.form-container-equi .form-container-inner-equi .form-field-equi input.form-control { padding: 10px;}
+.form-container-equi .form-container-inner-equi  button { padding: 6px 20px; font-weight: 700; margin-top: 10px; }
+.form-container-equi .fs-mt { margin-top: 10px; }
+.form-container-equi .peq-1 { padding-right: 10px; padding-left: 10px; }
+.form-container-equi .eq-review { padding: 20px;}
+.form-container-equi .eq-review p{ margin-bottom: 6px;}
+
+    

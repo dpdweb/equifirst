@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
+
+
 // Declare gtag globally for TypeScript
 declare global {
   interface Window {
@@ -185,8 +187,8 @@ export default function MortgageForm() {
   }
 
   return (
-    <div className="w-full md:w-[65%]">
-      <div className="bg-[#eaf4f7] p-8 md:rounded-2xl">
+    <div>
+      <div className="bg-[#eaf4f7] p-8 form-container-inner-equi md:rounded-2xl">
         <div className="p-6 rounded-xl">
           {/* Stepper */}
           <div className="flex items-center justify-between mb-6">
@@ -221,10 +223,10 @@ export default function MortgageForm() {
           <form onSubmit={handleSubmit}>
             {/* Step 1 */}
             {step === 1 && (
-              <div className="space-y-4">
+              <div className="space-y-4 top-space">
                 {(["first_name", "last_name", "email"] as const).map(
                   (field) => (
-                    <div key={field}>
+                    <div className="form-field-equi" key={field}>
                       <p className="font-semibold capitalize mb-2">
                         {field.replace("_", " ")}
                       </p>
@@ -275,9 +277,9 @@ export default function MortgageForm() {
 
             {/* Step 2 */}
             {step === 2 && (
-              <div className="space-y-4">
+              <div className="space-y-4 top-space">
                 {/* Residency */}
-                <div>
+                <div className="form-field-equi">
                   <p className="font-semibold mb-2">What is your Resident Status?</p>
                   <div className="flex flex-wrap gap-2">
                     {["UAE National", "Non-UAE Resident", "Expat"].map(
@@ -305,7 +307,7 @@ export default function MortgageForm() {
                 </div>
 
                 {/* Age */}
-                <div>
+                <div className="form-field-equi">
                   <p className="font-semibold mb-2">Oldest applicant age</p>
                   <div className="flex">
                     <input
@@ -315,7 +317,7 @@ export default function MortgageForm() {
                       onChange={handleChange}
                       className="flex-1 px-4 py-3 bg-gray-50 text-black text-lg border-0 focus:outline-none focus:ring-0 rounded-l-lg"
                     />
-                    <span className="bg-gray-200 px-4 py-2 rounded-r-lg flex items-center">
+                    <span className="bg-gray-200 px-4 py-2 rounded-r-lg flex items-center peq-1">
                       Years
                     </span>
                   </div>
@@ -353,7 +355,7 @@ export default function MortgageForm() {
                 )}
 
                 {/* Property Status */}
-                <p className="font-semibold mb-2">Property status?</p>
+                <p className="font-semibold mb-2  fs-mt">Property status?</p>
                 <div className="flex gap-2 flex-wrap">
                   {["Completed", "Under-construction", "Land"].map((status) => (
                     <button
@@ -379,8 +381,8 @@ export default function MortgageForm() {
                 )}
 
                 {/* Property Value */}
-                <div>
-                  <p className="font-semibold mb-2">Property value</p>
+                <div className="form-field-equi">
+                  <p className="font-semibold mb-2  fs-mt">Property value</p>
                   <div className="flex">
                     <input
                       type="number"
@@ -389,7 +391,7 @@ export default function MortgageForm() {
                       onChange={handleChange}
                       className="flex-1 px-4 py-3 bg-gray-50 text-black text-lg border-0 focus:outline-none focus:ring-0 rounded-l-lg"
                     />
-                    <span className="bg-gray-200 px-4 py-2 rounded-r-lg flex items-center">
+                    <span className="bg-gray-200 px-4 py-2 rounded-r-lg flex items-center peq-1">
                       {formData.currency}
                     </span>
                   </div>
@@ -401,8 +403,8 @@ export default function MortgageForm() {
                 </div>
 
                 {/* Area */}
-                <div>
-                  <p className="font-semibold mb-2">Area</p>
+                <div className="form-field-equi">
+                  <p className="font-semibold mb-2  fs-mt">Area</p>
                   <select
                     name="area"
                     value={formData.area}
@@ -427,8 +429,8 @@ export default function MortgageForm() {
                 </div>
 
                 {/* Timeframe to Buy */}
-                <div>
-                  <p className="font-semibold mb-2">Timeframe to Buy</p>
+                <div  className="form-field-equi">
+                  <p className="font-semibold mb-2 fs-mt">Timeframe to Buy</p>
                   <select
                     name="timeframe_to_buy"
                     value={formData.timeframe_to_buy.value || ""}
@@ -456,8 +458,8 @@ export default function MortgageForm() {
                 </div>
 
                 {/* Income */}
-                <div>
-                  <p className="font-semibold mb-2">Monthly Income</p>
+                <div  className="form-field-equi">
+                  <p className="font-semibold mb-2 fs-mt">Monthly Income</p>
                   <input
                     type="number"
                     name="income"
@@ -493,9 +495,9 @@ export default function MortgageForm() {
 
             {/* Step 3 - Review */}
             {step === 3 && (
-              <div className="space-y-4">
+              <div className="space-y-4 top-space">
                 <h3 className="text-xl font-bold mb-4">Review your details</h3>
-                <div className="bg-white p-4 rounded-lg shadow space-y-2">
+                <div className="bg-white p-4 rounded-lg shadow space-y-2 eq-review">
                   <p>
                     <strong>Name:</strong> {formData.first_name}{" "}
                     {formData.last_name}
