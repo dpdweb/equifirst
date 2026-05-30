@@ -68,7 +68,7 @@ export default function HandoverFinancePage() {
       {/* ── HERO ── */}
       <section
         className="lp-section lp-bg-ivory lp-hero"
-        style={{ paddingTop: 240, paddingBottom: 96 }}
+        style={{ paddingTop: 140, paddingBottom: 96 }}
       >
         <div className="lp-diamond tr" />
         <div className="lp-container">
@@ -154,12 +154,7 @@ export default function HandoverFinancePage() {
             <span className="lp-italic-cyan">All avoidable.</span>
           </h2>
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: 22,
-              marginTop: 44,
-            }}
+            className="lp-2col-paint-grid"
           >
             {PAINS.map((p) => (
               <div

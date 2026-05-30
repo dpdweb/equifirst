@@ -64,7 +64,7 @@ export default function BuyVsRentPage() {
       {/* ── HERO ── */}
       <section
         className="lp-section lp-bg-ivory lp-hero"
-        style={{ paddingTop: 240, paddingBottom: 96 }}
+        style={{ paddingTop: 140, paddingBottom: 96 }}
       >
         <div className="lp-diamond tr" />
         <div className="lp-container">
@@ -150,13 +150,7 @@ export default function BuyVsRentPage() {
             <span className="lp-italic-cyan">Here&apos;s why.</span>
           </h2>
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: 22,
-              marginTop: 44,
-            }}
-          >
+            className="lp-test-grid">
             {[
               {
                 title: 'Rent is not fixed',
@@ -173,6 +167,7 @@ export default function BuyVsRentPage() {
             ].map((c) => (
               <div
                 key={c.title}
+          
                 style={{
                   background: 'var(--cream)',
                   border: '1px solid rgba(198,182,155,0.4)',

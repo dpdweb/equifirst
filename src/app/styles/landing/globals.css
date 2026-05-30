@@ -528,4 +528,233 @@ img { max-width: 100%; display: block; }
 .form-container-equi .eq-review { padding: 20px;}
 .form-container-equi .eq-review p{ margin-bottom: 6px;}
 
-    
+
+/* ============================================================
+   LandingNav — Component Styles (plain global CSS)
+   ============================================================ */
+
+/* Force nav to stack vertically so drawer sits below the bar */
+.lp-nav {
+  flex-direction: column !important;
+  align-items: stretch !important;
+  height: auto !important;
+}
+
+/* Keep the inner bar row horizontal and centred */
+.lp-nav .lp-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 32px;
+  gap: 32px;
+}
+
+/* ----------- Burger Button ----------- */
+.burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  border-radius: 6px;
+  flex-shrink: 0;
+  transition: background 0.18s ease;
+}
+
+.burger:hover {
+  background: rgba(44, 45, 46, 0.06);
+}
+
+.lp-nav.dark .burger:hover,
+.lp-nav.cyan .burger:hover {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+/* ----------- Burger Icon (3 bars → ×) ----------- */
+.burger-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 22px;
+  pointer-events: none;
+}
+
+.burger-icon span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  background: var(--charcoal);
+  transition: transform 0.22s ease, opacity 0.22s ease;
+  transform-origin: center;
+}
+
+.lp-nav.dark .burger-icon span,
+.lp-nav.cyan .burger-icon span {
+  background: #ffffff;
+}
+
+.burger-icon.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger-icon.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.burger-icon.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ----------- Desktop CTA ----------- */
+.lp-nav-cta-desktop {
+  /* visible by default; hidden on mobile */
+}
+
+/* ----------- Mobile Drawer ----------- */
+.lp-mobile-drawer {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  background: var(--ivory);
+  border-top: 1px solid rgba(44, 45, 46, 0.08);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lp-mobile-drawer.open {
+  max-height: 500px;
+}
+
+.lp-nav.dark .lp-mobile-drawer {
+  background: var(--charcoal-d);
+  border-top-color: rgba(255, 255, 255, 0.07);
+}
+.lp-nav.cyan .lp-mobile-drawer {
+  background: var(--cyan-d);
+  border-top-color: rgba(255, 255, 255, 0.10);
+}
+
+/* ----------- Mobile Link List ----------- */
+.lp-mobile-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.lp-mobile-links li a {
+  display: block;
+  padding: 14px 28px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--charcoal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(44, 45, 46, 0.06);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lp-mobile-links li a:hover {
+  background: var(--cyan-l);
+  color: var(--cyan);
+}
+
+.lp-mobile-links li:last-child a {
+  border-bottom: none;
+}
+
+.lp-nav.dark .lp-mobile-links li a,
+.lp-nav.cyan .lp-mobile-links li a {
+  color: rgba(255, 255, 255, 0.85);
+  border-bottom-color: rgba(255, 255, 255, 0.07);
+}
+
+.lp-nav.dark .lp-mobile-links li a:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--white);
+}
+.lp-nav.cyan .lp-mobile-links li a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--white);
+}
+
+/* ----------- Mobile CTA wrapper ----------- */
+.lp-mobile-cta {
+  padding: 16px 28px 20px;
+}
+
+/* ----------- Backdrop Overlay ----------- */
+.lp-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(44, 45, 46, 0.40);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  animation: lp-fade-in 0.2s ease;
+}
+
+@keyframes lp-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ----------- Responsive ----------- */
+@media (max-width: 900px) {
+  /* Keep nav height auto so drawer can expand below */
+  .lp-nav {
+    height: auto !important;
+  }
+
+  .lp-nav .lp-nav-inner {
+    height: 64px;
+    padding: 0 20px;
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  .lp-nav-cta-desktop {
+    display: none !important;
+  }
+
+  /* Hide desktop links (already handled by shared CSS, but be explicit) */
+  .lp-nav .lp-nav-links {
+    display: none;
+  }
+
+  .lp-mobile-drawer {
+    display: flex;
+  }
+  
+}
+
+
+.lp-test-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 44px;
+}
+
+@media (max-width: 900px) {
+  .lp-test-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.lp-2col-paint-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 44px;
+}
+
+@media (max-width: 900px) {
+  .lp-2col-paint-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

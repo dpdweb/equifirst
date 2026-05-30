@@ -68,7 +68,7 @@ export default function EquityReleasePage() {
       {/* ── HERO ── */}
       <section
         className="lp-section lp-bg-charcoal lp-hero"
-        style={{ paddingTop: 240, paddingBottom: 96 }}
+        style={{ paddingTop: 140, paddingBottom: 96 }}
       >
         <div className="lp-diamond on-dark tr" />
         <div className="lp-container">
