@@ -3,7 +3,6 @@ import LandingLayout from '@/app/components/landing/LandingLayout';
 import ProcessSection from '@/app/components/landing/ProcessSection';
 import TestimonialsSection from '@/app/components/landing/TestimonialsSection';
 import QuoteButton from '@/app/components/landing/QuoteButton';
-import LeadForm from '@/app/components/landing/LeadForm';
 import MortgageForm from '@/app/components/MortgageForm';
 
 export const metadata: Metadata = {
@@ -44,21 +43,6 @@ const TESTIMONIALS = [
   {
     quote: 'Highly recommend for your mortgage advisory needs. Manan was very professional and supportive throughout the journey and we managed to finalize the process quickly with the bank.',
     name: 'Baha B.',
-  },
-];
-
-const LEAD_FIELDS = [
-  { name: 'name', label: 'Full Name', type: 'text' as const, placeholder: 'Your name', required: true },
-  { name: 'email', label: 'Email', type: 'email' as const, placeholder: 'you@email.com', required: true },
-  { name: 'phone', label: 'Phone / WhatsApp', type: 'tel' as const, placeholder: '+971 50 000 0000', required: true },
-  { name: 'propertyValue', label: 'Estimated Property Value (AED)', type: 'text' as const, placeholder: 'e.g. 3,500,000', required: true },
-  { name: 'outstanding', label: 'Existing Mortgage Balance (AED)', type: 'text' as const, placeholder: 'e.g. 1,200,000 or 0', required: true },
-  {
-    name: 'residency',
-    label: 'Residency Status',
-    type: 'select' as const,
-    options: ['UAE National', 'UAE Resident (Expat)', 'Non-Resident / Overseas'],
-    required: true,
   },
 ];
 
@@ -308,22 +292,6 @@ export default function EquityReleasePage() {
             <div className="form-container-equi">
               <MortgageForm />
           </div>
-            {/* <div
-              style={{
-                background: 'var(--white)',
-                border: '1px solid rgba(198,182,155,0.5)',
-                borderRadius: 12,
-                padding: 36,
-                boxShadow: '0 14px 40px rgba(44,45,46,0.08)',
-              }}
-            >
-              <MortgageForm />
-              <LeadForm
-                heading="Find out how much equity you can release."
-                fields={LEAD_FIELDS}
-                submitLabel="Calculate My Equity"
-              />
-            </div> */}
           </div>
         </div>
       </section>
