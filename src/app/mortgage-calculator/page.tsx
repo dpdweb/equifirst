@@ -1,11 +1,24 @@
 
+"use client";
+import MortgageCalculator from '../components/MortgageCalculator';
+import SubPageHeroBanner from "../components/SubPageHeroBanner";
 
-export default function Blogs() {
+export default function Page() {
+
+
   return (
-    <div className="flex items-center justify-center min-h-screen text-center px-4 bg-white dark:bg-black text-black dark:text-white">
-  <h1 className="text-3xl sm:text-5xl font-bold tracking-tight">
-    Coming Soon
-  </h1>
-</div>
+    <div>
+<SubPageHeroBanner
+  title="Mortgage Calculator"
+  subtitle="Plan Your Mortgage Instantly"
+  image="/assets/images/mortgage-calculator-hero.jpg"
+/>
+
+    <div className="md:p-6 mt-4">
+      <MortgageCalculator />
+    </div>
+
+
+    </div>
   );
 }

@@ -1,145 +1,137 @@
-// components/FinanceOptions.tsx
-import Image from 'next/image';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
+'use client';
+import Image from "next/image";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation  } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+const FinanceOptionCards = [
+  {
+    title: 'Off-Plan Finance',
+    description: 'Finance properties under construction and secure your investment early.',
+    image: '/assets/images/off-plan-finance-hero-small.jpg',
+    link: 'services/off-plan-finance',
+  },
+  {
+    title: 'Handover Finance',
+    description: 'Bridge your final payment during property handover.',
+    image: '/assets/images/handover-finance-hero-small.jpg',
+    link: 'services/handover-finance',
+  },
+  
+  {
+    title: 'Equity Release',
+    description: 'Unlock your home’s equity without selling.',
+    image: '/assets/images/equity-release-hero-small.jpg',
+    link: 'services/equity-release',
+  },
+  {
+    title: 'Secondary Market Finance',
+    description: 'Finance completed, ready-to-move-in properties across the UAE.',
+    image: '/assets/images/secondary-market-hero-small.jpg',
+    link: 'services/secondary-market-finance',
+  },
+  {
+    title: 'Buyout <br>(Refinance)',
+    description: 'Transfer your mortgage to get better terms.',
+    image: '/assets/images/buyout-refinance-hero-small.jpg',
+    link: 'services/buyout-refinance',
+  },
+  {
+    title: 'Non-Resident Finance',
+    description: 'Helping non-residents invest confidently in UAE.',
+    image: '/assets/images/non-resident-mortgage-small.jpg',
+    link: 'services/non-resident-mortgage',
+  },
+
+];
 
 
 export default function FinanceOptions() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 max-w-7xl mx-auto font-sans">
-        
-    <div className="relative bg-ef-extra-light-blue p-10 rounded-xl flex flex-col justify-between md:h-[400px]">
-      <div>
-        <h3 className="text-ef-heading1-size text-ef-dark-blue">Off-plan Finance</h3>
-        <p className="mt-2">Invest in properties under construction with confidence, backed by our competitive Off-Plan.</p>
-        <div className="mt-4">
-        <button className="w-10 h-10 rounded-full border border-[#006b8f] flex items-center justify-center text-[#006b8f] hover:bg-[#006b8f] hover:text-white transition">
-          <ArrowRightIcon className="w-5 h-5" />
-        </button>
-      </div>
-        <Image
-          src="/assets/images/off-plan-finance.png"
-          alt="Off-plan Finance"
-          width={365}
-          height={145}
-          className="my-4 mx-auto sm:mx-0"
-        />
-      </div>
+    <div className="mx-auto w-full max-w-[1366px] py-5 md:pt-0 px-4 sm:px-6 lg:px-8">
+
+      <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6 py-6">
+
+        {FinanceOptionCards.map((card, index) => (
+  <div key={index} className="blue-box md:h-[375px] flex flex-col justify-between relative">
+    <div>
+      <h3 className="text-ef-heading1-size text-ef-dark-blue" dangerouslySetInnerHTML={{ __html: card.title }}></h3>
+      <p className="mt-2">{card.description}</p>
     </div>
 
-<div className="relative bg-ef-dark-blue-1 p-10 rounded-xl flex flex-col justify-between h-64 md:col-span-2 overflow-hidden md:h-[400px]">
-  <div>
-    <h3 className="text-ef-heading1-size text-ef-dark-blue">Hand-over Finance</h3>
-    <p className="mt-2">
-      Smooth transition from construction to occupancy with our specialized Handover.
-    </p>
-    <Image
-      src="/assets/images/image-6.png"
-      alt="Equifirst"
-      width={216}
-      height={44}
-      className="my-4"
-    />
-  </div>
+    <div className="flex items-end justify-between gap-6">
+      <Image
+        src={card.image}
+        alt={card.title}
+        width={255}
+        height={140}
+        className="mt-4 rounded-lg"
+      />
+      <Link href={card.link} className="ef-arrow-btn-1">
+        <ArrowRightIcon className="ArrowRightIcon" />
+      </Link>
+    </div>
 
-  {/* Arrow Button */}
-  <div className="absolute bottom-6 right-6 z-10">
-    <button className="w-10 h-10 rounded-full bg-[#006b8f] text-white flex items-center justify-center hover:bg-[#004f6b] transition">
-      <ArrowRightIcon className="w-5 h-5" />
-    </button>
+    <div className="box-bg-count absolute bottom-4 right-4">
+      {String(index + 1).padStart(2, '0')}
+    </div>
   </div>
+))}
 
-  {/* Background Number */}
-  {/* <div className="absolute -bottom-10 right-15 text-[5rem] text-[#88b6ca] font-bold z-0">
-    02
-  </div> */}
+
+
+
 </div>
 
+    <div className="block h-[390px] md:hidden relative w-full max-w-4xl mx-auto">
+      <Swiper
+  modules={[Navigation]} // 👈 removed Autoplay module
+    navigation
+    autoplay={false} // 👈 autoplay disabled
+    slidesPerView={1}
+    spaceBetween={30}
+    allowTouchMove={true} // 👈 always allow touch on mobile
+    className="equi-swiper"
+>
+{FinanceOptionCards.map((slide, index) => (
+  <SwiperSlide key={index}>
+    <div className="p-6 rounded-lg max-w-5xl mx-auto">
+      <div className="flex items-center gap-4 mb-4">
+        <div className="w-[40px] h-[40px] flex-none rounded-full bg-ef-dark-blue text-white flex items-center justify-center text-[18px] font-bold leading-none">
+          {String(index + 1).padStart(1, '0')}
+        </div>
+        <h2 className="text-2xl font-bold text-ef-dark-blue leading-snug" dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
+      </div>
 
-
-    <div className="relative bg-ef-extra-light-blue p-10 rounded-xl flex flex-col justify-between   md:h-[375px]">
-    <div>
-      <h3 className="text-ef-heading1-size text-ef-dark-blue">Financing for Non-residents</h3>
-      <p className="mt-2">Simply international property investments with our bespoke financing for non-residents.</p>
+      <div className="overflow-hidden rounded-2xl">
+        <Image
+          src={slide.image}
+          alt={slide.title}
+          width={1200}
+          height={600}
+          className="w-full h-auto object-cover"
+        />
+      </div>
+      <p className="mt-2 p-2 text-black">{slide.description}</p>
     </div>
+  </SwiperSlide>
+))}
 
-    <div className="flex items-end gap-6">
-    <div>
-      <Image
-        src="/assets/images/financing-for-non-residents.png"
-        alt="Equifirst"
-        width={255}
-        height={140}
-        className="mt-4"
-      />
-    </div>
 
-    {/* Right: Button aligned to bottom */}
-    <div className="mt-4">
-      <Link href="/" className="w-10 h-10 rounded-full border border-[#006b8f] flex items-center justify-center text-[#006b8f] hover:bg-[#006b8f] hover:text-white  transition-all duration-300 ease-in-out" >
-        <ArrowRightIcon className="w-5 h-5 transition duration-300 ease-in-out hover:text-white hover:rotate-45" />
-      </Link>
-    </div>
-  </div>
 
-  </div>
 
- 
-  <div className="relative bg-ef-extra-light-blue p-10 rounded-xl flex flex-col justify-between   md:h-[375px]">
-    <div>
-      <h3 className="text-ef-heading1-size text-ef-dark-blue">Home Renovation</h3>
-      <p className="mt-2">Simply international property investments with our bespoke financing for non-residents.</p>
-    </div>
+
+   
+      </Swiper>
+
     
-        <div className="flex items-end gap-6">
-    <div>
-      <Image
-        src="/assets/images/financing-for-non-residents.png"
-        alt="Equifirst"
-        width={255}
-        height={140}
-        className="mt-4"
-      />
     </div>
 
-    {/* Right: Button aligned to bottom */}
-    <div className="mt-4">
-      <Link href="/" className="w-10 h-10 rounded-full border border-[#006b8f] flex items-center justify-center text-[#006b8f] hover:bg-[#006b8f] hover:text-white  transition-all duration-300 ease-in-out" >
-        <ArrowRightIcon className="w-5 h-5 transition duration-300 ease-in-out hover:text-white hover:rotate-45" />
-      </Link>
-    </div>
-  </div>
-    {/* <div className="absolute bottom-4 right-4 text-[5rem] text-[#c9dbe3] font-bold -z-10">04</div> */}
-  </div>
 
 
-  <div className="relative bg-ef-extra-light-blue p-10 rounded-xl flex flex-col justify-between md:h-[375px]">
-    <div>
-      <h3 className="text-ef-heading1-size text-ef-dark-blue">Equity Release</h3>
-      <p className="mt-2">Simply international property investments with our bespoke financing for non-residents.</p>
-    </div>
-    
-        <div className="flex items-end gap-6">
-    <div>
-      <Image
-        src="/assets/images/financing-for-non-residents.png"
-        alt="Equifirst"
-        width={255}
-        height={140}
-        className="mt-4"
-      />
-    </div>
-
-    {/* Right: Button aligned to bottom */}
-    <div className="mt-4">
-      <Link href="/" className="w-10 h-10 rounded-full border border-[#006b8f] flex items-center justify-center text-[#006b8f] hover:bg-[#006b8f] hover:text-white  transition-all duration-300 ease-in-out" >
-        <ArrowRightIcon className="w-5 h-5 transition duration-300 ease-in-out hover:text-white hover:rotate-45" />
-      </Link>
-    </div>
-  </div>
-    {/* <div className="absolute bottom-4 right-4 text-[5rem] text-[#c9dbe3] font-bold -z-10">05</div> */}
-  </div>
- 
     </div>
   );
 }

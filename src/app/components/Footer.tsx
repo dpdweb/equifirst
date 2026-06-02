@@ -1,143 +1,89 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-} from 'lucide-react';
+import SocialMediaLinks from './SocialMediaLinks';
+import Landbot from './Landbot';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
+  
+
   return (
-    <footer className="bg-ef-dark-gray text-gray-300 pt-10 mt-12">
+    <footer className="bg-ef-dark-gray text-gray-300 pt-10">
+      <Landbot />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center sm:text-left">
+          {/* Logo and Address */}
           <div>
-           <Image
-  src="/assets/images/footer-logo.png"
-  alt="Equifirst"
-  width={216}
-  height={44}
-  className="mb-4 mx-auto sm:mx-0"
-/>
-            <p className="text-sm leading-relaxed mt-5 sm:mt-12">
-              2803, Control Tower, Motor City
-              <br />
-              Detroit Road, Dubai, UAE
-            </p>
-            <p className="text-sm leading-relaxed mt-5 sm:mt-12">
+            <Image
+              src="/assets/images/footer-logo.svg"
+              alt="Equifirst"
+              width={216}
+              height={44}
+              className="mb-4 mx-auto sm:mx-0"
+            />
+            
+            <p className="flex items-center gap-2 text-sm leading-relaxed mt-5 sm:mt-8 justify-center sm:justify-start">
+              <Mail size={16} className="text-ef-gold" />
               info@equifirst.ae
             </p>
+
+            <p className="flex items-center gap-2 text-sm leading-relaxed mt-5 sm:mt-4 justify-center sm:justify-start">
+              <Phone size={16} className="text-ef-gold" />
+              045421094
+            </p>
+
+            <p className="flex items-start gap-2 text-sm leading-relaxed mt-5 sm:mt-4 justify-center sm:justify-start">
+              <MapPin size={16} className="text-ef-gold mt-1" />
+              <span>
+                2803, Control Tower, Motor City
+                <br />
+                Detroit Road, UAE, UAE
+              </span>
+            </p>
+
           </div>
 
-          <div>
+          {/* Company Links */}
+          <div className="hidden md:block">
             <h4 className="text-white font-semibold mb-3">COMPANY</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/about" className="footer-nav-link">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="footer-nav-link">
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/calculator" className="footer-nav-link">
-                  Calculator
-                </Link>
-              </li>
-              <li>
-                <Link href="/calculator" className="footer-nav-link">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/calculator" className="footer-nav-link">
-                  Blogs
-                </Link>
-              </li>
-              <li>
-                <Link href="/calculator" className="footer-nav-link">
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link href="/calculator" className="footer-nav-link">
-                  Privacy Policy
-                </Link>
-              </li>
+              <li><Link href="/mortgage-calculator" className="footer-nav-link">Mortgage Calculator</Link></li>
+              <li><Link href="/about-us" className="footer-nav-link">About Us</Link></li>
+              <li><Link href="/contact-us" className="footer-nav-link">Contact Us</Link></li>
+              <li><Link href="/blog" className="footer-nav-link">Blog</Link></li>
+              <li><Link href="/faqs" className="footer-nav-link">FAQs</Link></li>
+              <li><Link href="/terms-conditions" className="footer-nav-link">Terms & Conditions</Link></li>
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-white font-semibold mb-3">EXPLORE</h4>
+          {/* Services Links */}
+          <div className="hidden md:block">
+            <h4 className="text-white font-semibold mb-3">SERVICES</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/faqs" className="footer-nav-link">
-                  FAQs
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms-and-conditions" className="footer-nav-link">
-                  Terms & Conditions
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy-policy" className="footer-nav-link">
-                  Privacy Policy
-                </Link>
-              </li>
+              <li><Link href="/services/off-plan-finance" className="footer-nav-link">Off-Plan Finance</Link></li>
+              <li><Link href="/services/secondary-market-finance" className="footer-nav-link">Secondary Market Finance</Link></li>
+              <li><Link href="/services/equity-release" className="footer-nav-link">Equity Release</Link></li>
+              <li><Link href="/services/handover-finance" className="footer-nav-link">Handover Finance</Link></li>
+              <li><Link href="/services/buyout-refinance" className="footer-nav-link">Buyout Refinance</Link></li>
+              <li><Link href="/services/non-resident-finance" className="footer-nav-link">Non-Resident Finance</Link></li>
             </ul>
           </div>
 
-                  {/* Social media icons */}
-        <div>
-          <h4 className="text-white font-semibold mb-3">SOCIALS</h4>
-        <div className="mt-8 flex justify-center sm:justify-start space-x-6">
-      
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 footer-nav-link"
-          >
-            <Facebook size={20} />
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 footer-nav-link"
-          >
-            <Twitter size={20} />
-          </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 footer-nav-link"
-          >
-            <Instagram size={20} />
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 footer-nav-link"
-          >
-            <Linkedin size={20} />
-          </a>
-        </div>
+          {/* Social Icons */}
+          <div>
+            <h4 className="text-white font-semibold mb-3 hidden md:block">SOCIALS</h4>
+            <div className="mt-8 flex justify-center sm:justify-start space-x-6">
+              <SocialMediaLinks />
+            </div>
+          </div>
         </div>
 
-        </div>
-
-
+        {/* Footer Bottom */}
         <p className="text-center text-xs text-ef-light-gray mt-6 border-t border-gray-600 py-6">
           © Copyright {new Date().getFullYear()} Equifirst. All Rights Reserved.
         </p>
+
+      
       </div>
     </footer>
   );

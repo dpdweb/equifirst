@@ -1,125 +1,167 @@
 // components/AnimatedTabs.tsx
-'use client';
+"use client";
+import Image from "next/image";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 
-import Image from 'next/image';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
+interface AccordionItem {
+  id: number;
+  title: string;
+  content: string;
+}
+
+const accordionData: AccordionItem[] = [
+  {
+    id: 1,
+    title: 'What is a mortgage?',
+    content: 'A mortgage is a long-term loan used to buy property, where the property itself serves as security for the loan.',
+  },
+  {
+    id: 2,
+    title: 'How does a mortgage work in the UAE?',
+    content: 'You borrow money from a bank and repay it monthly with interest over an agreed term, up to 25 years.',
+  },
+  {
+    id: 3,
+    title: 'Is it better to rent or buy in the UAE?',
+    content: 'It depends on your financial goals. Buying helps you build equity, while renting offers flexibility.',
+  },
+    {
+    id: 4,
+    title: 'Am I eligible for a mortgage in the UAE?',
+    content: 'If you&apos;re over 21, have a stable income, and meet bank criteria, you&rsquo;re likely eligible.',
+  },
+  {
+    id: 5,
+    title: 'What is the minimum income required to apply?',
+    content: 'Salaried: Typically AED 15,000 per month, but some banks are willing to provide mortgages to clients with a salary of AED 10,000 per month. Self-employed: AED 40,000 per month, varies by bank.',
+  },
+];
 
 
 export default function GotQuestionSection() {
 
+  const [openItem, setOpenItem] = useState<number | null>(null);
+
+  const toggle = (id: number) => {
+    setOpenItem(openItem === id ? null : id);
+  };
 
   return (
     <div>
-<div className="grid grid-cols-[450px_1fr] gap-4">
-  <div className="bg-gray-200 p-4">
-    
-          <div className="relative bg-ef-extra-light-blue p-10 rounded-xl flex flex-col justify-between md:h-[400px]">
-        <h3 className="text-ef-heading1-size text-ef-dark-blue">What is a mortgage?</h3>
-        <p className="mt-2">A mortgage is a loan from a bank that helps you purchase a home. You then pay the mortgage plus interest back in monthly Instalment over a set number of years.</p>
-        <div className="mt-4">
-          <button className="w-10 h-10 rounded-full border border-[#006b8f] flex items-center justify-center text-[#006b8f] hover:bg-[#006b8f] hover:text-white transition">
-          <ArrowRightIcon className="w-5 h-5" />
-          </button>
+      <div className="hidden md:grid grid-cols-[450px_1fr] gap-4">
+
+        <div className="blue-box md:h-[400px] relative">
+            <h3 className="text-ef-heading1-size text-ef-dark-blue">
+              What is a mortgage?
+            </h3>
+            <p className="mt-2">
+              A mortgage is a long-term loan used to buy property, where the property itself serves as security for the loan.
+            </p>
+            
+            <div className="absolute bottom-[25px] right-[25px]"> 
+              <Link href="/faqs" className="ef-arrow-btn-1">
+                <ArrowRightIcon className="ArrowRightIcon" />
+              </Link>
+            </div>
+            
         </div>
-        <Image
-          src="/assets/images/off-plan-finance.png"
-          alt="Off-plan Finance"
-          width={365}
-          height={145}
-          className="my-4 mx-auto sm:mx-0" />
+
+          <div className="blue-box-2 md:h-[400px] relative">
+            <div>
+              <h3 className="text-ef-heading1-size text-ef-dark-blue">
+                How does a mortgage work in the UAE?
+              </h3>
+              <p className="mt-2">
+                You borrow money from a bank and repay it monthly with interest over an agreed term, up to 25 years.
+              </p>
+              <Image
+              src="/assets/images/mortgage-img.png"
+              alt="Off-plan Finance"
+              width={510}
+              height={155}
+              className="my-4 mx-auto sm:mx-0"
+            />
+            </div>
+
+            <div className="absolute bottom-[25px] right-[25px]"> 
+              <Link href="/faqs" className="ef-arrow-btn-1">
+                <ArrowRightIcon className="ArrowRightIcon" />
+              </Link>
+            </div>
+
+   
+          </div>
+
       </div>
 
-  </div>
-  <div className="bg-gray-100 p-4">
-    
-    <div className="relative bg-ef-dark-blue-1 p-10 rounded-xl flex flex-col justify-between h-64 md:col-span-2 overflow-hidden md:h-[400px]">
-  <div>
-    <h3 className="text-ef-heading1-size text-ef-dark-blue">Hand-over Finance</h3>
-    <p className="mt-2">
-      Smooth transition from construction to occupancy with our specialized Handover.
-    </p>
-    <Image
-      src="/assets/images/image-6.png"
-      alt="Equifirst"
-      width={216}
-      height={44}
-      className="my-4"
-    />
-  </div>
+      <div className="hidden md:grid grid-cols-[450px_1fr] gap-4">
 
-  {/* Arrow Button */}
-  <div className="absolute bottom-6 right-6 z-10">
-    <button className="w-10 h-10 rounded-full bg-[#006b8f] text-white flex items-center justify-center hover:bg-[#004f6b] transition">
-      <ArrowRightIcon className="w-5 h-5" />
-    </button>
-  </div>
+        <div className="blue-box mt-6 md:h-[250px]">
+            <h3 className="text-ef-heading1-size text-ef-dark-blue">
+              Is it better to rent or buy in the UAE?
+            </h3>
+            <p className="mt-2">
+              It depends on your financial goals. Buying helps you build equity, while renting offers flexibility. 
+            </p>
 
-  {/* Background Number */}
-  {/* <div className="absolute -bottom-10 right-15 text-[5rem] text-[#88b6ca] font-bold z-0">
-    02
-  </div> */}
-</div>
-
-  </div>
-</div>
-
-<div className="grid grid-cols-[380px_1fr] gap-4">
-  <div className="bg-gray-200 p-4">
-    
-          <div className="relative bg-ef-extra-light-blue p-10 rounded-xl flex flex-col justify-between md:h-[400px]">
-        <h3 className="text-ef-heading1-size text-ef-dark-blue">What is a mortgage?</h3>
-        <p className="mt-2">A mortgage is a loan from a bank that helps you purchase a home. You then pay the mortgage plus interest back in monthly Instalment over a set number of years.</p>
-        <div className="mt-4">
-          <button className="w-10 h-10 rounded-full border border-[#006b8f] flex items-center justify-center text-[#006b8f] hover:bg-[#006b8f] hover:text-white transition">
-          <ArrowRightIcon className="w-5 h-5" />
-          </button>
+            <div className="absolute bottom-[25px] right-[25px]"> 
+              <Link href="/faqs" className="ef-arrow-btn-1">
+                <ArrowRightIcon className="ArrowRightIcon" />
+              </Link>
+            </div>
+           
         </div>
-        <Image
-          src="/assets/images/off-plan-finance.png"
-          alt="Off-plan Finance"
-          width={365}
-          height={145}
-          className="my-4 mx-auto sm:mx-0" />
+
+
+        <div className="blue-box mt-6 md:h-[250px]">
+          <div>
+            <h3 className="text-ef-heading1-size text-ef-dark-blue">
+              Am I eligible for a mortgage in the UAE?
+            </h3>
+            <p className="mt-2">
+              If you&apos;re over 21, have a stable income, and meet bank criteria, you&rsquo;re likely eligible.
+            </p>
+            
+          </div>
+
+          <div className="absolute bottom-[25px] right-[25px]"> 
+            <Link href="/faqs" className="ef-arrow-btn-1">
+              <ArrowRightIcon className="ArrowRightIcon" />
+            </Link>
+          </div>
+
+        </div>
+
+
       </div>
 
-  </div>
-  <div className="bg-gray-100 p-4">
-    
-    <div className="relative bg-ef-dark-blue-1 p-10 rounded-xl flex flex-col justify-between h-64 md:col-span-2 overflow-hidden md:h-[400px]">
-  <div>
-    <h3 className="text-ef-heading1-size text-ef-dark-blue">Hand-over Finance</h3>
-    <p className="mt-2">
-      Smooth transition from construction to occupancy with our specialized Handover.
-    </p>
-    <Image
-      src="/assets/images/image-6.png"
-      alt="Equifirst"
-      width={216}
-      height={44}
-      className="my-4"
-    />
-  </div>
-
-  {/* Arrow Button */}
-  <div className="absolute bottom-6 right-6 z-10">
-    <button className="w-10 h-10 rounded-full bg-[#006b8f] text-white flex items-center justify-center hover:bg-[#004f6b] transition">
-      <ArrowRightIcon className="w-5 h-5" />
-    </button>
-  </div>
-
-  {/* Background Number */}
-  {/* <div className="absolute -bottom-10 right-15 text-[5rem] text-[#88b6ca] font-bold z-0">
-    02
-  </div> */}
-</div>
-
-  </div>
-</div>
-
-
-
-       </div>
+      <div className="md:hidden mt-3">
+        {accordionData.map((item) => (
+                <div key={item.id} className="border-b border-gray-200">
+                  <button
+                    onClick={() => toggle(item.id)}
+                    className="w-full flex justify-between items-center py-4 text-left  focus:outline-none"
+                  >
+                    <span className="text-lg font-medium text-ef-blue">{item.title}</span>
+                    <ChevronDown
+                      className={`w-5 h-5 transform transition-transform text-ef-blue duration-300 ${
+                        openItem === item.id ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      openItem === item.id ? 'max-h-96' : 'max-h-0'
+                    }`}
+                  >
+                    <p className="text-gray-600 pb-4">{item.content}</p>
+                  </div>
+                </div>
+              ))}
+      </div>
+    </div>
   );
 }
- 

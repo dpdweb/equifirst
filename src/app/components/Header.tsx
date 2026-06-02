@@ -1,72 +1,231 @@
 'use client';
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
-import Image from "next/image";
+import Image from 'next/image';
+import { useSettings } from "../context/SettingsContext";
+import { usePathname } from 'next/navigation';
+import SocialMediaLinks from './SocialMediaLinks';
+import { ChevronDown } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const settings = useSettings();
+  const pathname = usePathname();
+  const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(null);
+
+  const handleMouseEnter = (index: number) => setOpenDropdownIndex(index);
+  const handleMouseLeave = () => setOpenDropdownIndex(null);
+  const handleDropdownClick = () => setOpenDropdownIndex(null);
+
+  const navItems = [
+    { href: '/', label: 'Home' },
+    { href: '/mortgage-calculator', label: 'Mortgage Calculator' },
+    {
+      label: 'Services',
+      children: [
+        { href: '/services/off-plan-finance', label: 'Off-Plan Finance' },
+        { href: '/services/secondary-market-finance', label: 'Secondary Market Finance' },
+        { href: '/services/equity-release', label: 'Equity Release' },
+        { href: '/services/handover-finance', label: 'Handover Finance' },
+        { href: '/services/buyout-refinance', label: 'Buyout / Refinance' },
+        { href: '/services/non-resident-finance', label: 'Non-Resident Finance' },
+      ],
+    },
+    { href: '/blog', label: 'Blog' },
+    { href: '/about-us', label: 'About Us' },
+    { href: '/faqs', label: 'FAQs' },
+  ];
+
+  const navItemsRespo = [...navItems, { href: '/contact-us', label: 'Contact Us' }];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-   <header
-      className={`sticky top-0 w-full transition-all duration-300 z-50 ${
-        scrolled ? "bg-[rgba(255,255,255,0.8)] shadow-md backdrop-blur-sm" : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-          <Image
-            src="/images/logo.png"
-            alt="Logo"
-            width={200}
-            height={100}
-            className="h-auto w-auto"
-          />
+    <div>
+      <header
+        className={`fixed top-0 w-full transition-all duration-300 z-50 ${
+          scrolled ? 'bg-[rgba(255,255,255,0.8)] backdrop-blur-sm' : 'bg-transparen'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
+          <Link href="/">
+            <Image
+              src={settings?.site_logo_desktop || '/assets/images/equifirst_logo.png'}
+              // src='/assets/images/equifirst_logo.svg'
+              alt={settings?.site_title || 'Equifirst'}
+              width={600}
+              height={150}
+              className="w-[150px] md:w-[215px] h-auto object-contain hidden md:block"
+              priority
+            />
+            <Image
+  src={
+    scrolled
+      ? (settings?.site_logo_desktop || '/assets/images/equifirst_logo_colored.png')
+      : (settings?.footer_logo || '/assets/images/equifirst_logo_white.png')
+  }
+  alt={settings?.site_title || 'Equifirst'}
+  width={600}
+  height={150}
+  className="w-[150px] md:w-[215px] h-auto object-contain transition-all duration-300 block md:hidden"
+  priority
+/>
+          </Link>
+
+          {/* Desktop nav */}
+          <nav className="hidden md:flex gap-6 text-ef-gray font-medium relative">
+            {navItems.map((item, index) => (
+              <div
+                key={index}
+                className="relative"
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
+              >
+                {item.href ? (
+                  <Link href={item.href} className={`nav-link ${pathname === item.href ? 'active' : ''}`}>
+                    {item.label}
+                  </Link>
+                ) : (
+                  <span className="nav-link cursor-pointer">{item.label}</span>
+                )}
+
+                {item.children && openDropdownIndex === index && (
+                  <div className="absolute left-0 top-full mt-0 flex flex-col bg-white shadow-lg rounded-lg z-50 min-w-[200px] overflow-hidden">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        onClick={handleDropdownClick}
+                        className="px-4 py-2 text-sm hover:bg-ef-blue text-ef-gray hover:text-white whitespace-nowrap"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
+
+          {/* Mobile toggle */}
+          <div className="md:hidden pt-2">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`${scrolled ? 'text-black' : 'text-white'} transition-colors duration-200`}
+            >
+              <Menu size={24} />
+            </button>
+          </div>
+
+          <div className="hidden md:block">
+            <a href="/contact-us" className="btn">Contact Us</a>
+          </div>
         </div>
+      </header>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-6 text-ef-gray font-medium">
-          <Link href="/" className="nav-link">Home</Link>
-          <Link href="/mortgage-calculator" className="nav-link">Mortgage Calculator</Link>
-          <Link href="/services" className="nav-link">Services</Link>
-          <Link href="/blogs" className="nav-link">Blogs</Link>
-          <Link href="/about-us" className="nav-link">About us</Link>
-        </nav>
-
-        {/* Mobile Toggle Button */}
-        <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)} className="text-ef-gray">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {/* Contact Button (Hidden on mobile) */}
-        <div className="hidden md:block">
-          <button className="btn">Contact Us</button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden px-4 sm:px-6 lg:px-8 mt-4 space-y-4 text-ef-gray font-medium bg-white z-40 shadow-md">
-          <Link href="/" className="block nav-link" onClick={() => setIsOpen(false)}>Home</Link>
-          <Link href="/mortgage-calculator" className="block nav-link" onClick={() => setIsOpen(false)}>Mortgage Calculator</Link>
-          <Link href="/services" className="block nav-link" onClick={() => setIsOpen(false)}>Services</Link>
-          <Link href="/blogs" className="block nav-link" onClick={() => setIsOpen(false)}>Blogs</Link>
-          <Link href="/about-us" className="block nav-link" onClick={() => setIsOpen(false)}>About us</Link>
-          <button className="btn w-full mt-4" onClick={() => setIsOpen(false)}>Contact Us</button>
+        <div className="fixed md:hidden inset-0 z-50 pr-[25%] bg-black text-white flex flex-col justify-between p-3 transition-transform duration-300 animate-menu-slide-in-left">
+          <div className="flex justify-end">
+            <button onClick={() => setIsOpen(false)}>
+              <X size={24} className="text-white" />
+            </button>
+          </div>
+
+    <div className="flex flex-col gap-3 text-lg items-end mt-8 px-4">
+      {navItemsRespo.map((item, index) => {
+        const isActive = pathname === item.href;
+        const hasChildren = item.children && item.children.length > 0;
+        const isDropdownOpen = openDropdownIndex === index;
+
+        return (
+          <div key={index} className="w-full text-right">
+            {/* Normal link (no children) */}
+            {item.href && !hasChildren ? (
+              <Link
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className={`mobile-nav-link ${isActive ? "active" : ""}`}
+              >
+                {item.label}
+              </Link>
+            ) : hasChildren ? (
+              <>
+                {/* Button with arrow */}
+                <button
+                  onClick={() =>
+                    setOpenDropdownIndex(isDropdownOpen ? null : index)
+                  }
+                  className="mobile-nav-link w-full flex items-center justify-end gap-2 font-medium"
+                >
+                  <span>{item.label}</span>
+                  <ChevronDown
+                    className={`w-5 h-5 transition-transform duration-300 ${
+                      isDropdownOpen ? "rotate-180" : "rotate-0"
+                    }`}
+                  />
+                </button>
+
+                {/* Dropdown sublinks */}
+                {isDropdownOpen && (
+                  <div className="mt-2 pr-6 flex flex-col gap-2 text-base text-right">
+                    {item.children?.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`mobile-nav-sublink ${
+                          pathname === child.href ? "active" : ""
+                        }`}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : null}
+          </div>
+        );
+      })}
+    </div>
+
+          <div className="mt-auto space-y-4 text-sm text-center">
+            <Image
+              src={settings?.footer_logo || '/assets/images/equifirst_logo.png'}
+              alt={settings?.site_name || 'Equifirst'}
+              width={140}
+              height={60}
+              className="mx-auto h-auto object-contain"
+            />
+
+            <div className="text-white">
+              <p dangerouslySetInnerHTML={{ __html: settings?.site_address || '' }} />
+              <p className="mt-1">{settings?.site_email}</p>
+            </div>
+
+            <div className="flex justify-center gap-4 mt-4 text-white">
+              <SocialMediaLinks />
+            </div>
+
+            <p className="text-xs mt-4">
+              © Copyright {new Date().getFullYear()} Equifirst.
+              <br />
+              All Rights Reserved.
+            </p>
+          </div>
         </div>
       )}
-    </header>
+
+      {/* Spacer for fixed header */}
+      <div className="h-0 md:h-25"></div>
+    </div>
   );
 }

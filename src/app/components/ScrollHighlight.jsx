@@ -1,99 +1,212 @@
-// pages/why-us.tsx
-
 'use client';
-
-import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import clsx from 'clsx';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation  } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
-const steps = [
+const points = [
   {
     title: 'Over AED 2 Billion in Loans Disbursed',
-    description: 'Lorem ipsum dolor sit amet... etc.',
-    image: '/assets/images/step1.png',
+    image: '/assets/images/scroll-img1.png',
   },
   {
     title: '93% Success Rate',
-    description: 'Lorem ipsum dolor sit amet... etc.',
-    image: '/assets/images/step2.png',
+    image: '/assets/images/scroll-img2.png',
   },
   {
     title: 'Over 100 Banking and Real Estate Partners',
-    description: 'Lorem ipsum dolor sit amet... etc.',
-    image: '/assets/images/step3.png',
+    image: '/assets/images/scroll-img3.png',
   },
-  // Add the rest of your steps here
+  {
+    title: '30+ Years combined experience',
+    image: '/assets/images/scroll-img1.png',
+  },
+  {
+    title: '20% Client referrals',
+    image: '/assets/images/scroll-img2.png',
+  },
+  {
+    title: 'Two-minute online application',
+    image: '/assets/images/scroll-img1.png',
+  },
+  {
+    title: '5-Star Reviews',
+    image: '/assets/images/scroll-img2.png',
+  },
 ];
 
-export default function WhyUs() {
- const stepRefs = useRef<Array<Element | null>>([]);
-  // const stepRefs = useRef<(HTMLDivElement | null)>([]);
-  
+export default function ScrollHighlight() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [lineHeight, setLineHeight] = useState(0);
+  const sectionRefs = useRef([]);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (typeof window === 'undefined') return;
-
-      const scrollTop = window.scrollY;
-      const middleOfScreen = scrollTop + window.innerHeight / 2;
-
-      const newIndex = stepRefs.current.findIndex((ref) => {
-        if (!ref) return false;
-        const { top, bottom } = ref.getBoundingClientRect();
-        const offsetTop = top + scrollTop;
-        const offsetBottom = bottom + scrollTop;
-        return middleOfScreen >= offsetTop && middleOfScreen <= offsetBottom;
+      const offset = window.innerHeight / 2;
+      sectionRefs.current.forEach((ref, index) => {
+        const rect = ref?.getBoundingClientRect();
+        if (rect && rect.top <= offset && rect.bottom >= offset) {
+          setActiveIndex(index);
+        }
       });
-
-      if (newIndex !== -1 && newIndex !== activeIndex) {
-        setActiveIndex(newIndex);
-      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+
+    const ref = sectionRefs.current[activeIndex];
+    if (ref) {
+      const containerTop = sectionRefs.current[0]?.getBoundingClientRect()?.top ?? 0;
+      const currentTop = ref.getBoundingClientRect().top;
+      const heightSoFar = (currentTop - containerTop + ref.offsetHeight / 2) - 70;
+      console.log('containerTop', containerTop);
+      console.log('currentTop', currentTop);
+      setLineHeight(heightSoFar);
+    }
   }, [activeIndex]);
 
   return (
-    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-10 py-20 px-5 md:px-0">
-      {/* Left: Steps */}
-      <div className="relative border-l-2 border-gray-300 pl-6">
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            ref={(el) => (stepRefs.current[index] = el)}
-            className={clsx('relative mb-10', {
-              'text-ef-blue font-semibold': activeIndex === index,
-              'text-gray-600': activeIndex !== index,
-            })}
-          >
-            <div
-              className={clsx(
-                'absolute -left-6 w-6 h-6 rounded-full border border-ef-blue flex items-center justify-center bg-white',
-                {
-                  'bg-ef-blue text-white': activeIndex === index,
-                }
-              )}
-            >
-              {index + 1}
-            </div>
-            <h3 className="text-lg md:text-xl font-bold">{step.title}</h3>
-            <p className="text-sm md:text-base mt-1">{step.description}</p>
-          </div>
-        ))}
+    <div className="mx-auto w-full max-w-[1366px] py-5 md:pt-10 px-4 sm:px-6 lg:px-8">
+
+      <div className="hidden md:block">
+        {/* <h2 className="text-ef-blue font-extrabold text-5xl mb-10">Why choose Equifirst?</h2> */}
+
+<div className="flex flex-col md:flex-row items-start gap-10">
+  {/* Left content (timeline) */}
+  <div className="relative flex flex-col space-y-16 w-full md:w-[60%]">
+    <div
+  className="absolute left-[27px] top-0 w-2 z-0 transition-all duration-500 ease-in-out"
+  style={{
+    height: `${lineHeight}px`,
+    backgroundImage: "radial-gradient(circle, #AC9362 3px, transparent 3px)",
+    backgroundSize: "8px 16px", // dot size & spacing
+    backgroundRepeat: "repeat-y",
+  }}
+></div>
+
+
+    {points.map((point, index) => (
+      <div
+        key={index}
+        ref={(el) => (sectionRefs.current[index] = el)}
+        className={clsx(
+          'transition-all duration-500 ease-in-out h-[100px] flex items-start gap-4 relative z-10',
+          index === activeIndex
+            ? 'text-ef-blue font-bold'
+            : 'border-gray-300 text-black'
+        )}
+      >
+        {/* Circle Number */}
+        <div
+          className={clsx(
+            'w-[60px] h-[60px] flex-none flex items-center justify-center rounded-full text-xl font-bold transition-all duration-500 border',
+            index === activeIndex
+              ? 'bg-ef-blue text-white scale-110'
+              : 'bg-white border-ef-blue text-ef-blue scale-100 opacity-2-'
+          )}
+        >
+          {index + 1}
+        </div>
+
+        {/* Title Text */}
+        <div
+          className={clsx(
+            'text-4xl pt-3 transition-opacity duration-500 font-bold',
+            index === activeIndex
+              ? 'text-ef-blue'
+              : 'border-gray-300 text-black opacity-10'
+          )}
+        >
+          {point.title}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {/* Right sticky video with 35% width */}
+  <div className="sticky top-20 ml-auto w-full md:w-[25%]">
+    <div
+      dir="ltr"
+      className="relative max-h-[calc(min(85vh,760px))] min-h-[720px] max-w-[1440px] overflow-hidden max-lg:h-[756px] md:max-h-[calc(min(95dvh,960px))]"
+    >
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        src="/assets/side-video.mp4"
+        className="h-full w-full object-cover rtl:scale-x-[-1] rounded-2xl"
+      />
+    </div>
+  </div>
+</div>
+
+
       </div>
 
-      {/* Right: Image */}
-      <div className="sticky top-32">
-        <Image
-          src={steps[activeIndex].image}
-          alt={steps[activeIndex].title}
-          width={400}
-          height={300}
-          className="rounded-xl shadow-lg transition-all duration-500 ease-in-out"
-        />
+
+          <div className="block md:hidden relative w-full max-w-4xl mx-auto">
+            <Swiper
+        modules={[Navigation]} // 👈 removed Autoplay module
+    navigation
+    autoplay={false} // 👈 autoplay disabled
+    slidesPerView={1}
+    spaceBetween={30}
+    allowTouchMove={true} // 👈 always allow touch on mobile
+    className="equi-swiper"
+      >
+
+
+{points.map((point, index) => (
+  <SwiperSlide key={index}>
+    <div className="p-6 rounded-lg max-w-5xl mx-auto">
+      <div className="flex items-center gap-4 mb-4">
+        {/* <div className="w-[40px] h-[40px] flex-none rounded-full bg-ef-dark-blue text-white flex items-center justify-center text-[18px] font-bold leading-none">
+          {index + 1}
+        </div> */}
+        <h2 className="text-2xl font-bold text-ef-dark-blue leading-snug">{point.title}</h2>
       </div>
+
+      {/* <div className="overflow-hidden rounded-2xl">
+        <Image
+          src={point.image}
+          alt={point.title}
+          width={1200}
+          height={600}
+          className="w-full h-auto object-cover"
+        />
+      </div> */}
+    </div>
+  </SwiperSlide>
+))}
+
+            </Swiper>
+      
+      <div
+      dir="ltr"
+      className="md:hidden relative max-h-[calc(min(85vh,760px))] min-h-[720px] max-w-[1440px] overflow-hidden max-lg:h-[756px] md:max-h-[calc(min(95dvh,960px))]"
+    >
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        src="/assets/side-video.mp4"
+        className="h-full w-full object-cover rtl:scale-x-[-1] rounded-2xl"
+      />
+    </div>
+          
+          </div>
+
+
     </div>
   );
 }

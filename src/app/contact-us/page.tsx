@@ -1,0 +1,18 @@
+import ContactForm from "../components/ContactForm";
+import SubPageHeroBanner from "../components/SubPageHeroBanner";
+
+export default function ContactUs() {
+  return (
+    <div>
+      <SubPageHeroBanner
+  title="Contact Us"
+  subtitle="We’re Here to Help You Anytime"
+  image="/assets/images/contact-hero.jpg"
+/>
+    <div className="mt-5">
+   
+      <ContactForm />
+      </div>
+    </div>
+  );
+}
