@@ -72,6 +72,7 @@ export default function GotVideoSection() {
           >
             <div className="relative">
               <Image
+                unoptimized
                 src={video.thumbnail}
                 alt={video.title}
                 width={640}
@@ -110,6 +111,7 @@ export default function GotVideoSection() {
         >
           <div className="relative">
             <Image
+              unoptimized
               src={video.thumbnail}
               alt={video.title}
               width={640}

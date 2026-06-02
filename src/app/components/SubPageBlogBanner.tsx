@@ -13,6 +13,7 @@ export default function SubPageBlogBanner({ title, subtitle, image }: HeroBanner
   {/* Background Image */}
   <div className="absolute inset-0">
     <Image
+      unoptimized
       src={image}
       alt={title}
       fill

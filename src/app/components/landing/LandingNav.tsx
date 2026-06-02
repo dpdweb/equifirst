@@ -82,6 +82,7 @@ export default function LandingNav({ onQuoteClick, variant = 'light' }: LandingN
           {/* Logo */}
           <Link href="/" className="lp-logo">
             <Image
+              unoptimized
               src="/assets/images/equifirst_logo.png"
               alt="Equifirst Capital Financing"
               width={220}

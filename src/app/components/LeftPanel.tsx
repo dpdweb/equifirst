@@ -67,6 +67,7 @@ export default function LeftPanel() {
       </div>
 
       <Image
+        unoptimized
         src="/assets/images/service-1.jpg"
         alt="UAE Property"
         width={500}

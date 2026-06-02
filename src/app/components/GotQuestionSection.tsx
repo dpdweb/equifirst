@@ -78,6 +78,7 @@ export default function GotQuestionSection() {
                 You borrow money from a bank and repay it monthly with interest over an agreed term, up to 25 years.
               </p>
               <Image
+                unoptimized
               src="/assets/images/mortgage-img.png"
               alt="Off-plan Finance"
               width={510}

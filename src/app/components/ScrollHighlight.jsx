@@ -176,6 +176,7 @@ export default function ScrollHighlight() {
 
       {/* <div className="overflow-hidden rounded-2xl">
         <Image
+          unoptimized
           src={point.image}
           alt={point.title}
           width={1200}

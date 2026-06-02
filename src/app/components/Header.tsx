@@ -57,6 +57,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
           <Link href="/">
             <Image
+              unoptimized
               src={settings?.site_logo_desktop || '/assets/images/equifirst_logo.png'}
               // src='/assets/images/equifirst_logo.svg'
               alt={settings?.site_title || 'Equifirst'}
@@ -66,6 +67,7 @@ export default function Header() {
               priority
             />
             <Image
+              unoptimized
   src={
     scrolled
       ? (settings?.site_logo_desktop || '/assets/images/equifirst_logo_colored.png')
@@ -199,6 +201,7 @@ export default function Header() {
 
           <div className="mt-auto space-y-4 text-sm text-center">
             <Image
+              unoptimized
               src={settings?.footer_logo || '/assets/images/equifirst_logo.png'}
               alt={settings?.site_name || 'Equifirst'}
               width={140}

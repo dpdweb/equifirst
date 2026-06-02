@@ -10,6 +10,7 @@ export default function SubPageHeroBanner({ title, subtitle, image }: HeroBanner
   return (
 <section className="relative w-full max-w-[1440px] h-[500px] md:h-[300px] flex items-center overflow-hidden md:rounded-4xl mx-0 md:mx-[1px] xl:mx-auto">
   <Image
+    unoptimized
     src={image}
     alt={title || "Hero Section"}
     fill

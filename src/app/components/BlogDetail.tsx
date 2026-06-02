@@ -72,6 +72,7 @@ export default function BlogDetail({ blog }: { blog: Blog }) {
     <div className="flex items-center space-x-4">
       {blog.author.image && (
         <Image
+          unoptimized
           src={blog.author.image}
           alt={blog.author.name}
           width={50}

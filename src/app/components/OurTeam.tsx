@@ -65,6 +65,7 @@ useEffect(() => {
           >
             {/* Team Image */}
             <Image
+              unoptimized
               src={member.image}
               alt={member.name}
               width={400}
@@ -106,6 +107,7 @@ useEffect(() => {
 
 
                 <Image
+                  unoptimized
                   src={member.image}
                   alt={member.name}
                   width={400}

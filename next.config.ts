@@ -1,37 +1,19 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
   images: {
-    // Emergency production fix:
-    // Serve local/static images directly from /public instead of routing them
-    // through /_next/image. The live site was returning 400 for optimizer URLs
-    // such as /_next/image?url=%2Fassets%2Fimages%2Fcontact-hero.jpg.
+    // Emergency production fix: bypass /_next/image optimizer and serve public assets directly.
     unoptimized: true,
     localPatterns: [
       { pathname: '/assets/**' },
     ],
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'www.equifirst.ae',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'equifirst.ae',
-        pathname: '/**',
-      },
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-        pathname: '/**',
-      },
-      {
-        protocol: 'http',
-        hostname: '127.0.0.1',
-        pathname: '/**',
-      },
+      { protocol: 'https', hostname: 'www.equifirst.ae', pathname: '/**' },
+      { protocol: 'https', hostname: 'equifirst.ae', pathname: '/**' },
+      { protocol: 'http', hostname: 'localhost', pathname: '/**' },
+      { protocol: 'http', hostname: '127.0.0.1', pathname: '/**' },
     ],
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

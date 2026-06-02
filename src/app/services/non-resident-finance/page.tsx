@@ -71,6 +71,7 @@ export default function WhoWeAre() {
     {/* Right Section (Image with Play Button) */}
     <div className="flex-1 mt-8 md:mt-0 relative rounded-2xl overflow-hidden">
       <Image
+        unoptimized
         src="/assets/images/service-4.jpg"
         alt="UAE Skyline"
         width={600}

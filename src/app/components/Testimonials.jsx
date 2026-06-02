@@ -36,6 +36,7 @@ const Testimonials = () => {
       <h3 className="text-[26px] md:text-[44px] font-medium text-ef-yellow mb-2">
         Rated 5/5 on Google! <span className="inline-block">
           <Image
+            unoptimized
             src="/assets/images/google-icon.webp"
             alt="Google Icon"
             width={32}
@@ -89,6 +90,7 @@ const Testimonials = () => {
         <div className="bg-white text-gray-800 rounded-lg p-6 w-full shadow-md relative overflow-hidden md:h-[280px]">
           <div className="flex items-center gap-4 mb-4">
             <Image
+              unoptimized
               src={t.image}
               alt={t.name}
               width={48}
@@ -112,6 +114,7 @@ const Testimonials = () => {
 
           <div className="absolute -bottom-2 right-0 opacity-100 text-6xl font-bold select-none pointer-events-none">
             <Image
+              unoptimized
               src="/assets/images/testi-logo.png"
               alt="Watermark"
               width={250}

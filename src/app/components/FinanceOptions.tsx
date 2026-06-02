@@ -64,6 +64,7 @@ export default function FinanceOptions() {
 
     <div className="flex items-end justify-between gap-6">
       <Image
+        unoptimized
         src={card.image}
         alt={card.title}
         width={255}
@@ -108,6 +109,7 @@ export default function FinanceOptions() {
 
       <div className="overflow-hidden rounded-2xl">
         <Image
+          unoptimized
           src={slide.image}
           alt={slide.title}
           width={1200}

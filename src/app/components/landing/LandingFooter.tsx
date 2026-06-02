@@ -8,6 +8,7 @@ export default function LandingFooter() {
         {/* Logo */}
         <Link href="/" className="lp-logo">
           <Image
+            unoptimized
             src="/assets/images/footer-logo.svg"
             alt="Equifirst Capital Financing"
             width={100}

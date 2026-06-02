@@ -83,6 +83,7 @@ export default function WhyEquifirst({ onScrollClick }: HeroSliderProps) {
         {/* RIGHT SIDE */}
         <div className="hidden md:block">
           <Image
+            unoptimized
             src={selected.image}
             alt={selected.title}
             className="w-full h-[350px] object-cover rounded-2xl my-4 mx-auto sm:mx-0"
@@ -126,6 +127,7 @@ export default function WhyEquifirst({ onScrollClick }: HeroSliderProps) {
             >
               <div className="text-gray-600 pb-4">{item.description}</div>
               <Image
+                unoptimized
             src={item.image}
             alt={item.title}
             width={800}     // any base width
