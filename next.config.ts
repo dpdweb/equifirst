@@ -1,117 +1,37 @@
-// const nextConfig = {
-//   images: {
-//     remotePatterns: [
-//       {
-//         protocol: 'https',
-//         hostname: 'equifirst.ae',
-//         pathname: '/**',
-//       },
-//       ...(process.env.NODE_ENV === 'development'
-//         ? [{
-//             protocol: 'http',
-//             hostname: 'localhost',
-//             port: '3000',
-//             pathname: '/**',
-//           }]
-//         : []),
-//     ],
-//     formats: ['image/avif', 'image/webp'],
-//   },
-
-//   async headers() {
-//     return [
-//       {
-//         source: '/_next/image',
-//         headers: [
-//           {
-//             key: 'Cache-Control',
-//             value: 'public, max-age=31536000, immutable',
-//           },
-//         ],
-//       },
-//     ];
-//   },
-// };
-
-// module.exports = nextConfig;
-
-// const nextConfig = {
-//   images: {
-//     remotePatterns: [
-//       {
-//         protocol: 'http',
-//         hostname: 'localhost',
-//         pathname: '/**',
-//       },
-//       ...(process.env.NODE_ENV === 'development'
-//         ? [{
-//             protocol: 'http',
-//             hostname: 'localhost',
-//             port: '3000',
-//             pathname: '/**',
-//           }]
-//         : []),
-//     ],
-//     formats: ['image/avif', 'image/webp'],
-//   },
-
-//   async headers() {
-//     return [
-//       {
-//         source: '/_next/image',
-//         headers: [
-//           {
-//             key: 'Cache-Control',
-//             value: 'public, max-age=31536000, immutable',
-//           },
-//         ],
-//       },
-//     ];
-//   },
-// };
-
-// module.exports = nextConfig;
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    // Emergency production fix:
+    // Serve local/static images directly from /public instead of routing them
+    // through /_next/image. The live site was returning 400 for optimizer URLs
+    // such as /_next/image?url=%2Fassets%2Fimages%2Fcontact-hero.jpg.
+    unoptimized: true,
+    localPatterns: [
+      { pathname: '/assets/**' },
+    ],
     remotePatterns: [
-      // Production domain
       {
         protocol: 'https',
         hostname: 'www.equifirst.ae',
         pathname: '/**',
       },
-      // Localhost without forcing port
+      {
+        protocol: 'https',
+        hostname: 'equifirst.ae',
+        pathname: '/**',
+      },
       {
         protocol: 'http',
         hostname: 'localhost',
         pathname: '/**',
       },
-      // Allow 127.0.0.1 (sometimes Next resolves to this)
       {
         protocol: 'http',
         hostname: '127.0.0.1',
         pathname: '/**',
       },
     ],
-    formats: ['image/avif', 'image/webp'],
-  },
-
-  async headers() {
-    return [
-      {
-        source: '/_next/image',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-    ];
   },
 };
 
 module.exports = nextConfig;
-
