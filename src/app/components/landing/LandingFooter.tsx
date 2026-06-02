@@ -6,7 +6,7 @@ export default function LandingFooter() {
     <footer className="lp-footer">
       <div className="lp-footer-inner">
         {/* Logo */}
-        <Link href="/" className="lp-logo">
+        <a href="/" className="lp-logo" aria-label="Go to Equifirst home page">
           <Image
             unoptimized
             src="/assets/images/footer-logo.svg"
@@ -15,7 +15,7 @@ export default function LandingFooter() {
             height={100}
             style={{ height: 100, width: 'auto' }}
           />
-        </Link>
+        </a>
 
         {/* Centre copy */}
         <div className="lp-footer-center">

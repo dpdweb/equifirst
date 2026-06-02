@@ -80,7 +80,7 @@ export default function LandingNav({ onQuoteClick, variant = 'light' }: LandingN
         <div className="lp-nav-inner">
 
           {/* Logo */}
-          <Link href="/" className="lp-logo">
+          <a href="/" className="lp-logo" aria-label="Go to Equifirst home page">
             <Image
               unoptimized
               src="/assets/images/equifirst_logo.png"
@@ -90,7 +90,7 @@ export default function LandingNav({ onQuoteClick, variant = 'light' }: LandingN
               priority
               style={{ height: 150, width: 'auto' }}
             />
-          </Link>
+          </a>
 
           {/* Desktop nav links */}
           <ul className="lp-nav-links">
