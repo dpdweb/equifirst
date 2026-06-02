@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import '@/app/styles/landing/globals.css';
 
 export const metadata: Metadata = {
   // Shared metadata defaults - override per page

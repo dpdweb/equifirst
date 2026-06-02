@@ -758,3 +758,334 @@ img { max-width: 100%; display: block; }
   }
 }
 
+
+
+/* ============================================================
+   Stakeholder landing fixes — mobile responsiveness, modal UX,
+   and lead form polish
+   ============================================================ */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.lp-container {
+  width: 100%;
+}
+
+.lp-logo {
+  height: auto;
+  min-height: 0;
+}
+
+.lp-logo img {
+  height: 48px !important;
+  max-height: 48px;
+}
+
+.lp-nav .lp-nav-inner {
+  min-height: 72px;
+}
+
+.lp-hero {
+  padding-top: 128px;
+}
+
+.lp-stat-grid,
+.lp-stats-band-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.lp-stat-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.lp-stats-band-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.lp-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.lp-table-scroll table {
+  min-width: 640px;
+}
+
+.lp-lead-form-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 26px;
+  margin: 8px 0 24px;
+  color: var(--charcoal);
+  line-height: 1.25;
+}
+
+.lp-lead-form-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.55;
+}
+
+.lp-lead-form-success {
+  text-align: center;
+  padding: 24px 0;
+}
+
+.lp-lead-form-success .lp-thanks-tick {
+  margin: 0 auto 16px;
+}
+
+.lp-lead-form-success p {
+  font-family: var(--sans);
+  color: #555;
+}
+
+.lp-field-error,
+.lp-form-error {
+  margin-top: 6px;
+  color: var(--red);
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.lp-form-error {
+  margin: -2px 0 14px;
+}
+
+.lp-modal {
+  padding: 24px;
+  overflow-y: auto;
+  align-items: center;
+}
+
+.lp-modal-card {
+  max-width: 760px;
+  width: min(760px, 100%);
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  padding: 30px;
+  background: linear-gradient(180deg, #ffffff 0%, #eaf4f7 100%);
+  border: 1px solid rgba(22,122,153,0.16);
+}
+
+.lp-modal-header {
+  padding: 4px 42px 18px 4px;
+}
+
+.lp-modal-header h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 36px);
+  line-height: 1.12;
+  color: var(--charcoal);
+  margin: 8px 0 8px;
+}
+
+.lp-modal-header p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.lp-modal-x {
+  top: 16px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.86);
+  border: 1px solid rgba(44,45,46,0.08);
+  color: var(--charcoal);
+  z-index: 2;
+}
+
+.lp-mortgage-modal-form {
+  background: transparent;
+}
+
+.form-container-equi .form-container-inner-equi {
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.form-container-equi .mortgage-form-body {
+  padding: 0 !important;
+}
+
+.form-container-equi .form-field-equi input,
+.form-container-equi .form-field-equi select {
+  padding: 11px 12px !important;
+  min-height: 44px;
+}
+
+.form-container-equi select {
+  padding: 11px 12px !important;
+  min-height: 44px;
+}
+
+.form-container-equi .react-tel-input .form-control {
+  width: 100% !important;
+  min-height: 44px !important;
+}
+
+.form-container-equi .form-container-inner-equi button {
+  min-height: 40px;
+  border-radius: 8px;
+}
+
+.mortgage-form-root {
+  width: 100%;
+}
+
+.mortgage-step {
+  min-width: 0;
+  text-align: center;
+  gap: 4px;
+}
+
+.mortgage-step span {
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.mortgage-form-success {
+  max-width: none;
+}
+
+@media (max-width: 900px) {
+  .lp-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .lp-nav .lp-nav-inner {
+    min-height: 64px;
+  }
+
+  .lp-logo img {
+    height: 42px !important;
+    max-height: 42px;
+  }
+
+  .lp-hero,
+  .lp-section.lp-hero {
+    padding-top: 104px !important;
+    padding-bottom: 56px !important;
+  }
+
+  .lp-h1 {
+    font-size: clamp(34px, 10vw, 42px);
+  }
+
+  .lp-h2 {
+    font-size: clamp(28px, 8vw, 34px);
+  }
+
+  .lp-hero-ctas {
+    width: 100%;
+  }
+
+  .lp-hero-ctas .lp-btn,
+  .lp-hero-ctas button {
+    width: 100%;
+  }
+
+  .lp-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .lp-stats-band-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .lp-test-grid,
+  .lp-2col-paint-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .lp-test-card,
+  .lp-elig-form {
+    width: 100%;
+  }
+
+  .lp-modal {
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .lp-modal-card {
+    max-height: calc(100dvh - 24px);
+    border-radius: 16px;
+    padding: 20px 16px 18px;
+  }
+
+  .lp-modal-header {
+    padding-right: 44px;
+    padding-bottom: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .lp-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .lp-stat-grid,
+  .lp-stats-band-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lp-btn {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .lp-radio-group {
+    grid-template-columns: 1fr;
+  }
+
+  .form-container-equi .form-container-inner-equi .top-space {
+    padding-top: 10px !important;
+  }
+
+  .form-container-equi .flex.gap-2,
+  .form-container-equi .flex.justify-between,
+  .form-container-equi .flex.justify-end {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .form-container-equi .flex.justify-between button,
+  .form-container-equi .flex.justify-end button {
+    flex: 1 1 140px;
+  }
+
+  .mortgage-step span {
+    font-size: 10px;
+  }
+
+  .mortgage-step .w-8 {
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+  }
+
+  .lp-modal-card {
+    padding: 18px 14px 16px;
+  }
+}

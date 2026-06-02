@@ -89,13 +89,7 @@ export default function BuyVsRentPage() {
             </div>
 
             {/* Stat cards */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: 16,
-              }}
-            >
+            <div className="lp-stat-grid">
               {[
                 { num: '30%', label: 'Average annual rent increase at renewal in Dubai (2023–2024)', color: '#c0392b' },
                 { num: 'AED 0', label: 'Broker fee to you — Equifirst is paid by the lender', color: 'var(--cyan)' },
@@ -204,7 +198,7 @@ export default function BuyVsRentPage() {
             Buying vs renting — the real comparison.{' '}
             <span className="lp-italic-cyan">No spin.</span>
           </h2>
-          <div style={{ marginTop: 44, overflowX: 'auto' as const }}>
+          <div className="lp-table-scroll" style={{ marginTop: 44 }}>
             <table
               style={{
                 width: '100%',

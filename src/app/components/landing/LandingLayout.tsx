@@ -4,7 +4,6 @@ import { useState, useCallback, useEffect } from 'react';
 import LandingNav from './LandingNav';
 import LandingFooter from './LandingFooter';
 import QuoteModal from './QuoteModal';
-import '@/app/styles/landing/globals.css';
 
 
 interface LandingLayoutProps {

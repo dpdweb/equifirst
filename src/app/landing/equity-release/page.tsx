@@ -174,14 +174,7 @@ export default function EquityReleasePage() {
           padding: '44px var(--pad-x)',
         }}
       >
-        <div
-          className="lp-container"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: 32,
-          }}
-        >
+        <div className="lp-container lp-stats-band-grid">
           {STATS.map((s) => (
             <div key={s.label} style={{ textAlign: 'center' }}>
               <div

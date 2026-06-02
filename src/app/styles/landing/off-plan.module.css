@@ -260,3 +260,25 @@
   .riskGrid { grid-template-columns: 1fr; }
   .devList, .devTags { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* Stakeholder mobile refinements */
+@media (max-width: 640px) {
+  .ppCard,
+  .eligForm,
+  .riskCard {
+    padding: 22px 18px;
+  }
+
+  .devTags,
+  .devList {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ppRow {
+    white-space: normal;
+  }
+
+  .advItem {
+    padding: 18px;
+  }
+}

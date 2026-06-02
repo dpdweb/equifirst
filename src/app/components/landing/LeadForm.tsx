@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 interface LeadFormField {
   name: string;
@@ -19,6 +19,14 @@ interface LeadFormProps {
   onSuccess?: () => void;
 }
 
+function splitName(fullName: string) {
+  const parts = fullName.trim().split(/\s+/).filter(Boolean);
+  return {
+    first_name: parts[0] || 'Landing',
+    last_name: parts.slice(1).join(' ') || '-',
+  };
+}
+
 export default function LeadForm({
   heading,
   subheading,
@@ -27,53 +35,99 @@ export default function LeadForm({
   onSuccess,
 }: LeadFormProps) {
   const [values, setValues] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [serverError, setServerError] = useState('');
+
+  const requiredFields = useMemo(
+    () => fields.filter((field) => field.required).map((field) => field.name),
+    [fields]
+  );
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-      setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+      const { name, value } = e.target;
+      setValues((prev) => ({ ...prev, [name]: value }));
+      setErrors((prev) => ({ ...prev, [name]: '' }));
+      setServerError('');
     },
     []
   );
 
+  const validate = () => {
+    const nextErrors: Record<string, string> = {};
+
+    requiredFields.forEach((name) => {
+      if (!String(values[name] || '').trim()) {
+        nextErrors[name] = 'This field is required';
+      }
+    });
+
+    if (values.email && !/\S+@\S+\.\S+/.test(values.email)) {
+      nextErrors.email = 'Enter a valid email address';
+    }
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setServerError('');
+
+    if (!validate()) return;
+
+    const { first_name, last_name } = splitName(values.name || values.full_name || '');
+
+    const payload = {
+      ...values,
+      first_name,
+      last_name,
+      email: values.email || '',
+      phone: values.phone || '',
+      lead_source: 'equifirst.ae',
+      form_name: heading,
+      landing_page:
+        typeof window !== 'undefined' ? window.location.pathname : 'landing-page',
+      landing_url: typeof window !== 'undefined' ? window.location.href : '',
+      submitted_at: new Date().toISOString(),
+    };
+
     setLoading(true);
-    // TODO: wire up real submission
-    await new Promise((r) => setTimeout(r, 900));
-    setLoading(false);
-    setSubmitted(true);
-    onSuccess?.();
+
+    try {
+      const response = await fetch('/zapapi/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => null);
+        throw new Error(data?.error || 'Lead submission failed');
+      }
+
+      setSubmitted(true);
+      onSuccess?.();
+    } catch (error) {
+      console.error(error);
+      setServerError('We could not submit the form. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="lp-elig-form">
       <span className="lp-eyebrow">Start Here</span>
-      <h3
-        style={{
-          fontFamily: 'var(--serif)',
-          fontWeight: 500,
-          fontSize: 26,
-          margin: '8px 0 24px',
-          color: 'var(--charcoal)',
-          lineHeight: 1.25,
-        }}
-      >
-        {heading}
-      </h3>
-      {subheading && (
-        <p style={{ fontSize: 14, color: '#666', marginBottom: 20, lineHeight: 1.55 }}>
-          {subheading}
-        </p>
-      )}
+      <h3 className="lp-lead-form-title">{heading}</h3>
+      {subheading && <p className="lp-lead-form-subtitle">{subheading}</p>}
 
       {submitted ? (
-        <div style={{ textAlign: 'center', padding: '24px 0' }}>
-          <div className="lp-thanks-tick" style={{ margin: '0 auto 16px' }}>✓</div>
-          <p style={{ fontFamily: 'var(--sans)', color: '#555' }}>
-            Thanks! We&apos;ll be in touch within one business day.
-          </p>
+        <div className="lp-lead-form-success">
+          <div className="lp-thanks-tick">✓</div>
+          <p>Thanks! We&apos;ll be in touch within one business day.</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} noValidate>
@@ -87,6 +141,7 @@ export default function LeadForm({
                   value={values[field.name] ?? ''}
                   onChange={handleChange}
                   required={field.required}
+                  aria-invalid={Boolean(errors[field.name])}
                 >
                   <option value="">Select…</option>
                   {field.options?.map((opt) => (
@@ -104,10 +159,16 @@ export default function LeadForm({
                   value={values[field.name] ?? ''}
                   onChange={handleChange}
                   required={field.required}
+                  aria-invalid={Boolean(errors[field.name])}
                 />
+              )}
+              {errors[field.name] && (
+                <p className="lp-field-error">{errors[field.name]}</p>
               )}
             </div>
           ))}
+
+          {serverError && <p className="lp-form-error">{serverError}</p>}
 
           <button
             type="submit"

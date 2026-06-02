@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
 
@@ -46,7 +45,6 @@ interface Errors {
 }
 
 export default function MortgageForm() {
-  const searchParams = useSearchParams();
   const titles = ["", "Personal Info", "Property Information", "Review & Submit"];
   const [step, setStep] = useState<number>(1);
   const [success, setSuccess] = useState<boolean>(false);
@@ -79,9 +77,10 @@ export default function MortgageForm() {
   useEffect(() => {
     const fields = ["gclid", "utm_source", "utm_campaign", "utm_medium", "utm_term"] as const;
     const updated: Partial<FormData> = {};
+    const currentParams = new URLSearchParams(window.location.search);
 
     fields.forEach((field) => {
-      const paramVal = searchParams.get(field);
+      const paramVal = currentParams.get(field);
       if (paramVal) {
         updated[field] = paramVal;
         document.cookie = `${field}=${encodeURIComponent(
@@ -99,7 +98,7 @@ export default function MortgageForm() {
     if (Object.keys(updated).length > 0) {
       setFormData((prev) => ({ ...prev, ...updated }));
     }
-  }, [searchParams]);
+  }, []);
 
   // handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -140,6 +139,15 @@ export default function MortgageForm() {
   };
   const handlePrev = () => setStep(step - 1);
 
+  useEffect(() => {
+    if (!success) return;
+    if (typeof window !== "undefined" && typeof window.gtag !== "undefined") {
+      window.gtag("event", "conversion", {
+        send_to: "AW-11226423965/UfvDCLj1x5sbEJ3Flukp",
+      });
+    }
+  }, [success]);
+
   // ✅ Submit to Zapier API
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -170,14 +178,8 @@ export default function MortgageForm() {
   };
 
   if (success) {
- // ✅ Fire conversion event safely
-  if (typeof window !== "undefined" && typeof window.gtag !== "undefined") {
-    window.gtag("event", "conversion", {
-      send_to: "AW-11226423965/UfvDCLj1x5sbEJ3Flukp",
-    });
-  }
     return (
-      <div className="w-full md:w-[65%]">
+      <div className="w-full mortgage-form-success">
         <div className="p-8 text-center bg-[#eaf4f7] rounded-xl">
           <h2 className="text-2xl font-bold text-ef-blue">Thank you!</h2>
           <p className="mt-2">Your information has been submitted successfully.</p>
@@ -187,16 +189,17 @@ export default function MortgageForm() {
   }
 
   return (
-    <div>
+    <div className="mortgage-form-root">
       <div className="bg-[#eaf4f7] p-8 form-container-inner-equi md:rounded-2xl">
-        <div className="p-6 rounded-xl">
+        <div className="p-6 rounded-xl mortgage-form-body">
           {/* Stepper */}
           <div className="flex items-center justify-between mb-6">
             {[1, 2, 3].map((s) => (
               <div
                 key={s}
-                className={`flex flex-col items-center flex-1 ${
-                  step !== s ? "hidden sm:flex" : "flex"
+                aria-current={step === s ? "step" : undefined}
+                className={`mortgage-step flex flex-col items-center flex-1 ${
+                  step === s ? "is-active" : ""
                 }`}
               >
                 <div
