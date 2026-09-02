@@ -8,6 +8,7 @@ import PhoneInput from "react-phone-input-2";
 declare global {
   interface Window {
     gtag?: (...args: [command: string, eventName: string, params?: Record<string, unknown>]) => void;
+    dataLayer?: Record<string, unknown>[];
   }
 }
 
@@ -139,14 +140,6 @@ export default function MortgageForm() {
   };
   const handlePrev = () => setStep(step - 1);
 
-  useEffect(() => {
-    if (!success) return;
-    if (typeof window !== "undefined" && typeof window.gtag !== "undefined") {
-      window.gtag("event", "conversion", {
-        send_to: "AW-11226423965/UfvDCLj1x5sbEJ3Flukp",
-      });
-    }
-  }, [success]);
 
   // ✅ Submit to Zapier API
   const handleSubmit = async (e: React.FormEvent) => {
@@ -168,6 +161,14 @@ export default function MortgageForm() {
 
       if (res.ok) {
         setSuccess(true);
+
+        // Notify Google Tag Manager about a successful lead submission
+        // GTM will handle GA4 and Google Ads conversion tags.
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "mortgage_form_success",
+          form_type: "mortgage",
+        });
       } else {
         alert("Something went wrong while submitting");
       }
